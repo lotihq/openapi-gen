@@ -1,13 +1,13 @@
 {
-  "name": "@tim-smart/openapi-gen",
-  "version": "0.4.13",
+  "name": "@lotihq/openapi-gen",
+  "version": "0.0.0",
   "description": "Generate Effect http clients from OpenAPI specs",
   "packageManager": "pnpm@9.10.0",
   "publishConfig": {
     "directory": "dist",
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
-  "bin": "./dist/main.js",
   "scripts": {
     "version": "changeset version",
     "release": "pnpm run build && changeset publish",

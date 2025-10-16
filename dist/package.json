@@ -1,6 +1,6 @@
 {
-  "name": "@tim-smart/openapi-gen",
-  "version": "0.4.13",
+  "name": "@lotihq/openapi-gen",
+  "version": "0.0.0",
   "description": "Generate Effect http clients from OpenAPI specs",
   "bin": "main.js",
   "repository": {
