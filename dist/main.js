@@ -35225,11 +35225,7 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
     onTopLevel({ importName, schema, name: name2, source, isClass, description }) {
       const hasUnion = "oneOf" in schema || "anyOf" in schema;
       const isObject2 = "properties" in schema && Object.keys(schema.properties ?? {}).length > 0;
-      if (hasUnion) {
-        return `${toComment(description)}export const ${name2} = eraseSchemaReq(${source})
-export type ${name2} = typeof ${name2}`;
-      }
-      if (!isObject2 || !isClass) {
+      if (!isObject2 || !isClass || hasUnion) {
         return `${toComment(description)}export class ${name2} extends ${source} {}`;
       }
       return `${toComment(description)}export class ${name2} extends ${importName}.Class<${name2}>("${name2}")(${source}) {}`;
@@ -35846,8 +35842,7 @@ ${clientErrorSource(name2)}`;
       'import * as Data from "effect/Data"',
       'import * as Effect from "effect/Effect"',
       'import type { ParseError } from "effect/ParseResult"',
-      'import * as S from "effect/Schema"',
-      "\n\nconst eraseSchemaReq = <I, A, R>(schema: S.Schema<A, I, R>): S.Schema<A, I, never> => schema as any"
+      'import * as S from "effect/Schema"'
     ].join("\n"),
     toTypes: operationsToInterface,
     toImplementation: operationsToImpl

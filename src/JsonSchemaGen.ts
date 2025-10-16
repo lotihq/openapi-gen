@@ -746,11 +746,7 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
       const hasUnion = "oneOf" in schema || "anyOf" in schema
       const isObject = "properties" in schema && Object.keys(schema.properties ?? {}).length > 0
 
-      if (hasUnion) {
-        return `${toComment(description)}export const ${name} = eraseSchemaReq(${source})\nexport type ${name} = typeof ${name}`
-      }
-
-      if (!isObject || !isClass) {
+      if (!isObject || !isClass || hasUnion) {
         return `${toComment(description)}export class ${name} extends ${source} {}`
       }
 
