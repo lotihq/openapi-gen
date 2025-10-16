@@ -34740,6 +34740,22 @@ var make64 = gen2(function* () {
     if ("type" in schema && "oneOf" in schema && Array.isArray(schema.oneOf) && schema.oneOf.length === 0) {
       schema = omit3(schema, "oneOf");
     }
+    if ("enum" in schema && Array.isArray(schema.enum)) {
+      const values3 = Array.from(new Set(schema.enum));
+      values3.sort();
+      if (values3.length === 1) {
+        schema = {
+          ...schema,
+          const: values3[0]
+        };
+        schema = omit3(schema, "enum");
+      } else if (schema.enum.length !== values3.length || schema.enum.some((value5, index) => value5 !== values3[index])) {
+        schema = {
+          ...schema,
+          enum: values3
+        };
+      }
+    }
     if ("allOf" in schema && schema.allOf.length === 1 || "oneOf" in schema && schema.oneOf.length === 1 || "anyOf" in schema && schema.anyOf.length === 1) {
       if ("allOf" in schema) {
         const item = schema.allOf[0];

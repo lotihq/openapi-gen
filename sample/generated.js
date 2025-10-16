@@ -10,11 +10,6 @@ export class AccountControllerGetCurrentAccountParams extends S.Struct({
     "fields": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AccountDataType extends S.Literal("Account") {
-}
 export class RedactedData extends S.Class("RedactedData")({
     /**
   * Fields removed from result
@@ -40,10 +35,16 @@ export class AccountAttributes extends S.Class("AccountAttributes")({
     "name": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UserRefType extends S.Literal("User") {
+export class UserRef extends S.Class("UserRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("User")
+}) {
 }
 export class ReferencedLinkObject extends S.Class("ReferencedLinkObject")({
     /**
@@ -56,30 +57,49 @@ export class ReferencedLinkObject extends S.Class("ReferencedLinkObject")({
     "related": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class IncidentRefType extends S.Literal("Incident") {
+export class IncidentRef extends S.Class("IncidentRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Incident")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DwellingRefType extends S.Literal("Dwelling") {
+export class DwellingRef extends S.Class("DwellingRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Dwelling")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UserAccountRoleRefType extends S.Literal("UserAccountRole") {
+export class UserAccountRoleRef extends S.Class("UserAccountRoleRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("UserAccountRole")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CurrencyRefType extends S.Literal("Currency") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UserDataType extends S.Literal("User") {
+export class CurrencyRef extends S.Class("CurrencyRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Currency")
+}) {
 }
 export class CreateUserAttributes extends S.Class("CreateUserAttributes")({
     /**
@@ -98,25 +118,38 @@ export class CreateUserAttributes extends S.Class("CreateUserAttributes")({
     "isAdmin": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EmailAddressRefType extends S.Literal("EmailAddress") {
+export class EmailAddressRef extends S.Class("EmailAddressRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EmailAddress")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PhoneNumberRefType extends S.Literal("PhoneNumber") {
+export class PhoneNumberRef extends S.Class("PhoneNumberRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PhoneNumber")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AccountRefType extends S.Literal("Account") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EmailAddressDataType extends S.Literal("EmailAddress") {
+export class AccountRef extends S.Class("AccountRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Account")
+}) {
 }
 export class EmailAddressAttributes extends S.Class("EmailAddressAttributes")({
     "address": S.optionalWith(S.String, { nullable: true }),
@@ -127,15 +160,16 @@ export class EmailAddressAttributes extends S.Class("EmailAddressAttributes")({
     "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AccountProviderContactRefType extends S.Literal("AccountProviderContact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class IdentityDataType extends S.Literal("Identity") {
+export class AccountProviderContactRef extends S.Class("AccountProviderContactRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AccountProviderContact")
+}) {
 }
 export class AccountProviderContactAttributes extends S.Class("AccountProviderContactAttributes")({
     /**
@@ -150,20 +184,16 @@ export class AccountProviderContactAttributes extends S.Class("AccountProviderCo
     "avatarUrl": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AccountProviderContactDataType extends S.Literal("AccountProviderContact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AccountProviderRefType extends S.Literal("AccountProvider") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PhoneNumberDataType extends S.Literal("PhoneNumber") {
+export class AccountProviderRef extends S.Class("AccountProviderRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AccountProvider")
+}) {
 }
 export class PhoneNumberAttributes extends S.Class("PhoneNumberAttributes")({
     "number": S.optionalWith(S.String, { nullable: true }),
@@ -171,38 +201,35 @@ export class PhoneNumberAttributes extends S.Class("PhoneNumberAttributes")({
     "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AccountProviderDataType extends S.Literal("AccountProvider") {
-}
 export class AccountProviderAttributes extends S.Class("AccountProviderAttributes")({
     /**
   * Required if provider not set.
   */
     "name": S.optionalWith(S.String, { nullable: true }),
-    "offerings": S.optionalWith(S.Array(S.Literal("ITEM", "SERVICE", "COVERAGE", "AID")), { nullable: true })
+    "offerings": S.optionalWith(S.Array(S.Literal("AID", "COVERAGE", "ITEM", "SERVICE")), { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ProviderRefType extends S.Literal("Provider") {
+export class ProviderRef extends S.Class("ProviderRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Provider")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ProjectDataType extends S.Literal("Project") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ProjectMediaRefType extends S.Literal("ProjectMedia") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class IncidentDataType extends S.Literal("Incident") {
+export class ProjectMediaRef extends S.Class("ProjectMediaRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ProjectMedia")
+}) {
 }
 export class IncidentAttributes extends S.Class("IncidentAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -213,217 +240,363 @@ export class IncidentAttributes extends S.Class("IncidentAttributes")({
     "isThereLiability": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class IncidentTypeRefType extends S.Literal("IncidentType") {
+export class IncidentTypeRef extends S.Class("IncidentTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DisasterRefType extends S.Literal("Disaster") {
+export class DisasterRef extends S.Class("DisasterRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Disaster")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ProjectMediaDataType extends S.Literal("ProjectMedia") {
+export class CreateProjectMediaAttributesStage extends S.Literal("AFTER", "BEFORE", "DURING") {
 }
-export class CreateProjectMediaAttributesStage extends S.Literal("BEFORE", "DURING", "AFTER") {
+export class MediaRef extends S.Class("MediaRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Media")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class MediaRefType extends S.Literal("Media") {
+export class CreateMediaAttributesSubjectState extends S.Literal("DAMAGED", "INTACT", "IN_PROGRESS", "MISSING") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class MediaDataType extends S.Literal("Media") {
+export class FileRef extends S.Class("FileRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("File")
+}) {
 }
-export class CreateMediaAttributesSubjectState extends S.Literal("INTACT", "DAMAGED", "IN_PROGRESS", "MISSING") {
+export class SpaceRef extends S.Class("SpaceRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Space")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class FileRefType extends S.Literal("File") {
+export class EntrySourceMediaRef extends S.Class("EntrySourceMediaRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EntrySourceMedia")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SpaceRefType extends S.Literal("Space") {
+export class FileAttributesType extends S.Literal("AUDIO", "DOCUMENT", "IMAGE", "VIDEO") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EntrySourceMediaRefType extends S.Literal("EntrySourceMedia") {
+export class FileProcessRef extends S.Class("FileProcessRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("FileProcess")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class FileDataType extends S.Literal("File") {
+export class ChangeOrderRef extends S.Class("ChangeOrderRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ChangeOrder")
+}) {
 }
-/**
-* The storage provider for this file.
-*/
-export class FileAttributesStorageProvider extends S.Literal("LOTI_S3") {
+export class EstimateRef extends S.Class("EstimateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Estimate")
+}) {
 }
-export class FileAttributesType extends S.Literal("IMAGE", "VIDEO", "AUDIO", "DOCUMENT") {
+export class InvoiceRef extends S.Class("InvoiceRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Invoice")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class FileProcessRefType extends S.Literal("FileProcess") {
+export class PaymentRef extends S.Class("PaymentRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Payment")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ChangeOrderRefType extends S.Literal("ChangeOrder") {
+export class AssetAppraisalRef extends S.Class("AssetAppraisalRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAppraisal")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EstimateRefType extends S.Literal("Estimate") {
+export class AppraisalRef extends S.Class("AppraisalRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Appraisal")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class InvoiceRefType extends S.Literal("Invoice") {
+export class FundingRef extends S.Class("FundingRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Funding")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PaymentRefType extends S.Literal("Payment") {
+export class IncidentReportRef extends S.Class("IncidentReportRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentReport")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AssetAppraisalRefType extends S.Literal("AssetAppraisal") {
+export class PoliceReportRef extends S.Class("PoliceReportRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PoliceReport")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AppraisalRefType extends S.Literal("Appraisal") {
+export class ParamedicReportRef extends S.Class("ParamedicReportRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ParamedicReport")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class FundingRefType extends S.Literal("Funding") {
+export class ContractRef extends S.Class("ContractRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Contract")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class IncidentReportRefType extends S.Literal("IncidentReport") {
+export class RentRollRef extends S.Class("RentRollRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("RentRoll")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PoliceReportRefType extends S.Literal("PoliceReport") {
+export class PermitRef extends S.Class("PermitRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Permit")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ParamedicReportRefType extends S.Literal("ParamedicReport") {
+export class BlueprintRef extends S.Class("BlueprintRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Blueprint")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ContractRefType extends S.Literal("Contract") {
+export class DeclarationsPageRef extends S.Class("DeclarationsPageRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DeclarationsPage")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class RentRollRefType extends S.Literal("RentRoll") {
+export class PolicyJacketRef extends S.Class("PolicyJacketRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PolicyJacket")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PermitRefType extends S.Literal("Permit") {
+export class ScopeOfLossRef extends S.Class("ScopeOfLossRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ScopeOfLoss")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BlueprintRefType extends S.Literal("Blueprint") {
+export class DeliveryPaperworkRef extends S.Class("DeliveryPaperworkRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DeliveryPaperwork")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DeclarationsPageRefType extends S.Literal("DeclarationsPage") {
+export class ProductSpecRef extends S.Class("ProductSpecRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ProductSpec")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PolicyJacketRefType extends S.Literal("PolicyJacket") {
+export class UserManualRef extends S.Class("UserManualRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("UserManual")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ScopeOfLossRefType extends S.Literal("ScopeOfLoss") {
+export class WarrantyRef extends S.Class("WarrantyRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Warranty")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DeliveryPaperworkRefType extends S.Literal("DeliveryPaperwork") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ProductSpecRefType extends S.Literal("ProductSpec") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UserManualRefType extends S.Literal("UserManual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class WarrantyRefType extends S.Literal("Warranty") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DeedRefType extends S.Literal("Deed") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AssetDataType extends S.Literal("Asset") {
+export class DeedRef extends S.Class("DeedRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Deed")
+}) {
 }
 export class AssetAttributes extends S.Class("AssetAttributes")({
     "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
     "appraisedAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AssetTypeRefType extends S.Literal("AssetType") {
+export class AssetTypeRef extends S.Class("AssetTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DwellingDataType extends S.Literal("Dwelling") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AddressRefType extends S.Literal("Address") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AssetTypeDataType extends S.Literal("AssetType") {
+export class AddressRef extends S.Class("AddressRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Address")
+}) {
 }
 export class AssetTypeAttributes extends S.Class("AssetTypeAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
     "slug": S.optionalWith(S.String, { nullable: true }),
     "description": S.optionalWith(S.String, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AssetAppraisalDataType extends S.Literal("AssetAppraisal") {
 }
 export class AssetAppraisalAttributes extends S.Class("AssetAppraisalAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -434,15 +607,16 @@ export class AssetAppraisalAttributes extends S.Class("AssetAppraisalAttributes"
     "amount": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DocumentTypeRefType extends S.Literal("DocumentType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DocumentTypeDataType extends S.Literal("DocumentType") {
+export class DocumentTypeRef extends S.Class("DocumentTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DocumentType")
+}) {
 }
 export class CreateDocumentTypeAttributes extends S.Class("CreateDocumentTypeAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -451,37 +625,40 @@ export class CreateDocumentTypeAttributes extends S.Class("CreateDocumentTypeAtt
     "articleUrl": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DocumentClassRefType extends S.Literal("DocumentClass") {
+export class DocumentClassRef extends S.Class("DocumentClassRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DocumentClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DocumentClassDataType extends S.Literal("DocumentClass") {
+export class CreateSpaceAttributesUse extends S.Literal("AGRICULTURAL", "BUSINESS", "LEASED", "PERSONAL", "SHORT_TERM_RENTAL", "UNUSED") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SpaceDataType extends S.Literal("Space") {
+export class SpaceTypeRef extends S.Class("SpaceTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceType")
+}) {
 }
-export class CreateSpaceAttributesUse extends S.Literal("PERSONAL", "SHORT_TERM_RENTAL", "LEASED", "BUSINESS", "AGRICULTURAL", "UNUSED") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SpaceTypeRefType extends S.Literal("SpaceType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SpaceGroupRefType extends S.Literal("SpaceGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SpaceTypeDataType extends S.Literal("SpaceType") {
+export class SpaceGroupRef extends S.Class("SpaceGroupRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceGroup")
+}) {
 }
 export class CreateSpaceCategoryAttributes extends S.Class("CreateSpaceCategoryAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -489,45 +666,49 @@ export class CreateSpaceCategoryAttributes extends S.Class("CreateSpaceCategoryA
     "tags": S.optionalWith(S.Array(S.String), { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SpaceClassRefType extends S.Literal("SpaceClass") {
+export class SpaceClassRef extends S.Class("SpaceClassRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SpaceGroupTypeRefType extends S.Literal("SpaceGroupType") {
+export class SpaceGroupTypeRef extends S.Class("SpaceGroupTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceGroupType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SpaceClassDataType extends S.Literal("SpaceClass") {
+export class SpaceCategoryRef extends S.Class("SpaceCategoryRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceCategory")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SpaceCategoryRefType extends S.Literal("SpaceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SpaceCategoryDataType extends S.Literal("SpaceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SpaceGroupTypeDataType extends S.Literal("SpaceGroupType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BucketTypeRefType extends S.Literal("BucketType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BucketTypeDataType extends S.Literal("BucketType") {
+export class BucketTypeRef extends S.Class("BucketTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BucketType")
+}) {
 }
 export class BucketTypeAttributes extends S.Class("BucketTypeAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -536,35 +717,21 @@ export class BucketTypeAttributes extends S.Class("BucketTypeAttributes")({
     "articleUrl": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BucketClassRefType extends S.Literal("BucketClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BucketClassDataType extends S.Literal("BucketClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SpaceGroupDataType extends S.Literal("SpaceGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CurrencyDataType extends S.Literal("Currency") {
+export class BucketClassRef extends S.Class("BucketClassRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BucketClass")
+}) {
 }
 export class CreateCurrencyAttributes extends S.Class("CreateCurrencyAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
     "iso": S.optionalWith(S.String, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AddressDataType extends S.Literal("Address") {
 }
 export class AddressAttributes extends S.Class("AddressAttributes")({
     "streetAddress": S.optionalWith(S.String, { nullable: true }),
@@ -574,15 +741,16 @@ export class AddressAttributes extends S.Class("AddressAttributes")({
     "postal": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CountryRefType extends S.Literal("Country") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CountryDataType extends S.Literal("Country") {
+export class CountryRef extends S.Class("CountryRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Country")
+}) {
 }
 export class CountryAttributes extends S.Class("CountryAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -590,21 +758,9 @@ export class CountryAttributes extends S.Class("CountryAttributes")({
     "iso2": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class FileProcessDataType extends S.Literal("FileProcess") {
-}
-export class CreateFileProcessAttributesProvider extends S.Literal("TRANSLOADIT") {
-}
 export class CreateFileProcessAttributesType extends S.Literal("CONVERSION", "DATA_EXTRACTION") {
 }
-export class CreateFileProcessAttributesStatus extends S.Literal("QUEUED", "PROCESSING", "PAUSED", "COMPLETED", "FAILED") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DocumentDataType extends S.Literal("Document") {
+export class CreateFileProcessAttributesStatus extends S.Literal("COMPLETED", "FAILED", "PAUSED", "PROCESSING", "QUEUED") {
 }
 export class BlueprintAttributes extends S.Class("BlueprintAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -613,11 +769,6 @@ export class BlueprintAttributes extends S.Class("BlueprintAttributes")({
     "externalId": S.optionalWith(S.String, { nullable: true }),
     "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ChangeOrderDataType extends S.Literal("ChangeOrder") {
 }
 export class ChangeOrderAttributes extends S.Class("ChangeOrderAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -632,55 +783,104 @@ export class ChangeOrderAttributes extends S.Class("ChangeOrderAttributes")({
     "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemizableFinancialDocumentStatsRefType extends S.Literal("ItemizableFinancialDocumentStats") {
+export class ItemizableFinancialDocumentStatsRef extends S.Class("ItemizableFinancialDocumentStatsRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemizableFinancialDocumentStats")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceRefType extends S.Literal("Service") {
+export class ServiceRef extends S.Class("ServiceRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Service")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemChangeOrderRefType extends S.Literal("ItemChangeOrder") {
+export class ItemChangeOrderRef extends S.Class("ItemChangeOrderRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemChangeOrder")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactChangeOrderRefType extends S.Literal("ItemImpactChangeOrder") {
+export class ItemImpactChangeOrderRef extends S.Class("ItemImpactChangeOrderRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactChangeOrder")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskChangeOrderRefType extends S.Literal("ServiceTaskChangeOrder") {
+export class ServiceTaskChangeOrderRef extends S.Class("ServiceTaskChangeOrderRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskChangeOrder")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactRefType extends S.Literal("ItemImpact") {
+export class ItemImpactRef extends S.Class("ItemImpactRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpact")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemRefType extends S.Literal("Item") {
+export class ItemRef extends S.Class("ItemRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Item")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskRefType extends S.Literal("ServiceTask") {
+export class ServiceTaskRef extends S.Class("ServiceTaskRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTask")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ThirdPartyImpactRefType extends S.Literal("ThirdPartyImpact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemizableFinancialDocumentStatsDataType extends S.Literal("ItemizableFinancialDocumentStats") {
+export class ThirdPartyImpactRef extends S.Class("ThirdPartyImpactRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ThirdPartyImpact")
+}) {
 }
 export class CreateItemizableFinancialDocumentStatsAttributes extends S.Class("CreateItemizableFinancialDocumentStatsAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -700,16 +900,6 @@ export class CreateItemizableFinancialDocumentStatsAttributes extends S.Class("C
     "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
     "isItemizationComplete": S.optionalWith(S.Boolean, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemizableFinancialDocumentDataType extends S.Literal("ItemizableFinancialDocument") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EstimateDataType extends S.Literal("Estimate") {
 }
 export class EstimateAttributes extends S.Class("EstimateAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -734,25 +924,38 @@ export class EstimateAttributes extends S.Class("EstimateAttributes")({
     "currentFeeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemEstimateRefType extends S.Literal("ItemEstimate") {
+export class ItemEstimateRef extends S.Class("ItemEstimateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemEstimate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactEstimateRefType extends S.Literal("ItemImpactEstimate") {
+export class ItemImpactEstimateRef extends S.Class("ItemImpactEstimateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactEstimate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskEstimateRefType extends S.Literal("ServiceTaskEstimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ServiceDataType extends S.Literal("Service") {
+export class ServiceTaskEstimateRef extends S.Class("ServiceTaskEstimateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskEstimate")
+}) {
 }
 export class ServiceAttributes extends S.Class("ServiceAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -785,67 +988,117 @@ export class ServiceAttributes extends S.Class("ServiceAttributes")({
     "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EntrySourceMetadataRefType extends S.Literal("EntrySourceMetadata") {
+export class EntrySourceMetadataRef extends S.Class("EntrySourceMetadataRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EntrySourceMetadata")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EntryRefType extends S.Literal("Entry") {
+export class EntryRef extends S.Class("EntryRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Entry")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemAppraisalRefType extends S.Literal("ItemAppraisal") {
+export class ItemAppraisalRef extends S.Class("ItemAppraisalRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemAppraisal")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTypeRefType extends S.Literal("ServiceType") {
+export class ServiceTypeRef extends S.Class("ServiceTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemPaymentRefType extends S.Literal("ItemPayment") {
+export class ItemPaymentRef extends S.Class("ItemPaymentRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemPayment")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactPaymentRefType extends S.Literal("ItemImpactPayment") {
+export class ItemImpactPaymentRef extends S.Class("ItemImpactPaymentRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactPayment")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskPaymentRefType extends S.Literal("ServiceTaskPayment") {
+export class ServiceTaskPaymentRef extends S.Class("ServiceTaskPaymentRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskPayment")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemInvoiceRefType extends S.Literal("ItemInvoice") {
+export class ItemInvoiceRef extends S.Class("ItemInvoiceRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemInvoice")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactInvoiceRefType extends S.Literal("ItemImpactInvoice") {
+export class ItemImpactInvoiceRef extends S.Class("ItemImpactInvoiceRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactInvoice")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskInvoiceRefType extends S.Literal("ServiceTaskInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EntrySourceMetadataDataType extends S.Literal("EntrySourceMetadata") {
+export class ServiceTaskInvoiceRef extends S.Class("ServiceTaskInvoiceRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskInvoice")
+}) {
 }
 export class CreateEntrySourceMetadataAttributesEntrySourceType extends S.Literal("ITEM", "ITEM_IMPACT", "SERVICE", "SERVICE_TASK", "THIRD_PARTY_IMPACT") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EntrySourceDataType extends S.Literal("EntrySource") {
 }
 export class EntrySourceAttributes extends S.Class("EntrySourceAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -856,109 +1109,134 @@ export class EntrySourceAttributes extends S.Class("EntrySourceAttributes")({
     "appraisalCount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactDataType extends S.Literal("ItemImpact") {
+export class CreateItemImpactAttributesConditionAtImpact extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
 }
-export class CreateItemImpactAttributesConditionAtImpact extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {
+export class CreateItemImpactAttributesItemQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
 }
-export class CreateItemImpactAttributesItemQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {
+export class ItemTypeRef extends S.Class("ItemTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemTypeRefType extends S.Literal("ItemType") {
+export class CreateEntryAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EntryDataType extends S.Literal("Entry") {
+export class CreateEntryAttributesSubmissionStatus extends S.Literal("NOT_SUBMITTED", "REVISED", "SUBMITTED") {
 }
-export class CreateEntryAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
+export class BucketRef extends S.Class("BucketRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Bucket")
+}) {
 }
-export class CreateEntryAttributesSubmissionStatus extends S.Literal("NOT_SUBMITTED", "SUBMITTED", "REVISED") {
+export class SubBucketRef extends S.Class("SubBucketRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubBucket")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BucketRefType extends S.Literal("Bucket") {
+export class ClaimRef extends S.Class("ClaimRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Claim")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SubBucketRefType extends S.Literal("SubBucket") {
+export class BaseBucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ClaimRefType extends S.Literal("Claim") {
+export class BaseBucketMetadataRef extends S.Class("BaseBucketMetadataRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BaseBucketMetadata")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BaseBucketDataType extends S.Literal("BaseBucket") {
+export class BucketFundingRef extends S.Class("BucketFundingRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BucketFunding")
+}) {
 }
-export class BaseBucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
+export class BucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BaseBucketMetadataRefType extends S.Literal("BaseBucketMetadata") {
+export class CoverageRef extends S.Class("CoverageRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Coverage")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BucketFundingRefType extends S.Literal("BucketFunding") {
+export class DeductibleRef extends S.Class("DeductibleRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Deductible")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BucketDataType extends S.Literal("Bucket") {
-}
-export class BucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CoverageRefType extends S.Literal("Coverage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DeductibleRefType extends S.Literal("Deductible") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ClaimDeductibleRefType extends S.Literal("ClaimDeductible") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class FundingSourceDataType extends S.Literal("FundingSource") {
+export class ClaimDeductibleRef extends S.Class("ClaimDeductibleRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ClaimDeductible")
+}) {
 }
 export class FundingSourceAttributes extends S.Class("FundingSourceAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
     "entryAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ClaimDataType extends S.Literal("Claim") {
+export class ClaimAttributesStatus extends S.Literal("CLOSED", "OPEN") {
 }
-export class ClaimAttributesStatus extends S.Literal("OPEN", "CLOSED") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PolicyTermRefType extends S.Literal("PolicyTerm") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class FundingDataType extends S.Literal("Funding") {
+export class PolicyTermRef extends S.Class("PolicyTermRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PolicyTerm")
+}) {
 }
 export class CreateFundingAttributes extends S.Class("CreateFundingAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -973,55 +1251,42 @@ export class CreateFundingAttributes extends S.Class("CreateFundingAttributes")(
     "isFullyAllocated": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BucketFundingDataType extends S.Literal("BucketFunding") {
-}
 export class BucketFundingAttributes extends S.Class("BucketFundingAttributes")({
     "amount": S.optionalWith(S.Number, { nullable: true }),
     "date": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ClaimTargetDataType extends S.Literal("ClaimTarget") {
+export class ClaimTargetAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-export class ClaimTargetAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
+export class PolicyTermAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PolicyTermDataType extends S.Literal("PolicyTerm") {
+export class PolicyRef extends S.Class("PolicyRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Policy")
+}) {
 }
-export class PolicyTermAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PolicyRefType extends S.Literal("Policy") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PolicyTemplateRefType extends S.Literal("PolicyTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ProviderDataType extends S.Literal("Provider") {
+export class PolicyTemplateRef extends S.Class("PolicyTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PolicyTemplate")
+}) {
 }
 export class CreateProviderAttributes extends S.Class("CreateProviderAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
     "slug": S.optionalWith(S.String, { nullable: true }),
-    "offerings": S.optionalWith(S.Array(S.Literal("ITEM", "SERVICE", "COVERAGE", "AID")), { nullable: true })
+    "offerings": S.optionalWith(S.Array(S.Literal("AID", "COVERAGE", "ITEM", "SERVICE")), { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DeductibleDataType extends S.Literal("Deductible") {
 }
 export class DeductibleAttributes extends S.Class("DeductibleAttributes")({
     "amount": S.optionalWith(S.Number, { nullable: true }),
@@ -1035,66 +1300,77 @@ export class DeductibleAttributes extends S.Class("DeductibleAttributes")({
 }) {
 }
 /**
-* The type of the referenced entity.
-*/
-export class BucketDefinitionDataType extends S.Literal("BucketDefinition") {
-}
-/**
 * Is required if not set in .basis
 */
-export class BucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
+export class BucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SubCoverageRefType extends S.Literal("SubCoverage") {
+export class SubCoverageRef extends S.Class("SubCoverageRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubCoverage")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CoverageDataType extends S.Literal("Coverage") {
+export class CoverageTemplateRef extends S.Class("CoverageTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("CoverageTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CoverageTemplateRefType extends S.Literal("CoverageTemplate") {
+export class CoverageGroupRef extends S.Class("CoverageGroupRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("CoverageGroup")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CoverageGroupRefType extends S.Literal("CoverageGroup") {
+export class PerilRef extends S.Class("PerilRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Peril")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PerilRefType extends S.Literal("Peril") {
+export class EndorsementRef extends S.Class("EndorsementRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Endorsement")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EndorsementRefType extends S.Literal("Endorsement") {
+export class SubBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SubBucketDefinitionDataType extends S.Literal("SubBucketDefinition") {
-}
-export class SubBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SubCoverageDataType extends S.Literal("SubCoverage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SubCoverageTemplateRefType extends S.Literal("SubCoverageTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SubBucketDataType extends S.Literal("SubBucket") {
+export class SubCoverageTemplateRef extends S.Class("SubCoverageTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubCoverageTemplate")
+}) {
 }
 export class CreateSubBucketAttributes extends S.Class("CreateSubBucketAttributes")({
     "limitAmount": S.optionalWith(S.Number, { nullable: true }),
@@ -1108,15 +1384,16 @@ export class CreateSubBucketAttributes extends S.Class("CreateSubBucketAttribute
     "name": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class BaseSubBucketMetadataRefType extends S.Literal("BaseSubBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BaseSubBucketMetadataDataType extends S.Literal("BaseSubBucketMetadata") {
+export class BaseSubBucketMetadataRef extends S.Class("BaseSubBucketMetadataRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BaseSubBucketMetadata")
+}) {
 }
 export class BaseBucketMetadataAttributes extends S.Class("BaseBucketMetadataAttributes")({
     "entryCount": S.optionalWith(S.Number, { nullable: true }),
@@ -1125,63 +1402,35 @@ export class BaseBucketMetadataAttributes extends S.Class("BaseBucketMetadataAtt
     "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SubCoverageTemplateDataType extends S.Literal("SubCoverageTemplate") {
+export class EndorsementTemplateRef extends S.Class("EndorsementTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EndorsementTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class EndorsementTemplateRefType extends S.Literal("EndorsementTemplate") {
+export class CoverageGroupTemplateRef extends S.Class("CoverageGroupTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("CoverageGroupTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CoverageTemplateDataType extends S.Literal("CoverageTemplate") {
+export class CreateEndorsementTemplateAttributesEffect extends S.Literal("ADJUSTMENT", "COVERAGE", "LOSS_SETTLEMENT_TYPE", "OTHER", "PERIL") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CoverageGroupTemplateRefType extends S.Literal("CoverageGroupTemplate") {
+export class CreateEndorsementTemplateAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CoverageGroupTemplateDataType extends S.Literal("CoverageGroupTemplate") {
+export class EndorsementAttributesEffect extends S.Literal("ADJUSTMENT", "COVERAGE", "LOSS_SETTLEMENT_TYPE", "OTHER", "PERIL") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PerilDataType extends S.Literal("Peril") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EndorsementTemplateDataType extends S.Literal("EndorsementTemplate") {
-}
-export class CreateEndorsementTemplateAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {
-}
-export class CreateEndorsementTemplateAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EndorsementDataType extends S.Literal("Endorsement") {
-}
-export class EndorsementAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {
-}
-export class EndorsementAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CoverageGroupDataType extends S.Literal("CoverageGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ClaimDeductibleDataType extends S.Literal("ClaimDeductible") {
+export class EndorsementAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
 export class ClaimDeductibleAttributes extends S.Class("ClaimDeductibleAttributes")({
     "amount": S.optionalWith(S.Number, { nullable: true }),
@@ -1192,27 +1441,7 @@ export class ClaimDeductibleAttributes extends S.Class("ClaimDeductibleAttribute
     "isFullyAccrued": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class PolicyDataType extends S.Literal("Policy") {
-}
-export class CreatePolicyAttributesStatus extends S.Literal("ACTIVE", "CANCELED", "EXPIRED", "UNVERIFIED", "PENDING_ACTIVATION", "PENDING_CANCELLATION", "RESCINDED") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PolicyTemplateDataType extends S.Literal("PolicyTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BaseBucketMetadataDataType extends S.Literal("BaseBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BaseSubBucketDataType extends S.Literal("BaseSubBucket") {
+export class CreatePolicyAttributesStatus extends S.Literal("ACTIVE", "CANCELED", "EXPIRED", "PENDING_ACTIVATION", "PENDING_CANCELLATION", "RESCINDED", "UNVERIFIED") {
 }
 export class BaseSubBucketAttributes extends S.Class("BaseSubBucketAttributes")({
     "limitAmount": S.optionalWith(S.Number, { nullable: true }),
@@ -1225,19 +1454,9 @@ export class BaseSubBucketAttributes extends S.Class("BaseSubBucketAttributes")(
     "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemAppraisalDataType extends S.Literal("ItemAppraisal") {
-}
 export class AppraisalLineAttributes extends S.Class("AppraisalLineAttributes")({
     "amount": S.optionalWith(S.Number, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AppraisalDataType extends S.Literal("Appraisal") {
 }
 export class AppraisalAttributes extends S.Class("AppraisalAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -1249,130 +1468,236 @@ export class AppraisalAttributes extends S.Class("AppraisalAttributes")({
     "lineCount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DepreciationModifierRefType extends S.Literal("DepreciationModifier") {
+export class DepreciationModifierRef extends S.Class("DepreciationModifierRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DepreciationModifier")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DepreciationOverrideRefType extends S.Literal("DepreciationOverride") {
+export class DepreciationOverrideRef extends S.Class("DepreciationOverrideRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DepreciationOverride")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AssetAttributeTypeItemTemplateRefType extends S.Literal("AssetAttributeTypeItemTemplate") {
+export class AssetAttributeTypeItemTemplateRef extends S.Class("AssetAttributeTypeItemTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAttributeTypeItemTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemTemplateRefType extends S.Literal("ItemTemplate") {
+export class ItemTemplateRef extends S.Class("ItemTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SpaceTypeItemTemplateRefType extends S.Literal("SpaceTypeItemTemplate") {
+export class SpaceTypeItemTemplateRef extends S.Class("SpaceTypeItemTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceTypeItemTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class SubmissionTrackTemplateRefType extends S.Literal("SubmissionTrackTemplate") {
+export class SubmissionTrackTemplateRef extends S.Class("SubmissionTrackTemplateRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubmissionTrackTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AssetAttributeClassRefType extends S.Literal("AssetAttributeClass") {
+export class AssetAttributeClassRef extends S.Class("AssetAttributeClassRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAttributeClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AssetAttributeTypeRefType extends S.Literal("AssetAttributeType") {
+export class AssetAttributeTypeRef extends S.Class("AssetAttributeTypeRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAttributeType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class IncidentClassRefType extends S.Literal("IncidentClass") {
+export class IncidentClassRef extends S.Class("IncidentClassRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemCategoryRefType extends S.Literal("ItemCategory") {
+export class ItemCategoryRef extends S.Class("ItemCategoryRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemCategory")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemClassRefType extends S.Literal("ItemClass") {
+export class ItemClassRef extends S.Class("ItemClassRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceCategoryRefType extends S.Literal("ServiceCategory") {
+export class ServiceCategoryRef extends S.Class("ServiceCategoryRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceCategory")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceClassRefType extends S.Literal("ServiceClass") {
+export class ServiceClassRef extends S.Class("ServiceClassRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AccountInviteRefType extends S.Literal("AccountInvite") {
+export class AccountInviteRef extends S.Class("AccountInviteRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AccountInvite")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AuthProfileRefType extends S.Literal("AuthProfile") {
+export class AuthProfileRef extends S.Class("AuthProfileRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AuthProfile")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ProjectImpactRefType extends S.Literal("ProjectImpact") {
+export class ProjectImpactRef extends S.Class("ProjectImpactRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ProjectImpact")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class IncidentImpactRefType extends S.Literal("IncidentImpact") {
+export class IncidentImpactRef extends S.Class("IncidentImpactRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentImpact")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemMediaSuggestionRefType extends S.Literal("ItemMediaSuggestion") {
+export class ItemMediaSuggestionRef extends S.Class("ItemMediaSuggestionRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemMediaSuggestion")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemProductSuggestionRefType extends S.Literal("ItemProductSuggestion") {
+export class ItemProductSuggestionRef extends S.Class("ItemProductSuggestionRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemProductSuggestion")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ThirdPartyDwellingRefType extends S.Literal("ThirdPartyDwelling") {
+export class ThirdPartyDwellingRef extends S.Class("ThirdPartyDwellingRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ThirdPartyDwelling")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ThirdPartyIndividualRefType extends S.Literal("ThirdPartyIndividual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AppraisalLineDataType extends S.Literal("AppraisalLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BaseEntityDataType extends S.Literal("BaseEntity") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class InvoiceDataType extends S.Literal("Invoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class InvoiceLineDataType extends S.Literal("InvoiceLine") {
+export class ThirdPartyIndividualRef extends S.Class("ThirdPartyIndividualRef")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ThirdPartyIndividual")
+}) {
 }
 export class InvoiceLineAttributes extends S.Class("InvoiceLineAttributes")({
     "date": S.optionalWith(S.String, { nullable: true }),
@@ -1382,26 +1707,11 @@ export class InvoiceLineAttributes extends S.Class("InvoiceLineAttributes")({
     "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemInvoiceDataType extends S.Literal("ItemInvoice") {
+export class ItemInvoiceAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
-export class ItemInvoiceAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
+export class ItemAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemDataType extends S.Literal("Item") {
-}
-export class ItemAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {
-}
-export class ItemAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemTypeDataType extends S.Literal("ItemType") {
+export class ItemAttributesCondition extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
 }
 export class CreateItemTypeAttributes extends S.Class("CreateItemTypeAttributes")({
     "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
@@ -1411,29 +1721,14 @@ export class CreateItemTypeAttributes extends S.Class("CreateItemTypeAttributes"
     "description": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class DepreciationModifierDataType extends S.Literal("DepreciationModifier") {
+export class CreateDepreciationModifierAttributesCondition extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
 }
-export class CreateDepreciationModifierAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {
-}
-export class CreateDepreciationModifierAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DepreciationScheduleDataType extends S.Literal("DepreciationSchedule") {
+export class CreateDepreciationModifierAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
 }
 export class CreateDepreciationScheduleAttributes extends S.Class("CreateDepreciationScheduleAttributes")({
     "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
     "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DepreciationOverrideDataType extends S.Literal("DepreciationOverride") {
 }
 export class CreateDepreciationOverrideAttributes extends S.Class("CreateDepreciationOverrideAttributes")({
     "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
@@ -1441,47 +1736,7 @@ export class CreateDepreciationOverrideAttributes extends S.Class("CreateDepreci
     "description": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemClassDataType extends S.Literal("ItemClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemCategoryDataType extends S.Literal("ItemCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PaymentDataType extends S.Literal("Payment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PaymentLineDataType extends S.Literal("PaymentLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemPaymentDataType extends S.Literal("ItemPayment") {
-}
-export class ItemPaymentAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactPaymentDataType extends S.Literal("ItemImpactPayment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskPaymentDataType extends S.Literal("ServiceTaskPayment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskDataType extends S.Literal("ServiceTask") {
+export class ItemPaymentAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
 export class ServiceTaskAttributes extends S.Class("ServiceTaskAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -1511,109 +1766,9 @@ export class ServiceTaskAttributes extends S.Class("ServiceTaskAttributes")({
     "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactInvoiceDataType extends S.Literal("ItemImpactInvoice") {
+export class ItemChangeOrderAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskInvoiceDataType extends S.Literal("ServiceTaskInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class IncidentReportDataType extends S.Literal("IncidentReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PoliceReportDataType extends S.Literal("PoliceReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ParamedicReportDataType extends S.Literal("ParamedicReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ContractDataType extends S.Literal("Contract") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class RentRollDataType extends S.Literal("RentRoll") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PermitDataType extends S.Literal("Permit") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class BlueprintDataType extends S.Literal("Blueprint") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DeclarationsPageDataType extends S.Literal("DeclarationsPage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class PolicyJacketDataType extends S.Literal("PolicyJacket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ScopeOfLossDataType extends S.Literal("ScopeOfLoss") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DeliveryPaperworkDataType extends S.Literal("DeliveryPaperwork") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ProductSpecDataType extends S.Literal("ProductSpec") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UserManualDataType extends S.Literal("UserManual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class WarrantyDataType extends S.Literal("Warranty") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DeedDataType extends S.Literal("Deed") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemChangeOrderDataType extends S.Literal("ItemChangeOrder") {
-}
-export class ItemChangeOrderAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemEstimateDataType extends S.Literal("ItemEstimate") {
-}
-export class ItemEstimateAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ChangeOrderLineDataType extends S.Literal("ChangeOrderLine") {
+export class ItemEstimateAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
 export class ChangeOrderLineAttributes extends S.Class("ChangeOrderLineAttributes")({
     "date": S.optionalWith(S.String, { nullable: true }),
@@ -1622,16 +1777,6 @@ export class ChangeOrderLineAttributes extends S.Class("ChangeOrderLineAttribute
     "taxAmount": S.optionalWith(S.Number, { nullable: true }),
     "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactChangeOrderDataType extends S.Literal("ItemImpactChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemImpactEstimateDataType extends S.Literal("ItemImpactEstimate") {
 }
 export class EstimateLineAttributes extends S.Class("EstimateLineAttributes")({
     "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
@@ -1651,50 +1796,10 @@ export class EstimateLineAttributes extends S.Class("EstimateLineAttributes")({
     "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EstimateLineDataType extends S.Literal("EstimateLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class DisasterDataType extends S.Literal("Disaster") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class IncidentTypeDataType extends S.Literal("IncidentType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class IncidentClassDataType extends S.Literal("IncidentClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AssetAttributeTypeItemTemplateDataType extends S.Literal("AssetAttributeTypeItemTemplate") {
-}
 export class AssetAttributeTypeItemTemplateAttributes extends S.Class("AssetAttributeTypeItemTemplateAttributes")({
     "quantity": S.optionalWith(S.Number, { nullable: true }),
     "likelihood": S.optionalWith(S.Number, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AssetAttributeTypeDataType extends S.Literal("AssetAttributeType") {
 }
 export class AssetAttributeTypeAttributes extends S.Class("AssetAttributeTypeAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -1703,11 +1808,6 @@ export class AssetAttributeTypeAttributes extends S.Class("AssetAttributeTypeAtt
     "maxMagnitude": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class AssetAttributeClassDataType extends S.Literal("AssetAttributeClass") {
-}
 export class AssetAttributeClassAttributes extends S.Class("AssetAttributeClassAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
     "slug": S.optionalWith(S.String, { nullable: true }),
@@ -1715,56 +1815,11 @@ export class AssetAttributeClassAttributes extends S.Class("AssetAttributeClassA
 }) {
 }
 /**
-* The type of the referenced entity.
-*/
-export class ItemTemplateDataType extends S.Literal("ItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SpaceTypeItemTemplateDataType extends S.Literal("SpaceTypeItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class SubmissionTrackTemplateDataType extends S.Literal("SubmissionTrackTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ServiceCategoryDataType extends S.Literal("ServiceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ServiceClassDataType extends S.Literal("ServiceClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTypeDataType extends S.Literal("ServiceType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AccountInviteDataType extends S.Literal("AccountInvite") {
-}
-/**
 * What level of permissions the user has for this account.
 */
-export class AccountInviteAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class AuthProfileDataType extends S.Literal("AuthProfile") {
+export class AccountInviteAttributesRole extends S.Literal("COLLABORATOR", "MANAGER", "OWNER") {
 }
 export class AuthProfileAttributesProvider extends S.Literal("CLERK", "LOGTO", "TEST") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class EntrySourceMediaDataType extends S.Literal("EntrySourceMedia") {
 }
 export class CreateEntrySourceMediaAttributes extends S.Class("CreateEntrySourceMediaAttributes")({
     "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
@@ -1774,68 +1829,18 @@ export class CreateEntrySourceMediaAttributes extends S.Class("CreateEntrySource
     "timestamp": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ThirdPartyImpactDataType extends S.Literal("ThirdPartyImpact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ThirdPartyDataType extends S.Literal("ThirdParty") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ThirdPartyDwellingDataType extends S.Literal("ThirdPartyDwelling") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ThirdPartyIndividualDataType extends S.Literal("ThirdPartyIndividual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ProjectImpactDataType extends S.Literal("ProjectImpact") {
-}
 export class CreateIncidentImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class IncidentImpactDataType extends S.Literal("IncidentImpact") {
+export class ItemMediaSuggestionAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class ItemMediaSuggestionDataType extends S.Literal("ItemMediaSuggestion") {
+export class ItemMediaSuggestionAttributesCondition extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
 }
-export class ItemMediaSuggestionAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {
-}
-export class ItemMediaSuggestionAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class ItemProductSuggestionDataType extends S.Literal("ItemProductSuggestion") {
-}
-export class ItemProductSuggestionAttributesSource extends S.Literal("GOOGLE_SHOPPING", "AMAZON") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UserAccountRoleDataType extends S.Literal("UserAccountRole") {
+export class ItemProductSuggestionAttributesSource extends S.Literal("AMAZON", "GOOGLE_SHOPPING") {
 }
 /**
 * What level of permissions the user has for this account.
 */
-export class UpdateUserAccountRoleAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class FinancialDocumentDataType extends S.Literal("FinancialDocument") {
+export class UpdateUserAccountRoleAttributesRole extends S.Literal("COLLABORATOR", "MANAGER", "OWNER") {
 }
 export class HealthControllerInternalHealthCheck200 extends S.Struct({
     "status": S.optionalWith(S.String, { nullable: true }),
@@ -1844,40 +1849,49 @@ export class HealthControllerInternalHealthCheck200 extends S.Struct({
     "details": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateUserDataType extends S.Literal("User") {
+export class CreateEmailAddressRef extends S.Class("CreateEmailAddressRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EmailAddress")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateEmailAddressRefType extends S.Literal("EmailAddress") {
+export class CreatePhoneNumberRef extends S.Class("CreatePhoneNumberRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PhoneNumber")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreatePhoneNumberRefType extends S.Literal("PhoneNumber") {
+export class CreateAccountRef extends S.Class("CreateAccountRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Account")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountRefType extends S.Literal("Account") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateUserAccountRoleRefType extends S.Literal("UserAccountRole") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateUserDataType extends S.Literal("User") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEmailAddressDataType extends S.Literal("EmailAddress") {
+export class CreateUserAccountRoleRef extends S.Class("CreateUserAccountRoleRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("UserAccountRole")
+}) {
 }
 export class CreateEmailAddressAttributes extends S.Class("CreateEmailAddressAttributes")({
     "address": S.String,
@@ -1888,50 +1902,38 @@ export class CreateEmailAddressAttributes extends S.Class("CreateEmailAddressAtt
     "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountProviderContactRefType extends S.Literal("AccountProviderContact") {
+export class CreateAccountProviderContactRef extends S.Class("CreateAccountProviderContactRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AccountProviderContact")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateUserRefType extends S.Literal("User") {
+export class CreateUserRef extends S.Class("CreateUserRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("User")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEmailAddressDataType extends S.Literal("EmailAddress") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateIdentityDataType extends S.Literal("Identity") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateIdentityDataType extends S.Literal("Identity") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountProviderContactDataType extends S.Literal("AccountProviderContact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountProviderRefType extends S.Literal("AccountProvider") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAccountProviderContactDataType extends S.Literal("AccountProviderContact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePhoneNumberDataType extends S.Literal("PhoneNumber") {
+export class CreateAccountProviderRef extends S.Class("CreateAccountProviderRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AccountProvider")
+}) {
 }
 export class CreatePhoneNumberAttributes extends S.Class("CreatePhoneNumberAttributes")({
     "number": S.String,
@@ -1939,30 +1941,16 @@ export class CreatePhoneNumberAttributes extends S.Class("CreatePhoneNumberAttri
     "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePhoneNumberDataType extends S.Literal("PhoneNumber") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountProviderDataType extends S.Literal("AccountProvider") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateProviderRefType extends S.Literal("Provider") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAccountProviderDataType extends S.Literal("AccountProvider") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountDataType extends S.Literal("Account") {
+export class CreateProviderRef extends S.Class("CreateProviderRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Provider")
+}) {
 }
 export class CreateAccountAttributes extends S.Class("CreateAccountAttributes")({
     /**
@@ -1971,45 +1959,49 @@ export class CreateAccountAttributes extends S.Class("CreateAccountAttributes")(
     "name": S.String
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentRefType extends S.Literal("Incident") {
+export class CreateIncidentRef extends S.Class("CreateIncidentRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Incident")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDwellingRefType extends S.Literal("Dwelling") {
+export class CreateDwellingRef extends S.Class("CreateDwellingRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Dwelling")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateCurrencyRefType extends S.Literal("Currency") {
+export class CreateCurrencyRef extends S.Class("CreateCurrencyRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Currency")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAccountDataType extends S.Literal("Account") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateProjectDataType extends S.Literal("Project") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateProjectMediaRefType extends S.Literal("ProjectMedia") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateProjectDataType extends S.Literal("Project") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentDataType extends S.Literal("Incident") {
+export class CreateProjectMediaRef extends S.Class("CreateProjectMediaRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ProjectMedia")
+}) {
 }
 export class CreateIncidentAttributes extends S.Class("CreateIncidentAttributes")({
     "name": S.String,
@@ -2020,244 +2012,350 @@ export class CreateIncidentAttributes extends S.Class("CreateIncidentAttributes"
     "isThereLiability": S.optionalWith(S.Boolean, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentTypeRefType extends S.Literal("IncidentType") {
+export class CreateIncidentTypeRef extends S.Class("CreateIncidentTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDisasterRefType extends S.Literal("Disaster") {
+export class CreateDisasterRef extends S.Class("CreateDisasterRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Disaster")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateIncidentDataType extends S.Literal("Incident") {
+export class CreateMediaRef extends S.Class("CreateMediaRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Media")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateProjectMediaDataType extends S.Literal("ProjectMedia") {
+export class CreateFileRef extends S.Class("CreateFileRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("File")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateMediaRefType extends S.Literal("Media") {
+export class CreateSpaceRef extends S.Class("CreateSpaceRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Space")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateProjectMediaDataType extends S.Literal("ProjectMedia") {
+export class CreateEntrySourceMediaRef extends S.Class("CreateEntrySourceMediaRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EntrySourceMedia")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateMediaDataType extends S.Literal("Media") {
+export class CreateFileAttributesType extends S.Literal("AUDIO", "DOCUMENT", "IMAGE", "VIDEO") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateFileRefType extends S.Literal("File") {
+export class CreateFileProcessRef extends S.Class("CreateFileProcessRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("FileProcess")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceRefType extends S.Literal("Space") {
+export class CreateChangeOrderRef extends S.Class("CreateChangeOrderRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ChangeOrder")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateEntrySourceMediaRefType extends S.Literal("EntrySourceMedia") {
+export class CreateEstimateRef extends S.Class("CreateEstimateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Estimate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateMediaDataType extends S.Literal("Media") {
+export class CreateInvoiceRef extends S.Class("CreateInvoiceRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Invoice")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateFileDataType extends S.Literal("File") {
+export class CreatePaymentRef extends S.Class("CreatePaymentRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Payment")
+}) {
 }
-/**
-* The storage provider for this file.
-*/
-export class CreateFileAttributesStorageProvider extends S.Literal("LOTI_S3") {
+export class CreateAssetAppraisalRef extends S.Class("CreateAssetAppraisalRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAppraisal")
+}) {
 }
-export class CreateFileAttributesType extends S.Literal("IMAGE", "VIDEO", "AUDIO", "DOCUMENT") {
+export class CreateAppraisalRef extends S.Class("CreateAppraisalRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Appraisal")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateFileProcessRefType extends S.Literal("FileProcess") {
+export class CreateFundingRef extends S.Class("CreateFundingRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Funding")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateChangeOrderRefType extends S.Literal("ChangeOrder") {
+export class CreateIncidentReportRef extends S.Class("CreateIncidentReportRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentReport")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateEstimateRefType extends S.Literal("Estimate") {
+export class CreatePoliceReportRef extends S.Class("CreatePoliceReportRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PoliceReport")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateInvoiceRefType extends S.Literal("Invoice") {
+export class CreateParamedicReportRef extends S.Class("CreateParamedicReportRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ParamedicReport")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreatePaymentRefType extends S.Literal("Payment") {
+export class CreateContractRef extends S.Class("CreateContractRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Contract")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAppraisalRefType extends S.Literal("AssetAppraisal") {
+export class CreateRentRollRef extends S.Class("CreateRentRollRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("RentRoll")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAppraisalRefType extends S.Literal("Appraisal") {
+export class CreatePermitRef extends S.Class("CreatePermitRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Permit")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateFundingRefType extends S.Literal("Funding") {
+export class CreateBlueprintRef extends S.Class("CreateBlueprintRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Blueprint")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentReportRefType extends S.Literal("IncidentReport") {
+export class CreateDeclarationsPageRef extends S.Class("CreateDeclarationsPageRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DeclarationsPage")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreatePoliceReportRefType extends S.Literal("PoliceReport") {
+export class CreatePolicyJacketRef extends S.Class("CreatePolicyJacketRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PolicyJacket")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateParamedicReportRefType extends S.Literal("ParamedicReport") {
+export class CreateScopeOfLossRef extends S.Class("CreateScopeOfLossRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ScopeOfLoss")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateContractRefType extends S.Literal("Contract") {
+export class CreateDeliveryPaperworkRef extends S.Class("CreateDeliveryPaperworkRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DeliveryPaperwork")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateRentRollRefType extends S.Literal("RentRoll") {
+export class CreateProductSpecRef extends S.Class("CreateProductSpecRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ProductSpec")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreatePermitRefType extends S.Literal("Permit") {
+export class CreateUserManualRef extends S.Class("CreateUserManualRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("UserManual")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateBlueprintRefType extends S.Literal("Blueprint") {
+export class CreateWarrantyRef extends S.Class("CreateWarrantyRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Warranty")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeclarationsPageRefType extends S.Literal("DeclarationsPage") {
+export class CreateDeedRef extends S.Class("CreateDeedRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Deed")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyJacketRefType extends S.Literal("PolicyJacket") {
+export class UpdateFileAttributesType extends S.Literal("AUDIO", "DOCUMENT", "IMAGE", "VIDEO") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateScopeOfLossRefType extends S.Literal("ScopeOfLoss") {
+export class CreateAssetTypeRef extends S.Class("CreateAssetTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeliveryPaperworkRefType extends S.Literal("DeliveryPaperwork") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateProductSpecRefType extends S.Literal("ProductSpec") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateUserManualRefType extends S.Literal("UserManual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateWarrantyRefType extends S.Literal("Warranty") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeedRefType extends S.Literal("Deed") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateFileDataType extends S.Literal("File") {
-}
-/**
-* The storage provider for this file.
-*/
-export class UpdateFileAttributesStorageProvider extends S.Literal("LOTI_S3") {
-}
-export class UpdateFileAttributesType extends S.Literal("IMAGE", "VIDEO", "AUDIO", "DOCUMENT") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetDataType extends S.Literal("Asset") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetTypeRefType extends S.Literal("AssetType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAssetDataType extends S.Literal("Asset") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDwellingDataType extends S.Literal("Dwelling") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAddressRefType extends S.Literal("Address") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDwellingDataType extends S.Literal("Dwelling") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetTypeDataType extends S.Literal("AssetType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAssetTypeDataType extends S.Literal("AssetType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAppraisalDataType extends S.Literal("AssetAppraisal") {
+export class CreateAddressRef extends S.Class("CreateAddressRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Address")
+}) {
 }
 export class CreateAssetAppraisalAttributes extends S.Class("CreateAssetAppraisalAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -2268,170 +2366,104 @@ export class CreateAssetAppraisalAttributes extends S.Class("CreateAssetAppraisa
     "amount": S.String
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDocumentTypeRefType extends S.Literal("DocumentType") {
+export class CreateDocumentTypeRef extends S.Class("CreateDocumentTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DocumentType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAssetAppraisalDataType extends S.Literal("AssetAppraisal") {
+export class CreateDocumentClassRef extends S.Class("CreateDocumentClassRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DocumentClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDocumentTypeDataType extends S.Literal("DocumentType") {
+export class CreateSpaceTypeRef extends S.Class("CreateSpaceTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDocumentClassRefType extends S.Literal("DocumentClass") {
+export class CreateSpaceGroupRef extends S.Class("CreateSpaceGroupRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceGroup")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDocumentTypeDataType extends S.Literal("DocumentType") {
+export class CreateSpaceClassRef extends S.Class("CreateSpaceClassRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDocumentClassDataType extends S.Literal("DocumentClass") {
+export class CreateSpaceGroupTypeRef extends S.Class("CreateSpaceGroupTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceGroupType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDocumentClassDataType extends S.Literal("DocumentClass") {
+export class CreateSpaceCategoryRef extends S.Class("CreateSpaceCategoryRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceCategory")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceDataType extends S.Literal("Space") {
+export class CreateBucketTypeRef extends S.Class("CreateBucketTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BucketType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceTypeRefType extends S.Literal("SpaceType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceGroupRefType extends S.Literal("SpaceGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSpaceDataType extends S.Literal("Space") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceTypeDataType extends S.Literal("SpaceType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceClassRefType extends S.Literal("SpaceClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceGroupTypeRefType extends S.Literal("SpaceGroupType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSpaceTypeDataType extends S.Literal("SpaceType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceClassDataType extends S.Literal("SpaceClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceCategoryRefType extends S.Literal("SpaceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSpaceClassDataType extends S.Literal("SpaceClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceCategoryDataType extends S.Literal("SpaceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSpaceCategoryDataType extends S.Literal("SpaceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceGroupTypeDataType extends S.Literal("SpaceGroupType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketTypeRefType extends S.Literal("BucketType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSpaceGroupTypeDataType extends S.Literal("SpaceGroupType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketTypeDataType extends S.Literal("BucketType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketClassRefType extends S.Literal("BucketClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBucketTypeDataType extends S.Literal("BucketType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketClassDataType extends S.Literal("BucketClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBucketClassDataType extends S.Literal("BucketClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceGroupDataType extends S.Literal("SpaceGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSpaceGroupDataType extends S.Literal("SpaceGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateCurrencyDataType extends S.Literal("Currency") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateCurrencyDataType extends S.Literal("Currency") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAddressDataType extends S.Literal("Address") {
+export class CreateBucketClassRef extends S.Class("CreateBucketClassRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BucketClass")
+}) {
 }
 export class CreateAddressAttributes extends S.Class("CreateAddressAttributes")({
     "streetAddress": S.String,
@@ -2441,50 +2473,16 @@ export class CreateAddressAttributes extends S.Class("CreateAddressAttributes")(
     "postal": S.String
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateCountryRefType extends S.Literal("Country") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAddressDataType extends S.Literal("Address") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateCountryDataType extends S.Literal("Country") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateCountryDataType extends S.Literal("Country") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateFileProcessDataType extends S.Literal("FileProcess") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateFileProcessDataType extends S.Literal("FileProcess") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDocumentDataType extends S.Literal("Document") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDocumentDataType extends S.Literal("Document") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateChangeOrderDataType extends S.Literal("ChangeOrder") {
+export class CreateCountryRef extends S.Class("CreateCountryRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Country")
+}) {
 }
 export class CreateChangeOrderAttributes extends S.Class("CreateChangeOrderAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -2499,80 +2497,104 @@ export class CreateChangeOrderAttributes extends S.Class("CreateChangeOrderAttri
     "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemizableFinancialDocumentStatsRefType extends S.Literal("ItemizableFinancialDocumentStats") {
+export class CreateItemizableFinancialDocumentStatsRef extends S.Class("CreateItemizableFinancialDocumentStatsRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemizableFinancialDocumentStats")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceRefType extends S.Literal("Service") {
+export class CreateServiceRef extends S.Class("CreateServiceRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Service")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemChangeOrderRefType extends S.Literal("ItemChangeOrder") {
+export class CreateItemChangeOrderRef extends S.Class("CreateItemChangeOrderRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemChangeOrder")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactChangeOrderRefType extends S.Literal("ItemImpactChangeOrder") {
+export class CreateItemImpactChangeOrderRef extends S.Class("CreateItemImpactChangeOrderRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactChangeOrder")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskChangeOrderRefType extends S.Literal("ServiceTaskChangeOrder") {
+export class CreateServiceTaskChangeOrderRef extends S.Class("CreateServiceTaskChangeOrderRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskChangeOrder")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactRefType extends S.Literal("ItemImpact") {
+export class CreateItemImpactRef extends S.Class("CreateItemImpactRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpact")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemRefType extends S.Literal("Item") {
+export class CreateItemRef extends S.Class("CreateItemRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Item")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskRefType extends S.Literal("ServiceTask") {
+export class CreateServiceTaskRef extends S.Class("CreateServiceTaskRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTask")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateThirdPartyImpactRefType extends S.Literal("ThirdPartyImpact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateChangeOrderDataType extends S.Literal("ChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemizableFinancialDocumentStatsDataType extends S.Literal("ItemizableFinancialDocumentStats") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemizableFinancialDocumentStatsDataType extends S.Literal("ItemizableFinancialDocumentStats") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemizableFinancialDocumentDataType extends S.Literal("ItemizableFinancialDocument") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemizableFinancialDocumentDataType extends S.Literal("ItemizableFinancialDocument") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEstimateDataType extends S.Literal("Estimate") {
+export class CreateThirdPartyImpactRef extends S.Class("CreateThirdPartyImpactRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ThirdPartyImpact")
+}) {
 }
 export class CreateEstimateAttributes extends S.Class("CreateEstimateAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
@@ -2597,30 +2619,38 @@ export class CreateEstimateAttributes extends S.Class("CreateEstimateAttributes"
     "currentFeeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemEstimateRefType extends S.Literal("ItemEstimate") {
+export class CreateItemEstimateRef extends S.Class("CreateItemEstimateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemEstimate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactEstimateRefType extends S.Literal("ItemImpactEstimate") {
+export class CreateItemImpactEstimateRef extends S.Class("CreateItemImpactEstimateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactEstimate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskEstimateRefType extends S.Literal("ServiceTaskEstimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEstimateDataType extends S.Literal("Estimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceDataType extends S.Literal("Service") {
+export class CreateServiceTaskEstimateRef extends S.Class("CreateServiceTaskEstimateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskEstimate")
+}) {
 }
 export class CreateServiceAttributes extends S.Class("CreateServiceAttributes")({
     "name": S.String,
@@ -2653,75 +2683,115 @@ export class CreateServiceAttributes extends S.Class("CreateServiceAttributes")(
     "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateEntrySourceMetadataRefType extends S.Literal("EntrySourceMetadata") {
+export class CreateEntrySourceMetadataRef extends S.Class("CreateEntrySourceMetadataRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EntrySourceMetadata")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateEntryRefType extends S.Literal("Entry") {
+export class CreateEntryRef extends S.Class("CreateEntryRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Entry")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemAppraisalRefType extends S.Literal("ItemAppraisal") {
+export class CreateItemAppraisalRef extends S.Class("CreateItemAppraisalRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemAppraisal")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTypeRefType extends S.Literal("ServiceType") {
+export class CreateServiceTypeRef extends S.Class("CreateServiceTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemPaymentRefType extends S.Literal("ItemPayment") {
+export class CreateItemPaymentRef extends S.Class("CreateItemPaymentRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemPayment")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactPaymentRefType extends S.Literal("ItemImpactPayment") {
+export class CreateItemImpactPaymentRef extends S.Class("CreateItemImpactPaymentRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactPayment")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskPaymentRefType extends S.Literal("ServiceTaskPayment") {
+export class CreateServiceTaskPaymentRef extends S.Class("CreateServiceTaskPaymentRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskPayment")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemInvoiceRefType extends S.Literal("ItemInvoice") {
+export class CreateItemInvoiceRef extends S.Class("CreateItemInvoiceRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemInvoice")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactInvoiceRefType extends S.Literal("ItemImpactInvoice") {
+export class CreateItemImpactInvoiceRef extends S.Class("CreateItemImpactInvoiceRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemImpactInvoice")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskInvoiceRefType extends S.Literal("ServiceTaskInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceDataType extends S.Literal("Service") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEntrySourceMetadataDataType extends S.Literal("EntrySourceMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEntrySourceMetadataDataType extends S.Literal("EntrySourceMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEntrySourceDataType extends S.Literal("EntrySource") {
+export class CreateServiceTaskInvoiceRef extends S.Class("CreateServiceTaskInvoiceRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceTaskInvoice")
+}) {
 }
 export class CreateEntrySourceAttributes extends S.Class("CreateEntrySourceAttributes")({
     "name": S.String,
@@ -2732,201 +2802,153 @@ export class CreateEntrySourceAttributes extends S.Class("CreateEntrySourceAttri
     "appraisalCount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEntrySourceDataType extends S.Literal("EntrySource") {
+export class CreateItemTypeRef extends S.Class("CreateItemTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactDataType extends S.Literal("ItemImpact") {
+export class CreateBucketRef extends S.Class("CreateBucketRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Bucket")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemTypeRefType extends S.Literal("ItemType") {
+export class CreateSubBucketRef extends S.Class("CreateSubBucketRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubBucket")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemImpactDataType extends S.Literal("ItemImpact") {
+export class CreateClaimRef extends S.Class("CreateClaimRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Claim")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateEntryDataType extends S.Literal("Entry") {
+export class CreateBaseBucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketRefType extends S.Literal("Bucket") {
+export class CreateBaseBucketMetadataRef extends S.Class("CreateBaseBucketMetadataRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BaseBucketMetadata")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubBucketRefType extends S.Literal("SubBucket") {
+export class CreateBucketFundingRef extends S.Class("CreateBucketFundingRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BucketFunding")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateClaimRefType extends S.Literal("Claim") {
+export class CreateCoverageRef extends S.Class("CreateCoverageRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Coverage")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEntryDataType extends S.Literal("Entry") {
+export class CreateDeductibleRef extends S.Class("CreateDeductibleRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Deductible")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateBaseBucketDataType extends S.Literal("BaseBucket") {
-}
-export class CreateBaseBucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBaseBucketMetadataRefType extends S.Literal("BaseBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketFundingRefType extends S.Literal("BucketFunding") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBaseBucketDataType extends S.Literal("BaseBucket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketDataType extends S.Literal("Bucket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageRefType extends S.Literal("Coverage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeductibleRefType extends S.Literal("Deductible") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateClaimDeductibleRefType extends S.Literal("ClaimDeductible") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBucketDataType extends S.Literal("Bucket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateFundingSourceDataType extends S.Literal("FundingSource") {
+export class CreateClaimDeductibleRef extends S.Class("CreateClaimDeductibleRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ClaimDeductible")
+}) {
 }
 export class CreateFundingSourceAttributes extends S.Class("CreateFundingSourceAttributes")({
     "name": S.String,
     "entryAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateFundingSourceDataType extends S.Literal("FundingSource") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateClaimDataType extends S.Literal("Claim") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyTermRefType extends S.Literal("PolicyTerm") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateClaimDataType extends S.Literal("Claim") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateFundingDataType extends S.Literal("Funding") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateFundingDataType extends S.Literal("Funding") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketFundingDataType extends S.Literal("BucketFunding") {
+export class CreatePolicyTermRef extends S.Class("CreatePolicyTermRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PolicyTerm")
+}) {
 }
 export class CreateBucketFundingAttributes extends S.Class("CreateBucketFundingAttributes")({
     "amount": S.Number,
     "date": S.optionalWith(S.String, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBucketFundingDataType extends S.Literal("BucketFunding") {
+export class CreateClaimTargetAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateClaimTargetDataType extends S.Literal("ClaimTarget") {
+export class CreatePolicyTermAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-export class CreateClaimTargetAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
+export class CreatePolicyRef extends S.Class("CreatePolicyRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Policy")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateClaimTargetDataType extends S.Literal("ClaimTarget") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyTermDataType extends S.Literal("PolicyTerm") {
-}
-export class CreatePolicyTermAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyRefType extends S.Literal("Policy") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyTemplateRefType extends S.Literal("PolicyTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePolicyTermDataType extends S.Literal("PolicyTerm") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateProviderDataType extends S.Literal("Provider") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateProviderDataType extends S.Literal("Provider") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeductibleDataType extends S.Literal("Deductible") {
+export class CreatePolicyTemplateRef extends S.Class("CreatePolicyTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("PolicyTemplate")
+}) {
 }
 export class CreateDeductibleAttributes extends S.Class("CreateDeductibleAttributes")({
     "amount": S.Number,
@@ -2940,240 +2962,114 @@ export class CreateDeductibleAttributes extends S.Class("CreateDeductibleAttribu
 }) {
 }
 /**
-* The type of the referenced entity.
-*/
-export class UpdateDeductibleDataType extends S.Literal("Deductible") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBucketDefinitionDataType extends S.Literal("BucketDefinition") {
-}
-/**
 * Is required if not set in .basis
 */
-export class CreateBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
+export class CreateBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubCoverageRefType extends S.Literal("SubCoverage") {
+export class CreateSubCoverageRef extends S.Class("CreateSubCoverageRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubCoverage")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBucketDefinitionDataType extends S.Literal("BucketDefinition") {
+export class CreateCoverageTemplateRef extends S.Class("CreateCoverageTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("CoverageTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageDataType extends S.Literal("Coverage") {
+export class CreateCoverageGroupRef extends S.Class("CreateCoverageGroupRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("CoverageGroup")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageTemplateRefType extends S.Literal("CoverageTemplate") {
+export class CreatePerilRef extends S.Class("CreatePerilRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Peril")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageGroupRefType extends S.Literal("CoverageGroup") {
+export class CreateEndorsementRef extends S.Class("CreateEndorsementRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Endorsement")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreatePerilRefType extends S.Literal("Peril") {
+export class CreateSubBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateEndorsementRefType extends S.Literal("Endorsement") {
+export class CreateSubCoverageTemplateRef extends S.Class("CreateSubCoverageTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubCoverageTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateCoverageDataType extends S.Literal("Coverage") {
+export class CreateBaseSubBucketMetadataRef extends S.Class("CreateBaseSubBucketMetadataRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BaseSubBucketMetadata")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubBucketDefinitionDataType extends S.Literal("SubBucketDefinition") {
+export class CreateEndorsementTemplateRef extends S.Class("CreateEndorsementTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("EndorsementTemplate")
+}) {
 }
-export class CreateSubBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
+export class CreateCoverageGroupTemplateRef extends S.Class("CreateCoverageGroupTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("CoverageGroupTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSubBucketDefinitionDataType extends S.Literal("SubBucketDefinition") {
+export class CreateEndorsementAttributesEffect extends S.Literal("ADJUSTMENT", "COVERAGE", "LOSS_SETTLEMENT_TYPE", "OTHER", "PERIL") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubCoverageDataType extends S.Literal("SubCoverage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubCoverageTemplateRefType extends S.Literal("SubCoverageTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSubCoverageDataType extends S.Literal("SubCoverage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubBucketDataType extends S.Literal("SubBucket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBaseSubBucketMetadataRefType extends S.Literal("BaseSubBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSubBucketDataType extends S.Literal("SubBucket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBaseSubBucketMetadataDataType extends S.Literal("BaseSubBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBaseSubBucketMetadataDataType extends S.Literal("BaseSubBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubCoverageTemplateDataType extends S.Literal("SubCoverageTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEndorsementTemplateRefType extends S.Literal("EndorsementTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSubCoverageTemplateDataType extends S.Literal("SubCoverageTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageTemplateDataType extends S.Literal("CoverageTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageGroupTemplateRefType extends S.Literal("CoverageGroupTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateCoverageTemplateDataType extends S.Literal("CoverageTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageGroupTemplateDataType extends S.Literal("CoverageGroupTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateCoverageGroupTemplateDataType extends S.Literal("CoverageGroupTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePerilDataType extends S.Literal("Peril") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePerilDataType extends S.Literal("Peril") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEndorsementTemplateDataType extends S.Literal("EndorsementTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEndorsementTemplateDataType extends S.Literal("EndorsementTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEndorsementDataType extends S.Literal("Endorsement") {
-}
-export class CreateEndorsementAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {
-}
-export class CreateEndorsementAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEndorsementDataType extends S.Literal("Endorsement") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateCoverageGroupDataType extends S.Literal("CoverageGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateCoverageGroupDataType extends S.Literal("CoverageGroup") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateClaimDeductibleDataType extends S.Literal("ClaimDeductible") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateClaimDeductibleDataType extends S.Literal("ClaimDeductible") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyDataType extends S.Literal("Policy") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePolicyDataType extends S.Literal("Policy") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyTemplateDataType extends S.Literal("PolicyTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePolicyTemplateDataType extends S.Literal("PolicyTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBaseBucketMetadataDataType extends S.Literal("BaseBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBaseBucketMetadataDataType extends S.Literal("BaseBucketMetadata") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBaseSubBucketDataType extends S.Literal("BaseSubBucket") {
+export class CreateEndorsementAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
 export class CreateBaseSubBucketAttributes extends S.Class("CreateBaseSubBucketAttributes")({
     "limitAmount": S.Number,
@@ -3186,26 +3082,6 @@ export class CreateBaseSubBucketAttributes extends S.Class("CreateBaseSubBucketA
     "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBaseSubBucketDataType extends S.Literal("BaseSubBucket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemAppraisalDataType extends S.Literal("ItemAppraisal") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemAppraisalDataType extends S.Literal("ItemAppraisal") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAppraisalDataType extends S.Literal("Appraisal") {
-}
 export class CreateAppraisalAttributes extends S.Class("CreateAppraisalAttributes")({
     "name": S.optionalWith(S.String, { nullable: true }),
     "note": S.optionalWith(S.String, { nullable: true }),
@@ -3216,150 +3092,247 @@ export class CreateAppraisalAttributes extends S.Class("CreateAppraisalAttribute
     "lineCount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDepreciationModifierRefType extends S.Literal("DepreciationModifier") {
+export class CreateDepreciationModifierRef extends S.Class("CreateDepreciationModifierRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DepreciationModifier")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateDepreciationOverrideRefType extends S.Literal("DepreciationOverride") {
+export class CreateDepreciationOverrideRef extends S.Class("CreateDepreciationOverrideRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("DepreciationOverride")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAttributeTypeItemTemplateRefType extends S.Literal("AssetAttributeTypeItemTemplate") {
+export class CreateAssetAttributeTypeItemTemplateRef extends S.Class("CreateAssetAttributeTypeItemTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAttributeTypeItemTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemTemplateRefType extends S.Literal("ItemTemplate") {
+export class CreateItemTemplateRef extends S.Class("CreateItemTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceTypeItemTemplateRefType extends S.Literal("SpaceTypeItemTemplate") {
+export class CreateSpaceTypeItemTemplateRef extends S.Class("CreateSpaceTypeItemTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SpaceTypeItemTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubmissionTrackTemplateRefType extends S.Literal("SubmissionTrackTemplate") {
+export class CreateSubmissionTrackTemplateRef extends S.Class("CreateSubmissionTrackTemplateRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("SubmissionTrackTemplate")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAttributeClassRefType extends S.Literal("AssetAttributeClass") {
+export class CreateAssetAttributeClassRef extends S.Class("CreateAssetAttributeClassRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAttributeClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAttributeTypeRefType extends S.Literal("AssetAttributeType") {
+export class CreateAssetAttributeTypeRef extends S.Class("CreateAssetAttributeTypeRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetAttributeType")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentClassRefType extends S.Literal("IncidentClass") {
+export class CreateIncidentClassRef extends S.Class("CreateIncidentClassRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemCategoryRefType extends S.Literal("ItemCategory") {
+export class CreateItemCategoryRef extends S.Class("CreateItemCategoryRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemCategory")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemClassRefType extends S.Literal("ItemClass") {
+export class CreateItemClassRef extends S.Class("CreateItemClassRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceCategoryRefType extends S.Literal("ServiceCategory") {
+export class CreateServiceCategoryRef extends S.Class("CreateServiceCategoryRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceCategory")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceClassRefType extends S.Literal("ServiceClass") {
+export class CreateServiceClassRef extends S.Class("CreateServiceClassRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ServiceClass")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountInviteRefType extends S.Literal("AccountInvite") {
+export class CreateAccountInviteRef extends S.Class("CreateAccountInviteRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AccountInvite")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateAuthProfileRefType extends S.Literal("AuthProfile") {
+export class CreateAuthProfileRef extends S.Class("CreateAuthProfileRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AuthProfile")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateProjectImpactRefType extends S.Literal("ProjectImpact") {
+export class CreateProjectImpactRef extends S.Class("CreateProjectImpactRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ProjectImpact")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentImpactRefType extends S.Literal("IncidentImpact") {
+export class CreateIncidentImpactRef extends S.Class("CreateIncidentImpactRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("IncidentImpact")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemMediaSuggestionRefType extends S.Literal("ItemMediaSuggestion") {
+export class CreateItemMediaSuggestionRef extends S.Class("CreateItemMediaSuggestionRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemMediaSuggestion")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemProductSuggestionRefType extends S.Literal("ItemProductSuggestion") {
+export class CreateItemProductSuggestionRef extends S.Class("CreateItemProductSuggestionRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ItemProductSuggestion")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateThirdPartyDwellingRefType extends S.Literal("ThirdPartyDwelling") {
+export class CreateThirdPartyDwellingRef extends S.Class("CreateThirdPartyDwellingRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ThirdPartyDwelling")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateThirdPartyIndividualRefType extends S.Literal("ThirdPartyIndividual") {
+export class CreateThirdPartyIndividualRef extends S.Class("CreateThirdPartyIndividualRef")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("ThirdPartyIndividual")
+}) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAppraisalDataType extends S.Literal("Appraisal") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAppraisalLineDataType extends S.Literal("AppraisalLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAppraisalLineDataType extends S.Literal("AppraisalLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBaseEntityDataType extends S.Literal("BaseEntity") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBaseEntityDataType extends S.Literal("BaseEntity") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateInvoiceDataType extends S.Literal("Invoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateInvoiceDataType extends S.Literal("Invoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateInvoiceLineDataType extends S.Literal("InvoiceLine") {
+export class CreateBaseEntityData extends S.Class("CreateBaseEntityData")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BaseEntity")
+}) {
 }
 export class CreateInvoiceLineAttributes extends S.Class("CreateInvoiceLineAttributes")({
     "date": S.optionalWith(S.String, { nullable: true }),
@@ -3369,153 +3342,13 @@ export class CreateInvoiceLineAttributes extends S.Class("CreateInvoiceLineAttri
     "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateInvoiceLineDataType extends S.Literal("InvoiceLine") {
+export class CreateItemInvoiceAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemInvoiceDataType extends S.Literal("ItemInvoice") {
+export class CreateItemAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
 }
-export class CreateItemInvoiceAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
+export class CreateItemAttributesCondition extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemInvoiceDataType extends S.Literal("ItemInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemDataType extends S.Literal("Item") {
-}
-export class CreateItemAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {
-}
-export class CreateItemAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemDataType extends S.Literal("Item") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemTypeDataType extends S.Literal("ItemType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemTypeDataType extends S.Literal("ItemType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDepreciationModifierDataType extends S.Literal("DepreciationModifier") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDepreciationModifierDataType extends S.Literal("DepreciationModifier") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDepreciationScheduleDataType extends S.Literal("DepreciationSchedule") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDepreciationScheduleDataType extends S.Literal("DepreciationSchedule") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDepreciationOverrideDataType extends S.Literal("DepreciationOverride") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDepreciationOverrideDataType extends S.Literal("DepreciationOverride") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemClassDataType extends S.Literal("ItemClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemClassDataType extends S.Literal("ItemClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemCategoryDataType extends S.Literal("ItemCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemCategoryDataType extends S.Literal("ItemCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePaymentDataType extends S.Literal("Payment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePaymentDataType extends S.Literal("Payment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePaymentLineDataType extends S.Literal("PaymentLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePaymentLineDataType extends S.Literal("PaymentLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemPaymentDataType extends S.Literal("ItemPayment") {
-}
-export class CreateItemPaymentAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemPaymentDataType extends S.Literal("ItemPayment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactPaymentDataType extends S.Literal("ItemImpactPayment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemImpactPaymentDataType extends S.Literal("ItemImpactPayment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskPaymentDataType extends S.Literal("ServiceTaskPayment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTaskPaymentDataType extends S.Literal("ServiceTaskPayment") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskDataType extends S.Literal("ServiceTask") {
+export class CreateItemPaymentAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
 export class CreateServiceTaskAttributes extends S.Class("CreateServiceTaskAttributes")({
     "name": S.String,
@@ -3545,209 +3378,9 @@ export class CreateServiceTaskAttributes extends S.Class("CreateServiceTaskAttri
     "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTaskDataType extends S.Literal("ServiceTask") {
+export class CreateItemChangeOrderAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactInvoiceDataType extends S.Literal("ItemImpactInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemImpactInvoiceDataType extends S.Literal("ItemImpactInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskInvoiceDataType extends S.Literal("ServiceTaskInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTaskInvoiceDataType extends S.Literal("ServiceTaskInvoice") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentReportDataType extends S.Literal("IncidentReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateIncidentReportDataType extends S.Literal("IncidentReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePoliceReportDataType extends S.Literal("PoliceReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePoliceReportDataType extends S.Literal("PoliceReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateParamedicReportDataType extends S.Literal("ParamedicReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateParamedicReportDataType extends S.Literal("ParamedicReport") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateContractDataType extends S.Literal("Contract") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateContractDataType extends S.Literal("Contract") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateRentRollDataType extends S.Literal("RentRoll") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateRentRollDataType extends S.Literal("RentRoll") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePermitDataType extends S.Literal("Permit") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePermitDataType extends S.Literal("Permit") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateBlueprintDataType extends S.Literal("Blueprint") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateBlueprintDataType extends S.Literal("Blueprint") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeclarationsPageDataType extends S.Literal("DeclarationsPage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDeclarationsPageDataType extends S.Literal("DeclarationsPage") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreatePolicyJacketDataType extends S.Literal("PolicyJacket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdatePolicyJacketDataType extends S.Literal("PolicyJacket") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateScopeOfLossDataType extends S.Literal("ScopeOfLoss") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateScopeOfLossDataType extends S.Literal("ScopeOfLoss") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeliveryPaperworkDataType extends S.Literal("DeliveryPaperwork") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDeliveryPaperworkDataType extends S.Literal("DeliveryPaperwork") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateProductSpecDataType extends S.Literal("ProductSpec") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateProductSpecDataType extends S.Literal("ProductSpec") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateUserManualDataType extends S.Literal("UserManual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateUserManualDataType extends S.Literal("UserManual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateWarrantyDataType extends S.Literal("Warranty") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateWarrantyDataType extends S.Literal("Warranty") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDeedDataType extends S.Literal("Deed") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDeedDataType extends S.Literal("Deed") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemChangeOrderDataType extends S.Literal("ItemChangeOrder") {
-}
-export class CreateItemChangeOrderAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemChangeOrderDataType extends S.Literal("ItemChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemEstimateDataType extends S.Literal("ItemEstimate") {
-}
-export class CreateItemEstimateAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemEstimateDataType extends S.Literal("ItemEstimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateChangeOrderLineDataType extends S.Literal("ChangeOrderLine") {
+export class CreateItemEstimateAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
 export class CreateChangeOrderLineAttributes extends S.Class("CreateChangeOrderLineAttributes")({
     "date": S.optionalWith(S.String, { nullable: true }),
@@ -3756,26 +3389,6 @@ export class CreateChangeOrderLineAttributes extends S.Class("CreateChangeOrderL
     "taxAmount": S.optionalWith(S.Number, { nullable: true }),
     "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateChangeOrderLineDataType extends S.Literal("ChangeOrderLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactChangeOrderDataType extends S.Literal("ItemImpactChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemImpactChangeOrderDataType extends S.Literal("ItemImpactChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemImpactEstimateDataType extends S.Literal("ItemImpactEstimate") {
 }
 export class CreateEstimateLineAttributes extends S.Class("CreateEstimateLineAttributes")({
     "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
@@ -3796,201 +3409,11 @@ export class CreateEstimateLineAttributes extends S.Class("CreateEstimateLineAtt
 }) {
 }
 /**
-* The type of the referenced entity.
-*/
-export class UpdateItemImpactEstimateDataType extends S.Literal("ItemImpactEstimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEstimateLineDataType extends S.Literal("EstimateLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEstimateLineDataType extends S.Literal("EstimateLine") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateDisasterDataType extends S.Literal("Disaster") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateDisasterDataType extends S.Literal("Disaster") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentTypeDataType extends S.Literal("IncidentType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateIncidentTypeDataType extends S.Literal("IncidentType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentClassDataType extends S.Literal("IncidentClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateIncidentClassDataType extends S.Literal("IncidentClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAttributeTypeItemTemplateDataType extends S.Literal("AssetAttributeTypeItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAssetAttributeTypeItemTemplateDataType extends S.Literal("AssetAttributeTypeItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAttributeTypeDataType extends S.Literal("AssetAttributeType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAssetAttributeTypeDataType extends S.Literal("AssetAttributeType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAssetAttributeClassDataType extends S.Literal("AssetAttributeClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAssetAttributeClassDataType extends S.Literal("AssetAttributeClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemTemplateDataType extends S.Literal("ItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemTemplateDataType extends S.Literal("ItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSpaceTypeItemTemplateDataType extends S.Literal("SpaceTypeItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSpaceTypeItemTemplateDataType extends S.Literal("SpaceTypeItemTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateSubmissionTrackTemplateDataType extends S.Literal("SubmissionTrackTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateSubmissionTrackTemplateDataType extends S.Literal("SubmissionTrackTemplate") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceCategoryDataType extends S.Literal("ServiceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceCategoryDataType extends S.Literal("ServiceCategory") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceClassDataType extends S.Literal("ServiceClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceClassDataType extends S.Literal("ServiceClass") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTypeDataType extends S.Literal("ServiceType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTypeDataType extends S.Literal("ServiceType") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAccountInviteDataType extends S.Literal("AccountInvite") {
-}
-/**
 * What level of permissions the user has for this account.
 */
-export class CreateAccountInviteAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAccountInviteDataType extends S.Literal("AccountInvite") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateAuthProfileDataType extends S.Literal("AuthProfile") {
+export class CreateAccountInviteAttributesRole extends S.Literal("COLLABORATOR", "MANAGER", "OWNER") {
 }
 export class CreateAuthProfileAttributesProvider extends S.Literal("CLERK", "LOGTO", "TEST") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateAuthProfileDataType extends S.Literal("AuthProfile") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateEntrySourceMediaDataType extends S.Literal("EntrySourceMedia") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateEntrySourceMediaDataType extends S.Literal("EntrySourceMedia") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateThirdPartyImpactDataType extends S.Literal("ThirdPartyImpact") {
 }
 export class CreateThirdPartyImpactAttributes extends S.Class("CreateThirdPartyImpactAttributes")({
     "name": S.String,
@@ -4001,111 +3424,16 @@ export class CreateThirdPartyImpactAttributes extends S.Class("CreateThirdPartyI
     "appraisalCount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateThirdPartyImpactDataType extends S.Literal("ThirdPartyImpact") {
+export class CreateItemMediaSuggestionAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class CreateThirdPartyDataType extends S.Literal("ThirdParty") {
+export class CreateItemMediaSuggestionAttributesCondition extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
 }
-/**
-* The type of the referenced entity.
-*/
-export class UpdateThirdPartyDataType extends S.Literal("ThirdParty") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateThirdPartyDwellingDataType extends S.Literal("ThirdPartyDwelling") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateThirdPartyDwellingDataType extends S.Literal("ThirdPartyDwelling") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateThirdPartyIndividualDataType extends S.Literal("ThirdPartyIndividual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateThirdPartyIndividualDataType extends S.Literal("ThirdPartyIndividual") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateProjectImpactDataType extends S.Literal("ProjectImpact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateProjectImpactDataType extends S.Literal("ProjectImpact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateIncidentImpactDataType extends S.Literal("IncidentImpact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateIncidentImpactDataType extends S.Literal("IncidentImpact") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemMediaSuggestionDataType extends S.Literal("ItemMediaSuggestion") {
-}
-export class CreateItemMediaSuggestionAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {
-}
-export class CreateItemMediaSuggestionAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemMediaSuggestionDataType extends S.Literal("ItemMediaSuggestion") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateItemProductSuggestionDataType extends S.Literal("ItemProductSuggestion") {
-}
-export class CreateItemProductSuggestionAttributesSource extends S.Literal("GOOGLE_SHOPPING", "AMAZON") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemProductSuggestionDataType extends S.Literal("ItemProductSuggestion") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateUserAccountRoleDataType extends S.Literal("UserAccountRole") {
+export class CreateItemProductSuggestionAttributesSource extends S.Literal("AMAZON", "GOOGLE_SHOPPING") {
 }
 /**
 * What level of permissions the user has for this account.
 */
-export class CreateUserAccountRoleAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateUserAccountRoleDataType extends S.Literal("UserAccountRole") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class CreateFinancialDocumentDataType extends S.Literal("FinancialDocument") {
-}
-/**
-* The type of the referenced entity.
-*/
-export class UpdateFinancialDocumentDataType extends S.Literal("FinancialDocument") {
+export class CreateUserAccountRoleAttributesRole extends S.Literal("COLLABORATOR", "MANAGER", "OWNER") {
 }
 export class UserControllerGetUserAccountRolesParams extends S.Struct({
     "include": S.optionalWith(S.String, { nullable: true }),
@@ -4168,12 +3496,7 @@ export class EntityReference extends S.Class("EntityReference")({
 /**
 * The semantic type of file that is being uploaded.
 */
-export class TransloaditAssemblyOptionsDtoType extends S.Literal("FILE", "AVATAR") {
-}
-/**
-* What provider will be used for uploads.
-*/
-export class TransloaditAssemblyOptionsDtoProvider extends S.Literal("TRANSLOADIT") {
+export class TransloaditAssemblyOptionsDtoType extends S.Literal("AVATAR", "FILE") {
 }
 export class TransloaditAssemblyAuth extends S.Class("TransloaditAssemblyAuth")({
     /**
@@ -4247,12 +3570,12 @@ export class CdnResourceDto extends S.Class("CdnResourceDto")({
 /**
 * HTTP action to sign for (GET for download, PUT for upload, HEAD for metadata).
 */
-export class SignedUrlItemDtoAction extends S.Literal("GET", "PUT", "HEAD") {
+export class SignedUrlItemDtoAction extends S.Literal("GET", "HEAD", "PUT") {
 }
 /**
 * Action for which this URL was issued
 */
-export class SignedUrlResultDtoAction extends S.Literal("GET", "PUT", "HEAD") {
+export class SignedUrlResultDtoAction extends S.Literal("GET", "HEAD", "PUT") {
 }
 export class SignedUrlErrorDto extends S.Class("SignedUrlErrorDto")({
     /**
@@ -4272,3686 +3595,18 @@ export class EntityMetadata extends S.Class("EntityMetadata")({
     "redacted": S.optionalWith(RedactedData, { nullable: true })
 }) {
 }
-export class UserRef extends S.Class("UserRef")({
+export class ReferencedUpdateUser extends S.Class("ReferencedUpdateUser")({
     /**
-  * Entity id
+  * Entity reference for User.
   */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UserRefType
-}) {
-}
-export class IncidentRef extends S.Class("IncidentRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": IncidentRefType
-}) {
-}
-export class DwellingRef extends S.Class("DwellingRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DwellingRefType
-}) {
-}
-export class UserAccountRoleRef extends S.Class("UserAccountRoleRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UserAccountRoleRefType
-}) {
-}
-export class CurrencyRef extends S.Class("CurrencyRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CurrencyRefType
-}) {
-}
-export class EmailAddressRef extends S.Class("EmailAddressRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": EmailAddressRefType
-}) {
-}
-export class PhoneNumberRef extends S.Class("PhoneNumberRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PhoneNumberRefType
-}) {
-}
-export class AccountRef extends S.Class("AccountRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AccountRefType
-}) {
-}
-export class AccountProviderContactRef extends S.Class("AccountProviderContactRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AccountProviderContactRefType
-}) {
-}
-export class AccountProviderRef extends S.Class("AccountProviderRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AccountProviderRefType
-}) {
-}
-export class ProviderRef extends S.Class("ProviderRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ProviderRefType
-}) {
-}
-export class ProjectMediaRef extends S.Class("ProjectMediaRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ProjectMediaRefType
-}) {
-}
-export class IncidentTypeRef extends S.Class("IncidentTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": IncidentTypeRefType
-}) {
-}
-export class DisasterRef extends S.Class("DisasterRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DisasterRefType
-}) {
-}
-export class CreateProjectMediaAttributes extends S.Class("CreateProjectMediaAttributes")({
-    "stage": S.optionalWith(CreateProjectMediaAttributesStage, { nullable: true })
-}) {
-}
-export class MediaRef extends S.Class("MediaRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": MediaRefType
-}) {
-}
-export class CreateMediaAttributes extends S.Class("CreateMediaAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "subjectState": S.optionalWith(CreateMediaAttributesSubjectState, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true })
-}) {
-}
-export class FileRef extends S.Class("FileRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": FileRefType
-}) {
-}
-export class SpaceRef extends S.Class("SpaceRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SpaceRefType
-}) {
-}
-export class EntrySourceMediaRef extends S.Class("EntrySourceMediaRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": EntrySourceMediaRefType
-}) {
-}
-export class FileAttributes extends S.Class("FileAttributes")({
-    /**
-  * The storage provider for this file.
-  */
-    "storageProvider": S.optionalWith(FileAttributesStorageProvider, { nullable: true }),
-    "originalKey": S.optionalWith(S.String, { nullable: true }),
-    "originalUrl": S.optionalWith(S.String, { nullable: true }),
-    "presentationKey": S.optionalWith(S.String, { nullable: true }),
-    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
-    "type": S.optionalWith(FileAttributesType, { nullable: true }),
-    "filename": S.optionalWith(S.String, { nullable: true }),
-    "extension": S.optionalWith(S.String, { nullable: true }),
-    "width": S.optionalWith(S.Number, { nullable: true }),
-    "height": S.optionalWith(S.Number, { nullable: true }),
-    "size": S.optionalWith(S.Number, { nullable: true }),
-    "blurhash": S.optionalWith(S.String, { nullable: true }),
-    "durationMs": S.optionalWith(S.Number, { nullable: true }),
-    "pageCount": S.optionalWith(S.Number, { nullable: true }),
-    "createdAt": S.optionalWith(S.String, { nullable: true }),
-    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
-    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
-    "documentCount": S.optionalWith(S.Number, { nullable: true }),
-    "addedAt": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class FileProcessRef extends S.Class("FileProcessRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": FileProcessRefType
-}) {
-}
-export class ChangeOrderRef extends S.Class("ChangeOrderRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ChangeOrderRefType
-}) {
-}
-export class EstimateRef extends S.Class("EstimateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": EstimateRefType
-}) {
-}
-export class InvoiceRef extends S.Class("InvoiceRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": InvoiceRefType
-}) {
-}
-export class PaymentRef extends S.Class("PaymentRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PaymentRefType
-}) {
-}
-export class AssetAppraisalRef extends S.Class("AssetAppraisalRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AssetAppraisalRefType
-}) {
-}
-export class AppraisalRef extends S.Class("AppraisalRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AppraisalRefType
-}) {
-}
-export class FundingRef extends S.Class("FundingRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": FundingRefType
-}) {
-}
-export class IncidentReportRef extends S.Class("IncidentReportRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": IncidentReportRefType
-}) {
-}
-export class PoliceReportRef extends S.Class("PoliceReportRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PoliceReportRefType
-}) {
-}
-export class ParamedicReportRef extends S.Class("ParamedicReportRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ParamedicReportRefType
-}) {
-}
-export class ContractRef extends S.Class("ContractRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ContractRefType
-}) {
-}
-export class RentRollRef extends S.Class("RentRollRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": RentRollRefType
-}) {
-}
-export class PermitRef extends S.Class("PermitRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PermitRefType
-}) {
-}
-export class BlueprintRef extends S.Class("BlueprintRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BlueprintRefType
-}) {
-}
-export class DeclarationsPageRef extends S.Class("DeclarationsPageRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DeclarationsPageRefType
-}) {
-}
-export class PolicyJacketRef extends S.Class("PolicyJacketRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PolicyJacketRefType
-}) {
-}
-export class ScopeOfLossRef extends S.Class("ScopeOfLossRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ScopeOfLossRefType
-}) {
-}
-export class DeliveryPaperworkRef extends S.Class("DeliveryPaperworkRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DeliveryPaperworkRefType
-}) {
-}
-export class ProductSpecRef extends S.Class("ProductSpecRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ProductSpecRefType
-}) {
-}
-export class UserManualRef extends S.Class("UserManualRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UserManualRefType
-}) {
-}
-export class WarrantyRef extends S.Class("WarrantyRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": WarrantyRefType
-}) {
-}
-export class DeedRef extends S.Class("DeedRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DeedRefType
-}) {
-}
-export class AssetTypeRef extends S.Class("AssetTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AssetTypeRefType
-}) {
-}
-export class AddressRef extends S.Class("AddressRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AddressRefType
-}) {
-}
-export class DocumentTypeRef extends S.Class("DocumentTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DocumentTypeRefType
-}) {
-}
-export class DocumentClassRef extends S.Class("DocumentClassRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DocumentClassRefType
-}) {
-}
-export class CreateSpaceAttributes extends S.Class("CreateSpaceAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "use": S.optionalWith(CreateSpaceAttributesUse, { nullable: true })
-}) {
-}
-export class SpaceTypeRef extends S.Class("SpaceTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SpaceTypeRefType
-}) {
-}
-export class SpaceGroupRef extends S.Class("SpaceGroupRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SpaceGroupRefType
-}) {
-}
-export class SpaceClassRef extends S.Class("SpaceClassRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SpaceClassRefType
-}) {
-}
-export class SpaceGroupTypeRef extends S.Class("SpaceGroupTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SpaceGroupTypeRefType
-}) {
-}
-export class SpaceCategoryRef extends S.Class("SpaceCategoryRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SpaceCategoryRefType
-}) {
-}
-export class BucketTypeRef extends S.Class("BucketTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BucketTypeRefType
-}) {
-}
-export class BucketClassRef extends S.Class("BucketClassRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BucketClassRefType
-}) {
-}
-export class CountryRef extends S.Class("CountryRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CountryRefType
-}) {
-}
-export class CreateFileProcessAttributes extends S.Class("CreateFileProcessAttributes")({
-    "processId": S.optionalWith(S.String, { nullable: true }),
-    "provider": S.optionalWith(CreateFileProcessAttributesProvider, { nullable: true }),
-    "type": S.optionalWith(CreateFileProcessAttributesType, { nullable: true }),
-    "status": S.optionalWith(CreateFileProcessAttributesStatus, { nullable: true }),
-    "startedAt": S.optionalWith(S.String, { nullable: true }),
-    "endedAt": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class ItemizableFinancialDocumentStatsRef extends S.Class("ItemizableFinancialDocumentStatsRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemizableFinancialDocumentStatsRefType
-}) {
-}
-export class ServiceRef extends S.Class("ServiceRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceRefType
-}) {
-}
-export class ItemChangeOrderRef extends S.Class("ItemChangeOrderRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemChangeOrderRefType
-}) {
-}
-export class ItemImpactChangeOrderRef extends S.Class("ItemImpactChangeOrderRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemImpactChangeOrderRefType
-}) {
-}
-export class ServiceTaskChangeOrderRef extends S.Class("ServiceTaskChangeOrderRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceTaskChangeOrderRefType
-}) {
-}
-export class ItemImpactRef extends S.Class("ItemImpactRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemImpactRefType
-}) {
-}
-export class ItemRef extends S.Class("ItemRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemRefType
-}) {
-}
-export class ServiceTaskRef extends S.Class("ServiceTaskRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceTaskRefType
-}) {
-}
-export class ThirdPartyImpactRef extends S.Class("ThirdPartyImpactRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ThirdPartyImpactRefType
-}) {
-}
-export class ItemEstimateRef extends S.Class("ItemEstimateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemEstimateRefType
-}) {
-}
-export class ItemImpactEstimateRef extends S.Class("ItemImpactEstimateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemImpactEstimateRefType
-}) {
-}
-export class ServiceTaskEstimateRef extends S.Class("ServiceTaskEstimateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceTaskEstimateRefType
-}) {
-}
-export class EntrySourceMetadataRef extends S.Class("EntrySourceMetadataRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": EntrySourceMetadataRefType
-}) {
-}
-export class EntryRef extends S.Class("EntryRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": EntryRefType
-}) {
-}
-export class ItemAppraisalRef extends S.Class("ItemAppraisalRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemAppraisalRefType
-}) {
-}
-export class ServiceTypeRef extends S.Class("ServiceTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceTypeRefType
-}) {
-}
-export class ItemPaymentRef extends S.Class("ItemPaymentRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemPaymentRefType
-}) {
-}
-export class ItemImpactPaymentRef extends S.Class("ItemImpactPaymentRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemImpactPaymentRefType
-}) {
-}
-export class ServiceTaskPaymentRef extends S.Class("ServiceTaskPaymentRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceTaskPaymentRefType
-}) {
-}
-export class ItemInvoiceRef extends S.Class("ItemInvoiceRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemInvoiceRefType
-}) {
-}
-export class ItemImpactInvoiceRef extends S.Class("ItemImpactInvoiceRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemImpactInvoiceRefType
-}) {
-}
-export class ServiceTaskInvoiceRef extends S.Class("ServiceTaskInvoiceRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceTaskInvoiceRefType
-}) {
-}
-export class CreateEntrySourceMetadataAttributes extends S.Class("CreateEntrySourceMetadataAttributes")({
-    "entrySourceType": S.optionalWith(CreateEntrySourceMetadataAttributesEntrySourceType, { nullable: true }),
-    "assignedEntryCount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedEntryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedEntryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateItemImpactAttributes extends S.Class("CreateItemImpactAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-    "fieldsNeedingAttention": S.optionalWith(S.Struct({
-        "item.type": S.optionalWith(S.Boolean, { nullable: true }),
-        "impactDate": S.optionalWith(S.Boolean, { nullable: true }),
-        "item.quality": S.optionalWith(S.Boolean, { nullable: true }),
-        "item.acquiredDate": S.optionalWith(S.Boolean, { nullable: true }),
-        "conditionAtImpact": S.optionalWith(S.Boolean, { nullable: true })
-    }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "isExactReplacement": S.optionalWith(S.Boolean, { nullable: true }),
-    "impactDate": S.optionalWith(S.String, { nullable: true }),
-    "isLost": S.optionalWith(S.Boolean, { nullable: true }),
-    "conditionAtImpact": S.optionalWith(CreateItemImpactAttributesConditionAtImpact, { nullable: true }),
-    "quantity": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "replacementPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "replacementInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "replacementEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemDepreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemAppraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "customDepreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationOverrideDescription": S.optionalWith(S.String, { nullable: true }),
-    "isDepreciationCustom": S.optionalWith(S.Boolean, { nullable: true }),
-    "customDepreciationFieldsSetBySystem": S.optionalWith(S.Array(S.String), { nullable: true }),
-    "itemQuality": S.optionalWith(CreateItemImpactAttributesItemQuality, { nullable: true }),
-    "itemAcquiredDate": S.optionalWith(S.String, { nullable: true }),
-    "itemAcquiredQuantity": S.optionalWith(S.Number, { nullable: true }),
-    "itemIsDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-    "depreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true }),
-    "monthlyDepreciationRate": S.optionalWith(S.Number, { nullable: true }),
-    "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "rcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAcvAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class ItemTypeRef extends S.Class("ItemTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemTypeRefType
-}) {
-}
-export class CreateEntryAttributes extends S.Class("CreateEntryAttributes")({
-    "lossSettlementType": S.optionalWith(CreateEntryAttributesLossSettlementType, { nullable: true }),
-    "incurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "projectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "overriddenIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "overriddenProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "approvedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "isResolved": S.optionalWith(S.Boolean, { nullable: true }),
-    "number": S.optionalWith(S.Number, { nullable: true }),
-    "targetAssignmentPercentage": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "submissionStatus": S.optionalWith(CreateEntryAttributesSubmissionStatus, { nullable: true, default: () => "NOT_SUBMITTED" }),
-    "lastSubmittedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "lastSubmittedIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "lastSubmittedProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-    "submissionIncurredAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-    "submissionProjectedAmountDelta": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class BucketRef extends S.Class("BucketRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BucketRefType
-}) {
-}
-export class SubBucketRef extends S.Class("SubBucketRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SubBucketRefType
-}) {
-}
-export class ClaimRef extends S.Class("ClaimRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ClaimRefType
-}) {
-}
-export class BaseBucketAttributes extends S.Class("BaseBucketAttributes")({
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "lossSettlementType": S.optionalWith(BaseBucketAttributesLossSettlementType, { nullable: true, default: () => "REPLACEMENT_COST_VALUE" }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyFunded": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class BaseBucketMetadataRef extends S.Class("BaseBucketMetadataRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BaseBucketMetadataRefType
-}) {
-}
-export class BucketFundingRef extends S.Class("BucketFundingRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BucketFundingRefType
-}) {
-}
-export class BucketAttributes extends S.Class("BucketAttributes")({
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "lossSettlementType": S.optionalWith(BucketAttributesLossSettlementType, { nullable: true }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyFunded": S.optionalWith(S.Number, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class CoverageRef extends S.Class("CoverageRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CoverageRefType
-}) {
-}
-export class DeductibleRef extends S.Class("DeductibleRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DeductibleRefType
-}) {
-}
-export class ClaimDeductibleRef extends S.Class("ClaimDeductibleRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ClaimDeductibleRefType
-}) {
-}
-export class ClaimAttributes extends S.Class("ClaimAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "claimId": S.optionalWith(S.String, { nullable: true }),
-    "status": S.optionalWith(ClaimAttributesStatus, { nullable: true, default: () => "OPEN" }),
-    "openedDate": S.optionalWith(S.String, { nullable: true }),
-    "closedDate": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class PolicyTermRef extends S.Class("PolicyTermRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PolicyTermRefType
-}) {
-}
-export class ClaimTargetAttributes extends S.Class("ClaimTargetAttributes")({
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "lossSettlementType": S.optionalWith(ClaimTargetAttributesLossSettlementType, { nullable: true })
-}) {
-}
-export class PolicyTermAttributes extends S.Class("PolicyTermAttributes")({
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "lossSettlementType": S.optionalWith(PolicyTermAttributesLossSettlementType, { nullable: true }),
-    "premiumAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentDueDate": S.optionalWith(S.String, { nullable: true }),
-    "isFullyPaid": S.optionalWith(S.Boolean, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "dueAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class PolicyRef extends S.Class("PolicyRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PolicyRefType
-}) {
-}
-export class PolicyTemplateRef extends S.Class("PolicyTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PolicyTemplateRefType
-}) {
-}
-export class BucketDefinitionAttributes extends S.Class("BucketDefinitionAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    /**
-  * Is required if not set in .basis
-  */
-    "lossSettlementType": S.optionalWith(BucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class SubCoverageRef extends S.Class("SubCoverageRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SubCoverageRefType
-}) {
-}
-export class CoverageTemplateRef extends S.Class("CoverageTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CoverageTemplateRefType
-}) {
-}
-export class CoverageGroupRef extends S.Class("CoverageGroupRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CoverageGroupRefType
-}) {
-}
-export class PerilRef extends S.Class("PerilRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": PerilRefType
-}) {
-}
-export class EndorsementRef extends S.Class("EndorsementRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": EndorsementRefType
-}) {
-}
-export class SubBucketDefinitionAttributes extends S.Class("SubBucketDefinitionAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "lossSettlementType": S.optionalWith(SubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class SubCoverageTemplateRef extends S.Class("SubCoverageTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SubCoverageTemplateRefType
-}) {
-}
-export class BaseSubBucketMetadataRef extends S.Class("BaseSubBucketMetadataRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BaseSubBucketMetadataRefType
-}) {
-}
-export class EndorsementTemplateRef extends S.Class("EndorsementTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": EndorsementTemplateRefType
-}) {
-}
-export class CoverageGroupTemplateRef extends S.Class("CoverageGroupTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CoverageGroupTemplateRefType
-}) {
-}
-export class CreateEndorsementTemplateAttributes extends S.Class("CreateEndorsementTemplateAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "articleUrl": S.optionalWith(S.String, { nullable: true }),
-    "canopyApiTerm": S.optionalWith(S.String, { nullable: true }),
-    "effect": S.optionalWith(CreateEndorsementTemplateAttributesEffect, { nullable: true }),
-    "lossSettlementType": S.optionalWith(CreateEndorsementTemplateAttributesLossSettlementType, { nullable: true }),
-    "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {
-}
-export class EndorsementAttributes extends S.Class("EndorsementAttributes")({
-    "formNumber": S.optionalWith(S.String, { nullable: true }),
-    "effect": S.optionalWith(EndorsementAttributesEffect, { nullable: true }),
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "lossSettlementType": S.optionalWith(EndorsementAttributesLossSettlementType, { nullable: true })
-}) {
-}
-export class CreatePolicyAttributes extends S.Class("CreatePolicyAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "status": S.optionalWith(CreatePolicyAttributesStatus, { nullable: true, default: () => "ACTIVE" }),
-    "policyId": S.optionalWith(S.String, { nullable: true }),
-    "isActive": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "startDate": S.optionalWith(S.String, { nullable: true }),
-    "renewalDate": S.optionalWith(S.String, { nullable: true }),
-    "canceledDate": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class DepreciationModifierRef extends S.Class("DepreciationModifierRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DepreciationModifierRefType
-}) {
-}
-export class DepreciationOverrideRef extends S.Class("DepreciationOverrideRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": DepreciationOverrideRefType
-}) {
-}
-export class AssetAttributeTypeItemTemplateRef extends S.Class("AssetAttributeTypeItemTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AssetAttributeTypeItemTemplateRefType
-}) {
-}
-export class ItemTemplateRef extends S.Class("ItemTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemTemplateRefType
-}) {
-}
-export class SpaceTypeItemTemplateRef extends S.Class("SpaceTypeItemTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SpaceTypeItemTemplateRefType
-}) {
-}
-export class SubmissionTrackTemplateRef extends S.Class("SubmissionTrackTemplateRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": SubmissionTrackTemplateRefType
-}) {
-}
-export class AssetAttributeClassRef extends S.Class("AssetAttributeClassRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AssetAttributeClassRefType
-}) {
-}
-export class AssetAttributeTypeRef extends S.Class("AssetAttributeTypeRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AssetAttributeTypeRefType
-}) {
-}
-export class IncidentClassRef extends S.Class("IncidentClassRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": IncidentClassRefType
-}) {
-}
-export class ItemCategoryRef extends S.Class("ItemCategoryRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemCategoryRefType
-}) {
-}
-export class ItemClassRef extends S.Class("ItemClassRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemClassRefType
-}) {
-}
-export class ServiceCategoryRef extends S.Class("ServiceCategoryRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceCategoryRefType
-}) {
-}
-export class ServiceClassRef extends S.Class("ServiceClassRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ServiceClassRefType
-}) {
-}
-export class AccountInviteRef extends S.Class("AccountInviteRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AccountInviteRefType
-}) {
-}
-export class AuthProfileRef extends S.Class("AuthProfileRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AuthProfileRefType
-}) {
-}
-export class ProjectImpactRef extends S.Class("ProjectImpactRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ProjectImpactRefType
-}) {
-}
-export class IncidentImpactRef extends S.Class("IncidentImpactRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": IncidentImpactRefType
-}) {
-}
-export class ItemMediaSuggestionRef extends S.Class("ItemMediaSuggestionRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemMediaSuggestionRefType
-}) {
-}
-export class ItemProductSuggestionRef extends S.Class("ItemProductSuggestionRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ItemProductSuggestionRefType
-}) {
-}
-export class ThirdPartyDwellingRef extends S.Class("ThirdPartyDwellingRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ThirdPartyDwellingRefType
-}) {
-}
-export class ThirdPartyIndividualRef extends S.Class("ThirdPartyIndividualRef")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ThirdPartyIndividualRefType
-}) {
-}
-export class ItemInvoiceAttributes extends S.Class("ItemInvoiceAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "purpose": S.optionalWith(ItemInvoiceAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class ItemAttributes extends S.Class("ItemAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-    "fieldsNeedingAttention": S.optionalWith(S.Struct({
-        "type": S.optionalWith(S.Boolean, { nullable: true }),
-        "quality": S.optionalWith(S.Boolean, { nullable: true }),
-        "acquiredDate": S.optionalWith(S.Boolean, { nullable: true })
-    }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "quality": S.optionalWith(ItemAttributesQuality, { nullable: true }),
-    "condition": S.optionalWith(ItemAttributesCondition, { nullable: true }),
-    "isDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-    "acquiredDate": S.optionalWith(S.String, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "currentQuantity": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateDepreciationModifierAttributes extends S.Class("CreateDepreciationModifierAttributes")({
-    "condition": S.optionalWith(CreateDepreciationModifierAttributesCondition, { nullable: true }),
-    "quality": S.optionalWith(CreateDepreciationModifierAttributesQuality, { nullable: true }),
-    "minimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "accelerationFactor": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class ItemPaymentAttributes extends S.Class("ItemPaymentAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "purpose": S.optionalWith(ItemPaymentAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class ItemChangeOrderAttributes extends S.Class("ItemChangeOrderAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "purpose": S.optionalWith(ItemChangeOrderAttributesPurpose, { nullable: true })
-}) {
-}
-export class ItemEstimateAttributes extends S.Class("ItemEstimateAttributes")({
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "purpose": S.optionalWith(ItemEstimateAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class AccountInviteAttributes extends S.Class("AccountInviteAttributes")({
-    /**
-  * What level of permissions the user has for this account.
-  */
-    "role": S.optionalWith(AccountInviteAttributesRole, { nullable: true }),
-    /**
-  * The user's email
-  */
-    "email": S.optionalWith(S.String, { nullable: true }),
-    "phone": S.optionalWith(S.String, { nullable: true }),
-    "invitedAt": S.optionalWith(S.String, { nullable: true }),
-    "acceptedAt": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class AuthProfileAttributes extends S.Class("AuthProfileAttributes")({
-    "provider": S.optionalWith(AuthProfileAttributesProvider, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class CreateIncidentImpactAttributes extends S.Class("CreateIncidentImpactAttributes")({
-    "extent": S.optionalWith(CreateIncidentImpactAttributesExtent, { nullable: true })
-}) {
-}
-export class ItemMediaSuggestionAttributes extends S.Class("ItemMediaSuggestionAttributes")({
-    "data_key": S.optionalWith(S.String, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "quality": S.optionalWith(ItemMediaSuggestionAttributesQuality, { nullable: true }),
-    "condition": S.optionalWith(ItemMediaSuggestionAttributesCondition, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "timestamp": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class ItemProductSuggestionAttributes extends S.Class("ItemProductSuggestionAttributes")({
-    "source": S.optionalWith(ItemProductSuggestionAttributesSource, { nullable: true }),
-    "source_id": S.optionalWith(S.String, { nullable: true }),
-    "data_key": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "sellerName": S.optionalWith(S.String, { nullable: true }),
-    "sellerLink": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class UpdateUserAccountRoleAttributes extends S.Class("UpdateUserAccountRoleAttributes")({
-    /**
-  * What level of permissions the user has for this account.
-  */
-    "role": S.optionalWith(UpdateUserAccountRoleAttributesRole, { nullable: true })
-}) {
-}
-export class CreateEmailAddressRef extends S.Class("CreateEmailAddressRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateEmailAddressRefType
-}) {
-}
-export class CreatePhoneNumberRef extends S.Class("CreatePhoneNumberRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePhoneNumberRefType
-}) {
-}
-export class CreateAccountRef extends S.Class("CreateAccountRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAccountRefType
-}) {
-}
-export class CreateUserAccountRoleRef extends S.Class("CreateUserAccountRoleRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateUserAccountRoleRefType
-}) {
-}
-export class CreateAccountProviderContactRef extends S.Class("CreateAccountProviderContactRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAccountProviderContactRefType
-}) {
-}
-export class CreateUserRef extends S.Class("CreateUserRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateUserRefType
-}) {
-}
-export class CreateAccountProviderRef extends S.Class("CreateAccountProviderRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAccountProviderRefType
-}) {
-}
-export class CreateProviderRef extends S.Class("CreateProviderRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateProviderRefType
-}) {
-}
-export class CreateIncidentRef extends S.Class("CreateIncidentRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateIncidentRefType
-}) {
-}
-export class CreateDwellingRef extends S.Class("CreateDwellingRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDwellingRefType
-}) {
-}
-export class CreateCurrencyRef extends S.Class("CreateCurrencyRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCurrencyRefType
-}) {
-}
-export class CreateProjectMediaRef extends S.Class("CreateProjectMediaRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateProjectMediaRefType
-}) {
-}
-export class CreateIncidentTypeRef extends S.Class("CreateIncidentTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateIncidentTypeRefType
-}) {
-}
-export class CreateDisasterRef extends S.Class("CreateDisasterRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDisasterRefType
-}) {
-}
-export class CreateMediaRef extends S.Class("CreateMediaRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateMediaRefType
-}) {
-}
-export class CreateFileRef extends S.Class("CreateFileRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateFileRefType
-}) {
-}
-export class CreateSpaceRef extends S.Class("CreateSpaceRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSpaceRefType
-}) {
-}
-export class CreateEntrySourceMediaRef extends S.Class("CreateEntrySourceMediaRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateEntrySourceMediaRefType
-}) {
-}
-export class CreateFileAttributes extends S.Class("CreateFileAttributes")({
-    /**
-  * The storage provider for this file.
-  */
-    "storageProvider": CreateFileAttributesStorageProvider,
-    "originalKey": S.optionalWith(S.String, { nullable: true }),
-    "originalUrl": S.optionalWith(S.String, { nullable: true }),
-    "presentationKey": S.optionalWith(S.String, { nullable: true }),
-    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
-    "type": S.optionalWith(CreateFileAttributesType, { nullable: true }),
-    "filename": S.optionalWith(S.String, { nullable: true }),
-    "extension": S.optionalWith(S.String, { nullable: true }),
-    "width": S.optionalWith(S.Number, { nullable: true }),
-    "height": S.optionalWith(S.Number, { nullable: true }),
-    "size": S.optionalWith(S.Number, { nullable: true }),
-    "blurhash": S.optionalWith(S.String, { nullable: true }),
-    "durationMs": S.optionalWith(S.Number, { nullable: true }),
-    "pageCount": S.optionalWith(S.Number, { nullable: true }),
-    "createdAt": S.optionalWith(S.String, { nullable: true }),
-    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
-    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
-    "documentCount": S.optionalWith(S.Number, { nullable: true }),
-    "addedAt": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class CreateFileProcessRef extends S.Class("CreateFileProcessRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateFileProcessRefType
-}) {
-}
-export class CreateChangeOrderRef extends S.Class("CreateChangeOrderRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateChangeOrderRefType
-}) {
-}
-export class CreateEstimateRef extends S.Class("CreateEstimateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateEstimateRefType
-}) {
-}
-export class CreateInvoiceRef extends S.Class("CreateInvoiceRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateInvoiceRefType
-}) {
-}
-export class CreatePaymentRef extends S.Class("CreatePaymentRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePaymentRefType
-}) {
-}
-export class CreateAssetAppraisalRef extends S.Class("CreateAssetAppraisalRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAssetAppraisalRefType
-}) {
-}
-export class CreateAppraisalRef extends S.Class("CreateAppraisalRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAppraisalRefType
-}) {
-}
-export class CreateFundingRef extends S.Class("CreateFundingRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateFundingRefType
-}) {
-}
-export class CreateIncidentReportRef extends S.Class("CreateIncidentReportRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateIncidentReportRefType
-}) {
-}
-export class CreatePoliceReportRef extends S.Class("CreatePoliceReportRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePoliceReportRefType
-}) {
-}
-export class CreateParamedicReportRef extends S.Class("CreateParamedicReportRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateParamedicReportRefType
-}) {
-}
-export class CreateContractRef extends S.Class("CreateContractRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateContractRefType
-}) {
-}
-export class CreateRentRollRef extends S.Class("CreateRentRollRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateRentRollRefType
-}) {
-}
-export class CreatePermitRef extends S.Class("CreatePermitRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePermitRefType
-}) {
-}
-export class CreateBlueprintRef extends S.Class("CreateBlueprintRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBlueprintRefType
-}) {
-}
-export class CreateDeclarationsPageRef extends S.Class("CreateDeclarationsPageRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDeclarationsPageRefType
-}) {
-}
-export class CreatePolicyJacketRef extends S.Class("CreatePolicyJacketRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePolicyJacketRefType
-}) {
-}
-export class CreateScopeOfLossRef extends S.Class("CreateScopeOfLossRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateScopeOfLossRefType
-}) {
-}
-export class CreateDeliveryPaperworkRef extends S.Class("CreateDeliveryPaperworkRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDeliveryPaperworkRefType
-}) {
-}
-export class CreateProductSpecRef extends S.Class("CreateProductSpecRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateProductSpecRefType
-}) {
-}
-export class CreateUserManualRef extends S.Class("CreateUserManualRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateUserManualRefType
-}) {
-}
-export class CreateWarrantyRef extends S.Class("CreateWarrantyRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateWarrantyRefType
-}) {
-}
-export class CreateDeedRef extends S.Class("CreateDeedRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDeedRefType
-}) {
-}
-export class UpdateFileAttributes extends S.Class("UpdateFileAttributes")({
-    /**
-  * The storage provider for this file.
-  */
-    "storageProvider": S.optionalWith(UpdateFileAttributesStorageProvider, { nullable: true }),
-    "originalKey": S.optionalWith(S.String, { nullable: true }),
-    "originalUrl": S.optionalWith(S.String, { nullable: true }),
-    "presentationKey": S.optionalWith(S.String, { nullable: true }),
-    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
-    "type": S.optionalWith(UpdateFileAttributesType, { nullable: true }),
-    "filename": S.optionalWith(S.String, { nullable: true }),
-    "extension": S.optionalWith(S.String, { nullable: true }),
-    "width": S.optionalWith(S.Number, { nullable: true }),
-    "height": S.optionalWith(S.Number, { nullable: true }),
-    "size": S.optionalWith(S.Number, { nullable: true }),
-    "blurhash": S.optionalWith(S.String, { nullable: true }),
-    "durationMs": S.optionalWith(S.Number, { nullable: true }),
-    "pageCount": S.optionalWith(S.Number, { nullable: true }),
-    "createdAt": S.optionalWith(S.String, { nullable: true }),
-    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
-    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
-    "documentCount": S.optionalWith(S.Number, { nullable: true }),
-    "addedAt": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class CreateAssetTypeRef extends S.Class("CreateAssetTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAssetTypeRefType
-}) {
-}
-export class CreateAddressRef extends S.Class("CreateAddressRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAddressRefType
-}) {
-}
-export class CreateAssetTypeData extends S.Class("CreateAssetTypeData")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAssetTypeDataType,
-    "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
-}) {
-}
-export class CreateDocumentTypeRef extends S.Class("CreateDocumentTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDocumentTypeRefType
-}) {
-}
-export class CreateDocumentClassRef extends S.Class("CreateDocumentClassRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDocumentClassRefType
-}) {
-}
-export class CreateSpaceTypeRef extends S.Class("CreateSpaceTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSpaceTypeRefType
-}) {
-}
-export class CreateSpaceGroupRef extends S.Class("CreateSpaceGroupRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSpaceGroupRefType
-}) {
-}
-export class CreateSpaceClassRef extends S.Class("CreateSpaceClassRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSpaceClassRefType
-}) {
-}
-export class CreateSpaceGroupTypeRef extends S.Class("CreateSpaceGroupTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSpaceGroupTypeRefType
-}) {
-}
-export class CreateSpaceCategoryRef extends S.Class("CreateSpaceCategoryRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSpaceCategoryRefType
-}) {
-}
-export class CreateBucketTypeRef extends S.Class("CreateBucketTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBucketTypeRefType
-}) {
-}
-export class CreateBucketClassRef extends S.Class("CreateBucketClassRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBucketClassRefType
-}) {
-}
-export class CreateCurrencyData extends S.Class("CreateCurrencyData")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCurrencyDataType,
-    "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
-}) {
-}
-export class CreateCountryRef extends S.Class("CreateCountryRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCountryRefType
-}) {
-}
-export class CreateCountryData extends S.Class("CreateCountryData")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCountryDataType,
-    "attributes": S.optionalWith(CountryAttributes, { nullable: true })
-}) {
-}
-export class CreateItemizableFinancialDocumentStatsRef extends S.Class("CreateItemizableFinancialDocumentStatsRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemizableFinancialDocumentStatsRefType
-}) {
-}
-export class CreateServiceRef extends S.Class("CreateServiceRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceRefType
-}) {
-}
-export class CreateItemChangeOrderRef extends S.Class("CreateItemChangeOrderRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemChangeOrderRefType
-}) {
-}
-export class CreateItemImpactChangeOrderRef extends S.Class("CreateItemImpactChangeOrderRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemImpactChangeOrderRefType
-}) {
-}
-export class CreateServiceTaskChangeOrderRef extends S.Class("CreateServiceTaskChangeOrderRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceTaskChangeOrderRefType
-}) {
-}
-export class CreateItemImpactRef extends S.Class("CreateItemImpactRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemImpactRefType
-}) {
-}
-export class CreateItemRef extends S.Class("CreateItemRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemRefType
-}) {
-}
-export class CreateServiceTaskRef extends S.Class("CreateServiceTaskRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceTaskRefType
-}) {
-}
-export class CreateThirdPartyImpactRef extends S.Class("CreateThirdPartyImpactRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateThirdPartyImpactRefType
-}) {
-}
-export class CreateItemEstimateRef extends S.Class("CreateItemEstimateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemEstimateRefType
-}) {
-}
-export class CreateItemImpactEstimateRef extends S.Class("CreateItemImpactEstimateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemImpactEstimateRefType
-}) {
-}
-export class CreateServiceTaskEstimateRef extends S.Class("CreateServiceTaskEstimateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceTaskEstimateRefType
-}) {
-}
-export class CreateEntrySourceMetadataRef extends S.Class("CreateEntrySourceMetadataRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateEntrySourceMetadataRefType
-}) {
-}
-export class CreateEntryRef extends S.Class("CreateEntryRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateEntryRefType
-}) {
-}
-export class CreateItemAppraisalRef extends S.Class("CreateItemAppraisalRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemAppraisalRefType
-}) {
-}
-export class CreateServiceTypeRef extends S.Class("CreateServiceTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceTypeRefType
-}) {
-}
-export class CreateItemPaymentRef extends S.Class("CreateItemPaymentRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemPaymentRefType
-}) {
-}
-export class CreateItemImpactPaymentRef extends S.Class("CreateItemImpactPaymentRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemImpactPaymentRefType
-}) {
-}
-export class CreateServiceTaskPaymentRef extends S.Class("CreateServiceTaskPaymentRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceTaskPaymentRefType
-}) {
-}
-export class CreateItemInvoiceRef extends S.Class("CreateItemInvoiceRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemInvoiceRefType
-}) {
-}
-export class CreateItemImpactInvoiceRef extends S.Class("CreateItemImpactInvoiceRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemImpactInvoiceRefType
-}) {
-}
-export class CreateServiceTaskInvoiceRef extends S.Class("CreateServiceTaskInvoiceRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceTaskInvoiceRefType
-}) {
-}
-export class CreateItemTypeRef extends S.Class("CreateItemTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemTypeRefType
-}) {
-}
-export class CreateBucketRef extends S.Class("CreateBucketRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBucketRefType
-}) {
-}
-export class CreateSubBucketRef extends S.Class("CreateSubBucketRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSubBucketRefType
-}) {
-}
-export class CreateClaimRef extends S.Class("CreateClaimRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateClaimRefType
-}) {
-}
-export class CreateBaseBucketAttributes extends S.Class("CreateBaseBucketAttributes")({
-    "limitAmount": S.Number,
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "lossSettlementType": S.optionalWith(CreateBaseBucketAttributesLossSettlementType, { nullable: true, default: () => "REPLACEMENT_COST_VALUE" }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyFunded": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateBaseBucketMetadataRef extends S.Class("CreateBaseBucketMetadataRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBaseBucketMetadataRefType
-}) {
-}
-export class CreateBucketFundingRef extends S.Class("CreateBucketFundingRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBucketFundingRefType
-}) {
-}
-export class CreateCoverageRef extends S.Class("CreateCoverageRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCoverageRefType
-}) {
-}
-export class CreateDeductibleRef extends S.Class("CreateDeductibleRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDeductibleRefType
-}) {
-}
-export class CreateClaimDeductibleRef extends S.Class("CreateClaimDeductibleRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateClaimDeductibleRefType
-}) {
-}
-export class CreatePolicyTermRef extends S.Class("CreatePolicyTermRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePolicyTermRefType
-}) {
-}
-export class CreateClaimTargetAttributes extends S.Class("CreateClaimTargetAttributes")({
-    "effectiveStartDate": S.String,
-    "effectiveEndDate": S.String,
-    "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "lossSettlementType": S.optionalWith(CreateClaimTargetAttributesLossSettlementType, { nullable: true })
-}) {
-}
-export class CreatePolicyTermAttributes extends S.Class("CreatePolicyTermAttributes")({
-    "effectiveStartDate": S.String,
-    "effectiveEndDate": S.String,
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "lossSettlementType": S.optionalWith(CreatePolicyTermAttributesLossSettlementType, { nullable: true }),
-    "premiumAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentDueDate": S.optionalWith(S.String, { nullable: true }),
-    "isFullyPaid": S.optionalWith(S.Boolean, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "dueAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreatePolicyRef extends S.Class("CreatePolicyRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePolicyRefType
-}) {
-}
-export class CreatePolicyTemplateRef extends S.Class("CreatePolicyTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePolicyTemplateRefType
-}) {
-}
-export class CreateProviderData extends S.Class("CreateProviderData")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateProviderDataType,
-    "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
-}) {
-}
-export class CreateBucketDefinitionAttributes extends S.Class("CreateBucketDefinitionAttributes")({
-    "name": S.String,
-    "limitAmount": S.Number,
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    /**
-  * Is required if not set in .basis
-  */
-    "lossSettlementType": S.optionalWith(CreateBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateSubCoverageRef extends S.Class("CreateSubCoverageRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSubCoverageRefType
-}) {
-}
-export class CreateCoverageTemplateRef extends S.Class("CreateCoverageTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCoverageTemplateRefType
-}) {
-}
-export class CreateCoverageGroupRef extends S.Class("CreateCoverageGroupRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCoverageGroupRefType
-}) {
-}
-export class CreatePerilRef extends S.Class("CreatePerilRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreatePerilRefType
-}) {
-}
-export class CreateEndorsementRef extends S.Class("CreateEndorsementRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateEndorsementRefType
-}) {
-}
-export class CreateSubBucketDefinitionAttributes extends S.Class("CreateSubBucketDefinitionAttributes")({
-    "name": S.String,
-    "limitAmount": S.Number,
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "lossSettlementType": S.optionalWith(CreateSubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateSubCoverageTemplateRef extends S.Class("CreateSubCoverageTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSubCoverageTemplateRefType
-}) {
-}
-export class CreateBaseSubBucketMetadataRef extends S.Class("CreateBaseSubBucketMetadataRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBaseSubBucketMetadataRefType
-}) {
-}
-export class CreateEndorsementTemplateRef extends S.Class("CreateEndorsementTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateEndorsementTemplateRefType
-}) {
-}
-export class CreateCoverageGroupTemplateRef extends S.Class("CreateCoverageGroupTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateCoverageGroupTemplateRefType
-}) {
-}
-export class CreateEndorsementAttributes extends S.Class("CreateEndorsementAttributes")({
-    "formNumber": S.optionalWith(S.String, { nullable: true }),
-    "effect": CreateEndorsementAttributesEffect,
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "lossSettlementType": S.optionalWith(CreateEndorsementAttributesLossSettlementType, { nullable: true })
-}) {
-}
-export class CreateDepreciationModifierRef extends S.Class("CreateDepreciationModifierRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDepreciationModifierRefType
-}) {
-}
-export class CreateDepreciationOverrideRef extends S.Class("CreateDepreciationOverrideRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateDepreciationOverrideRefType
-}) {
-}
-export class CreateAssetAttributeTypeItemTemplateRef extends S.Class("CreateAssetAttributeTypeItemTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAssetAttributeTypeItemTemplateRefType
-}) {
-}
-export class CreateItemTemplateRef extends S.Class("CreateItemTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemTemplateRefType
-}) {
-}
-export class CreateSpaceTypeItemTemplateRef extends S.Class("CreateSpaceTypeItemTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSpaceTypeItemTemplateRefType
-}) {
-}
-export class CreateSubmissionTrackTemplateRef extends S.Class("CreateSubmissionTrackTemplateRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateSubmissionTrackTemplateRefType
-}) {
-}
-export class CreateAssetAttributeClassRef extends S.Class("CreateAssetAttributeClassRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAssetAttributeClassRefType
-}) {
-}
-export class CreateAssetAttributeTypeRef extends S.Class("CreateAssetAttributeTypeRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAssetAttributeTypeRefType
-}) {
-}
-export class CreateIncidentClassRef extends S.Class("CreateIncidentClassRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateIncidentClassRefType
-}) {
-}
-export class CreateItemCategoryRef extends S.Class("CreateItemCategoryRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemCategoryRefType
-}) {
-}
-export class CreateItemClassRef extends S.Class("CreateItemClassRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemClassRefType
-}) {
-}
-export class CreateServiceCategoryRef extends S.Class("CreateServiceCategoryRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceCategoryRefType
-}) {
-}
-export class CreateServiceClassRef extends S.Class("CreateServiceClassRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateServiceClassRefType
-}) {
-}
-export class CreateAccountInviteRef extends S.Class("CreateAccountInviteRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAccountInviteRefType
-}) {
-}
-export class CreateAuthProfileRef extends S.Class("CreateAuthProfileRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateAuthProfileRefType
-}) {
-}
-export class CreateProjectImpactRef extends S.Class("CreateProjectImpactRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateProjectImpactRefType
-}) {
-}
-export class CreateIncidentImpactRef extends S.Class("CreateIncidentImpactRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateIncidentImpactRefType
-}) {
-}
-export class CreateItemMediaSuggestionRef extends S.Class("CreateItemMediaSuggestionRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemMediaSuggestionRefType
-}) {
-}
-export class CreateItemProductSuggestionRef extends S.Class("CreateItemProductSuggestionRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateItemProductSuggestionRefType
-}) {
-}
-export class CreateThirdPartyDwellingRef extends S.Class("CreateThirdPartyDwellingRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateThirdPartyDwellingRefType
-}) {
-}
-export class CreateThirdPartyIndividualRef extends S.Class("CreateThirdPartyIndividualRef")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateThirdPartyIndividualRefType
-}) {
-}
-export class CreateBaseEntityData extends S.Class("CreateBaseEntityData")({
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CreateBaseEntityDataType
-}) {
-}
-export class CreateItemInvoiceAttributes extends S.Class("CreateItemInvoiceAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "purpose": S.optionalWith(CreateItemInvoiceAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateItemAttributes extends S.Class("CreateItemAttributes")({
-    "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-    "fieldsNeedingAttention": S.optionalWith(S.Struct({
-        "type": S.optionalWith(S.Boolean, { nullable: true }),
-        "quality": S.optionalWith(S.Boolean, { nullable: true }),
-        "acquiredDate": S.optionalWith(S.Boolean, { nullable: true })
-    }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "quality": S.optionalWith(CreateItemAttributesQuality, { nullable: true }),
-    "condition": S.optionalWith(CreateItemAttributesCondition, { nullable: true }),
-    "isDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-    "acquiredDate": S.optionalWith(S.String, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "currentQuantity": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateItemPaymentAttributes extends S.Class("CreateItemPaymentAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "purpose": S.optionalWith(CreateItemPaymentAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateItemChangeOrderAttributes extends S.Class("CreateItemChangeOrderAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "purpose": S.optionalWith(CreateItemChangeOrderAttributesPurpose, { nullable: true })
-}) {
-}
-export class CreateItemEstimateAttributes extends S.Class("CreateItemEstimateAttributes")({
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "purpose": S.optionalWith(CreateItemEstimateAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateAccountInviteAttributes extends S.Class("CreateAccountInviteAttributes")({
-    /**
-  * What level of permissions the user has for this account.
-  */
-    "role": CreateAccountInviteAttributesRole,
-    /**
-  * The user's email
-  */
-    "email": S.String,
-    "phone": S.optionalWith(S.String, { nullable: true }),
-    "invitedAt": S.optionalWith(S.String, { nullable: true }),
-    "acceptedAt": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class CreateAuthProfileAttributes extends S.Class("CreateAuthProfileAttributes")({
-    "provider": CreateAuthProfileAttributesProvider,
-    "externalId": S.String
-}) {
-}
-export class CreateItemMediaSuggestionAttributes extends S.Class("CreateItemMediaSuggestionAttributes")({
-    "data_key": S.String,
-    "name": S.String,
-    "quality": S.optionalWith(CreateItemMediaSuggestionAttributesQuality, { nullable: true }),
-    "condition": S.optionalWith(CreateItemMediaSuggestionAttributesCondition, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "timestamp": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateItemProductSuggestionAttributes extends S.Class("CreateItemProductSuggestionAttributes")({
-    "source": CreateItemProductSuggestionAttributesSource,
-    "source_id": S.String,
-    "data_key": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "sellerName": S.optionalWith(S.String, { nullable: true }),
-    "sellerLink": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {
-}
-export class CreateUserAccountRoleAttributes extends S.Class("CreateUserAccountRoleAttributes")({
-    /**
-  * What level of permissions the user has for this account.
-  */
-    "role": CreateUserAccountRoleAttributesRole
-}) {
-}
-export class JsonApiEntityReference extends S.Class("JsonApiEntityReference")({
-    "data": EntityReference
-}) {
-}
-export class JsonApiEntityReferenceList extends S.Class("JsonApiEntityReferenceList")({
-    "data": S.Array(EntityReference)
-}) {
-}
-export class TransloaditAssemblyOptionsDto extends S.Class("TransloaditAssemblyOptionsDto")({
-    /**
-  * The semantic type of file that is being uploaded.
-  */
-    "type": TransloaditAssemblyOptionsDtoType,
-    /**
-  * What provider will be used for uploads.
-  */
-    "provider": TransloaditAssemblyOptionsDtoProvider
-}) {
-}
-export class TransloaditStoreFileAssemblyParams extends S.Class("TransloaditStoreFileAssemblyParams")({
-    "auth": TransloaditAssemblyAuth,
-    /**
-  * Transloadit template ID to execute
-  */
-    "template_id": S.String,
-    /**
-  * Trusted fields interpolated in the template (signed server-side).
-  */
-    "fields": TransloaditStoreFileAssemblyFields
-}) {
-}
-export class TransloaditAvatarAssemblyParams extends S.Class("TransloaditAvatarAssemblyParams")({
-    "auth": TransloaditAssemblyAuth,
-    /**
-  * Transloadit template ID to execute
-  */
-    "template_id": S.String,
-    /**
-  * Trusted fields interpolated in the template (signed server-side).
-  */
-    "fields": TransloaditAvatarAssemblyFields
-}) {
-}
-export class CdnScopeDto extends S.Class("CdnScopeDto")({
-    /**
-  * The CloudFront distribution domain used for access
-  */
-    "domain": S.String,
-    /**
-  * Account ID the scope applies to
-  */
-    "accountId": S.String,
-    /**
-  * User ID the scope applies to
-  */
-    "userId": S.String,
-    /**
-  * List of resource policies scoped to this user/account
-  */
-    "resources": S.Array(CdnResourceDto)
-}) {
-}
-export class SignedUrlItemDto extends S.Class("SignedUrlItemDto")({
-    /**
-  * Object key (relative path) or absolute URL to sign. Your API should enforce one style.
-  */
-    "key": S.String,
-    /**
-  * Optional per-item TTL (time-to-live) in seconds. Must be between 60s (1m) and 86400s (24h).
-  */
-    "ttlSeconds": S.optionalWith(S.Number.pipe(S.greaterThanOrEqualTo(60), S.lessThanOrEqualTo(86400)), { nullable: true }),
-    /**
-  * HTTP action to sign for (GET for download, PUT for upload, HEAD for metadata).
-  */
-    "action": S.optionalWith(SignedUrlItemDtoAction, { nullable: true }),
-    /**
-  * Content-Type header to enforce. For PUT uploads, sets the required Content-Type. For GET, sets the response Content-Type.
-  */
-    "contentType": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Response content disposition. Useful for forcing downloads or naming files in GET requests.
-  */
-    "contentDisposition": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Optional client-provided correlation ID to map requests to results.
-  */
-    "clientToken": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class SignedUrlResultDto extends S.Class("SignedUrlResultDto")({
-    /**
-  * The storage key for the file
-  */
-    "key": S.String,
-    /**
-  * Signed URL for accessing the file (present on success)
-  */
-    "url": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Expiration timestamp in ISO 8601 format
-  */
-    "expiresAt": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Effective TTL (time to live) in seconds
-  */
-    "ttlSeconds": S.optionalWith(S.Number, { nullable: true }),
-    /**
-  * Action for which this URL was issued
-  */
-    "action": S.optionalWith(SignedUrlResultDtoAction, { nullable: true }),
-    /**
-  * Error details if URL generation failed
-  */
-    "error": S.optionalWith(SignedUrlErrorDto, { nullable: true }),
-    /**
-  * Optional client-provided token to correlate requests
-  */
-    "clientToken": S.optionalWith(S.String, { nullable: true })
-}) {
-}
-export class AssetTypeData extends S.Class("AssetTypeData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": AssetTypeDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    /**
-  * Relevant links.
-  */
-    "links": S.optionalWith(LinkObject, { nullable: true }),
-    "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
-}) {
-}
-export class CurrencyData extends S.Class("CurrencyData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CurrencyDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    /**
-  * Relevant links.
-  */
-    "links": S.optionalWith(LinkObject, { nullable: true }),
-    "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
-}) {
-}
-export class CountryData extends S.Class("CountryData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": CountryDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    /**
-  * Relevant links.
-  */
-    "links": S.optionalWith(LinkObject, { nullable: true }),
-    "attributes": S.optionalWith(CountryAttributes, { nullable: true })
-}) {
-}
-export class ProviderData extends S.Class("ProviderData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": ProviderDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    /**
-  * Relevant links.
-  */
-    "links": S.optionalWith(LinkObject, { nullable: true }),
-    "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
-}) {
-}
-export class BaseEntityData extends S.Class("BaseEntityData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": BaseEntityDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    /**
-  * Relevant links.
-  */
-    "links": S.optionalWith(LinkObject, { nullable: true })
-}) {
-}
-export class UpdateAssetTypeData extends S.Class("UpdateAssetTypeData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UpdateAssetTypeDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
-}) {
-}
-export class UpdateCurrencyData extends S.Class("UpdateCurrencyData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UpdateCurrencyDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
-}) {
-}
-export class UpdateCountryData extends S.Class("UpdateCountryData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UpdateCountryDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    "attributes": S.optionalWith(CountryAttributes, { nullable: true })
-}) {
-}
-export class UpdateProviderData extends S.Class("UpdateProviderData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UpdateProviderDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
-    /**
-  * Metadata for the entity
-  */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-    "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
+    "data": UserRef
 }) {
 }
-export class UpdateBaseEntityData extends S.Class("UpdateBaseEntityData")({
-    /**
-  * Entity id
-  */
-    "id": S.String,
-    /**
-  * The type of the referenced entity.
-  */
-    "type": UpdateBaseEntityDataType,
-    /**
-  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-  */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+export class NullableReferencedUpdateUser extends S.Class("NullableReferencedUpdateUser")({
     /**
-  * Metadata for the entity
+  * Nullable entity reference for User.
   */
-    "meta": S.optionalWith(EntityMetadata, { nullable: true })
+    "data": S.NullOr(UserRef)
 }) {
 }
 export class ReferencedUser extends S.Class("ReferencedUser")({
@@ -7974,20 +3629,6 @@ export class NullableReferencedUser extends S.Class("NullableReferencedUser")({
   * Relevant links for the ref and full entity.
   */
     "links": S.optionalWith(ReferencedLinkObject, { nullable: true })
-}) {
-}
-export class ReferencedUpdateUser extends S.Class("ReferencedUpdateUser")({
-    /**
-  * Entity reference for User.
-  */
-    "data": UserRef
-}) {
-}
-export class NullableReferencedUpdateUser extends S.Class("NullableReferencedUpdateUser")({
-    /**
-  * Nullable entity reference for User.
-  */
-    "data": S.NullOr(UserRef)
 }) {
 }
 export class ReferencedProjectList extends S.Class("ReferencedProjectList")({
@@ -8372,6 +4013,10 @@ export class NullableReferencedUpdateDisaster extends S.Class("NullableReference
     "data": S.NullOr(DisasterRef)
 }) {
 }
+export class CreateProjectMediaAttributes extends S.Class("CreateProjectMediaAttributes")({
+    "stage": S.optionalWith(CreateProjectMediaAttributesStage, { nullable: true })
+}) {
+}
 export class ReferencedMedia extends S.Class("ReferencedMedia")({
     /**
   * Entity reference for Media.
@@ -8399,6 +4044,13 @@ export class ReferencedUpdateMedia extends S.Class("ReferencedUpdateMedia")({
   * Entity reference for Media.
   */
     "data": MediaRef
+}) {
+}
+export class CreateMediaAttributes extends S.Class("CreateMediaAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "note": S.optionalWith(S.String, { nullable: true }),
+    "subjectState": S.optionalWith(CreateMediaAttributesSubjectState, { nullable: true }),
+    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true })
 }) {
 }
 export class ReferencedFile extends S.Class("ReferencedFile")({
@@ -8482,6 +4134,33 @@ export class ReferencedEntrySourceMediaList extends S.Class("ReferencedEntrySour
   * Relevant links for the refs and full entities.
   */
     "links": S.optionalWith(ReferencedLinkObject, { nullable: true })
+}) {
+}
+export class FileAttributes extends S.Class("FileAttributes")({
+    /**
+  * The storage provider for this file.
+  */
+    "storageProvider": S.optionalWith(S.Literal("LOTI_S3"), { nullable: true }),
+    "originalKey": S.optionalWith(S.String, { nullable: true }),
+    "originalUrl": S.optionalWith(S.String, { nullable: true }),
+    "presentationKey": S.optionalWith(S.String, { nullable: true }),
+    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
+    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
+    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
+    "type": S.optionalWith(FileAttributesType, { nullable: true }),
+    "filename": S.optionalWith(S.String, { nullable: true }),
+    "extension": S.optionalWith(S.String, { nullable: true }),
+    "width": S.optionalWith(S.Number, { nullable: true }),
+    "height": S.optionalWith(S.Number, { nullable: true }),
+    "size": S.optionalWith(S.Number, { nullable: true }),
+    "blurhash": S.optionalWith(S.String, { nullable: true }),
+    "durationMs": S.optionalWith(S.Number, { nullable: true }),
+    "pageCount": S.optionalWith(S.Number, { nullable: true }),
+    "createdAt": S.optionalWith(S.String, { nullable: true }),
+    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
+    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
+    "documentCount": S.optionalWith(S.Number, { nullable: true }),
+    "addedAt": S.optionalWith(S.String, { nullable: true })
 }) {
 }
 export class ReferencedFileProcessList extends S.Class("ReferencedFileProcessList")({
@@ -8774,6 +4453,18 @@ export class ReferencedUpdateAddress extends S.Class("ReferencedUpdateAddress")(
     "data": AddressRef
 }) {
 }
+export class CreateAssetTypeData extends S.Class("CreateAssetTypeData")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetType"),
+    "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
+}) {
+}
 export class ReferencedDocumentType extends S.Class("ReferencedDocumentType")({
     /**
   * Entity reference for DocumentType.
@@ -8805,6 +4496,11 @@ export class ReferencedDocumentClassList extends S.Class("ReferencedDocumentClas
   * Relevant links for the refs and full entities.
   */
     "links": S.optionalWith(ReferencedLinkObject, { nullable: true })
+}) {
+}
+export class CreateSpaceAttributes extends S.Class("CreateSpaceAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "use": S.optionalWith(CreateSpaceAttributesUse, { nullable: true })
 }) {
 }
 export class ReferencedSpaceType extends S.Class("ReferencedSpaceType")({
@@ -8938,6 +4634,18 @@ export class ReferencedBucketClassList extends S.Class("ReferencedBucketClassLis
     "links": S.optionalWith(ReferencedLinkObject, { nullable: true })
 }) {
 }
+export class CreateCurrencyData extends S.Class("CreateCurrencyData")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Currency"),
+    "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
+}) {
+}
 export class ReferencedCountry extends S.Class("ReferencedCountry")({
     /**
   * Entity reference for Country.
@@ -8954,6 +4662,27 @@ export class ReferencedUpdateCountry extends S.Class("ReferencedUpdateCountry")(
   * Entity reference for Country.
   */
     "data": CountryRef
+}) {
+}
+export class CreateCountryData extends S.Class("CreateCountryData")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Country"),
+    "attributes": S.optionalWith(CountryAttributes, { nullable: true })
+}) {
+}
+export class CreateFileProcessAttributes extends S.Class("CreateFileProcessAttributes")({
+    "processId": S.optionalWith(S.String, { nullable: true }),
+    "provider": S.optionalWith(S.Literal("TRANSLOADIT"), { nullable: true }),
+    "type": S.optionalWith(CreateFileProcessAttributesType, { nullable: true }),
+    "status": S.optionalWith(CreateFileProcessAttributesStatus, { nullable: true }),
+    "startedAt": S.optionalWith(S.String, { nullable: true }),
+    "endedAt": S.optionalWith(S.String, { nullable: true })
 }) {
 }
 export class ReferencedItemizableFinancialDocumentStats extends S.Class("ReferencedItemizableFinancialDocumentStats")({
@@ -9323,6 +5052,81 @@ export class ReferencedInvoiceLineList extends S.Class("ReferencedInvoiceLineLis
     "links": S.optionalWith(ReferencedLinkObject, { nullable: true })
 }) {
 }
+export class CreateEntrySourceMetadataAttributes extends S.Class("CreateEntrySourceMetadataAttributes")({
+    "entrySourceType": S.optionalWith(CreateEntrySourceMetadataAttributesEntrySourceType, { nullable: true }),
+    "assignedEntryCount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedEntryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedEntryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class CreateItemImpactAttributes extends S.Class("CreateItemImpactAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "fieldsNeedingAttention": S.optionalWith(S.Struct({
+        "item.type": S.optionalWith(S.Boolean, { nullable: true }),
+        "impactDate": S.optionalWith(S.Boolean, { nullable: true }),
+        "item.quality": S.optionalWith(S.Boolean, { nullable: true }),
+        "item.acquiredDate": S.optionalWith(S.Boolean, { nullable: true }),
+        "conditionAtImpact": S.optionalWith(S.Boolean, { nullable: true })
+    }), { nullable: true }),
+    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
+    "isExactReplacement": S.optionalWith(S.Boolean, { nullable: true }),
+    "impactDate": S.optionalWith(S.String, { nullable: true }),
+    "isLost": S.optionalWith(S.Boolean, { nullable: true }),
+    "conditionAtImpact": S.optionalWith(CreateItemImpactAttributesConditionAtImpact, { nullable: true }),
+    "quantity": S.optionalWith(S.Number, { nullable: true }),
+    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
+    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
+    "replacementPaidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "replacementInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "replacementEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "itemDepreciableAmount": S.optionalWith(S.Number, { nullable: true }),
+    "itemAppraisedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "itemRcvAmount": S.optionalWith(S.Number, { nullable: true }),
+    "customDepreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
+    "customDepreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
+    "customDepreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
+    "customDepreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
+    "customDepreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
+    "customDepreciationOverrideDescription": S.optionalWith(S.String, { nullable: true }),
+    "isDepreciationCustom": S.optionalWith(S.Boolean, { nullable: true }),
+    "customDepreciationFieldsSetBySystem": S.optionalWith(S.Array(S.String), { nullable: true }),
+    "itemQuality": S.optionalWith(CreateItemImpactAttributesItemQuality, { nullable: true }),
+    "itemAcquiredDate": S.optionalWith(S.String, { nullable: true }),
+    "itemAcquiredQuantity": S.optionalWith(S.Number, { nullable: true }),
+    "itemIsDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
+    "depreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
+    "depreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "depreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true }),
+    "monthlyDepreciationRate": S.optionalWith(S.Number, { nullable: true }),
+    "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
+    "depreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true }),
+    "depreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "rcvAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acvAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableProjectedRcvAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableIncurredRcvAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableProjectedAcvAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableIncurredAcvAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
 export class NullableReferencedItemType extends S.Class("NullableReferencedItemType")({
     /**
   * Nullable entity reference for ItemType.
@@ -9372,6 +5176,28 @@ export class NullableReferencedUpdateItemType extends S.Class("NullableReference
   * Nullable entity reference for ItemType.
   */
     "data": S.NullOr(ItemTypeRef)
+}) {
+}
+export class CreateEntryAttributes extends S.Class("CreateEntryAttributes")({
+    "lossSettlementType": S.optionalWith(CreateEntryAttributesLossSettlementType, { nullable: true }),
+    "incurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "projectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "overriddenIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "overriddenProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "approvedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "isResolved": S.optionalWith(S.Boolean, { nullable: true }),
+    "number": S.optionalWith(S.Number, { nullable: true }),
+    "targetAssignmentPercentage": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "submissionStatus": S.optionalWith(CreateEntryAttributesSubmissionStatus, { nullable: true, default: () => "NOT_SUBMITTED" }),
+    "lastSubmittedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "lastSubmittedIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "lastSubmittedProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submissionAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submissionIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submissionProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submissionAmountDelta": S.optionalWith(S.Number, { nullable: true }),
+    "submissionIncurredAmountDelta": S.optionalWith(S.Number, { nullable: true }),
+    "submissionProjectedAmountDelta": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
 export class ReferencedBaseBucket extends S.Class("ReferencedBaseBucket")({
@@ -9490,6 +5316,24 @@ export class ReferencedUpdateFundingSource extends S.Class("ReferencedUpdateFund
     "data": ClaimRef
 }) {
 }
+export class BaseBucketAttributes extends S.Class("BaseBucketAttributes")({
+    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "lossSettlementType": S.optionalWith(BaseBucketAttributesLossSettlementType, { nullable: true, default: () => "REPLACEMENT_COST_VALUE" }),
+    "entryCount": S.optionalWith(S.Number, { nullable: true }),
+    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
+    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
+    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
+    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyFunded": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
 export class ReferencedBaseBucketMetadata extends S.Class("ReferencedBaseBucketMetadata")({
     /**
   * Entity reference for BaseBucketMetadata.
@@ -9510,6 +5354,25 @@ export class ReferencedBucketFundingList extends S.Class("ReferencedBucketFundin
   * Relevant links for the refs and full entities.
   */
     "links": S.optionalWith(ReferencedLinkObject, { nullable: true })
+}) {
+}
+export class BucketAttributes extends S.Class("BucketAttributes")({
+    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "lossSettlementType": S.optionalWith(BucketAttributesLossSettlementType, { nullable: true }),
+    "entryCount": S.optionalWith(S.Number, { nullable: true }),
+    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
+    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
+    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
+    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyFunded": S.optionalWith(S.Number, { nullable: true }),
+    "name": S.optionalWith(S.String, { nullable: true })
 }) {
 }
 export class ReferencedBucketDefinition extends S.Class("ReferencedBucketDefinition")({
@@ -9646,6 +5509,15 @@ export class ReferencedClaimDeductibleList extends S.Class("ReferencedClaimDeduc
     "links": S.optionalWith(ReferencedLinkObject, { nullable: true })
 }) {
 }
+export class ClaimAttributes extends S.Class("ClaimAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
+    "claimId": S.optionalWith(S.String, { nullable: true }),
+    "status": S.optionalWith(ClaimAttributesStatus, { nullable: true, default: () => "OPEN" }),
+    "openedDate": S.optionalWith(S.String, { nullable: true }),
+    "closedDate": S.optionalWith(S.String, { nullable: true })
+}) {
+}
 export class ReferencedClaimTarget extends S.Class("ReferencedClaimTarget")({
     /**
   * Entity reference for ClaimTarget.
@@ -9693,6 +5565,27 @@ export class ReferencedUpdateClaimTarget extends S.Class("ReferencedUpdateClaimT
     "data": PolicyTermRef
 }) {
 }
+export class ClaimTargetAttributes extends S.Class("ClaimTargetAttributes")({
+    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
+    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "lossSettlementType": S.optionalWith(ClaimTargetAttributesLossSettlementType, { nullable: true })
+}) {
+}
+export class PolicyTermAttributes extends S.Class("PolicyTermAttributes")({
+    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
+    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "lossSettlementType": S.optionalWith(PolicyTermAttributesLossSettlementType, { nullable: true }),
+    "premiumAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paymentDueDate": S.optionalWith(S.String, { nullable: true }),
+    "isFullyPaid": S.optionalWith(S.Boolean, { nullable: true }),
+    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "dueAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
 export class ReferencedPolicy extends S.Class("ReferencedPolicy")({
     /**
   * Entity reference for Policy.
@@ -9738,6 +5631,35 @@ export class NullableReferencedUpdatePolicyTemplate extends S.Class("NullableRef
   * Nullable entity reference for PolicyTemplate.
   */
     "data": S.NullOr(PolicyTemplateRef)
+}) {
+}
+export class CreateProviderData extends S.Class("CreateProviderData")({
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Provider"),
+    "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
+}) {
+}
+export class BucketDefinitionAttributes extends S.Class("BucketDefinitionAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    /**
+  * Is required if not set in .basis
+  */
+    "lossSettlementType": S.optionalWith(BucketDefinitionAttributesLossSettlementType, { nullable: true }),
+    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
+    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
+    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
+    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
 export class ReferencedSubBucketDefinitionList extends S.Class("ReferencedSubBucketDefinitionList")({
@@ -9881,6 +5803,18 @@ export class ReferencedUpdateEndorsementList extends S.Class("ReferencedUpdateEn
     "data": S.Array(EndorsementRef)
 }) {
 }
+export class SubBucketDefinitionAttributes extends S.Class("SubBucketDefinitionAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "lossSettlementType": S.optionalWith(SubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
+    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
+    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
 export class NullableReferencedSubCoverageTemplate extends S.Class("NullableReferencedSubCoverageTemplate")({
     /**
   * Nullable entity reference for SubCoverageTemplate.
@@ -9977,6 +5911,39 @@ export class NullableReferencedUpdateCoverageGroupTemplate extends S.Class("Null
   * Nullable entity reference for CoverageGroupTemplate.
   */
     "data": S.NullOr(CoverageGroupTemplateRef)
+}) {
+}
+export class CreateEndorsementTemplateAttributes extends S.Class("CreateEndorsementTemplateAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "slug": S.optionalWith(S.String, { nullable: true }),
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "articleUrl": S.optionalWith(S.String, { nullable: true }),
+    "canopyApiTerm": S.optionalWith(S.String, { nullable: true }),
+    "effect": S.optionalWith(CreateEndorsementTemplateAttributesEffect, { nullable: true }),
+    "lossSettlementType": S.optionalWith(CreateEndorsementTemplateAttributesLossSettlementType, { nullable: true }),
+    "tags": S.optionalWith(S.Array(S.String), { nullable: true })
+}) {
+}
+export class EndorsementAttributes extends S.Class("EndorsementAttributes")({
+    "formNumber": S.optionalWith(S.String, { nullable: true }),
+    "effect": S.optionalWith(EndorsementAttributesEffect, { nullable: true }),
+    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "lossSettlementType": S.optionalWith(EndorsementAttributesLossSettlementType, { nullable: true })
+}) {
+}
+export class CreatePolicyAttributes extends S.Class("CreatePolicyAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "status": S.optionalWith(CreatePolicyAttributesStatus, { nullable: true, default: () => "ACTIVE" }),
+    "policyId": S.optionalWith(S.String, { nullable: true }),
+    "isActive": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
+    "startDate": S.optionalWith(S.String, { nullable: true }),
+    "renewalDate": S.optionalWith(S.String, { nullable: true }),
+    "canceledDate": S.optionalWith(S.String, { nullable: true })
 }) {
 }
 export class ReferencedDepreciationModifierList extends S.Class("ReferencedDepreciationModifierList")({
@@ -10127,6 +6094,161 @@ export class ReferencedUpdateThirdParty extends S.Class("ReferencedUpdateThirdPa
   * Entity reference for ThirdParty.
   */
     "data": S.Union(ThirdPartyDwellingRef, ThirdPartyIndividualRef)
+}) {
+}
+export class ItemInvoiceAttributes extends S.Class("ItemInvoiceAttributes")({
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "purpose": S.optionalWith(ItemInvoiceAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
+    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class ItemAttributes extends S.Class("ItemAttributes")({
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "fieldsNeedingAttention": S.optionalWith(S.Struct({
+        "type": S.optionalWith(S.Boolean, { nullable: true }),
+        "quality": S.optionalWith(S.Boolean, { nullable: true }),
+        "acquiredDate": S.optionalWith(S.Boolean, { nullable: true })
+    }), { nullable: true }),
+    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
+    "quality": S.optionalWith(ItemAttributesQuality, { nullable: true }),
+    "condition": S.optionalWith(ItemAttributesCondition, { nullable: true }),
+    "isDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
+    "acquiredDate": S.optionalWith(S.String, { nullable: true }),
+    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "currentQuantity": S.optionalWith(S.Number, { nullable: true }),
+    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
+    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
+    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionPaidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class CreateDepreciationModifierAttributes extends S.Class("CreateDepreciationModifierAttributes")({
+    "condition": S.optionalWith(CreateDepreciationModifierAttributesCondition, { nullable: true }),
+    "quality": S.optionalWith(CreateDepreciationModifierAttributesQuality, { nullable: true }),
+    "minimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "accelerationFactor": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class ItemPaymentAttributes extends S.Class("ItemPaymentAttributes")({
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "purpose": S.optionalWith(ItemPaymentAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
+    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class ItemChangeOrderAttributes extends S.Class("ItemChangeOrderAttributes")({
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "purpose": S.optionalWith(ItemChangeOrderAttributesPurpose, { nullable: true })
+}) {
+}
+export class ItemEstimateAttributes extends S.Class("ItemEstimateAttributes")({
+    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentFeeAmount": S.optionalWith(S.String, { nullable: true }),
+    "purpose": S.optionalWith(ItemEstimateAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
+    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class AccountInviteAttributes extends S.Class("AccountInviteAttributes")({
+    /**
+  * What level of permissions the user has for this account.
+  */
+    "role": S.optionalWith(AccountInviteAttributesRole, { nullable: true }),
+    /**
+  * The user's email
+  */
+    "email": S.optionalWith(S.String, { nullable: true }),
+    "phone": S.optionalWith(S.String, { nullable: true }),
+    "invitedAt": S.optionalWith(S.String, { nullable: true }),
+    "acceptedAt": S.optionalWith(S.String, { nullable: true })
+}) {
+}
+export class AuthProfileAttributes extends S.Class("AuthProfileAttributes")({
+    "provider": S.optionalWith(AuthProfileAttributesProvider, { nullable: true }),
+    "externalId": S.optionalWith(S.String, { nullable: true })
+}) {
+}
+export class CreateIncidentImpactAttributes extends S.Class("CreateIncidentImpactAttributes")({
+    "extent": S.optionalWith(CreateIncidentImpactAttributesExtent, { nullable: true })
+}) {
+}
+export class ItemMediaSuggestionAttributes extends S.Class("ItemMediaSuggestionAttributes")({
+    "data_key": S.optionalWith(S.String, { nullable: true }),
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "quality": S.optionalWith(ItemMediaSuggestionAttributesQuality, { nullable: true }),
+    "condition": S.optionalWith(ItemMediaSuggestionAttributesCondition, { nullable: true }),
+    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "timestamp": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class ItemProductSuggestionAttributes extends S.Class("ItemProductSuggestionAttributes")({
+    "source": S.optionalWith(ItemProductSuggestionAttributesSource, { nullable: true }),
+    "source_id": S.optionalWith(S.String, { nullable: true }),
+    "data_key": S.optionalWith(S.String, { nullable: true }),
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "sellerName": S.optionalWith(S.String, { nullable: true }),
+    "sellerLink": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class UpdateUserAccountRoleAttributes extends S.Class("UpdateUserAccountRoleAttributes")({
+    /**
+  * What level of permissions the user has for this account.
+  */
+    "role": S.optionalWith(UpdateUserAccountRoleAttributesRole, { nullable: true })
 }) {
 }
 export class NullableReferencedUpsertEmailAddress extends S.Class("NullableReferencedUpsertEmailAddress")({
@@ -10367,6 +6489,33 @@ export class ReferencedUpsertEntrySourceMediaList extends S.Class("ReferencedUps
     "data": S.Array(S.Union(CreateEntrySourceMediaRef, EntrySourceMediaRef))
 }) {
 }
+export class CreateFileAttributes extends S.Class("CreateFileAttributes")({
+    /**
+  * The storage provider for this file.
+  */
+    "storageProvider": S.Literal("LOTI_S3"),
+    "originalKey": S.optionalWith(S.String, { nullable: true }),
+    "originalUrl": S.optionalWith(S.String, { nullable: true }),
+    "presentationKey": S.optionalWith(S.String, { nullable: true }),
+    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
+    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
+    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
+    "type": S.optionalWith(CreateFileAttributesType, { nullable: true }),
+    "filename": S.optionalWith(S.String, { nullable: true }),
+    "extension": S.optionalWith(S.String, { nullable: true }),
+    "width": S.optionalWith(S.Number, { nullable: true }),
+    "height": S.optionalWith(S.Number, { nullable: true }),
+    "size": S.optionalWith(S.Number, { nullable: true }),
+    "blurhash": S.optionalWith(S.String, { nullable: true }),
+    "durationMs": S.optionalWith(S.Number, { nullable: true }),
+    "pageCount": S.optionalWith(S.Number, { nullable: true }),
+    "createdAt": S.optionalWith(S.String, { nullable: true }),
+    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
+    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
+    "documentCount": S.optionalWith(S.Number, { nullable: true }),
+    "addedAt": S.optionalWith(S.String, { nullable: true })
+}) {
+}
 export class ReferencedUpsertFileProcessList extends S.Class("ReferencedUpsertFileProcessList")({
     /**
   * A list of FileProcess entity refs.
@@ -10484,6 +6633,33 @@ export class ReferencedUpsertDocumentList extends S.Class("ReferencedUpsertDocum
   * A list of Document entity refs.
   */
     "data": S.Array(S.Union(CreateChangeOrderRef, CreateEstimateRef, CreateInvoiceRef, CreatePaymentRef, CreateAssetAppraisalRef, CreateAppraisalRef, CreateFundingRef, CreateIncidentReportRef, CreatePoliceReportRef, CreateParamedicReportRef, CreateContractRef, CreateRentRollRef, CreatePermitRef, CreateBlueprintRef, CreateDeclarationsPageRef, CreatePolicyJacketRef, CreateScopeOfLossRef, CreateDeliveryPaperworkRef, CreateProductSpecRef, CreateUserManualRef, CreateWarrantyRef, CreateDeedRef, ChangeOrderRef, EstimateRef, InvoiceRef, PaymentRef, AssetAppraisalRef, AppraisalRef, FundingRef, IncidentReportRef, PoliceReportRef, ParamedicReportRef, ContractRef, RentRollRef, PermitRef, BlueprintRef, DeclarationsPageRef, PolicyJacketRef, ScopeOfLossRef, DeliveryPaperworkRef, ProductSpecRef, UserManualRef, WarrantyRef, DeedRef))
+}) {
+}
+export class UpdateFileAttributes extends S.Class("UpdateFileAttributes")({
+    /**
+  * The storage provider for this file.
+  */
+    "storageProvider": S.optionalWith(S.Literal("LOTI_S3"), { nullable: true }),
+    "originalKey": S.optionalWith(S.String, { nullable: true }),
+    "originalUrl": S.optionalWith(S.String, { nullable: true }),
+    "presentationKey": S.optionalWith(S.String, { nullable: true }),
+    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
+    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
+    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
+    "type": S.optionalWith(UpdateFileAttributesType, { nullable: true }),
+    "filename": S.optionalWith(S.String, { nullable: true }),
+    "extension": S.optionalWith(S.String, { nullable: true }),
+    "width": S.optionalWith(S.Number, { nullable: true }),
+    "height": S.optionalWith(S.Number, { nullable: true }),
+    "size": S.optionalWith(S.Number, { nullable: true }),
+    "blurhash": S.optionalWith(S.String, { nullable: true }),
+    "durationMs": S.optionalWith(S.Number, { nullable: true }),
+    "pageCount": S.optionalWith(S.Number, { nullable: true }),
+    "createdAt": S.optionalWith(S.String, { nullable: true }),
+    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
+    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
+    "documentCount": S.optionalWith(S.Number, { nullable: true }),
+    "addedAt": S.optionalWith(S.String, { nullable: true })
 }) {
 }
 export class ReferencedUpsertAssetType extends S.Class("ReferencedUpsertAssetType")({
@@ -10885,6 +7061,24 @@ export class ReferencedUpsertClaim extends S.Class("ReferencedUpsertClaim")({
     "data": S.Union(CreateClaimRef, ClaimRef)
 }) {
 }
+export class CreateBaseBucketAttributes extends S.Class("CreateBaseBucketAttributes")({
+    "limitAmount": S.Number,
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "lossSettlementType": S.optionalWith(CreateBaseBucketAttributesLossSettlementType, { nullable: true, default: () => "REPLACEMENT_COST_VALUE" }),
+    "entryCount": S.optionalWith(S.Number, { nullable: true }),
+    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
+    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
+    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
+    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
+    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyFunded": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
 export class ReferencedUpsertBaseBucketMetadata extends S.Class("ReferencedUpsertBaseBucketMetadata")({
     /**
   * Entity reference for BaseBucketMetadata.
@@ -10983,6 +7177,27 @@ export class ReferencedUpsertPolicyTermList extends S.Class("ReferencedUpsertPol
     "data": S.Array(S.Union(CreatePolicyTermRef, PolicyTermRef))
 }) {
 }
+export class CreateClaimTargetAttributes extends S.Class("CreateClaimTargetAttributes")({
+    "effectiveStartDate": S.String,
+    "effectiveEndDate": S.String,
+    "name": S.String,
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "lossSettlementType": S.optionalWith(CreateClaimTargetAttributesLossSettlementType, { nullable: true })
+}) {
+}
+export class CreatePolicyTermAttributes extends S.Class("CreatePolicyTermAttributes")({
+    "effectiveStartDate": S.String,
+    "effectiveEndDate": S.String,
+    "name": S.optionalWith(S.String, { nullable: true }),
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "lossSettlementType": S.optionalWith(CreatePolicyTermAttributesLossSettlementType, { nullable: true }),
+    "premiumAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paymentDueDate": S.optionalWith(S.String, { nullable: true }),
+    "isFullyPaid": S.optionalWith(S.Boolean, { nullable: true }),
+    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "dueAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
 export class ReferencedUpsertPolicy extends S.Class("ReferencedUpsertPolicy")({
     /**
   * Entity reference for Policy.
@@ -11002,6 +7217,23 @@ export class ReferencedUpsertPolicyTemplate extends S.Class("ReferencedUpsertPol
   * Entity reference for PolicyTemplate.
   */
     "data": S.Union(CreatePolicyTemplateRef, PolicyTemplateRef)
+}) {
+}
+export class CreateBucketDefinitionAttributes extends S.Class("CreateBucketDefinitionAttributes")({
+    "name": S.String,
+    "limitAmount": S.Number,
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    /**
+  * Is required if not set in .basis
+  */
+    "lossSettlementType": S.optionalWith(CreateBucketDefinitionAttributesLossSettlementType, { nullable: true }),
+    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
+    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
+    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
+    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
 export class ReferencedUpsertSubBucketDefinitionList extends S.Class("ReferencedUpsertSubBucketDefinitionList")({
@@ -11088,6 +7320,18 @@ export class ReferencedUpsertEndorsement extends S.Class("ReferencedUpsertEndors
     "data": S.Union(CreateEndorsementRef, EndorsementRef)
 }) {
 }
+export class CreateSubBucketDefinitionAttributes extends S.Class("CreateSubBucketDefinitionAttributes")({
+    "name": S.String,
+    "limitAmount": S.Number,
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "lossSettlementType": S.optionalWith(CreateSubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
+    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
+    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
+    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
 export class NullableReferencedUpsertSubCoverageTemplate extends S.Class("NullableReferencedUpsertSubCoverageTemplate")({
     /**
   * Nullable entity reference for SubCoverageTemplate.
@@ -11135,6 +7379,18 @@ export class ReferencedUpsertCoverageGroupTemplateList extends S.Class("Referenc
   * A list of CoverageGroupTemplate entity refs.
   */
     "data": S.Array(S.Union(CreateCoverageGroupTemplateRef, CoverageGroupTemplateRef))
+}) {
+}
+export class CreateEndorsementAttributes extends S.Class("CreateEndorsementAttributes")({
+    "formNumber": S.optionalWith(S.String, { nullable: true }),
+    "effect": CreateEndorsementAttributesEffect,
+    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "lossSettlementType": S.optionalWith(CreateEndorsementAttributesLossSettlementType, { nullable: true })
 }) {
 }
 export class ReferencedUpsertDepreciationModifierList extends S.Class("ReferencedUpsertDepreciationModifierList")({
@@ -11228,51 +7484,486 @@ export class ReferencedUpsertThirdParty extends S.Class("ReferencedUpsertThirdPa
     "data": S.Union(CreateThirdPartyDwellingRef, CreateThirdPartyIndividualRef, ThirdPartyDwellingRef, ThirdPartyIndividualRef)
 }) {
 }
-export class PermissionsControllerCheckDeletePermissionsRequest extends S.Union(JsonApiEntityReference, JsonApiEntityReferenceList) {
-}
-export class TransloaditAssemblyOptionsResponseDto extends S.Class("TransloaditAssemblyOptionsResponseDto")({
-    "params": S.Union(TransloaditStoreFileAssemblyParams, TransloaditAvatarAssemblyParams),
-    /**
-  * HMAC-SHA384 signature (hex) over the exact JSON string of `params` (per Transloadit Signature Auth).
-  */
-    "signature": S.String
+export class CreateItemInvoiceAttributes extends S.Class("CreateItemInvoiceAttributes")({
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.Number,
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "purpose": S.optionalWith(CreateItemInvoiceAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
+    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-export class FilesCdnAccessResponseDto extends S.Class("FilesCdnAccessResponseDto")({
-    /**
-  * Whether the request succeeded
-  */
-    "ok": S.Boolean,
-    /**
-  * Access scope for this user/account
-  */
-    "scope": CdnScopeDto
+export class CreateItemAttributes extends S.Class("CreateItemAttributes")({
+    "name": S.String,
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "fieldsNeedingAttention": S.optionalWith(S.Struct({
+        "type": S.optionalWith(S.Boolean, { nullable: true }),
+        "quality": S.optionalWith(S.Boolean, { nullable: true }),
+        "acquiredDate": S.optionalWith(S.Boolean, { nullable: true })
+    }), { nullable: true }),
+    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
+    "quality": S.optionalWith(CreateItemAttributesQuality, { nullable: true }),
+    "condition": S.optionalWith(CreateItemAttributesCondition, { nullable: true }),
+    "isDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
+    "acquiredDate": S.optionalWith(S.String, { nullable: true }),
+    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "currentQuantity": S.optionalWith(S.Number, { nullable: true }),
+    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
+    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
+    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionPaidAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
+    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-export class FilesCdnSignedUrlsDto extends S.Class("FilesCdnSignedUrlsDto")({
-    /**
-  * Default TTL applied to all items unless overridden per item. Must be between 60s (1m) and 86400s (24h).
-  */
-    "defaultTtlSeconds": S.optionalWith(S.Number.pipe(S.greaterThanOrEqualTo(60), S.lessThanOrEqualTo(86400)), { nullable: true }),
-    /**
-  * List of items (files) to generate signed URLs for.
-  */
-    "items": S.Array(SignedUrlItemDto)
+export class CreateItemPaymentAttributes extends S.Class("CreateItemPaymentAttributes")({
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.Number,
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "purpose": S.optionalWith(CreateItemPaymentAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
+    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
+    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
 }) {
 }
-export class FilesCdnSignedUrlsResponseDto extends S.Class("FilesCdnSignedUrlsResponseDto")({
+export class CreateItemChangeOrderAttributes extends S.Class("CreateItemChangeOrderAttributes")({
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.Number,
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "purpose": S.optionalWith(CreateItemChangeOrderAttributesPurpose, { nullable: true })
+}) {
+}
+export class CreateItemEstimateAttributes extends S.Class("CreateItemEstimateAttributes")({
+    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
+    "date": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.Number,
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
+    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
+    "currentFeeAmount": S.optionalWith(S.String, { nullable: true }),
+    "purpose": S.optionalWith(CreateItemEstimateAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
+    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class CreateAccountInviteAttributes extends S.Class("CreateAccountInviteAttributes")({
     /**
-  * Indicates whether all signed URLs were generated successfully
+  * What level of permissions the user has for this account.
   */
-    "ok": S.Boolean,
+    "role": CreateAccountInviteAttributesRole,
     /**
-  * Timestamp when this response was issued (ISO 8601)
+  * The user's email
   */
-    "issuedAt": S.String,
+    "email": S.String,
+    "phone": S.optionalWith(S.String, { nullable: true }),
+    "invitedAt": S.optionalWith(S.String, { nullable: true }),
+    "acceptedAt": S.optionalWith(S.String, { nullable: true })
+}) {
+}
+export class CreateAuthProfileAttributes extends S.Class("CreateAuthProfileAttributes")({
+    "provider": CreateAuthProfileAttributesProvider,
+    "externalId": S.String
+}) {
+}
+export class CreateItemMediaSuggestionAttributes extends S.Class("CreateItemMediaSuggestionAttributes")({
+    "data_key": S.String,
+    "name": S.String,
+    "quality": S.optionalWith(CreateItemMediaSuggestionAttributesQuality, { nullable: true }),
+    "condition": S.optionalWith(CreateItemMediaSuggestionAttributesCondition, { nullable: true }),
+    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
+    "timestamp": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class CreateItemProductSuggestionAttributes extends S.Class("CreateItemProductSuggestionAttributes")({
+    "source": CreateItemProductSuggestionAttributesSource,
+    "source_id": S.String,
+    "data_key": S.String,
+    "description": S.optionalWith(S.String, { nullable: true }),
+    "sellerName": S.optionalWith(S.String, { nullable: true }),
+    "sellerLink": S.optionalWith(S.String, { nullable: true }),
+    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "subtotalAmount": S.Number,
+    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
+    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+}) {
+}
+export class CreateUserAccountRoleAttributes extends S.Class("CreateUserAccountRoleAttributes")({
     /**
-  * Array of results (successes and/or failures)
+  * What level of permissions the user has for this account.
   */
-    "results": S.Array(SignedUrlResultDto)
+    "role": CreateUserAccountRoleAttributesRole
+}) {
+}
+export class JsonApiEntityReference extends S.Class("JsonApiEntityReference")({
+    "data": EntityReference
+}) {
+}
+export class JsonApiEntityReferenceList extends S.Class("JsonApiEntityReferenceList")({
+    "data": S.Array(EntityReference)
+}) {
+}
+export class TransloaditAssemblyOptionsDto extends S.Class("TransloaditAssemblyOptionsDto")({
+    /**
+  * The semantic type of file that is being uploaded.
+  */
+    "type": TransloaditAssemblyOptionsDtoType,
+    /**
+  * What provider will be used for uploads.
+  */
+    "provider": S.Literal("TRANSLOADIT")
+}) {
+}
+export class TransloaditStoreFileAssemblyParams extends S.Class("TransloaditStoreFileAssemblyParams")({
+    "auth": TransloaditAssemblyAuth,
+    /**
+  * Transloadit template ID to execute
+  */
+    "template_id": S.String,
+    /**
+  * Trusted fields interpolated in the template (signed server-side).
+  */
+    "fields": TransloaditStoreFileAssemblyFields
+}) {
+}
+export class TransloaditAvatarAssemblyParams extends S.Class("TransloaditAvatarAssemblyParams")({
+    "auth": TransloaditAssemblyAuth,
+    /**
+  * Transloadit template ID to execute
+  */
+    "template_id": S.String,
+    /**
+  * Trusted fields interpolated in the template (signed server-side).
+  */
+    "fields": TransloaditAvatarAssemblyFields
+}) {
+}
+export class CdnScopeDto extends S.Class("CdnScopeDto")({
+    /**
+  * The CloudFront distribution domain used for access
+  */
+    "domain": S.String,
+    /**
+  * Account ID the scope applies to
+  */
+    "accountId": S.String,
+    /**
+  * User ID the scope applies to
+  */
+    "userId": S.String,
+    /**
+  * List of resource policies scoped to this user/account
+  */
+    "resources": S.Array(CdnResourceDto)
+}) {
+}
+export class SignedUrlItemDto extends S.Class("SignedUrlItemDto")({
+    /**
+  * Object key (relative path) or absolute URL to sign. Your API should enforce one style.
+  */
+    "key": S.String,
+    /**
+  * Optional per-item TTL (time-to-live) in seconds. Must be between 60s (1m) and 86400s (24h).
+  */
+    "ttlSeconds": S.optionalWith(S.Number.pipe(S.greaterThanOrEqualTo(60), S.lessThanOrEqualTo(86400)), { nullable: true }),
+    /**
+  * HTTP action to sign for (GET for download, PUT for upload, HEAD for metadata).
+  */
+    "action": S.optionalWith(SignedUrlItemDtoAction, { nullable: true }),
+    /**
+  * Content-Type header to enforce. For PUT uploads, sets the required Content-Type. For GET, sets the response Content-Type.
+  */
+    "contentType": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Response content disposition. Useful for forcing downloads or naming files in GET requests.
+  */
+    "contentDisposition": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Optional client-provided correlation ID to map requests to results.
+  */
+    "clientToken": S.optionalWith(S.String, { nullable: true })
+}) {
+}
+export class SignedUrlResultDto extends S.Class("SignedUrlResultDto")({
+    /**
+  * The storage key for the file
+  */
+    "key": S.String,
+    /**
+  * Signed URL for accessing the file (present on success)
+  */
+    "url": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Expiration timestamp in ISO 8601 format
+  */
+    "expiresAt": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Effective TTL (time to live) in seconds
+  */
+    "ttlSeconds": S.optionalWith(S.Number, { nullable: true }),
+    /**
+  * Action for which this URL was issued
+  */
+    "action": S.optionalWith(SignedUrlResultDtoAction, { nullable: true }),
+    /**
+  * Error details if URL generation failed
+  */
+    "error": S.optionalWith(SignedUrlErrorDto, { nullable: true }),
+    /**
+  * Optional client-provided token to correlate requests
+  */
+    "clientToken": S.optionalWith(S.String, { nullable: true })
+}) {
+}
+export class AssetTypeData extends S.Class("AssetTypeData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetType"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    /**
+  * Relevant links.
+  */
+    "links": S.optionalWith(LinkObject, { nullable: true }),
+    "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
+}) {
+}
+export class CurrencyData extends S.Class("CurrencyData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Currency"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    /**
+  * Relevant links.
+  */
+    "links": S.optionalWith(LinkObject, { nullable: true }),
+    "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
+}) {
+}
+export class CountryData extends S.Class("CountryData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Country"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    /**
+  * Relevant links.
+  */
+    "links": S.optionalWith(LinkObject, { nullable: true }),
+    "attributes": S.optionalWith(CountryAttributes, { nullable: true })
+}) {
+}
+export class ProviderData extends S.Class("ProviderData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Provider"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    /**
+  * Relevant links.
+  */
+    "links": S.optionalWith(LinkObject, { nullable: true }),
+    "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
+}) {
+}
+export class BaseEntityData extends S.Class("BaseEntityData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BaseEntity"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    /**
+  * Relevant links.
+  */
+    "links": S.optionalWith(LinkObject, { nullable: true })
+}) {
+}
+export class UpdateAssetTypeData extends S.Class("UpdateAssetTypeData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("AssetType"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
+}) {
+}
+export class UpdateCurrencyData extends S.Class("UpdateCurrencyData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Currency"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
+}) {
+}
+export class UpdateCountryData extends S.Class("UpdateCountryData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Country"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    "attributes": S.optionalWith(CountryAttributes, { nullable: true })
+}) {
+}
+export class UpdateProviderData extends S.Class("UpdateProviderData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("Provider"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true }),
+    "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
+}) {
+}
+export class UpdateBaseEntityData extends S.Class("UpdateBaseEntityData")({
+    /**
+  * Entity id
+  */
+    "id": S.String,
+    /**
+  * The type of the referenced entity.
+  */
+    "type": S.Literal("BaseEntity"),
+    /**
+  * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+  */
+    "lid": S.optionalWith(S.String, { nullable: true }),
+    /**
+  * Metadata for the entity
+  */
+    "meta": S.optionalWith(EntityMetadata, { nullable: true })
 }) {
 }
 export class AuthProfileRelationships extends S.Class("AuthProfileRelationships")({
@@ -14013,6 +10704,53 @@ export class UpdateThirdPartyImpactRelationships extends S.Class("UpdateThirdPar
     "thirdParty": S.optionalWith(ReferencedUpsertThirdParty, { nullable: true })
 }) {
 }
+export class PermissionsControllerCheckDeletePermissionsRequest extends S.Union(JsonApiEntityReference, JsonApiEntityReferenceList) {
+}
+export class TransloaditAssemblyOptionsResponseDto extends S.Class("TransloaditAssemblyOptionsResponseDto")({
+    "params": S.Union(TransloaditStoreFileAssemblyParams, TransloaditAvatarAssemblyParams),
+    /**
+  * HMAC-SHA384 signature (hex) over the exact JSON string of `params` (per Transloadit Signature Auth).
+  */
+    "signature": S.String
+}) {
+}
+export class FilesCdnAccessResponseDto extends S.Class("FilesCdnAccessResponseDto")({
+    /**
+  * Whether the request succeeded
+  */
+    "ok": S.Boolean,
+    /**
+  * Access scope for this user/account
+  */
+    "scope": CdnScopeDto
+}) {
+}
+export class FilesCdnSignedUrlsDto extends S.Class("FilesCdnSignedUrlsDto")({
+    /**
+  * Default TTL applied to all items unless overridden per item. Must be between 60s (1m) and 86400s (24h).
+  */
+    "defaultTtlSeconds": S.optionalWith(S.Number.pipe(S.greaterThanOrEqualTo(60), S.lessThanOrEqualTo(86400)), { nullable: true }),
+    /**
+  * List of items (files) to generate signed URLs for.
+  */
+    "items": S.Array(SignedUrlItemDto)
+}) {
+}
+export class FilesCdnSignedUrlsResponseDto extends S.Class("FilesCdnSignedUrlsResponseDto")({
+    /**
+  * Indicates whether all signed URLs were generated successfully
+  */
+    "ok": S.Boolean,
+    /**
+  * Timestamp when this response was issued (ISO 8601)
+  */
+    "issuedAt": S.String,
+    /**
+  * Array of results (successes and/or failures)
+  */
+    "results": S.Array(SignedUrlResultDto)
+}) {
+}
 export class AuthProfileData extends S.Class("AuthProfileData")({
     /**
   * Entity id
@@ -14021,7 +10759,7 @@ export class AuthProfileData extends S.Class("AuthProfileData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AuthProfileDataType,
+    "type": S.Literal("AuthProfile"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14046,7 +10784,7 @@ export class ThirdPartyData extends S.Class("ThirdPartyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ThirdPartyDataType,
+    "type": S.Literal("ThirdParty"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14070,7 +10808,7 @@ export class ThirdPartyIndividualData extends S.Class("ThirdPartyIndividualData"
     /**
   * The type of the referenced entity.
   */
-    "type": ThirdPartyIndividualDataType,
+    "type": S.Literal("ThirdPartyIndividual"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14095,7 +10833,7 @@ export class AccountData extends S.Class("AccountData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AccountDataType,
+    "type": S.Literal("Account"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14120,7 +10858,7 @@ export class IdentityData extends S.Class("IdentityData")({
     /**
   * The type of the referenced entity.
   */
-    "type": IdentityDataType,
+    "type": S.Literal("Identity"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14145,7 +10883,7 @@ export class UserData extends S.Class("UserData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UserDataType,
+    "type": S.Literal("User"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14170,7 +10908,7 @@ export class AccountInviteData extends S.Class("AccountInviteData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AccountInviteDataType,
+    "type": S.Literal("AccountInvite"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14195,7 +10933,7 @@ export class UserAccountRoleData extends S.Class("UserAccountRoleData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UserAccountRoleDataType,
+    "type": S.Literal("UserAccountRole"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14220,7 +10958,7 @@ export class EmailAddressData extends S.Class("EmailAddressData")({
     /**
   * The type of the referenced entity.
   */
-    "type": EmailAddressDataType,
+    "type": S.Literal("EmailAddress"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14245,7 +10983,7 @@ export class PhoneNumberData extends S.Class("PhoneNumberData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PhoneNumberDataType,
+    "type": S.Literal("PhoneNumber"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14270,7 +11008,7 @@ export class AccountProviderContactData extends S.Class("AccountProviderContactD
     /**
   * The type of the referenced entity.
   */
-    "type": AccountProviderContactDataType,
+    "type": S.Literal("AccountProviderContact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14295,7 +11033,7 @@ export class AccountProviderData extends S.Class("AccountProviderData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AccountProviderDataType,
+    "type": S.Literal("AccountProvider"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14320,7 +11058,7 @@ export class ProjectData extends S.Class("ProjectData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ProjectDataType,
+    "type": S.Literal("Project"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14345,7 +11083,7 @@ export class DisasterData extends S.Class("DisasterData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DisasterDataType,
+    "type": S.Literal("Disaster"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14370,7 +11108,7 @@ export class IncidentData extends S.Class("IncidentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": IncidentDataType,
+    "type": S.Literal("Incident"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14395,7 +11133,7 @@ export class ProjectMediaData extends S.Class("ProjectMediaData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ProjectMediaDataType,
+    "type": S.Literal("ProjectMedia"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14420,7 +11158,7 @@ export class FileProcessData extends S.Class("FileProcessData")({
     /**
   * The type of the referenced entity.
   */
-    "type": FileProcessDataType,
+    "type": S.Literal("FileProcess"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14445,7 +11183,7 @@ export class ProjectImpactData extends S.Class("ProjectImpactData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ProjectImpactDataType,
+    "type": S.Literal("ProjectImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14470,7 +11208,7 @@ export class MediaData extends S.Class("MediaData")({
     /**
   * The type of the referenced entity.
   */
-    "type": MediaDataType,
+    "type": S.Literal("Media"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14495,7 +11233,7 @@ export class ItemizableFinancialDocumentStatsData extends S.Class("ItemizableFin
     /**
   * The type of the referenced entity.
   */
-    "type": ItemizableFinancialDocumentStatsDataType,
+    "type": S.Literal("ItemizableFinancialDocumentStats"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14520,7 +11258,7 @@ export class FileData extends S.Class("FileData")({
     /**
   * The type of the referenced entity.
   */
-    "type": FileDataType,
+    "type": S.Literal("File"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14545,7 +11283,7 @@ export class AssetData extends S.Class("AssetData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AssetDataType,
+    "type": S.Literal("Asset"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14570,7 +11308,7 @@ export class PerilData extends S.Class("PerilData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PerilDataType,
+    "type": S.Literal("Peril"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14595,7 +11333,7 @@ export class ServiceTypeData extends S.Class("ServiceTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceTypeDataType,
+    "type": S.Literal("ServiceType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14620,7 +11358,7 @@ export class IncidentClassData extends S.Class("IncidentClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": IncidentClassDataType,
+    "type": S.Literal("IncidentClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14645,7 +11383,7 @@ export class DwellingData extends S.Class("DwellingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DwellingDataType,
+    "type": S.Literal("Dwelling"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14670,7 +11408,7 @@ export class AssetAppraisalData extends S.Class("AssetAppraisalData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AssetAppraisalDataType,
+    "type": S.Literal("AssetAppraisal"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14695,7 +11433,7 @@ export class DocumentData extends S.Class("DocumentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DocumentDataType,
+    "type": S.Literal("Document"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14720,7 +11458,7 @@ export class IncidentReportData extends S.Class("IncidentReportData")({
     /**
   * The type of the referenced entity.
   */
-    "type": IncidentReportDataType,
+    "type": S.Literal("IncidentReport"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14745,7 +11483,7 @@ export class PoliceReportData extends S.Class("PoliceReportData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PoliceReportDataType,
+    "type": S.Literal("PoliceReport"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14770,7 +11508,7 @@ export class ParamedicReportData extends S.Class("ParamedicReportData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ParamedicReportDataType,
+    "type": S.Literal("ParamedicReport"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14795,7 +11533,7 @@ export class ContractData extends S.Class("ContractData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ContractDataType,
+    "type": S.Literal("Contract"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14820,7 +11558,7 @@ export class RentRollData extends S.Class("RentRollData")({
     /**
   * The type of the referenced entity.
   */
-    "type": RentRollDataType,
+    "type": S.Literal("RentRoll"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14845,7 +11583,7 @@ export class PermitData extends S.Class("PermitData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PermitDataType,
+    "type": S.Literal("Permit"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14870,7 +11608,7 @@ export class BlueprintData extends S.Class("BlueprintData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BlueprintDataType,
+    "type": S.Literal("Blueprint"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14895,7 +11633,7 @@ export class DeclarationsPageData extends S.Class("DeclarationsPageData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DeclarationsPageDataType,
+    "type": S.Literal("DeclarationsPage"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14920,7 +11658,7 @@ export class PolicyJacketData extends S.Class("PolicyJacketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PolicyJacketDataType,
+    "type": S.Literal("PolicyJacket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14945,7 +11683,7 @@ export class ScopeOfLossData extends S.Class("ScopeOfLossData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ScopeOfLossDataType,
+    "type": S.Literal("ScopeOfLoss"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14970,7 +11708,7 @@ export class DeliveryPaperworkData extends S.Class("DeliveryPaperworkData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DeliveryPaperworkDataType,
+    "type": S.Literal("DeliveryPaperwork"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -14995,7 +11733,7 @@ export class ProductSpecData extends S.Class("ProductSpecData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ProductSpecDataType,
+    "type": S.Literal("ProductSpec"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15020,7 +11758,7 @@ export class UserManualData extends S.Class("UserManualData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UserManualDataType,
+    "type": S.Literal("UserManual"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15045,7 +11783,7 @@ export class WarrantyData extends S.Class("WarrantyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": WarrantyDataType,
+    "type": S.Literal("Warranty"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15070,7 +11808,7 @@ export class DeedData extends S.Class("DeedData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DeedDataType,
+    "type": S.Literal("Deed"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15095,7 +11833,7 @@ export class FinancialDocumentData extends S.Class("FinancialDocumentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": FinancialDocumentDataType,
+    "type": S.Literal("FinancialDocument"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15120,7 +11858,7 @@ export class DocumentClassData extends S.Class("DocumentClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DocumentClassDataType,
+    "type": S.Literal("DocumentClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15145,7 +11883,7 @@ export class DocumentTypeData extends S.Class("DocumentTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DocumentTypeDataType,
+    "type": S.Literal("DocumentType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15170,7 +11908,7 @@ export class SpaceGroupData extends S.Class("SpaceGroupData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SpaceGroupDataType,
+    "type": S.Literal("SpaceGroup"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15195,7 +11933,7 @@ export class SpaceData extends S.Class("SpaceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SpaceDataType,
+    "type": S.Literal("Space"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15220,7 +11958,7 @@ export class SpaceTypeData extends S.Class("SpaceTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SpaceTypeDataType,
+    "type": S.Literal("SpaceType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15245,7 +11983,7 @@ export class SpaceCategoryData extends S.Class("SpaceCategoryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SpaceCategoryDataType,
+    "type": S.Literal("SpaceCategory"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15270,7 +12008,7 @@ export class SpaceClassData extends S.Class("SpaceClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SpaceClassDataType,
+    "type": S.Literal("SpaceClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15295,7 +12033,7 @@ export class SpaceGroupTypeData extends S.Class("SpaceGroupTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SpaceGroupTypeDataType,
+    "type": S.Literal("SpaceGroupType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15320,7 +12058,7 @@ export class BucketClassData extends S.Class("BucketClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BucketClassDataType,
+    "type": S.Literal("BucketClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15345,7 +12083,7 @@ export class BucketTypeData extends S.Class("BucketTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BucketTypeDataType,
+    "type": S.Literal("BucketType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15370,7 +12108,7 @@ export class AddressData extends S.Class("AddressData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AddressDataType,
+    "type": S.Literal("Address"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15395,7 +12133,7 @@ export class ThirdPartyDwellingData extends S.Class("ThirdPartyDwellingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ThirdPartyDwellingDataType,
+    "type": S.Literal("ThirdPartyDwelling"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15420,7 +12158,7 @@ export class ItemizableFinancialDocumentData extends S.Class("ItemizableFinancia
     /**
   * The type of the referenced entity.
   */
-    "type": ItemizableFinancialDocumentDataType,
+    "type": S.Literal("ItemizableFinancialDocument"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15445,7 +12183,7 @@ export class ItemImpactPaymentData extends S.Class("ItemImpactPaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemImpactPaymentDataType,
+    "type": S.Literal("ItemImpactPayment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15470,7 +12208,7 @@ export class ItemImpactInvoiceData extends S.Class("ItemImpactInvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemImpactInvoiceDataType,
+    "type": S.Literal("ItemImpactInvoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15495,7 +12233,7 @@ export class ItemImpactEstimateData extends S.Class("ItemImpactEstimateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemImpactEstimateDataType,
+    "type": S.Literal("ItemImpactEstimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15520,7 +12258,7 @@ export class ItemAppraisalData extends S.Class("ItemAppraisalData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemAppraisalDataType,
+    "type": S.Literal("ItemAppraisal"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15545,7 +12283,7 @@ export class ItemInvoiceData extends S.Class("ItemInvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemInvoiceDataType,
+    "type": S.Literal("ItemInvoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15570,7 +12308,7 @@ export class ItemPaymentData extends S.Class("ItemPaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemPaymentDataType,
+    "type": S.Literal("ItemPayment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15595,7 +12333,7 @@ export class ItemEstimateData extends S.Class("ItemEstimateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemEstimateDataType,
+    "type": S.Literal("ItemEstimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15620,7 +12358,7 @@ export class ItemProductSuggestionData extends S.Class("ItemProductSuggestionDat
     /**
   * The type of the referenced entity.
   */
-    "type": ItemProductSuggestionDataType,
+    "type": S.Literal("ItemProductSuggestion"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15645,7 +12383,7 @@ export class ServiceTaskPaymentData extends S.Class("ServiceTaskPaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceTaskPaymentDataType,
+    "type": S.Literal("ServiceTaskPayment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15670,7 +12408,7 @@ export class ServiceTaskInvoiceData extends S.Class("ServiceTaskInvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceTaskInvoiceDataType,
+    "type": S.Literal("ServiceTaskInvoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15695,7 +12433,7 @@ export class ServiceTaskEstimateData extends S.Class("ServiceTaskEstimateData")(
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceTaskEstimateDataType,
+    "type": S.Literal("ServiceTaskEstimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15720,7 +12458,7 @@ export class ChangeOrderData extends S.Class("ChangeOrderData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ChangeOrderDataType,
+    "type": S.Literal("ChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15745,7 +12483,7 @@ export class EntrySourceMetadataData extends S.Class("EntrySourceMetadataData")(
     /**
   * The type of the referenced entity.
   */
-    "type": EntrySourceMetadataDataType,
+    "type": S.Literal("EntrySourceMetadata"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15770,7 +12508,7 @@ export class AppraisalLineData extends S.Class("AppraisalLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AppraisalLineDataType,
+    "type": S.Literal("AppraisalLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15795,7 +12533,7 @@ export class InvoiceLineData extends S.Class("InvoiceLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": InvoiceLineDataType,
+    "type": S.Literal("InvoiceLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15820,7 +12558,7 @@ export class PaymentLineData extends S.Class("PaymentLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PaymentLineDataType,
+    "type": S.Literal("PaymentLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15845,7 +12583,7 @@ export class EstimateLineData extends S.Class("EstimateLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": EstimateLineDataType,
+    "type": S.Literal("EstimateLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15870,7 +12608,7 @@ export class EntrySourceMediaData extends S.Class("EntrySourceMediaData")({
     /**
   * The type of the referenced entity.
   */
-    "type": EntrySourceMediaDataType,
+    "type": S.Literal("EntrySourceMedia"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15895,7 +12633,7 @@ export class ItemChangeOrderData extends S.Class("ItemChangeOrderData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemChangeOrderDataType,
+    "type": S.Literal("ItemChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15920,7 +12658,7 @@ export class ItemImpactChangeOrderData extends S.Class("ItemImpactChangeOrderDat
     /**
   * The type of the referenced entity.
   */
-    "type": ItemImpactChangeOrderDataType,
+    "type": S.Literal("ItemImpactChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15945,7 +12683,7 @@ export class EstimateData extends S.Class("EstimateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": EstimateDataType,
+    "type": S.Literal("Estimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15970,7 +12708,7 @@ export class ChangeOrderLineData extends S.Class("ChangeOrderLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ChangeOrderLineDataType,
+    "type": S.Literal("ChangeOrderLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -15995,7 +12733,7 @@ export class ServiceTaskChangeOrderData extends S.Class("ServiceTaskChangeOrderD
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceTaskChangeOrderDataType,
+    "type": S.Literal("ServiceTaskChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16020,7 +12758,7 @@ export class EntrySourceData extends S.Class("EntrySourceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": EntrySourceDataType,
+    "type": S.Literal("EntrySource"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16045,7 +12783,7 @@ export class ServiceTaskData extends S.Class("ServiceTaskData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceTaskDataType,
+    "type": S.Literal("ServiceTask"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16070,7 +12808,7 @@ export class PaymentData extends S.Class("PaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PaymentDataType,
+    "type": S.Literal("Payment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16095,7 +12833,7 @@ export class ServiceData extends S.Class("ServiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceDataType,
+    "type": S.Literal("Service"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16120,7 +12858,7 @@ export class InvoiceData extends S.Class("InvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": InvoiceDataType,
+    "type": S.Literal("Invoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16145,7 +12883,7 @@ export class ItemImpactData extends S.Class("ItemImpactData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemImpactDataType,
+    "type": S.Literal("ItemImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16170,7 +12908,7 @@ export class ItemData extends S.Class("ItemData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemDataType,
+    "type": S.Literal("Item"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16195,7 +12933,7 @@ export class ItemMediaSuggestionData extends S.Class("ItemMediaSuggestionData")(
     /**
   * The type of the referenced entity.
   */
-    "type": ItemMediaSuggestionDataType,
+    "type": S.Literal("ItemMediaSuggestion"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16220,7 +12958,7 @@ export class DepreciationModifierData extends S.Class("DepreciationModifierData"
     /**
   * The type of the referenced entity.
   */
-    "type": DepreciationModifierDataType,
+    "type": S.Literal("DepreciationModifier"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16245,7 +12983,7 @@ export class DepreciationOverrideData extends S.Class("DepreciationOverrideData"
     /**
   * The type of the referenced entity.
   */
-    "type": DepreciationOverrideDataType,
+    "type": S.Literal("DepreciationOverride"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16270,7 +13008,7 @@ export class ItemTemplateData extends S.Class("ItemTemplateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemTemplateDataType,
+    "type": S.Literal("ItemTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16295,7 +13033,7 @@ export class BaseSubBucketMetadataData extends S.Class("BaseSubBucketMetadataDat
     /**
   * The type of the referenced entity.
   */
-    "type": BaseSubBucketMetadataDataType,
+    "type": S.Literal("BaseSubBucketMetadata"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16320,7 +13058,7 @@ export class BaseBucketMetadataData extends S.Class("BaseBucketMetadataData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BaseBucketMetadataDataType,
+    "type": S.Literal("BaseBucketMetadata"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16345,7 +13083,7 @@ export class FundingSourceData extends S.Class("FundingSourceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": FundingSourceDataType,
+    "type": S.Literal("FundingSource"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16370,7 +13108,7 @@ export class EntryData extends S.Class("EntryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": EntryDataType,
+    "type": S.Literal("Entry"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16395,7 +13133,7 @@ export class BucketFundingData extends S.Class("BucketFundingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BucketFundingDataType,
+    "type": S.Literal("BucketFunding"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16420,7 +13158,7 @@ export class BaseBucketData extends S.Class("BaseBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BaseBucketDataType,
+    "type": S.Literal("BaseBucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16445,7 +13183,7 @@ export class FundingData extends S.Class("FundingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": FundingDataType,
+    "type": S.Literal("Funding"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16470,7 +13208,7 @@ export class SubBucketDefinitionData extends S.Class("SubBucketDefinitionData")(
     /**
   * The type of the referenced entity.
   */
-    "type": SubBucketDefinitionDataType,
+    "type": S.Literal("SubBucketDefinition"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16495,7 +13233,7 @@ export class ClaimTargetData extends S.Class("ClaimTargetData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ClaimTargetDataType,
+    "type": S.Literal("ClaimTarget"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16520,7 +13258,7 @@ export class BucketData extends S.Class("BucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BucketDataType,
+    "type": S.Literal("Bucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16545,7 +13283,7 @@ export class ClaimData extends S.Class("ClaimData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ClaimDataType,
+    "type": S.Literal("Claim"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16570,7 +13308,7 @@ export class DeductibleData extends S.Class("DeductibleData")({
     /**
   * The type of the referenced entity.
   */
-    "type": DeductibleDataType,
+    "type": S.Literal("Deductible"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16595,7 +13333,7 @@ export class ClaimDeductibleData extends S.Class("ClaimDeductibleData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ClaimDeductibleDataType,
+    "type": S.Literal("ClaimDeductible"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16620,7 +13358,7 @@ export class PolicyTermData extends S.Class("PolicyTermData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PolicyTermDataType,
+    "type": S.Literal("PolicyTerm"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16645,7 +13383,7 @@ export class PolicyData extends S.Class("PolicyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PolicyDataType,
+    "type": S.Literal("Policy"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16670,7 +13408,7 @@ export class SubmissionTrackTemplateData extends S.Class("SubmissionTrackTemplat
     /**
   * The type of the referenced entity.
   */
-    "type": SubmissionTrackTemplateDataType,
+    "type": S.Literal("SubmissionTrackTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16695,7 +13433,7 @@ export class BucketDefinitionData extends S.Class("BucketDefinitionData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BucketDefinitionDataType,
+    "type": S.Literal("BucketDefinition"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16720,7 +13458,7 @@ export class CoverageGroupTemplateData extends S.Class("CoverageGroupTemplateDat
     /**
   * The type of the referenced entity.
   */
-    "type": CoverageGroupTemplateDataType,
+    "type": S.Literal("CoverageGroupTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16745,7 +13483,7 @@ export class IncidentImpactData extends S.Class("IncidentImpactData")({
     /**
   * The type of the referenced entity.
   */
-    "type": IncidentImpactDataType,
+    "type": S.Literal("IncidentImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16770,7 +13508,7 @@ export class CoverageData extends S.Class("CoverageData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CoverageDataType,
+    "type": S.Literal("Coverage"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16795,7 +13533,7 @@ export class SubCoverageData extends S.Class("SubCoverageData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SubCoverageDataType,
+    "type": S.Literal("SubCoverage"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16820,7 +13558,7 @@ export class EndorsementTemplateData extends S.Class("EndorsementTemplateData")(
     /**
   * The type of the referenced entity.
   */
-    "type": EndorsementTemplateDataType,
+    "type": S.Literal("EndorsementTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16845,7 +13583,7 @@ export class SubBucketData extends S.Class("SubBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": SubBucketDataType,
+    "type": S.Literal("SubBucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16870,7 +13608,7 @@ export class BaseSubBucketData extends S.Class("BaseSubBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": BaseSubBucketDataType,
+    "type": S.Literal("BaseSubBucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16895,7 +13633,7 @@ export class SubCoverageTemplateData extends S.Class("SubCoverageTemplateData")(
     /**
   * The type of the referenced entity.
   */
-    "type": SubCoverageTemplateDataType,
+    "type": S.Literal("SubCoverageTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16920,7 +13658,7 @@ export class EndorsementData extends S.Class("EndorsementData")({
     /**
   * The type of the referenced entity.
   */
-    "type": EndorsementDataType,
+    "type": S.Literal("Endorsement"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16945,7 +13683,7 @@ export class CoverageTemplateData extends S.Class("CoverageTemplateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CoverageTemplateDataType,
+    "type": S.Literal("CoverageTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16970,7 +13708,7 @@ export class CoverageGroupData extends S.Class("CoverageGroupData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CoverageGroupDataType,
+    "type": S.Literal("CoverageGroup"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -16994,7 +13732,7 @@ export class PolicyTemplateData extends S.Class("PolicyTemplateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": PolicyTemplateDataType,
+    "type": S.Literal("PolicyTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17019,7 +13757,7 @@ export class DepreciationScheduleData extends S.Class("DepreciationScheduleData"
     /**
   * The type of the referenced entity.
   */
-    "type": DepreciationScheduleDataType,
+    "type": S.Literal("DepreciationSchedule"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17044,7 +13782,7 @@ export class SpaceTypeItemTemplateData extends S.Class("SpaceTypeItemTemplateDat
     /**
   * The type of the referenced entity.
   */
-    "type": SpaceTypeItemTemplateDataType,
+    "type": S.Literal("SpaceTypeItemTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17069,7 +13807,7 @@ export class AssetAttributeTypeData extends S.Class("AssetAttributeTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AssetAttributeTypeDataType,
+    "type": S.Literal("AssetAttributeType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17094,7 +13832,7 @@ export class AssetAttributeTypeItemTemplateData extends S.Class("AssetAttributeT
     /**
   * The type of the referenced entity.
   */
-    "type": AssetAttributeTypeItemTemplateDataType,
+    "type": S.Literal("AssetAttributeTypeItemTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17119,7 +13857,7 @@ export class AssetAttributeClassData extends S.Class("AssetAttributeClassData")(
     /**
   * The type of the referenced entity.
   */
-    "type": AssetAttributeClassDataType,
+    "type": S.Literal("AssetAttributeClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17144,7 +13882,7 @@ export class IncidentTypeData extends S.Class("IncidentTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": IncidentTypeDataType,
+    "type": S.Literal("IncidentType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17169,7 +13907,7 @@ export class ItemClassData extends S.Class("ItemClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemClassDataType,
+    "type": S.Literal("ItemClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17194,7 +13932,7 @@ export class ItemTypeData extends S.Class("ItemTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemTypeDataType,
+    "type": S.Literal("ItemType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17219,7 +13957,7 @@ export class ItemCategoryData extends S.Class("ItemCategoryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ItemCategoryDataType,
+    "type": S.Literal("ItemCategory"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17244,7 +13982,7 @@ export class ServiceClassData extends S.Class("ServiceClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceClassDataType,
+    "type": S.Literal("ServiceClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17269,7 +14007,7 @@ export class ServiceCategoryData extends S.Class("ServiceCategoryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ServiceCategoryDataType,
+    "type": S.Literal("ServiceCategory"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17294,7 +14032,7 @@ export class AppraisalData extends S.Class("AppraisalData")({
     /**
   * The type of the referenced entity.
   */
-    "type": AppraisalDataType,
+    "type": S.Literal("Appraisal"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17319,7 +14057,7 @@ export class ThirdPartyImpactData extends S.Class("ThirdPartyImpactData")({
     /**
   * The type of the referenced entity.
   */
-    "type": ThirdPartyImpactDataType,
+    "type": S.Literal("ThirdPartyImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17344,7 +14082,7 @@ export class CreateIdentityData extends S.Class("CreateIdentityData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateIdentityDataType,
+    "type": S.Literal("Identity"),
     "attributes": S.optionalWith(AccountProviderContactAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateIdentityRelationships, { nullable: true })
 }) {
@@ -17357,7 +14095,7 @@ export class UpdateIdentityData extends S.Class("UpdateIdentityData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateIdentityDataType,
+    "type": S.Literal("Identity"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17378,7 +14116,7 @@ export class UpdateUserData extends S.Class("UpdateUserData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateUserDataType,
+    "type": S.Literal("User"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17399,7 +14137,7 @@ export class CreateUserData extends S.Class("CreateUserData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateUserDataType,
+    "type": S.Literal("User"),
     "attributes": S.optionalWith(CreateUserAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateUserRelationships, { nullable: true })
 }) {
@@ -17412,7 +14150,7 @@ export class CreateEmailAddressData extends S.Class("CreateEmailAddressData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEmailAddressDataType,
+    "type": S.Literal("EmailAddress"),
     "attributes": CreateEmailAddressAttributes,
     "relationships": CreateEmailAddressRelationships
 }) {
@@ -17425,7 +14163,7 @@ export class CreatePhoneNumberData extends S.Class("CreatePhoneNumberData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePhoneNumberDataType,
+    "type": S.Literal("PhoneNumber"),
     "attributes": CreatePhoneNumberAttributes,
     "relationships": CreateEmailAddressRelationships
 }) {
@@ -17438,7 +14176,7 @@ export class UpdateEmailAddressData extends S.Class("UpdateEmailAddressData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEmailAddressDataType,
+    "type": S.Literal("EmailAddress"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17459,7 +14197,7 @@ export class UpdatePhoneNumberData extends S.Class("UpdatePhoneNumberData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePhoneNumberDataType,
+    "type": S.Literal("PhoneNumber"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17480,7 +14218,7 @@ export class CreateAccountInviteData extends S.Class("CreateAccountInviteData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAccountInviteDataType,
+    "type": S.Literal("AccountInvite"),
     "attributes": CreateAccountInviteAttributes,
     "relationships": S.optionalWith(CreateAccountInviteRelationships, { nullable: true })
 }) {
@@ -17493,7 +14231,7 @@ export class UpdateAccountInviteData extends S.Class("UpdateAccountInviteData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAccountInviteDataType,
+    "type": S.Literal("AccountInvite"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17514,7 +14252,7 @@ export class CreateAuthProfileData extends S.Class("CreateAuthProfileData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAuthProfileDataType,
+    "type": S.Literal("AuthProfile"),
     "attributes": CreateAuthProfileAttributes,
     "relationships": CreateAuthProfileRelationships
 }) {
@@ -17527,7 +14265,7 @@ export class UpdateAuthProfileData extends S.Class("UpdateAuthProfileData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAuthProfileDataType,
+    "type": S.Literal("AuthProfile"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17548,7 +14286,7 @@ export class CreateUserAccountRoleData extends S.Class("CreateUserAccountRoleDat
     /**
   * The type of the referenced entity.
   */
-    "type": CreateUserAccountRoleDataType,
+    "type": S.Literal("UserAccountRole"),
     "attributes": CreateUserAccountRoleAttributes,
     "relationships": CreateUserAccountRoleRelationships
 }) {
@@ -17561,7 +14299,7 @@ export class UpdateUserAccountRoleData extends S.Class("UpdateUserAccountRoleDat
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateUserAccountRoleDataType,
+    "type": S.Literal("UserAccountRole"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17582,7 +14320,7 @@ export class CreateAccountProviderContactData extends S.Class("CreateAccountProv
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAccountProviderContactDataType,
+    "type": S.Literal("AccountProviderContact"),
     "attributes": S.optionalWith(AccountProviderContactAttributes, { nullable: true }),
     "relationships": CreateAccountProviderContactRelationships
 }) {
@@ -17595,7 +14333,7 @@ export class UpdateAccountProviderContactData extends S.Class("UpdateAccountProv
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAccountProviderContactDataType,
+    "type": S.Literal("AccountProviderContact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17616,7 +14354,7 @@ export class CreateAccountProviderData extends S.Class("CreateAccountProviderDat
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAccountProviderDataType,
+    "type": S.Literal("AccountProvider"),
     "attributes": S.optionalWith(AccountProviderAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateAccountProviderRelationships, { nullable: true })
 }) {
@@ -17629,7 +14367,7 @@ export class UpdateAccountProviderData extends S.Class("UpdateAccountProviderDat
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAccountProviderDataType,
+    "type": S.Literal("AccountProvider"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17650,7 +14388,7 @@ export class CreateThirdPartyData extends S.Class("CreateThirdPartyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateThirdPartyDataType,
+    "type": S.Literal("ThirdParty"),
     "relationships": CreateThirdPartyIndividualRelationships
 }) {
 }
@@ -17662,7 +14400,7 @@ export class CreateThirdPartyIndividualData extends S.Class("CreateThirdPartyInd
     /**
   * The type of the referenced entity.
   */
-    "type": CreateThirdPartyIndividualDataType,
+    "type": S.Literal("ThirdPartyIndividual"),
     "attributes": CreateAccountAttributes,
     "relationships": CreateThirdPartyIndividualRelationships
 }) {
@@ -17675,7 +14413,7 @@ export class UpdateThirdPartyData extends S.Class("UpdateThirdPartyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateThirdPartyDataType,
+    "type": S.Literal("ThirdParty"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17695,7 +14433,7 @@ export class UpdateThirdPartyIndividualData extends S.Class("UpdateThirdPartyInd
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateThirdPartyIndividualDataType,
+    "type": S.Literal("ThirdPartyIndividual"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17716,7 +14454,7 @@ export class CreateAccountData extends S.Class("CreateAccountData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAccountDataType,
+    "type": S.Literal("Account"),
     "attributes": CreateAccountAttributes,
     "relationships": CreateAccountRelationships
 }) {
@@ -17729,7 +14467,7 @@ export class UpdateAccountData extends S.Class("UpdateAccountData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAccountDataType,
+    "type": S.Literal("Account"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17750,7 +14488,7 @@ export class CreateProjectData extends S.Class("CreateProjectData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateProjectDataType,
+    "type": S.Literal("Project"),
     "attributes": CreateAccountAttributes,
     "relationships": S.optionalWith(CreateProjectRelationships, { nullable: true })
 }) {
@@ -17763,7 +14501,7 @@ export class UpdateProjectData extends S.Class("UpdateProjectData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateProjectDataType,
+    "type": S.Literal("Project"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17784,7 +14522,7 @@ export class CreateDisasterData extends S.Class("CreateDisasterData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDisasterDataType,
+    "type": S.Literal("Disaster"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateDisasterRelationships, { nullable: true })
 }) {
@@ -17797,7 +14535,7 @@ export class UpdateDisasterData extends S.Class("UpdateDisasterData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDisasterDataType,
+    "type": S.Literal("Disaster"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17818,7 +14556,7 @@ export class CreateIncidentData extends S.Class("CreateIncidentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateIncidentDataType,
+    "type": S.Literal("Incident"),
     "attributes": CreateIncidentAttributes,
     "relationships": CreateIncidentRelationships
 }) {
@@ -17831,7 +14569,7 @@ export class UpdateIncidentData extends S.Class("UpdateIncidentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateIncidentDataType,
+    "type": S.Literal("Incident"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17852,7 +14590,7 @@ export class CreateProjectMediaData extends S.Class("CreateProjectMediaData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateProjectMediaDataType,
+    "type": S.Literal("ProjectMedia"),
     "attributes": S.optionalWith(CreateProjectMediaAttributes, { nullable: true }),
     "relationships": CreateProjectMediaRelationships
 }) {
@@ -17865,7 +14603,7 @@ export class UpdateProjectMediaData extends S.Class("UpdateProjectMediaData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateProjectMediaDataType,
+    "type": S.Literal("ProjectMedia"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17886,7 +14624,7 @@ export class CreateFileProcessData extends S.Class("CreateFileProcessData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateFileProcessDataType,
+    "type": S.Literal("FileProcess"),
     "attributes": S.optionalWith(CreateFileProcessAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateFileProcessRelationships, { nullable: true })
 }) {
@@ -17899,7 +14637,7 @@ export class UpdateFileProcessData extends S.Class("UpdateFileProcessData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateFileProcessDataType,
+    "type": S.Literal("FileProcess"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17920,7 +14658,7 @@ export class CreateProjectImpactData extends S.Class("CreateProjectImpactData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateProjectImpactDataType,
+    "type": S.Literal("ProjectImpact"),
     "attributes": S.optionalWith(CreateIncidentImpactAttributes, { nullable: true }),
     "relationships": CreateProjectImpactRelationships
 }) {
@@ -17933,7 +14671,7 @@ export class UpdateProjectImpactData extends S.Class("UpdateProjectImpactData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateProjectImpactDataType,
+    "type": S.Literal("ProjectImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17954,7 +14692,7 @@ export class CreateMediaData extends S.Class("CreateMediaData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateMediaDataType,
+    "type": S.Literal("Media"),
     "attributes": S.optionalWith(CreateMediaAttributes, { nullable: true }),
     "relationships": CreateMediaRelationships
 }) {
@@ -17967,7 +14705,7 @@ export class UpdateMediaData extends S.Class("UpdateMediaData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateMediaDataType,
+    "type": S.Literal("Media"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -17988,7 +14726,7 @@ export class CreateItemizableFinancialDocumentStatsData extends S.Class("CreateI
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemizableFinancialDocumentStatsDataType,
+    "type": S.Literal("ItemizableFinancialDocumentStats"),
     "attributes": S.optionalWith(CreateItemizableFinancialDocumentStatsAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateItemizableFinancialDocumentStatsRelationships, { nullable: true })
 }) {
@@ -18001,7 +14739,7 @@ export class UpdateItemizableFinancialDocumentStatsData extends S.Class("UpdateI
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemizableFinancialDocumentStatsDataType,
+    "type": S.Literal("ItemizableFinancialDocumentStats"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18022,7 +14760,7 @@ export class CreateFileData extends S.Class("CreateFileData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateFileDataType,
+    "type": S.Literal("File"),
     "attributes": CreateFileAttributes,
     "relationships": S.optionalWith(CreateFileRelationships, { nullable: true })
 }) {
@@ -18035,7 +14773,7 @@ export class UpdateFileData extends S.Class("UpdateFileData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateFileDataType,
+    "type": S.Literal("File"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18056,7 +14794,7 @@ export class CreateAssetData extends S.Class("CreateAssetData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAssetDataType,
+    "type": S.Literal("Asset"),
     "attributes": S.optionalWith(AssetAttributes, { nullable: true }),
     "relationships": CreateAssetRelationships
 }) {
@@ -18069,7 +14807,7 @@ export class UpdateAssetData extends S.Class("UpdateAssetData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAssetDataType,
+    "type": S.Literal("Asset"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18090,7 +14828,7 @@ export class CreatePerilData extends S.Class("CreatePerilData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePerilDataType,
+    "type": S.Literal("Peril"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreatePerilRelationships, { nullable: true })
 }) {
@@ -18103,7 +14841,7 @@ export class UpdatePerilData extends S.Class("UpdatePerilData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePerilDataType,
+    "type": S.Literal("Peril"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18124,7 +14862,7 @@ export class CreateServiceTypeData extends S.Class("CreateServiceTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceTypeDataType,
+    "type": S.Literal("ServiceType"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreatePerilRelationships, { nullable: true })
 }) {
@@ -18137,7 +14875,7 @@ export class UpdateServiceTypeData extends S.Class("UpdateServiceTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceTypeDataType,
+    "type": S.Literal("ServiceType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18158,7 +14896,7 @@ export class CreateIncidentClassData extends S.Class("CreateIncidentClassData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateIncidentClassDataType,
+    "type": S.Literal("IncidentClass"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateIncidentClassRelationships, { nullable: true })
 }) {
@@ -18171,7 +14909,7 @@ export class UpdateIncidentClassData extends S.Class("UpdateIncidentClassData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateIncidentClassDataType,
+    "type": S.Literal("IncidentClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18192,7 +14930,7 @@ export class CreateDwellingData extends S.Class("CreateDwellingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDwellingDataType,
+    "type": S.Literal("Dwelling"),
     "attributes": S.optionalWith(AssetAttributes, { nullable: true }),
     "relationships": CreateDwellingRelationships
 }) {
@@ -18205,7 +14943,7 @@ export class UpdateDwellingData extends S.Class("UpdateDwellingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDwellingDataType,
+    "type": S.Literal("Dwelling"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18226,7 +14964,7 @@ export class CreateAssetAppraisalData extends S.Class("CreateAssetAppraisalData"
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAssetAppraisalDataType,
+    "type": S.Literal("AssetAppraisal"),
     "attributes": CreateAssetAppraisalAttributes,
     "relationships": CreateAssetAppraisalRelationships
 }) {
@@ -18239,7 +14977,7 @@ export class UpdateAssetAppraisalData extends S.Class("UpdateAssetAppraisalData"
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAssetAppraisalDataType,
+    "type": S.Literal("AssetAppraisal"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18260,7 +14998,7 @@ export class CreateDocumentData extends S.Class("CreateDocumentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDocumentDataType,
+    "type": S.Literal("Document"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18273,7 +15011,7 @@ export class CreateIncidentReportData extends S.Class("CreateIncidentReportData"
     /**
   * The type of the referenced entity.
   */
-    "type": CreateIncidentReportDataType,
+    "type": S.Literal("IncidentReport"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18286,7 +15024,7 @@ export class CreatePoliceReportData extends S.Class("CreatePoliceReportData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePoliceReportDataType,
+    "type": S.Literal("PoliceReport"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18299,7 +15037,7 @@ export class CreateParamedicReportData extends S.Class("CreateParamedicReportDat
     /**
   * The type of the referenced entity.
   */
-    "type": CreateParamedicReportDataType,
+    "type": S.Literal("ParamedicReport"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18312,7 +15050,7 @@ export class CreateContractData extends S.Class("CreateContractData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateContractDataType,
+    "type": S.Literal("Contract"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18325,7 +15063,7 @@ export class CreateRentRollData extends S.Class("CreateRentRollData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateRentRollDataType,
+    "type": S.Literal("RentRoll"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18338,7 +15076,7 @@ export class CreatePermitData extends S.Class("CreatePermitData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePermitDataType,
+    "type": S.Literal("Permit"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18351,7 +15089,7 @@ export class CreateBlueprintData extends S.Class("CreateBlueprintData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBlueprintDataType,
+    "type": S.Literal("Blueprint"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18364,7 +15102,7 @@ export class CreateDeclarationsPageData extends S.Class("CreateDeclarationsPageD
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDeclarationsPageDataType,
+    "type": S.Literal("DeclarationsPage"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18377,7 +15115,7 @@ export class CreatePolicyJacketData extends S.Class("CreatePolicyJacketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePolicyJacketDataType,
+    "type": S.Literal("PolicyJacket"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18390,7 +15128,7 @@ export class CreateScopeOfLossData extends S.Class("CreateScopeOfLossData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateScopeOfLossDataType,
+    "type": S.Literal("ScopeOfLoss"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18403,7 +15141,7 @@ export class CreateDeliveryPaperworkData extends S.Class("CreateDeliveryPaperwor
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDeliveryPaperworkDataType,
+    "type": S.Literal("DeliveryPaperwork"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18416,7 +15154,7 @@ export class CreateProductSpecData extends S.Class("CreateProductSpecData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateProductSpecDataType,
+    "type": S.Literal("ProductSpec"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18429,7 +15167,7 @@ export class CreateUserManualData extends S.Class("CreateUserManualData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateUserManualDataType,
+    "type": S.Literal("UserManual"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18442,7 +15180,7 @@ export class CreateWarrantyData extends S.Class("CreateWarrantyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateWarrantyDataType,
+    "type": S.Literal("Warranty"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18455,7 +15193,7 @@ export class CreateDeedData extends S.Class("CreateDeedData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDeedDataType,
+    "type": S.Literal("Deed"),
     "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {
@@ -18468,7 +15206,7 @@ export class UpdateDocumentData extends S.Class("UpdateDocumentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDocumentDataType,
+    "type": S.Literal("Document"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18489,7 +15227,7 @@ export class UpdateIncidentReportData extends S.Class("UpdateIncidentReportData"
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateIncidentReportDataType,
+    "type": S.Literal("IncidentReport"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18510,7 +15248,7 @@ export class UpdatePoliceReportData extends S.Class("UpdatePoliceReportData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePoliceReportDataType,
+    "type": S.Literal("PoliceReport"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18531,7 +15269,7 @@ export class UpdateParamedicReportData extends S.Class("UpdateParamedicReportDat
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateParamedicReportDataType,
+    "type": S.Literal("ParamedicReport"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18552,7 +15290,7 @@ export class UpdateContractData extends S.Class("UpdateContractData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateContractDataType,
+    "type": S.Literal("Contract"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18573,7 +15311,7 @@ export class UpdateRentRollData extends S.Class("UpdateRentRollData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateRentRollDataType,
+    "type": S.Literal("RentRoll"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18594,7 +15332,7 @@ export class UpdatePermitData extends S.Class("UpdatePermitData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePermitDataType,
+    "type": S.Literal("Permit"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18615,7 +15353,7 @@ export class UpdateBlueprintData extends S.Class("UpdateBlueprintData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBlueprintDataType,
+    "type": S.Literal("Blueprint"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18636,7 +15374,7 @@ export class UpdateDeclarationsPageData extends S.Class("UpdateDeclarationsPageD
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDeclarationsPageDataType,
+    "type": S.Literal("DeclarationsPage"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18657,7 +15395,7 @@ export class UpdatePolicyJacketData extends S.Class("UpdatePolicyJacketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePolicyJacketDataType,
+    "type": S.Literal("PolicyJacket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18678,7 +15416,7 @@ export class UpdateScopeOfLossData extends S.Class("UpdateScopeOfLossData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateScopeOfLossDataType,
+    "type": S.Literal("ScopeOfLoss"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18699,7 +15437,7 @@ export class UpdateDeliveryPaperworkData extends S.Class("UpdateDeliveryPaperwor
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDeliveryPaperworkDataType,
+    "type": S.Literal("DeliveryPaperwork"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18720,7 +15458,7 @@ export class UpdateProductSpecData extends S.Class("UpdateProductSpecData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateProductSpecDataType,
+    "type": S.Literal("ProductSpec"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18741,7 +15479,7 @@ export class UpdateUserManualData extends S.Class("UpdateUserManualData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateUserManualDataType,
+    "type": S.Literal("UserManual"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18762,7 +15500,7 @@ export class UpdateWarrantyData extends S.Class("UpdateWarrantyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateWarrantyDataType,
+    "type": S.Literal("Warranty"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18783,7 +15521,7 @@ export class UpdateDeedData extends S.Class("UpdateDeedData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDeedDataType,
+    "type": S.Literal("Deed"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18804,7 +15542,7 @@ export class CreateFinancialDocumentData extends S.Class("CreateFinancialDocumen
     /**
   * The type of the referenced entity.
   */
-    "type": CreateFinancialDocumentDataType,
+    "type": S.Literal("FinancialDocument"),
     "attributes": CreateAssetAppraisalAttributes,
     "relationships": S.optionalWith(CreateFinancialDocumentRelationships, { nullable: true })
 }) {
@@ -18817,7 +15555,7 @@ export class UpdateFinancialDocumentData extends S.Class("UpdateFinancialDocumen
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateFinancialDocumentDataType,
+    "type": S.Literal("FinancialDocument"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18838,7 +15576,7 @@ export class CreateDocumentClassData extends S.Class("CreateDocumentClassData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDocumentClassDataType,
+    "type": S.Literal("DocumentClass"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateDocumentClassRelationships, { nullable: true })
 }) {
@@ -18851,7 +15589,7 @@ export class UpdateDocumentClassData extends S.Class("UpdateDocumentClassData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDocumentClassDataType,
+    "type": S.Literal("DocumentClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18872,7 +15610,7 @@ export class CreateDocumentTypeData extends S.Class("CreateDocumentTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDocumentTypeDataType,
+    "type": S.Literal("DocumentType"),
     "attributes": S.optionalWith(CreateDocumentTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateDocumentTypeRelationships, { nullable: true })
 }) {
@@ -18885,7 +15623,7 @@ export class UpdateDocumentTypeData extends S.Class("UpdateDocumentTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDocumentTypeDataType,
+    "type": S.Literal("DocumentType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18906,7 +15644,7 @@ export class CreateSpaceGroupData extends S.Class("CreateSpaceGroupData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSpaceGroupDataType,
+    "type": S.Literal("SpaceGroup"),
     "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
     "relationships": CreateSpaceGroupRelationships
 }) {
@@ -18919,7 +15657,7 @@ export class UpdateSpaceGroupData extends S.Class("UpdateSpaceGroupData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSpaceGroupDataType,
+    "type": S.Literal("SpaceGroup"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18940,7 +15678,7 @@ export class CreateSpaceData extends S.Class("CreateSpaceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSpaceDataType,
+    "type": S.Literal("Space"),
     "attributes": S.optionalWith(CreateSpaceAttributes, { nullable: true }),
     "relationships": CreateSpaceRelationships
 }) {
@@ -18953,7 +15691,7 @@ export class UpdateSpaceData extends S.Class("UpdateSpaceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSpaceDataType,
+    "type": S.Literal("Space"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -18974,7 +15712,7 @@ export class CreateSpaceTypeData extends S.Class("CreateSpaceTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSpaceTypeDataType,
+    "type": S.Literal("SpaceType"),
     "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateSpaceCategoryRelationships, { nullable: true })
 }) {
@@ -18987,7 +15725,7 @@ export class UpdateSpaceTypeData extends S.Class("UpdateSpaceTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSpaceTypeDataType,
+    "type": S.Literal("SpaceType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19008,7 +15746,7 @@ export class CreateSpaceCategoryData extends S.Class("CreateSpaceCategoryData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSpaceCategoryDataType,
+    "type": S.Literal("SpaceCategory"),
     "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateSpaceCategoryRelationships, { nullable: true })
 }) {
@@ -19021,7 +15759,7 @@ export class UpdateSpaceCategoryData extends S.Class("UpdateSpaceCategoryData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSpaceCategoryDataType,
+    "type": S.Literal("SpaceCategory"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19042,7 +15780,7 @@ export class CreateSpaceClassData extends S.Class("CreateSpaceClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSpaceClassDataType,
+    "type": S.Literal("SpaceClass"),
     "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateSpaceClassRelationships, { nullable: true })
 }) {
@@ -19055,7 +15793,7 @@ export class UpdateSpaceClassData extends S.Class("UpdateSpaceClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSpaceClassDataType,
+    "type": S.Literal("SpaceClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19076,7 +15814,7 @@ export class CreateSpaceGroupTypeData extends S.Class("CreateSpaceGroupTypeData"
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSpaceGroupTypeDataType,
+    "type": S.Literal("SpaceGroupType"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateSpaceGroupTypeRelationships, { nullable: true })
 }) {
@@ -19089,7 +15827,7 @@ export class UpdateSpaceGroupTypeData extends S.Class("UpdateSpaceGroupTypeData"
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSpaceGroupTypeDataType,
+    "type": S.Literal("SpaceGroupType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19110,7 +15848,7 @@ export class CreateBucketClassData extends S.Class("CreateBucketClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBucketClassDataType,
+    "type": S.Literal("BucketClass"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBucketClassRelationships, { nullable: true })
 }) {
@@ -19123,7 +15861,7 @@ export class UpdateBucketClassData extends S.Class("UpdateBucketClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBucketClassDataType,
+    "type": S.Literal("BucketClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19144,7 +15882,7 @@ export class CreateBucketTypeData extends S.Class("CreateBucketTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBucketTypeDataType,
+    "type": S.Literal("BucketType"),
     "attributes": S.optionalWith(BucketTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBucketTypeRelationships, { nullable: true })
 }) {
@@ -19157,7 +15895,7 @@ export class UpdateBucketTypeData extends S.Class("UpdateBucketTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBucketTypeDataType,
+    "type": S.Literal("BucketType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19178,7 +15916,7 @@ export class CreateAddressData extends S.Class("CreateAddressData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAddressDataType,
+    "type": S.Literal("Address"),
     "attributes": CreateAddressAttributes,
     "relationships": CreateAddressRelationships
 }) {
@@ -19191,7 +15929,7 @@ export class UpdateAddressData extends S.Class("UpdateAddressData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAddressDataType,
+    "type": S.Literal("Address"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19212,7 +15950,7 @@ export class CreateThirdPartyDwellingData extends S.Class("CreateThirdPartyDwell
     /**
   * The type of the referenced entity.
   */
-    "type": CreateThirdPartyDwellingDataType,
+    "type": S.Literal("ThirdPartyDwelling"),
     "attributes": CreateAddressAttributes,
     "relationships": CreateThirdPartyDwellingRelationships
 }) {
@@ -19225,7 +15963,7 @@ export class UpdateThirdPartyDwellingData extends S.Class("UpdateThirdPartyDwell
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateThirdPartyDwellingDataType,
+    "type": S.Literal("ThirdPartyDwelling"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19246,7 +15984,7 @@ export class CreateItemizableFinancialDocumentData extends S.Class("CreateItemiz
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemizableFinancialDocumentDataType,
+    "type": S.Literal("ItemizableFinancialDocument"),
     "attributes": CreateChangeOrderAttributes,
     "relationships": S.optionalWith(CreateItemizableFinancialDocumentRelationships, { nullable: true })
 }) {
@@ -19259,7 +15997,7 @@ export class UpdateItemizableFinancialDocumentData extends S.Class("UpdateItemiz
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemizableFinancialDocumentDataType,
+    "type": S.Literal("ItemizableFinancialDocument"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19280,7 +16018,7 @@ export class CreateItemImpactPaymentData extends S.Class("CreateItemImpactPaymen
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemImpactPaymentDataType,
+    "type": S.Literal("ItemImpactPayment"),
     "attributes": CreateInvoiceLineAttributes,
     "relationships": CreateItemImpactPaymentRelationships
 }) {
@@ -19293,7 +16031,7 @@ export class UpdateItemImpactPaymentData extends S.Class("UpdateItemImpactPaymen
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemImpactPaymentDataType,
+    "type": S.Literal("ItemImpactPayment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19314,7 +16052,7 @@ export class CreateItemImpactInvoiceData extends S.Class("CreateItemImpactInvoic
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemImpactInvoiceDataType,
+    "type": S.Literal("ItemImpactInvoice"),
     "attributes": CreateInvoiceLineAttributes,
     "relationships": CreateItemImpactInvoiceRelationships
 }) {
@@ -19327,7 +16065,7 @@ export class UpdateItemImpactInvoiceData extends S.Class("UpdateItemImpactInvoic
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemImpactInvoiceDataType,
+    "type": S.Literal("ItemImpactInvoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19348,7 +16086,7 @@ export class CreateItemImpactEstimateData extends S.Class("CreateItemImpactEstim
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemImpactEstimateDataType,
+    "type": S.Literal("ItemImpactEstimate"),
     "attributes": CreateEstimateLineAttributes,
     "relationships": CreateItemImpactEstimateRelationships
 }) {
@@ -19361,7 +16099,7 @@ export class UpdateItemImpactEstimateData extends S.Class("UpdateItemImpactEstim
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemImpactEstimateDataType,
+    "type": S.Literal("ItemImpactEstimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19382,7 +16120,7 @@ export class CreateItemAppraisalData extends S.Class("CreateItemAppraisalData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemAppraisalDataType,
+    "type": S.Literal("ItemAppraisal"),
     "attributes": S.optionalWith(AppraisalLineAttributes, { nullable: true }),
     "relationships": CreateItemAppraisalRelationships
 }) {
@@ -19395,7 +16133,7 @@ export class UpdateItemAppraisalData extends S.Class("UpdateItemAppraisalData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemAppraisalDataType,
+    "type": S.Literal("ItemAppraisal"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19416,7 +16154,7 @@ export class CreateItemInvoiceData extends S.Class("CreateItemInvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemInvoiceDataType,
+    "type": S.Literal("ItemInvoice"),
     "attributes": CreateItemInvoiceAttributes,
     "relationships": CreateItemInvoiceRelationships
 }) {
@@ -19429,7 +16167,7 @@ export class UpdateItemInvoiceData extends S.Class("UpdateItemInvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemInvoiceDataType,
+    "type": S.Literal("ItemInvoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19450,7 +16188,7 @@ export class CreateItemPaymentData extends S.Class("CreateItemPaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemPaymentDataType,
+    "type": S.Literal("ItemPayment"),
     "attributes": CreateItemPaymentAttributes,
     "relationships": CreateItemPaymentRelationships
 }) {
@@ -19463,7 +16201,7 @@ export class UpdateItemPaymentData extends S.Class("UpdateItemPaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemPaymentDataType,
+    "type": S.Literal("ItemPayment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19484,7 +16222,7 @@ export class CreateItemEstimateData extends S.Class("CreateItemEstimateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemEstimateDataType,
+    "type": S.Literal("ItemEstimate"),
     "attributes": CreateItemEstimateAttributes,
     "relationships": CreateItemEstimateRelationships
 }) {
@@ -19497,7 +16235,7 @@ export class UpdateItemEstimateData extends S.Class("UpdateItemEstimateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemEstimateDataType,
+    "type": S.Literal("ItemEstimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19518,7 +16256,7 @@ export class CreateItemProductSuggestionData extends S.Class("CreateItemProductS
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemProductSuggestionDataType,
+    "type": S.Literal("ItemProductSuggestion"),
     "attributes": CreateItemProductSuggestionAttributes,
     "relationships": CreateItemProductSuggestionRelationships
 }) {
@@ -19531,7 +16269,7 @@ export class UpdateItemProductSuggestionData extends S.Class("UpdateItemProductS
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemProductSuggestionDataType,
+    "type": S.Literal("ItemProductSuggestion"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19552,7 +16290,7 @@ export class CreateServiceTaskPaymentData extends S.Class("CreateServiceTaskPaym
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceTaskPaymentDataType,
+    "type": S.Literal("ServiceTaskPayment"),
     "attributes": CreateInvoiceLineAttributes,
     "relationships": CreateServiceTaskPaymentRelationships
 }) {
@@ -19565,7 +16303,7 @@ export class UpdateServiceTaskPaymentData extends S.Class("UpdateServiceTaskPaym
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceTaskPaymentDataType,
+    "type": S.Literal("ServiceTaskPayment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19586,7 +16324,7 @@ export class CreateServiceTaskInvoiceData extends S.Class("CreateServiceTaskInvo
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceTaskInvoiceDataType,
+    "type": S.Literal("ServiceTaskInvoice"),
     "attributes": CreateInvoiceLineAttributes,
     "relationships": CreateServiceTaskInvoiceRelationships
 }) {
@@ -19599,7 +16337,7 @@ export class UpdateServiceTaskInvoiceData extends S.Class("UpdateServiceTaskInvo
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceTaskInvoiceDataType,
+    "type": S.Literal("ServiceTaskInvoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19620,7 +16358,7 @@ export class CreateServiceTaskEstimateData extends S.Class("CreateServiceTaskEst
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceTaskEstimateDataType,
+    "type": S.Literal("ServiceTaskEstimate"),
     "attributes": CreateEstimateLineAttributes,
     "relationships": CreateServiceTaskEstimateRelationships
 }) {
@@ -19633,7 +16371,7 @@ export class UpdateServiceTaskEstimateData extends S.Class("UpdateServiceTaskEst
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceTaskEstimateDataType,
+    "type": S.Literal("ServiceTaskEstimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19654,7 +16392,7 @@ export class CreateChangeOrderData extends S.Class("CreateChangeOrderData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateChangeOrderDataType,
+    "type": S.Literal("ChangeOrder"),
     "attributes": CreateChangeOrderAttributes,
     "relationships": CreateChangeOrderRelationships
 }) {
@@ -19667,7 +16405,7 @@ export class UpdateChangeOrderData extends S.Class("UpdateChangeOrderData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateChangeOrderDataType,
+    "type": S.Literal("ChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19688,7 +16426,7 @@ export class CreateEntrySourceMetadataData extends S.Class("CreateEntrySourceMet
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEntrySourceMetadataDataType,
+    "type": S.Literal("EntrySourceMetadata"),
     "attributes": S.optionalWith(CreateEntrySourceMetadataAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateEntrySourceMetadataRelationships, { nullable: true })
 }) {
@@ -19701,7 +16439,7 @@ export class UpdateEntrySourceMetadataData extends S.Class("UpdateEntrySourceMet
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEntrySourceMetadataDataType,
+    "type": S.Literal("EntrySourceMetadata"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19722,7 +16460,7 @@ export class CreateAppraisalLineData extends S.Class("CreateAppraisalLineData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAppraisalLineDataType,
+    "type": S.Literal("AppraisalLine"),
     "attributes": S.optionalWith(AppraisalLineAttributes, { nullable: true }),
     "relationships": CreateAppraisalLineRelationships
 }) {
@@ -19735,7 +16473,7 @@ export class UpdateAppraisalLineData extends S.Class("UpdateAppraisalLineData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAppraisalLineDataType,
+    "type": S.Literal("AppraisalLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19756,7 +16494,7 @@ export class CreateInvoiceLineData extends S.Class("CreateInvoiceLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateInvoiceLineDataType,
+    "type": S.Literal("InvoiceLine"),
     "attributes": CreateInvoiceLineAttributes,
     "relationships": CreateInvoiceLineRelationships
 }) {
@@ -19769,7 +16507,7 @@ export class UpdateInvoiceLineData extends S.Class("UpdateInvoiceLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateInvoiceLineDataType,
+    "type": S.Literal("InvoiceLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19790,7 +16528,7 @@ export class CreatePaymentLineData extends S.Class("CreatePaymentLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePaymentLineDataType,
+    "type": S.Literal("PaymentLine"),
     "attributes": CreateInvoiceLineAttributes,
     "relationships": CreatePaymentLineRelationships
 }) {
@@ -19803,7 +16541,7 @@ export class UpdatePaymentLineData extends S.Class("UpdatePaymentLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePaymentLineDataType,
+    "type": S.Literal("PaymentLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19824,7 +16562,7 @@ export class CreateEstimateLineData extends S.Class("CreateEstimateLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEstimateLineDataType,
+    "type": S.Literal("EstimateLine"),
     "attributes": CreateEstimateLineAttributes,
     "relationships": CreateEstimateLineRelationships
 }) {
@@ -19837,7 +16575,7 @@ export class UpdateEstimateLineData extends S.Class("UpdateEstimateLineData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEstimateLineDataType,
+    "type": S.Literal("EstimateLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19858,7 +16596,7 @@ export class CreateEntrySourceMediaData extends S.Class("CreateEntrySourceMediaD
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEntrySourceMediaDataType,
+    "type": S.Literal("EntrySourceMedia"),
     "attributes": S.optionalWith(CreateEntrySourceMediaAttributes, { nullable: true }),
     "relationships": CreateEntrySourceMediaRelationships
 }) {
@@ -19871,7 +16609,7 @@ export class UpdateEntrySourceMediaData extends S.Class("UpdateEntrySourceMediaD
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEntrySourceMediaDataType,
+    "type": S.Literal("EntrySourceMedia"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19892,7 +16630,7 @@ export class CreateItemChangeOrderData extends S.Class("CreateItemChangeOrderDat
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemChangeOrderDataType,
+    "type": S.Literal("ItemChangeOrder"),
     "attributes": CreateItemChangeOrderAttributes,
     "relationships": CreateItemChangeOrderRelationships
 }) {
@@ -19905,7 +16643,7 @@ export class UpdateItemChangeOrderData extends S.Class("UpdateItemChangeOrderDat
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemChangeOrderDataType,
+    "type": S.Literal("ItemChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19926,7 +16664,7 @@ export class CreateItemImpactChangeOrderData extends S.Class("CreateItemImpactCh
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemImpactChangeOrderDataType,
+    "type": S.Literal("ItemImpactChangeOrder"),
     "attributes": CreateChangeOrderLineAttributes,
     "relationships": CreateItemImpactChangeOrderRelationships
 }) {
@@ -19939,7 +16677,7 @@ export class UpdateItemImpactChangeOrderData extends S.Class("UpdateItemImpactCh
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemImpactChangeOrderDataType,
+    "type": S.Literal("ItemImpactChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19960,7 +16698,7 @@ export class CreateEstimateData extends S.Class("CreateEstimateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEstimateDataType,
+    "type": S.Literal("Estimate"),
     "attributes": CreateEstimateAttributes,
     "relationships": S.optionalWith(CreateEstimateRelationships, { nullable: true })
 }) {
@@ -19973,7 +16711,7 @@ export class UpdateEstimateData extends S.Class("UpdateEstimateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEstimateDataType,
+    "type": S.Literal("Estimate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -19994,7 +16732,7 @@ export class CreateChangeOrderLineData extends S.Class("CreateChangeOrderLineDat
     /**
   * The type of the referenced entity.
   */
-    "type": CreateChangeOrderLineDataType,
+    "type": S.Literal("ChangeOrderLine"),
     "attributes": CreateChangeOrderLineAttributes,
     "relationships": CreateChangeOrderLineRelationships
 }) {
@@ -20007,7 +16745,7 @@ export class UpdateChangeOrderLineData extends S.Class("UpdateChangeOrderLineDat
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateChangeOrderLineDataType,
+    "type": S.Literal("ChangeOrderLine"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20028,7 +16766,7 @@ export class CreateServiceTaskChangeOrderData extends S.Class("CreateServiceTask
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceTaskChangeOrderDataType,
+    "type": S.Literal("ServiceTaskChangeOrder"),
     "attributes": CreateChangeOrderLineAttributes,
     "relationships": CreateServiceTaskChangeOrderRelationships
 }) {
@@ -20041,7 +16779,7 @@ export class UpdateServiceTaskChangeOrderData extends S.Class("UpdateServiceTask
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceTaskChangeOrderDataType,
+    "type": S.Literal("ServiceTaskChangeOrder"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20062,7 +16800,7 @@ export class CreateEntrySourceData extends S.Class("CreateEntrySourceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEntrySourceDataType,
+    "type": S.Literal("EntrySource"),
     "attributes": CreateEntrySourceAttributes,
     "relationships": S.optionalWith(CreateEntrySourceRelationships, { nullable: true })
 }) {
@@ -20075,7 +16813,7 @@ export class UpdateEntrySourceData extends S.Class("UpdateEntrySourceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEntrySourceDataType,
+    "type": S.Literal("EntrySource"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20096,7 +16834,7 @@ export class CreateServiceTaskData extends S.Class("CreateServiceTaskData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceTaskDataType,
+    "type": S.Literal("ServiceTask"),
     "attributes": CreateServiceTaskAttributes,
     "relationships": CreateServiceTaskRelationships
 }) {
@@ -20109,7 +16847,7 @@ export class UpdateServiceTaskData extends S.Class("UpdateServiceTaskData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceTaskDataType,
+    "type": S.Literal("ServiceTask"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20130,7 +16868,7 @@ export class CreatePaymentData extends S.Class("CreatePaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePaymentDataType,
+    "type": S.Literal("Payment"),
     "attributes": CreateChangeOrderAttributes,
     "relationships": S.optionalWith(CreatePaymentRelationships, { nullable: true })
 }) {
@@ -20143,7 +16881,7 @@ export class UpdatePaymentData extends S.Class("UpdatePaymentData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePaymentDataType,
+    "type": S.Literal("Payment"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20164,7 +16902,7 @@ export class CreateServiceData extends S.Class("CreateServiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceDataType,
+    "type": S.Literal("Service"),
     "attributes": CreateServiceAttributes,
     "relationships": S.optionalWith(CreateServiceRelationships, { nullable: true })
 }) {
@@ -20177,7 +16915,7 @@ export class UpdateServiceData extends S.Class("UpdateServiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceDataType,
+    "type": S.Literal("Service"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20198,7 +16936,7 @@ export class CreateInvoiceData extends S.Class("CreateInvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateInvoiceDataType,
+    "type": S.Literal("Invoice"),
     "attributes": CreateChangeOrderAttributes,
     "relationships": S.optionalWith(CreateInvoiceRelationships, { nullable: true })
 }) {
@@ -20211,7 +16949,7 @@ export class UpdateInvoiceData extends S.Class("UpdateInvoiceData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateInvoiceDataType,
+    "type": S.Literal("Invoice"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20232,7 +16970,7 @@ export class CreateItemImpactData extends S.Class("CreateItemImpactData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemImpactDataType,
+    "type": S.Literal("ItemImpact"),
     "attributes": S.optionalWith(CreateItemImpactAttributes, { nullable: true }),
     "relationships": CreateItemImpactRelationships
 }) {
@@ -20245,7 +16983,7 @@ export class UpdateItemImpactData extends S.Class("UpdateItemImpactData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemImpactDataType,
+    "type": S.Literal("ItemImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20266,7 +17004,7 @@ export class CreateItemData extends S.Class("CreateItemData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemDataType,
+    "type": S.Literal("Item"),
     "attributes": CreateItemAttributes,
     "relationships": S.optionalWith(CreateItemRelationships, { nullable: true })
 }) {
@@ -20279,7 +17017,7 @@ export class UpdateItemData extends S.Class("UpdateItemData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemDataType,
+    "type": S.Literal("Item"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20300,7 +17038,7 @@ export class CreateItemMediaSuggestionData extends S.Class("CreateItemMediaSugge
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemMediaSuggestionDataType,
+    "type": S.Literal("ItemMediaSuggestion"),
     "attributes": CreateItemMediaSuggestionAttributes,
     "relationships": CreateItemMediaSuggestionRelationships
 }) {
@@ -20313,7 +17051,7 @@ export class UpdateItemMediaSuggestionData extends S.Class("UpdateItemMediaSugge
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemMediaSuggestionDataType,
+    "type": S.Literal("ItemMediaSuggestion"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20334,7 +17072,7 @@ export class CreateDepreciationModifierData extends S.Class("CreateDepreciationM
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDepreciationModifierDataType,
+    "type": S.Literal("DepreciationModifier"),
     "attributes": S.optionalWith(CreateDepreciationModifierAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateDepreciationModifierRelationships, { nullable: true })
 }) {
@@ -20347,7 +17085,7 @@ export class UpdateDepreciationModifierData extends S.Class("UpdateDepreciationM
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDepreciationModifierDataType,
+    "type": S.Literal("DepreciationModifier"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20368,7 +17106,7 @@ export class CreateDepreciationOverrideData extends S.Class("CreateDepreciationO
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDepreciationOverrideDataType,
+    "type": S.Literal("DepreciationOverride"),
     "attributes": S.optionalWith(CreateDepreciationOverrideAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateDepreciationModifierRelationships, { nullable: true })
 }) {
@@ -20381,7 +17119,7 @@ export class UpdateDepreciationOverrideData extends S.Class("UpdateDepreciationO
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDepreciationOverrideDataType,
+    "type": S.Literal("DepreciationOverride"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20402,7 +17140,7 @@ export class CreateItemTemplateData extends S.Class("CreateItemTemplateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemTemplateDataType,
+    "type": S.Literal("ItemTemplate"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateItemTemplateRelationships, { nullable: true })
 }) {
@@ -20415,7 +17153,7 @@ export class UpdateItemTemplateData extends S.Class("UpdateItemTemplateData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemTemplateDataType,
+    "type": S.Literal("ItemTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20436,7 +17174,7 @@ export class CreateBaseSubBucketMetadataData extends S.Class("CreateBaseSubBucke
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBaseSubBucketMetadataDataType,
+    "type": S.Literal("BaseSubBucketMetadata"),
     "attributes": S.optionalWith(BaseBucketMetadataAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBaseBucketMetadataRelationships, { nullable: true })
 }) {
@@ -20449,7 +17187,7 @@ export class UpdateBaseSubBucketMetadataData extends S.Class("UpdateBaseSubBucke
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBaseSubBucketMetadataDataType,
+    "type": S.Literal("BaseSubBucketMetadata"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20470,7 +17208,7 @@ export class CreateBaseBucketMetadataData extends S.Class("CreateBaseBucketMetad
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBaseBucketMetadataDataType,
+    "type": S.Literal("BaseBucketMetadata"),
     "attributes": S.optionalWith(BaseBucketMetadataAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateBaseBucketMetadataRelationships, { nullable: true })
 }) {
@@ -20483,7 +17221,7 @@ export class UpdateBaseBucketMetadataData extends S.Class("UpdateBaseBucketMetad
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBaseBucketMetadataDataType,
+    "type": S.Literal("BaseBucketMetadata"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20504,7 +17242,7 @@ export class CreateFundingSourceData extends S.Class("CreateFundingSourceData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateFundingSourceDataType,
+    "type": S.Literal("FundingSource"),
     "attributes": CreateFundingSourceAttributes,
     "relationships": CreateFundingSourceRelationships
 }) {
@@ -20517,7 +17255,7 @@ export class UpdateFundingSourceData extends S.Class("UpdateFundingSourceData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateFundingSourceDataType,
+    "type": S.Literal("FundingSource"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20538,7 +17276,7 @@ export class CreateEntryData extends S.Class("CreateEntryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEntryDataType,
+    "type": S.Literal("Entry"),
     "attributes": S.optionalWith(CreateEntryAttributes, { nullable: true }),
     "relationships": CreateEntryRelationships
 }) {
@@ -20551,7 +17289,7 @@ export class UpdateEntryData extends S.Class("UpdateEntryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEntryDataType,
+    "type": S.Literal("Entry"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20572,7 +17310,7 @@ export class CreateBucketFundingData extends S.Class("CreateBucketFundingData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBucketFundingDataType,
+    "type": S.Literal("BucketFunding"),
     "attributes": CreateBucketFundingAttributes,
     "relationships": CreateBucketFundingRelationships
 }) {
@@ -20585,7 +17323,7 @@ export class UpdateBucketFundingData extends S.Class("UpdateBucketFundingData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBucketFundingDataType,
+    "type": S.Literal("BucketFunding"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20606,7 +17344,7 @@ export class CreateBaseBucketData extends S.Class("CreateBaseBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBaseBucketDataType,
+    "type": S.Literal("BaseBucket"),
     "attributes": CreateBaseBucketAttributes,
     "relationships": CreateBaseBucketRelationships
 }) {
@@ -20619,7 +17357,7 @@ export class UpdateBaseBucketData extends S.Class("UpdateBaseBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBaseBucketDataType,
+    "type": S.Literal("BaseBucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20640,7 +17378,7 @@ export class CreateFundingData extends S.Class("CreateFundingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateFundingDataType,
+    "type": S.Literal("Funding"),
     "attributes": S.optionalWith(CreateFundingAttributes, { nullable: true }),
     "relationships": CreateFundingRelationships
 }) {
@@ -20653,7 +17391,7 @@ export class UpdateFundingData extends S.Class("UpdateFundingData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateFundingDataType,
+    "type": S.Literal("Funding"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20674,7 +17412,7 @@ export class CreateSubBucketDefinitionData extends S.Class("CreateSubBucketDefin
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSubBucketDefinitionDataType,
+    "type": S.Literal("SubBucketDefinition"),
     "attributes": CreateSubBucketDefinitionAttributes,
     "relationships": CreateSubBucketDefinitionRelationships
 }) {
@@ -20687,7 +17425,7 @@ export class UpdateSubBucketDefinitionData extends S.Class("UpdateSubBucketDefin
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSubBucketDefinitionDataType,
+    "type": S.Literal("SubBucketDefinition"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20708,7 +17446,7 @@ export class CreateClaimTargetData extends S.Class("CreateClaimTargetData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateClaimTargetDataType,
+    "type": S.Literal("ClaimTarget"),
     "attributes": CreateClaimTargetAttributes,
     "relationships": CreateClaimTargetRelationships
 }) {
@@ -20721,7 +17459,7 @@ export class UpdateClaimTargetData extends S.Class("UpdateClaimTargetData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateClaimTargetDataType,
+    "type": S.Literal("ClaimTarget"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20742,7 +17480,7 @@ export class CreateBucketData extends S.Class("CreateBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBucketDataType,
+    "type": S.Literal("Bucket"),
     "attributes": S.optionalWith(BucketAttributes, { nullable: true }),
     "relationships": CreateBucketRelationships
 }) {
@@ -20755,7 +17493,7 @@ export class UpdateBucketData extends S.Class("UpdateBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBucketDataType,
+    "type": S.Literal("Bucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20776,7 +17514,7 @@ export class CreateClaimData extends S.Class("CreateClaimData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateClaimDataType,
+    "type": S.Literal("Claim"),
     "attributes": S.optionalWith(ClaimAttributes, { nullable: true }),
     "relationships": CreateClaimRelationships
 }) {
@@ -20789,7 +17527,7 @@ export class UpdateClaimData extends S.Class("UpdateClaimData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateClaimDataType,
+    "type": S.Literal("Claim"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20810,7 +17548,7 @@ export class CreateDeductibleData extends S.Class("CreateDeductibleData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDeductibleDataType,
+    "type": S.Literal("Deductible"),
     "attributes": CreateDeductibleAttributes,
     "relationships": CreateDeductibleRelationships
 }) {
@@ -20823,7 +17561,7 @@ export class UpdateDeductibleData extends S.Class("UpdateDeductibleData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDeductibleDataType,
+    "type": S.Literal("Deductible"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20844,7 +17582,7 @@ export class CreateClaimDeductibleData extends S.Class("CreateClaimDeductibleDat
     /**
   * The type of the referenced entity.
   */
-    "type": CreateClaimDeductibleDataType,
+    "type": S.Literal("ClaimDeductible"),
     "attributes": S.optionalWith(ClaimDeductibleAttributes, { nullable: true }),
     "relationships": CreateClaimDeductibleRelationships
 }) {
@@ -20857,7 +17595,7 @@ export class UpdateClaimDeductibleData extends S.Class("UpdateClaimDeductibleDat
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateClaimDeductibleDataType,
+    "type": S.Literal("ClaimDeductible"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20878,7 +17616,7 @@ export class CreatePolicyTermData extends S.Class("CreatePolicyTermData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePolicyTermDataType,
+    "type": S.Literal("PolicyTerm"),
     "attributes": CreatePolicyTermAttributes,
     "relationships": CreatePolicyTermRelationships
 }) {
@@ -20891,7 +17629,7 @@ export class UpdatePolicyTermData extends S.Class("UpdatePolicyTermData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePolicyTermDataType,
+    "type": S.Literal("PolicyTerm"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20912,7 +17650,7 @@ export class CreatePolicyData extends S.Class("CreatePolicyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePolicyDataType,
+    "type": S.Literal("Policy"),
     "attributes": S.optionalWith(CreatePolicyAttributes, { nullable: true }),
     "relationships": CreatePolicyRelationships
 }) {
@@ -20925,7 +17663,7 @@ export class UpdatePolicyData extends S.Class("UpdatePolicyData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePolicyDataType,
+    "type": S.Literal("Policy"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20946,7 +17684,7 @@ export class CreateSubmissionTrackTemplateData extends S.Class("CreateSubmission
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSubmissionTrackTemplateDataType,
+    "type": S.Literal("SubmissionTrackTemplate"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateSubmissionTrackTemplateRelationships, { nullable: true })
 }) {
@@ -20959,7 +17697,7 @@ export class UpdateSubmissionTrackTemplateData extends S.Class("UpdateSubmission
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSubmissionTrackTemplateDataType,
+    "type": S.Literal("SubmissionTrackTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -20980,7 +17718,7 @@ export class CreateBucketDefinitionData extends S.Class("CreateBucketDefinitionD
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBucketDefinitionDataType,
+    "type": S.Literal("BucketDefinition"),
     "attributes": CreateBucketDefinitionAttributes,
     "relationships": CreateBucketDefinitionRelationships
 }) {
@@ -20993,7 +17731,7 @@ export class UpdateBucketDefinitionData extends S.Class("UpdateBucketDefinitionD
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBucketDefinitionDataType,
+    "type": S.Literal("BucketDefinition"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21014,7 +17752,7 @@ export class CreateCoverageGroupTemplateData extends S.Class("CreateCoverageGrou
     /**
   * The type of the referenced entity.
   */
-    "type": CreateCoverageGroupTemplateDataType,
+    "type": S.Literal("CoverageGroupTemplate"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateCoverageGroupTemplateRelationships, { nullable: true })
 }) {
@@ -21027,7 +17765,7 @@ export class UpdateCoverageGroupTemplateData extends S.Class("UpdateCoverageGrou
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateCoverageGroupTemplateDataType,
+    "type": S.Literal("CoverageGroupTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21048,7 +17786,7 @@ export class CreateIncidentImpactData extends S.Class("CreateIncidentImpactData"
     /**
   * The type of the referenced entity.
   */
-    "type": CreateIncidentImpactDataType,
+    "type": S.Literal("IncidentImpact"),
     "attributes": S.optionalWith(CreateIncidentImpactAttributes, { nullable: true }),
     "relationships": CreateIncidentImpactRelationships
 }) {
@@ -21061,7 +17799,7 @@ export class UpdateIncidentImpactData extends S.Class("UpdateIncidentImpactData"
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateIncidentImpactDataType,
+    "type": S.Literal("IncidentImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21082,7 +17820,7 @@ export class CreateCoverageData extends S.Class("CreateCoverageData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateCoverageDataType,
+    "type": S.Literal("Coverage"),
     "attributes": CreateBucketDefinitionAttributes,
     "relationships": CreateCoverageRelationships
 }) {
@@ -21095,7 +17833,7 @@ export class UpdateCoverageData extends S.Class("UpdateCoverageData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateCoverageDataType,
+    "type": S.Literal("Coverage"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21116,7 +17854,7 @@ export class CreateSubCoverageData extends S.Class("CreateSubCoverageData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSubCoverageDataType,
+    "type": S.Literal("SubCoverage"),
     "attributes": CreateSubBucketDefinitionAttributes,
     "relationships": CreateSubCoverageRelationships
 }) {
@@ -21129,7 +17867,7 @@ export class UpdateSubCoverageData extends S.Class("UpdateSubCoverageData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSubCoverageDataType,
+    "type": S.Literal("SubCoverage"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21150,7 +17888,7 @@ export class CreateEndorsementTemplateData extends S.Class("CreateEndorsementTem
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEndorsementTemplateDataType,
+    "type": S.Literal("EndorsementTemplate"),
     "attributes": S.optionalWith(CreateEndorsementTemplateAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateEndorsementTemplateRelationships, { nullable: true })
 }) {
@@ -21163,7 +17901,7 @@ export class UpdateEndorsementTemplateData extends S.Class("UpdateEndorsementTem
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEndorsementTemplateDataType,
+    "type": S.Literal("EndorsementTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21184,7 +17922,7 @@ export class CreateSubBucketData extends S.Class("CreateSubBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSubBucketDataType,
+    "type": S.Literal("SubBucket"),
     "attributes": S.optionalWith(CreateSubBucketAttributes, { nullable: true }),
     "relationships": CreateSubBucketRelationships
 }) {
@@ -21197,7 +17935,7 @@ export class UpdateSubBucketData extends S.Class("UpdateSubBucketData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSubBucketDataType,
+    "type": S.Literal("SubBucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21218,7 +17956,7 @@ export class CreateBaseSubBucketData extends S.Class("CreateBaseSubBucketData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateBaseSubBucketDataType,
+    "type": S.Literal("BaseSubBucket"),
     "attributes": CreateBaseSubBucketAttributes,
     "relationships": CreateBaseSubBucketRelationships
 }) {
@@ -21231,7 +17969,7 @@ export class UpdateBaseSubBucketData extends S.Class("UpdateBaseSubBucketData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateBaseSubBucketDataType,
+    "type": S.Literal("BaseSubBucket"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21252,7 +17990,7 @@ export class CreateSubCoverageTemplateData extends S.Class("CreateSubCoverageTem
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSubCoverageTemplateDataType,
+    "type": S.Literal("SubCoverageTemplate"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateSubCoverageTemplateRelationships, { nullable: true })
 }) {
@@ -21265,7 +18003,7 @@ export class UpdateSubCoverageTemplateData extends S.Class("UpdateSubCoverageTem
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSubCoverageTemplateDataType,
+    "type": S.Literal("SubCoverageTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21286,7 +18024,7 @@ export class CreateEndorsementData extends S.Class("CreateEndorsementData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateEndorsementDataType,
+    "type": S.Literal("Endorsement"),
     "attributes": CreateEndorsementAttributes,
     "relationships": CreateEndorsementRelationships
 }) {
@@ -21299,7 +18037,7 @@ export class UpdateEndorsementData extends S.Class("UpdateEndorsementData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateEndorsementDataType,
+    "type": S.Literal("Endorsement"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21320,7 +18058,7 @@ export class CreateCoverageTemplateData extends S.Class("CreateCoverageTemplateD
     /**
   * The type of the referenced entity.
   */
-    "type": CreateCoverageTemplateDataType,
+    "type": S.Literal("CoverageTemplate"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateCoverageTemplateRelationships, { nullable: true })
 }) {
@@ -21333,7 +18071,7 @@ export class UpdateCoverageTemplateData extends S.Class("UpdateCoverageTemplateD
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateCoverageTemplateDataType,
+    "type": S.Literal("CoverageTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21354,7 +18092,7 @@ export class CreateCoverageGroupData extends S.Class("CreateCoverageGroupData")(
     /**
   * The type of the referenced entity.
   */
-    "type": CreateCoverageGroupDataType,
+    "type": S.Literal("CoverageGroup"),
     "relationships": CreateCoverageGroupRelationships
 }) {
 }
@@ -21366,7 +18104,7 @@ export class UpdateCoverageGroupData extends S.Class("UpdateCoverageGroupData")(
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateCoverageGroupDataType,
+    "type": S.Literal("CoverageGroup"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21386,7 +18124,7 @@ export class CreatePolicyTemplateData extends S.Class("CreatePolicyTemplateData"
     /**
   * The type of the referenced entity.
   */
-    "type": CreatePolicyTemplateDataType,
+    "type": S.Literal("PolicyTemplate"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreatePolicyTemplateRelationships, { nullable: true })
 }) {
@@ -21399,7 +18137,7 @@ export class UpdatePolicyTemplateData extends S.Class("UpdatePolicyTemplateData"
     /**
   * The type of the referenced entity.
   */
-    "type": UpdatePolicyTemplateDataType,
+    "type": S.Literal("PolicyTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21420,7 +18158,7 @@ export class CreateDepreciationScheduleData extends S.Class("CreateDepreciationS
     /**
   * The type of the referenced entity.
   */
-    "type": CreateDepreciationScheduleDataType,
+    "type": S.Literal("DepreciationSchedule"),
     "attributes": S.optionalWith(CreateDepreciationScheduleAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateDepreciationScheduleRelationships, { nullable: true })
 }) {
@@ -21433,7 +18171,7 @@ export class UpdateDepreciationScheduleData extends S.Class("UpdateDepreciationS
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateDepreciationScheduleDataType,
+    "type": S.Literal("DepreciationSchedule"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21454,7 +18192,7 @@ export class CreateSpaceTypeItemTemplateData extends S.Class("CreateSpaceTypeIte
     /**
   * The type of the referenced entity.
   */
-    "type": CreateSpaceTypeItemTemplateDataType,
+    "type": S.Literal("SpaceTypeItemTemplate"),
     "attributes": S.optionalWith(AssetAttributeTypeItemTemplateAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateSpaceTypeItemTemplateRelationships, { nullable: true })
 }) {
@@ -21467,7 +18205,7 @@ export class UpdateSpaceTypeItemTemplateData extends S.Class("UpdateSpaceTypeIte
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateSpaceTypeItemTemplateDataType,
+    "type": S.Literal("SpaceTypeItemTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21488,7 +18226,7 @@ export class CreateAssetAttributeTypeData extends S.Class("CreateAssetAttributeT
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAssetAttributeTypeDataType,
+    "type": S.Literal("AssetAttributeType"),
     "attributes": S.optionalWith(AssetAttributeTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateAssetAttributeTypeRelationships, { nullable: true })
 }) {
@@ -21501,7 +18239,7 @@ export class UpdateAssetAttributeTypeData extends S.Class("UpdateAssetAttributeT
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAssetAttributeTypeDataType,
+    "type": S.Literal("AssetAttributeType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21522,7 +18260,7 @@ export class CreateAssetAttributeTypeItemTemplateData extends S.Class("CreateAss
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAssetAttributeTypeItemTemplateDataType,
+    "type": S.Literal("AssetAttributeTypeItemTemplate"),
     "attributes": S.optionalWith(AssetAttributeTypeItemTemplateAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateAssetAttributeTypeItemTemplateRelationships, { nullable: true })
 }) {
@@ -21535,7 +18273,7 @@ export class UpdateAssetAttributeTypeItemTemplateData extends S.Class("UpdateAss
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAssetAttributeTypeItemTemplateDataType,
+    "type": S.Literal("AssetAttributeTypeItemTemplate"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21556,7 +18294,7 @@ export class CreateAssetAttributeClassData extends S.Class("CreateAssetAttribute
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAssetAttributeClassDataType,
+    "type": S.Literal("AssetAttributeClass"),
     "attributes": S.optionalWith(AssetAttributeClassAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateAssetAttributeClassRelationships, { nullable: true })
 }) {
@@ -21569,7 +18307,7 @@ export class UpdateAssetAttributeClassData extends S.Class("UpdateAssetAttribute
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAssetAttributeClassDataType,
+    "type": S.Literal("AssetAttributeClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21590,7 +18328,7 @@ export class CreateIncidentTypeData extends S.Class("CreateIncidentTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateIncidentTypeDataType,
+    "type": S.Literal("IncidentType"),
     "attributes": S.optionalWith(BucketTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateIncidentTypeRelationships, { nullable: true })
 }) {
@@ -21603,7 +18341,7 @@ export class UpdateIncidentTypeData extends S.Class("UpdateIncidentTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateIncidentTypeDataType,
+    "type": S.Literal("IncidentType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21624,7 +18362,7 @@ export class CreateItemClassData extends S.Class("CreateItemClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemClassDataType,
+    "type": S.Literal("ItemClass"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateItemClassRelationships, { nullable: true })
 }) {
@@ -21637,7 +18375,7 @@ export class UpdateItemClassData extends S.Class("UpdateItemClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemClassDataType,
+    "type": S.Literal("ItemClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21658,7 +18396,7 @@ export class CreateItemTypeData extends S.Class("CreateItemTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemTypeDataType,
+    "type": S.Literal("ItemType"),
     "attributes": S.optionalWith(CreateItemTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateItemTypeRelationships, { nullable: true })
 }) {
@@ -21671,7 +18409,7 @@ export class UpdateItemTypeData extends S.Class("UpdateItemTypeData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemTypeDataType,
+    "type": S.Literal("ItemType"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21692,7 +18430,7 @@ export class CreateItemCategoryData extends S.Class("CreateItemCategoryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateItemCategoryDataType,
+    "type": S.Literal("ItemCategory"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateItemCategoryRelationships, { nullable: true })
 }) {
@@ -21705,7 +18443,7 @@ export class UpdateItemCategoryData extends S.Class("UpdateItemCategoryData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateItemCategoryDataType,
+    "type": S.Literal("ItemCategory"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21726,7 +18464,7 @@ export class CreateServiceClassData extends S.Class("CreateServiceClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceClassDataType,
+    "type": S.Literal("ServiceClass"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateServiceClassRelationships, { nullable: true })
 }) {
@@ -21739,7 +18477,7 @@ export class UpdateServiceClassData extends S.Class("UpdateServiceClassData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceClassDataType,
+    "type": S.Literal("ServiceClass"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21760,7 +18498,7 @@ export class CreateServiceCategoryData extends S.Class("CreateServiceCategoryDat
     /**
   * The type of the referenced entity.
   */
-    "type": CreateServiceCategoryDataType,
+    "type": S.Literal("ServiceCategory"),
     "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
     "relationships": S.optionalWith(CreateServiceCategoryRelationships, { nullable: true })
 }) {
@@ -21773,7 +18511,7 @@ export class UpdateServiceCategoryData extends S.Class("UpdateServiceCategoryDat
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateServiceCategoryDataType,
+    "type": S.Literal("ServiceCategory"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21794,7 +18532,7 @@ export class CreateAppraisalData extends S.Class("CreateAppraisalData")({
     /**
   * The type of the referenced entity.
   */
-    "type": CreateAppraisalDataType,
+    "type": S.Literal("Appraisal"),
     "attributes": CreateAppraisalAttributes,
     "relationships": S.optionalWith(CreateAppraisalRelationships, { nullable: true })
 }) {
@@ -21807,7 +18545,7 @@ export class UpdateAppraisalData extends S.Class("UpdateAppraisalData")({
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateAppraisalDataType,
+    "type": S.Literal("Appraisal"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
@@ -21828,7 +18566,7 @@ export class CreateThirdPartyImpactData extends S.Class("CreateThirdPartyImpactD
     /**
   * The type of the referenced entity.
   */
-    "type": CreateThirdPartyImpactDataType,
+    "type": S.Literal("ThirdPartyImpact"),
     "attributes": CreateThirdPartyImpactAttributes,
     "relationships": CreateThirdPartyImpactRelationships
 }) {
@@ -21841,7 +18579,7 @@ export class UpdateThirdPartyImpactData extends S.Class("UpdateThirdPartyImpactD
     /**
   * The type of the referenced entity.
   */
-    "type": UpdateThirdPartyImpactDataType,
+    "type": S.Literal("ThirdPartyImpact"),
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */

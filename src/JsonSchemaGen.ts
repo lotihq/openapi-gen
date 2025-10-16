@@ -78,6 +78,26 @@ const make = Effect.gen(function* () {
       schema = Struct.omit(schema, "oneOf") as any
     }
 
+    if ("enum" in schema && Array.isArray(schema.enum)) {
+      const values = Array.from(new Set(schema.enum as ReadonlyArray<any>))
+      values.sort()
+      if (values.length === 1) {
+        schema = {
+          ...schema,
+          const: values[0],
+        } as any
+        schema = Struct.omit(schema, "enum") as any
+      } else if (
+        schema.enum.length !== values.length ||
+        schema.enum.some((value, index) => value !== values[index])
+      ) {
+        schema = {
+          ...schema,
+          enum: values,
+        } as any
+      }
+    }
+
     if (
       ("allOf" in schema && schema.allOf.length === 1) ||
       ("oneOf" in schema && (schema as any).oneOf.length === 1) ||
