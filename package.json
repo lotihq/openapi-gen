@@ -14,7 +14,7 @@
     "test": "pnpm coverage",
     "clean": "rm -rf dist/*",
     "build": "tsup && pnpm copy-package-json",
-    "sample-gen": "node dist/main.js -s ./openapi.json > generated.ts && tsc --noEmit generated.ts",
+    "sample-gen": "node dist/main.js -s openapi.json > sample/generated.ts && tsc",
     "build:ts": "tsup",
     "copy-package-json": "tsx scripts/copy-package-json.ts"
   },

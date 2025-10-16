@@ -3,9 +3,8 @@
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
     "target": "esnext",
-    "noEmit": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "lib": ["ESNext"],
     "sourceMap": false,
     "strict": true,
@@ -17,5 +16,5 @@
     "stripInternal": true,
     "skipLibCheck": true
   },
-  "include": ["./src/**/*"]
+  "include": ["./sample/**/*"]
 }
