@@ -14,6 +14,46 @@ const make = Effect.gen(function* () {
   const enums = new Set<string>()
   const refStore = new Map<string, JsonSchema.JsonSchema>()
   const dependencies = new Map<string, Set<string>>()
+  const aliasMap = new Map<string, string>()
+  const schemaCache = new Map<string, string>()
+  const structuralOmitKeys = new Set([
+    "description",
+    "title",
+    "summary",
+    "externalDocs",
+    "examples",
+    "example",
+  ])
+
+  const canonicalize = (value: unknown): unknown => {
+    if (Array.isArray(value)) {
+      return value.map(canonicalize)
+    }
+    if (value && typeof value === "object") {
+      const entries = Object.entries(value as Record<string, unknown>)
+        .filter(
+          ([key, v]) =>
+            v !== undefined && !structuralOmitKeys.has(key) && !key.startsWith("x-"),
+        )
+        .map(([key, v]) => [key, canonicalize(v)] as const)
+        .sort(([a], [b]) => a.localeCompare(b))
+      const out: Record<string, unknown> = {}
+      for (const [key, v] of entries) {
+        out[key] = v
+      }
+      return out
+    }
+    return value
+  }
+
+  const schemaCacheKey = (
+    schema: JsonSchema.JsonSchema,
+    asStruct: boolean,
+  ): string =>
+    JSON.stringify({
+      asStruct,
+      schema: canonicalize(schema),
+    })
 
   function cleanupSchema(schema: JsonSchema.JsonSchema) {
     if (
@@ -70,6 +110,15 @@ const make = Effect.gen(function* () {
     asStruct = false,
   ): string => {
     root = cleanupSchema(root)
+
+    const cacheKey = schemaCacheKey(root, asStruct)
+    const cachedName = schemaCache.get(cacheKey)
+    if (cachedName) {
+      if (cachedName !== name) {
+        aliasMap.set(name, cachedName)
+      }
+      return cachedName
+    }
 
     function addRefs(
       schema: JsonSchema.JsonSchema,
@@ -161,6 +210,7 @@ const make = Effect.gen(function* () {
         classes.add(name)
       }
     }
+    schemaCache.set(cacheKey, name)
     return name
   }
 
@@ -599,9 +649,22 @@ const make = Effect.gen(function* () {
       const body = finalOrder
         .map((name) => sourceMap.get(name)!)
         .join("\n\n")
+      const aliasEntries = Array.from(aliasMap.entries()).filter(
+        ([alias, target]) => alias !== target,
+      )
+      aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias))
+      const aliasSource = aliasEntries
+        .map(([alias, target]) => `export { ${target} as ${alias} }`)
+        .join("\n")
+      const emitBody =
+        aliasSource.length > 0
+          ? body.length > 0
+            ? `${body}\n\n${aliasSource}`
+            : aliasSource
+          : body
       return warningBlocks.length > 0
-        ? `${warningBlocks.join("\n")}\n\n${body}`
-        : body
+        ? `${warningBlocks.join("\n")}\n\n${emitBody}`
+        : emitBody
     })
 
   return { addSchema, generate } as const

@@ -34698,6 +34698,36 @@ var make64 = gen2(function* () {
   const enums = /* @__PURE__ */ new Set();
   const refStore = /* @__PURE__ */ new Map();
   const dependencies = /* @__PURE__ */ new Map();
+  const aliasMap = /* @__PURE__ */ new Map();
+  const schemaCache = /* @__PURE__ */ new Map();
+  const structuralOmitKeys = /* @__PURE__ */ new Set([
+    "description",
+    "title",
+    "summary",
+    "externalDocs",
+    "examples",
+    "example"
+  ]);
+  const canonicalize = (value5) => {
+    if (Array.isArray(value5)) {
+      return value5.map(canonicalize);
+    }
+    if (value5 && typeof value5 === "object") {
+      const entries2 = Object.entries(value5).filter(
+        ([key, v]) => v !== void 0 && !structuralOmitKeys.has(key) && !key.startsWith("x-")
+      ).map(([key, v]) => [key, canonicalize(v)]).sort(([a], [b]) => a.localeCompare(b));
+      const out = {};
+      for (const [key, v] of entries2) {
+        out[key] = v;
+      }
+      return out;
+    }
+    return value5;
+  };
+  const schemaCacheKey = (schema, asStruct) => JSON.stringify({
+    asStruct,
+    schema: canonicalize(schema)
+  });
   function cleanupSchema(schema) {
     if ("type" in schema && Array.isArray(schema.type) && schema.type.includes("null")) {
       const type2 = schema.type.filter((_) => _ !== "null");
@@ -34731,6 +34761,14 @@ var make64 = gen2(function* () {
   const processedRefs = /* @__PURE__ */ new Set();
   const addSchema = (name2, root2, context7, asStruct = false) => {
     root2 = cleanupSchema(root2);
+    const cacheKey = schemaCacheKey(root2, asStruct);
+    const cachedName = schemaCache.get(cacheKey);
+    if (cachedName) {
+      if (cachedName !== name2) {
+        aliasMap.set(name2, cachedName);
+      }
+      return cachedName;
+    }
     function addRefs(schema, childName, asStruct2 = true) {
       schema = cleanupSchema(schema);
       const enumSuffix = childName?.endsWith("Enum") ? "" : "Enum";
@@ -34816,6 +34854,7 @@ var make64 = gen2(function* () {
         classes.add(name2);
       }
     }
+    schemaCache.set(cacheKey, name2);
     return name2;
   };
   const topLevelSource = (importName, name2, schema) => {
@@ -35191,9 +35230,17 @@ var make64 = gen2(function* () {
       );
     }
     const body = finalOrder.map((name2) => sourceMap.get(name2)).join("\n\n");
+    const aliasEntries = Array.from(aliasMap.entries()).filter(
+      ([alias, target]) => alias !== target
+    );
+    aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias));
+    const aliasSource = aliasEntries.map(([alias, target]) => `export { ${target} as ${alias} }`).join("\n");
+    const emitBody = aliasSource.length > 0 ? body.length > 0 ? `${body}
+
+${aliasSource}` : aliasSource : body;
     return warningBlocks.length > 0 ? `${warningBlocks.join("\n")}
 
-${body}` : body;
+${emitBody}` : emitBody;
   });
   return { addSchema, generate };
 });
@@ -35225,7 +35272,10 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
     onTopLevel({ importName, schema, name: name2, source, isClass, description }) {
       const hasUnion = "oneOf" in schema || "anyOf" in schema;
       const isObject2 = "properties" in schema && Object.keys(schema.properties ?? {}).length > 0;
-      if (!isObject2 || !isClass || hasUnion) {
+      if (hasUnion) {
+        return `${toComment(description)}export class ${name2} extends ${source} {}`;
+      }
+      if (!isObject2 || !isClass) {
         return `${toComment(description)}export class ${name2} extends ${source} {}`;
       }
       return `${toComment(description)}export class ${name2} extends ${importName}.Class<${name2}>("${name2}")(${source}) {}`;
