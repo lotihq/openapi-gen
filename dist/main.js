@@ -34700,7 +34700,7 @@ var make64 = gen2(function* () {
   const dependencies = /* @__PURE__ */ new Map();
   const aliasMap = /* @__PURE__ */ new Map();
   const schemaCache = /* @__PURE__ */ new Map();
-  const structuralOmitKeys = /* @__PURE__ */ new Set([
+  const structuralOmitKeys2 = /* @__PURE__ */ new Set([
     "description",
     "title",
     "summary",
@@ -34714,7 +34714,7 @@ var make64 = gen2(function* () {
     }
     if (value5 && typeof value5 === "object") {
       const entries2 = Object.entries(value5).filter(
-        ([key, v]) => v !== void 0 && !structuralOmitKeys.has(key) && !key.startsWith("x-")
+        ([key, v]) => v !== void 0 && !structuralOmitKeys2.has(key) && !key.startsWith("x-")
       ).map(([key, v]) => [key, canonicalize(v)]).sort(([a], [b]) => a.localeCompare(b));
       const out = {};
       for (const [key, v] of entries2) {
@@ -34777,10 +34777,15 @@ var make64 = gen2(function* () {
           return;
         }
         processingRefs.add(schema.$ref);
-        const resolved = resolveRef(schema, {
-          ...root2,
-          ...context7
-        });
+        const resolved = resolveRef(
+          schema,
+          {
+            ...root2,
+            ...context7
+          },
+          false,
+          aliasMap
+        );
         if (!resolved) {
           processingRefs.delete(schema.$ref);
           return;
@@ -34812,10 +34817,15 @@ var make64 = gen2(function* () {
         return;
       }
       if ("allOf" in schema) {
-        const resolved = resolveAllOf(schema, {
-          ...root2,
-          ...context7
-        });
+        const resolved = resolveAllOf(
+          schema,
+          {
+            ...root2,
+            ...context7
+          },
+          true,
+          aliasMap
+        );
         if (childName !== void 0) {
           addRefs(resolved, childName + enumSuffix, asStruct2);
           store.set(childName, resolved);
@@ -34846,7 +34856,12 @@ var make64 = gen2(function* () {
     }
     if ("$ref" in root2) {
       addRefs(root2, void 0, false);
-      return identifier2(root2.$ref.split("/").pop());
+      const target = identifier2(root2.$ref.split("/").pop());
+      if (target !== name2) {
+        aliasMap.set(name2, target);
+      }
+      schemaCache.set(cacheKey, target);
+      return target;
     } else {
       addRefs(root2, "properties" in root2 ? name2 : void 0);
       store.set(name2, root2);
@@ -35033,7 +35048,11 @@ var make64 = gen2(function* () {
       if (!schema.$ref.startsWith("#")) {
         return none2();
       }
-      const name2 = identifier2(schema.$ref.split("/").pop());
+      let name2 = identifier2(schema.$ref.split("/").pop());
+      const canonical = aliasMap.get(name2);
+      if (canonical) {
+        name2 = canonical;
+      }
       recordDependency(name2);
       return some2(transformer.onRef({ importName, name: name2 }));
     } else if ("properties" in schema) {
@@ -35121,6 +35140,11 @@ var make64 = gen2(function* () {
       return { anyOf: schema };
     }
     return schema;
+  };
+  const addAlias = (alias, target) => {
+    if (alias !== target) {
+      aliasMap.set(alias, target);
+    }
   };
   const generate = (importName) => sync5(() => {
     const storeEntries = Array.from(store.entries());
@@ -35242,7 +35266,7 @@ ${aliasSource}` : aliasSource : body;
 
 ${emitBody}` : emitBody;
   });
-  return { addSchema, generate };
+  return { addSchema, addAlias, generate };
 });
 var JsonSchemaGen = class extends Tag2("JsonSchemaGen")() {
 };
@@ -35442,9 +35466,9 @@ function mergeSchemas(self, other) {
     ...other
   };
 }
-function resolveAllOf(schema, context7, resolveRefs = true) {
+function resolveAllOf(schema, context7, resolveRefs = true, aliasMap) {
   if ("$ref" in schema) {
-    const resolved = resolveRef(schema, context7, resolveRefs);
+    const resolved = resolveRef(schema, context7, resolveRefs, aliasMap);
     if (!resolved) {
       return schema;
     }
@@ -35457,28 +35481,73 @@ function resolveAllOf(schema, context7, resolveRefs = true) {
         return out2;
       }
       Object.assign(out2, schema.allOf[0]);
-      return resolveAllOf(out2, context7, resolveRefs);
+      return resolveAllOf(out2, context7, resolveRefs, aliasMap);
     }
     let out = {};
     for (const member of schema.allOf) {
-      out = mergeSchemas(out, resolveAllOf(member, context7, resolveRefs));
+      out = mergeSchemas(
+        out,
+        resolveAllOf(member, context7, resolveRefs, aliasMap)
+      );
     }
     return out;
   }
   return schema;
 }
-function resolveRef(schema, context7, recursive = false) {
+function resolveRef(schema, context7, recursive = false, aliasMap) {
   if (!schema.$ref.startsWith("#")) {
     return;
   }
-  const path2 = schema.$ref.slice(2).split("/");
-  const name2 = identifier2(path2[path2.length - 1]);
+  const visited = /* @__PURE__ */ new Set();
+  let ref = schema.$ref;
   let current = context7;
-  for (const key of path2) {
-    if (!current) return;
-    current = current[key];
+  let name2 = "";
+  while (true) {
+    const path2 = ref.slice(2).split("/");
+    name2 = identifier2(path2[path2.length - 1]);
+    current = context7;
+    for (const key of path2) {
+      if (!current) {
+        return;
+      }
+      current = current[key];
+    }
+    if (!current || typeof current !== "object") {
+      return;
+    }
+    if (!("$ref" in current)) {
+      return {
+        name: name2,
+        schema: resolveAllOf(
+          current,
+          context7,
+          recursive,
+          aliasMap
+        )
+      };
+    }
+    const nextRef = current.$ref;
+    if (typeof nextRef !== "string" || !nextRef.startsWith("#")) {
+      return;
+    }
+    const targetName = identifier2(nextRef.split("/").pop());
+    if (targetName !== name2 && aliasMap) {
+      aliasMap.set(name2, targetName);
+    }
+    if (visited.has(nextRef)) {
+      return {
+        name: targetName,
+        schema: resolveAllOf(
+          current,
+          context7,
+          recursive,
+          aliasMap
+        )
+      };
+    }
+    visited.add(nextRef);
+    ref = nextRef;
   }
-  return { name: name2, schema: resolveAllOf(current, context7, recursive) };
 }
 function filterNullable(schema) {
   if ("oneOf" in schema || "anyOf" in schema) {
@@ -35578,6 +35647,49 @@ var httpClientMethodNames = {
   patch: "patch",
   trace: `make("TRACE")`
 };
+var structuralOmitKeys = /* @__PURE__ */ new Set([
+  "description",
+  "title",
+  "summary",
+  "externalDocs",
+  "examples",
+  "example"
+]);
+var canonicalizeSchema = (value5) => {
+  if (Array.isArray(value5)) {
+    return value5.map(canonicalizeSchema);
+  }
+  if (value5 && typeof value5 === "object") {
+    const entries2 = Object.entries(value5).filter(
+      ([key, v]) => v !== void 0 && !structuralOmitKeys.has(key) && !key.startsWith("x-")
+    ).map(([key, v]) => [key, canonicalizeSchema(v)]).sort(([a], [b]) => a.localeCompare(b));
+    const out = {};
+    for (const [key, v] of entries2) {
+      out[key] = v;
+    }
+    return out;
+  }
+  return value5;
+};
+var schemaHash = (schema) => JSON.stringify(canonicalizeSchema(schema));
+var dedupeComponentSchemas = (schemas) => {
+  const seen = /* @__PURE__ */ new Map();
+  for (const [name2, schema] of Object.entries(schemas)) {
+    if (!schema || typeof schema !== "object" || "$ref" in schema) {
+      continue;
+    }
+    if (!(name2.endsWith("Attributes") || name2.endsWith("Relationships"))) {
+      continue;
+    }
+    const key = schemaHash(schema);
+    const canonical = seen.get(key);
+    if (canonical && canonical !== name2) {
+      schemas[name2] = { $ref: `#/components/schemas/${canonical}` };
+    } else {
+      seen.set(key, name2);
+    }
+  }
+};
 var make65 = gen2(function* () {
   const isV2 = (spec2) => "swagger" in spec2;
   const convert2 = fn("OpenApi.convert")(
@@ -35599,6 +35711,11 @@ var make65 = gen2(function* () {
     function* (spec2, options3) {
       if (isV2(spec2)) {
         spec2 = yield* convert2(spec2);
+      }
+      if (spec2.components?.schemas) {
+        dedupeComponentSchemas(
+          spec2.components.schemas
+        );
       }
       const gen3 = yield* JsonSchemaGen;
       const components = spec2.components ? { ...spec2.components } : { schemas: {} };

@@ -84,7 +84,7 @@ export class CurrencyRefType extends S.Literal("Currency") {}
 */
 export class UserDataType extends S.Literal("User") {}
 
-export class UserAttributes extends S.Class<UserAttributes>("UserAttributes")({
+export class CreateUserAttributes extends S.Class<CreateUserAttributes>("CreateUserAttributes")({
   /**
 * The user's full legal name
 */
@@ -140,7 +140,7 @@ export class AccountProviderContactRefType extends S.Literal("AccountProviderCon
 */
 export class IdentityDataType extends S.Literal("Identity") {}
 
-export class IdentityAttributes extends S.Class<IdentityAttributes>("IdentityAttributes")({
+export class AccountProviderContactAttributes extends S.Class<AccountProviderContactAttributes>("AccountProviderContactAttributes")({
   /**
 * The user's full legal name
 */
@@ -157,19 +157,6 @@ export class IdentityAttributes extends S.Class<IdentityAttributes>("IdentityAtt
 * The type of the referenced entity.
 */
 export class AccountProviderContactDataType extends S.Literal("AccountProviderContact") {}
-
-export class AccountProviderContactAttributes extends S.Class<AccountProviderContactAttributes>("AccountProviderContactAttributes")({
-  /**
-* The user's full legal name
-*/
-"legalName": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The user's preferred name (e.g., first name)
-*/
-"preferredName": S.optionalWith(S.String, { nullable: true }),
-  "avatarKey": S.optionalWith(S.String, { nullable: true }),
-  "avatarUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -210,11 +197,6 @@ export class ProviderRefType extends S.Literal("Provider") {}
 */
 export class ProjectDataType extends S.Literal("Project") {}
 
-export class ProjectAttributes extends S.Class<ProjectAttributes>("ProjectAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -249,7 +231,7 @@ export class DisasterRefType extends S.Literal("Disaster") {}
 */
 export class ProjectMediaDataType extends S.Literal("ProjectMedia") {}
 
-export class ProjectMediaAttributesStage extends S.Literal("BEFORE", "DURING", "AFTER") {}
+export class CreateProjectMediaAttributesStage extends S.Literal("BEFORE", "DURING", "AFTER") {}
 
 /**
 * The type of the referenced entity.
@@ -261,7 +243,7 @@ export class MediaRefType extends S.Literal("Media") {}
 */
 export class MediaDataType extends S.Literal("Media") {}
 
-export class MediaAttributesSubjectState extends S.Literal("INTACT", "DAMAGED", "IN_PROGRESS", "MISSING") {}
+export class CreateMediaAttributesSubjectState extends S.Literal("INTACT", "DAMAGED", "IN_PROGRESS", "MISSING") {}
 
 /**
 * The type of the referenced entity.
@@ -425,11 +407,6 @@ export class AssetTypeRefType extends S.Literal("AssetType") {}
 */
 export class DwellingDataType extends S.Literal("Dwelling") {}
 
-export class DwellingAttributes extends S.Class<DwellingAttributes>("DwellingAttributes")({
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -470,7 +447,7 @@ export class DocumentTypeRefType extends S.Literal("DocumentType") {}
 */
 export class DocumentTypeDataType extends S.Literal("DocumentType") {}
 
-export class DocumentTypeAttributes extends S.Class<DocumentTypeAttributes>("DocumentTypeAttributes")({
+export class CreateDocumentTypeAttributes extends S.Class<CreateDocumentTypeAttributes>("CreateDocumentTypeAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "slug": S.optionalWith(S.String, { nullable: true }),
   "description": S.optionalWith(S.String, { nullable: true }),
@@ -487,17 +464,12 @@ export class DocumentClassRefType extends S.Literal("DocumentClass") {}
 */
 export class DocumentClassDataType extends S.Literal("DocumentClass") {}
 
-export class DocumentClassAttributes extends S.Class<DocumentClassAttributes>("DocumentClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class SpaceDataType extends S.Literal("Space") {}
 
-export class SpaceAttributesUse extends S.Literal("PERSONAL", "SHORT_TERM_RENTAL", "LEASED", "BUSINESS", "AGRICULTURAL", "UNUSED") {}
+export class CreateSpaceAttributesUse extends S.Literal("PERSONAL", "SHORT_TERM_RENTAL", "LEASED", "BUSINESS", "AGRICULTURAL", "UNUSED") {}
 
 /**
 * The type of the referenced entity.
@@ -514,10 +486,9 @@ export class SpaceGroupRefType extends S.Literal("SpaceGroup") {}
 */
 export class SpaceTypeDataType extends S.Literal("SpaceType") {}
 
-export class SpaceTypeAttributes extends S.Class<SpaceTypeAttributes>("SpaceTypeAttributes")({
+export class CreateSpaceCategoryAttributes extends S.Class<CreateSpaceCategoryAttributes>("CreateSpaceCategoryAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
   "tags": S.optionalWith(S.Array(S.String), { nullable: true })
 }) {}
 
@@ -536,12 +507,6 @@ export class SpaceGroupTypeRefType extends S.Literal("SpaceGroupType") {}
 */
 export class SpaceClassDataType extends S.Literal("SpaceClass") {}
 
-export class SpaceClassAttributes extends S.Class<SpaceClassAttributes>("SpaceClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -552,22 +517,10 @@ export class SpaceCategoryRefType extends S.Literal("SpaceCategory") {}
 */
 export class SpaceCategoryDataType extends S.Literal("SpaceCategory") {}
 
-export class SpaceCategoryAttributes extends S.Class<SpaceCategoryAttributes>("SpaceCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class SpaceGroupTypeDataType extends S.Literal("SpaceGroupType") {}
-
-export class SpaceGroupTypeAttributes extends S.Class<SpaceGroupTypeAttributes>("SpaceGroupTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -596,26 +549,17 @@ export class BucketClassRefType extends S.Literal("BucketClass") {}
 */
 export class BucketClassDataType extends S.Literal("BucketClass") {}
 
-export class BucketClassAttributes extends S.Class<BucketClassAttributes>("BucketClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class SpaceGroupDataType extends S.Literal("SpaceGroup") {}
-
-export class SpaceGroupAttributes extends S.Class<SpaceGroupAttributes>("SpaceGroupAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CurrencyDataType extends S.Literal("Currency") {}
 
-export class CurrencyAttributes extends S.Class<CurrencyAttributes>("CurrencyAttributes")({
+export class CreateCurrencyAttributes extends S.Class<CreateCurrencyAttributes>("CreateCurrencyAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "iso": S.optionalWith(S.String, { nullable: true })
 }) {}
@@ -654,18 +598,18 @@ export class CountryAttributes extends S.Class<CountryAttributes>("CountryAttrib
 */
 export class FileProcessDataType extends S.Literal("FileProcess") {}
 
-export class FileProcessAttributesProvider extends S.Literal("TRANSLOADIT") {}
+export class CreateFileProcessAttributesProvider extends S.Literal("TRANSLOADIT") {}
 
-export class FileProcessAttributesType extends S.Literal("CONVERSION", "DATA_EXTRACTION") {}
+export class CreateFileProcessAttributesType extends S.Literal("CONVERSION", "DATA_EXTRACTION") {}
 
-export class FileProcessAttributesStatus extends S.Literal("QUEUED", "PROCESSING", "PAUSED", "COMPLETED", "FAILED") {}
+export class CreateFileProcessAttributesStatus extends S.Literal("QUEUED", "PROCESSING", "PAUSED", "COMPLETED", "FAILED") {}
 
 /**
 * The type of the referenced entity.
 */
 export class DocumentDataType extends S.Literal("Document") {}
 
-export class DocumentAttributes extends S.Class<DocumentAttributes>("DocumentAttributes")({
+export class BlueprintAttributes extends S.Class<BlueprintAttributes>("BlueprintAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "note": S.optionalWith(S.String, { nullable: true }),
   "date": S.optionalWith(S.String, { nullable: true }),
@@ -741,7 +685,7 @@ export class ThirdPartyImpactRefType extends S.Literal("ThirdPartyImpact") {}
 */
 export class ItemizableFinancialDocumentStatsDataType extends S.Literal("ItemizableFinancialDocumentStats") {}
 
-export class ItemizableFinancialDocumentStatsAttributes extends S.Class<ItemizableFinancialDocumentStatsAttributes>("ItemizableFinancialDocumentStatsAttributes")({
+export class CreateItemizableFinancialDocumentStatsAttributes extends S.Class<CreateItemizableFinancialDocumentStatsAttributes>("CreateItemizableFinancialDocumentStatsAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "note": S.optionalWith(S.String, { nullable: true }),
   "date": S.optionalWith(S.String, { nullable: true }),
@@ -764,19 +708,6 @@ export class ItemizableFinancialDocumentStatsAttributes extends S.Class<Itemizab
 * The type of the referenced entity.
 */
 export class ItemizableFinancialDocumentDataType extends S.Literal("ItemizableFinancialDocument") {}
-
-export class ItemizableFinancialDocumentAttributes extends S.Class<ItemizableFinancialDocumentAttributes>("ItemizableFinancialDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -912,7 +843,7 @@ export class ServiceTaskInvoiceRefType extends S.Literal("ServiceTaskInvoice") {
 */
 export class EntrySourceMetadataDataType extends S.Literal("EntrySourceMetadata") {}
 
-export class EntrySourceMetadataAttributesEntrySourceType extends S.Literal("ITEM", "ITEM_IMPACT", "SERVICE", "SERVICE_TASK", "THIRD_PARTY_IMPACT") {}
+export class CreateEntrySourceMetadataAttributesEntrySourceType extends S.Literal("ITEM", "ITEM_IMPACT", "SERVICE", "SERVICE_TASK", "THIRD_PARTY_IMPACT") {}
 
 /**
 * The type of the referenced entity.
@@ -933,9 +864,9 @@ export class EntrySourceAttributes extends S.Class<EntrySourceAttributes>("Entry
 */
 export class ItemImpactDataType extends S.Literal("ItemImpact") {}
 
-export class ItemImpactAttributesConditionAtImpact extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
+export class CreateItemImpactAttributesConditionAtImpact extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
 
-export class ItemImpactAttributesItemQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
+export class CreateItemImpactAttributesItemQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
 
 /**
 * The type of the referenced entity.
@@ -947,9 +878,9 @@ export class ItemTypeRefType extends S.Literal("ItemType") {}
 */
 export class EntryDataType extends S.Literal("Entry") {}
 
-export class EntryAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
+export class CreateEntryAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
-export class EntryAttributesSubmissionStatus extends S.Literal("NOT_SUBMITTED", "SUBMITTED", "REVISED") {}
+export class CreateEntryAttributesSubmissionStatus extends S.Literal("NOT_SUBMITTED", "SUBMITTED", "REVISED") {}
 
 /**
 * The type of the referenced entity.
@@ -1032,7 +963,7 @@ export class PolicyTermRefType extends S.Literal("PolicyTerm") {}
 */
 export class FundingDataType extends S.Literal("Funding") {}
 
-export class FundingAttributes extends S.Class<FundingAttributes>("FundingAttributes")({
+export class CreateFundingAttributes extends S.Class<CreateFundingAttributes>("CreateFundingAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "note": S.optionalWith(S.String, { nullable: true }),
   "date": S.optionalWith(S.String, { nullable: true }),
@@ -1084,7 +1015,7 @@ export class PolicyTemplateRefType extends S.Literal("PolicyTemplate") {}
 */
 export class ProviderDataType extends S.Literal("Provider") {}
 
-export class ProviderAttributes extends S.Class<ProviderAttributes>("ProviderAttributes")({
+export class CreateProviderAttributes extends S.Class<CreateProviderAttributes>("CreateProviderAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "slug": S.optionalWith(S.String, { nullable: true }),
   "offerings": S.optionalWith(S.Array(S.Literal("ITEM", "SERVICE", "COVERAGE", "AID")), { nullable: true })
@@ -1127,11 +1058,6 @@ export class SubCoverageRefType extends S.Literal("SubCoverage") {}
 export class CoverageDataType extends S.Literal("Coverage") {}
 
 /**
-* Is required if not set in .basis
-*/
-export class CoverageAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
-/**
 * The type of the referenced entity.
 */
 export class CoverageTemplateRefType extends S.Literal("CoverageTemplate") {}
@@ -1163,8 +1089,6 @@ export class SubBucketDefinitionAttributesLossSettlementType extends S.Literal("
 */
 export class SubCoverageDataType extends S.Literal("SubCoverage") {}
 
-export class SubCoverageAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
 /**
 * The type of the referenced entity.
 */
@@ -1175,7 +1099,7 @@ export class SubCoverageTemplateRefType extends S.Literal("SubCoverageTemplate")
 */
 export class SubBucketDataType extends S.Literal("SubBucket") {}
 
-export class SubBucketAttributes extends S.Class<SubBucketAttributes>("SubBucketAttributes")({
+export class CreateSubBucketAttributes extends S.Class<CreateSubBucketAttributes>("CreateSubBucketAttributes")({
   "limitAmount": S.optionalWith(S.Number, { nullable: true }),
   "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
   "entryCount": S.optionalWith(S.Number, { nullable: true }),
@@ -1197,7 +1121,7 @@ export class BaseSubBucketMetadataRefType extends S.Literal("BaseSubBucketMetada
 */
 export class BaseSubBucketMetadataDataType extends S.Literal("BaseSubBucketMetadata") {}
 
-export class BaseSubBucketMetadataAttributes extends S.Class<BaseSubBucketMetadataAttributes>("BaseSubBucketMetadataAttributes")({
+export class BaseBucketMetadataAttributes extends S.Class<BaseBucketMetadataAttributes>("BaseBucketMetadataAttributes")({
   "entryCount": S.optionalWith(S.Number, { nullable: true }),
   "entryAmount": S.optionalWith(S.Number, { nullable: true }),
   "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
@@ -1209,12 +1133,6 @@ export class BaseSubBucketMetadataAttributes extends S.Class<BaseSubBucketMetada
 */
 export class SubCoverageTemplateDataType extends S.Literal("SubCoverageTemplate") {}
 
-export class SubCoverageTemplateAttributes extends S.Class<SubCoverageTemplateAttributes>("SubCoverageTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -1224,12 +1142,6 @@ export class EndorsementTemplateRefType extends S.Literal("EndorsementTemplate")
 * The type of the referenced entity.
 */
 export class CoverageTemplateDataType extends S.Literal("CoverageTemplate") {}
-
-export class CoverageTemplateAttributes extends S.Class<CoverageTemplateAttributes>("CoverageTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -1241,30 +1153,19 @@ export class CoverageGroupTemplateRefType extends S.Literal("CoverageGroupTempla
 */
 export class CoverageGroupTemplateDataType extends S.Literal("CoverageGroupTemplate") {}
 
-export class CoverageGroupTemplateAttributes extends S.Class<CoverageGroupTemplateAttributes>("CoverageGroupTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class PerilDataType extends S.Literal("Peril") {}
-
-export class PerilAttributes extends S.Class<PerilAttributes>("PerilAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class EndorsementTemplateDataType extends S.Literal("EndorsementTemplate") {}
 
-export class EndorsementTemplateAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {}
+export class CreateEndorsementTemplateAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {}
 
-export class EndorsementTemplateAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
+export class CreateEndorsementTemplateAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
 /**
 * The type of the referenced entity.
@@ -1299,30 +1200,17 @@ export class ClaimDeductibleAttributes extends S.Class<ClaimDeductibleAttributes
 */
 export class PolicyDataType extends S.Literal("Policy") {}
 
-export class PolicyAttributesStatus extends S.Literal("ACTIVE", "CANCELED", "EXPIRED", "UNVERIFIED", "PENDING_ACTIVATION", "PENDING_CANCELLATION", "RESCINDED") {}
+export class CreatePolicyAttributesStatus extends S.Literal("ACTIVE", "CANCELED", "EXPIRED", "UNVERIFIED", "PENDING_ACTIVATION", "PENDING_CANCELLATION", "RESCINDED") {}
 
 /**
 * The type of the referenced entity.
 */
 export class PolicyTemplateDataType extends S.Literal("PolicyTemplate") {}
 
-export class PolicyTemplateAttributes extends S.Class<PolicyTemplateAttributes>("PolicyTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class BaseBucketMetadataDataType extends S.Literal("BaseBucketMetadata") {}
-
-export class BaseBucketMetadataAttributes extends S.Class<BaseBucketMetadataAttributes>("BaseBucketMetadataAttributes")({
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -1345,7 +1233,7 @@ export class BaseSubBucketAttributes extends S.Class<BaseSubBucketAttributes>("B
 */
 export class ItemAppraisalDataType extends S.Literal("ItemAppraisal") {}
 
-export class ItemAppraisalAttributes extends S.Class<ItemAppraisalAttributes>("ItemAppraisalAttributes")({
+export class AppraisalLineAttributes extends S.Class<AppraisalLineAttributes>("AppraisalLineAttributes")({
   "amount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
@@ -1474,10 +1362,6 @@ export class ThirdPartyIndividualRefType extends S.Literal("ThirdPartyIndividual
 */
 export class AppraisalLineDataType extends S.Literal("AppraisalLine") {}
 
-export class AppraisalLineAttributes extends S.Class<AppraisalLineAttributes>("AppraisalLineAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -1487,19 +1371,6 @@ export class BaseEntityDataType extends S.Literal("BaseEntity") {}
 * The type of the referenced entity.
 */
 export class InvoiceDataType extends S.Literal("Invoice") {}
-
-export class InvoiceAttributes extends S.Class<InvoiceAttributes>("InvoiceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -1535,7 +1406,7 @@ export class ItemAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVER
 */
 export class ItemTypeDataType extends S.Literal("ItemType") {}
 
-export class ItemTypeAttributes extends S.Class<ItemTypeAttributes>("ItemTypeAttributes")({
+export class CreateItemTypeAttributes extends S.Class<CreateItemTypeAttributes>("CreateItemTypeAttributes")({
   "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
   "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true }),
   "name": S.optionalWith(S.String, { nullable: true }),
@@ -1548,16 +1419,16 @@ export class ItemTypeAttributes extends S.Class<ItemTypeAttributes>("ItemTypeAtt
 */
 export class DepreciationModifierDataType extends S.Literal("DepreciationModifier") {}
 
-export class DepreciationModifierAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
+export class CreateDepreciationModifierAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
 
-export class DepreciationModifierAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
+export class CreateDepreciationModifierAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
 
 /**
 * The type of the referenced entity.
 */
 export class DepreciationScheduleDataType extends S.Literal("DepreciationSchedule") {}
 
-export class DepreciationScheduleAttributes extends S.Class<DepreciationScheduleAttributes>("DepreciationScheduleAttributes")({
+export class CreateDepreciationScheduleAttributes extends S.Class<CreateDepreciationScheduleAttributes>("CreateDepreciationScheduleAttributes")({
   "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
   "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true })
 }) {}
@@ -1567,7 +1438,7 @@ export class DepreciationScheduleAttributes extends S.Class<DepreciationSchedule
 */
 export class DepreciationOverrideDataType extends S.Literal("DepreciationOverride") {}
 
-export class DepreciationOverrideAttributes extends S.Class<DepreciationOverrideAttributes>("DepreciationOverrideAttributes")({
+export class CreateDepreciationOverrideAttributes extends S.Class<CreateDepreciationOverrideAttributes>("CreateDepreciationOverrideAttributes")({
   "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
   "valuePercentage": S.optionalWith(S.Number, { nullable: true }),
   "description": S.optionalWith(S.String, { nullable: true })
@@ -1578,51 +1449,20 @@ export class DepreciationOverrideAttributes extends S.Class<DepreciationOverride
 */
 export class ItemClassDataType extends S.Literal("ItemClass") {}
 
-export class ItemClassAttributes extends S.Class<ItemClassAttributes>("ItemClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ItemCategoryDataType extends S.Literal("ItemCategory") {}
-
-export class ItemCategoryAttributes extends S.Class<ItemCategoryAttributes>("ItemCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class PaymentDataType extends S.Literal("Payment") {}
 
-export class PaymentAttributes extends S.Class<PaymentAttributes>("PaymentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class PaymentLineDataType extends S.Literal("PaymentLine") {}
-
-export class PaymentLineAttributes extends S.Class<PaymentLineAttributes>("PaymentLineAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -1636,26 +1476,10 @@ export class ItemPaymentAttributesPurpose extends S.Literal("PURCHASE", "BUILD",
 */
 export class ItemImpactPaymentDataType extends S.Literal("ItemImpactPayment") {}
 
-export class ItemImpactPaymentAttributes extends S.Class<ItemImpactPaymentAttributes>("ItemImpactPaymentAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ServiceTaskPaymentDataType extends S.Literal("ServiceTaskPayment") {}
-
-export class ServiceTaskPaymentAttributes extends S.Class<ServiceTaskPaymentAttributes>("ServiceTaskPaymentAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -1695,221 +1519,85 @@ export class ServiceTaskAttributes extends S.Class<ServiceTaskAttributes>("Servi
 */
 export class ItemImpactInvoiceDataType extends S.Literal("ItemImpactInvoice") {}
 
-export class ItemImpactInvoiceAttributes extends S.Class<ItemImpactInvoiceAttributes>("ItemImpactInvoiceAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ServiceTaskInvoiceDataType extends S.Literal("ServiceTaskInvoice") {}
-
-export class ServiceTaskInvoiceAttributes extends S.Class<ServiceTaskInvoiceAttributes>("ServiceTaskInvoiceAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class IncidentReportDataType extends S.Literal("IncidentReport") {}
 
-export class IncidentReportAttributes extends S.Class<IncidentReportAttributes>("IncidentReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class PoliceReportDataType extends S.Literal("PoliceReport") {}
-
-export class PoliceReportAttributes extends S.Class<PoliceReportAttributes>("PoliceReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class ParamedicReportDataType extends S.Literal("ParamedicReport") {}
 
-export class ParamedicReportAttributes extends S.Class<ParamedicReportAttributes>("ParamedicReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ContractDataType extends S.Literal("Contract") {}
-
-export class ContractAttributes extends S.Class<ContractAttributes>("ContractAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class RentRollDataType extends S.Literal("RentRoll") {}
 
-export class RentRollAttributes extends S.Class<RentRollAttributes>("RentRollAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class PermitDataType extends S.Literal("Permit") {}
-
-export class PermitAttributes extends S.Class<PermitAttributes>("PermitAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class BlueprintDataType extends S.Literal("Blueprint") {}
 
-export class BlueprintAttributes extends S.Class<BlueprintAttributes>("BlueprintAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class DeclarationsPageDataType extends S.Literal("DeclarationsPage") {}
-
-export class DeclarationsPageAttributes extends S.Class<DeclarationsPageAttributes>("DeclarationsPageAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class PolicyJacketDataType extends S.Literal("PolicyJacket") {}
 
-export class PolicyJacketAttributes extends S.Class<PolicyJacketAttributes>("PolicyJacketAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ScopeOfLossDataType extends S.Literal("ScopeOfLoss") {}
-
-export class ScopeOfLossAttributes extends S.Class<ScopeOfLossAttributes>("ScopeOfLossAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class DeliveryPaperworkDataType extends S.Literal("DeliveryPaperwork") {}
 
-export class DeliveryPaperworkAttributes extends S.Class<DeliveryPaperworkAttributes>("DeliveryPaperworkAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ProductSpecDataType extends S.Literal("ProductSpec") {}
-
-export class ProductSpecAttributes extends S.Class<ProductSpecAttributes>("ProductSpecAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UserManualDataType extends S.Literal("UserManual") {}
 
-export class UserManualAttributes extends S.Class<UserManualAttributes>("UserManualAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class WarrantyDataType extends S.Literal("Warranty") {}
 
-export class WarrantyAttributes extends S.Class<WarrantyAttributes>("WarrantyAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class DeedDataType extends S.Literal("Deed") {}
-
-export class DeedAttributes extends S.Class<DeedAttributes>("DeedAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -1943,77 +1631,10 @@ export class ChangeOrderLineAttributes extends S.Class<ChangeOrderLineAttributes
 */
 export class ItemImpactChangeOrderDataType extends S.Literal("ItemImpactChangeOrder") {}
 
-export class ItemImpactChangeOrderAttributes extends S.Class<ItemImpactChangeOrderAttributes>("ItemImpactChangeOrderAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ItemImpactEstimateDataType extends S.Literal("ItemImpactEstimate") {}
-
-export class ItemImpactEstimateAttributes extends S.Class<ItemImpactEstimateAttributes>("ItemImpactEstimateAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {}
-
-export class ServiceTaskChangeOrderAttributes extends S.Class<ServiceTaskChangeOrderAttributes>("ServiceTaskChangeOrderAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class ServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {}
-
-export class ServiceTaskEstimateAttributes extends S.Class<ServiceTaskEstimateAttributes>("ServiceTaskEstimateAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class EstimateLineDataType extends S.Literal("EstimateLine") {}
 
 export class EstimateLineAttributes extends S.Class<EstimateLineAttributes>("EstimateLineAttributes")({
   "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
@@ -2036,34 +1657,32 @@ export class EstimateLineAttributes extends S.Class<EstimateLineAttributes>("Est
 /**
 * The type of the referenced entity.
 */
-export class DisasterDataType extends S.Literal("Disaster") {}
+export class ServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {}
 
-export class DisasterAttributes extends S.Class<DisasterAttributes>("DisasterAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
+/**
+* The type of the referenced entity.
+*/
+export class ServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {}
+
+/**
+* The type of the referenced entity.
+*/
+export class EstimateLineDataType extends S.Literal("EstimateLine") {}
+
+/**
+* The type of the referenced entity.
+*/
+export class DisasterDataType extends S.Literal("Disaster") {}
 
 /**
 * The type of the referenced entity.
 */
 export class IncidentTypeDataType extends S.Literal("IncidentType") {}
 
-export class IncidentTypeAttributes extends S.Class<IncidentTypeAttributes>("IncidentTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class IncidentClassDataType extends S.Literal("IncidentClass") {}
-
-export class IncidentClassAttributes extends S.Class<IncidentClassAttributes>("IncidentClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2103,62 +1722,30 @@ export class AssetAttributeClassAttributes extends S.Class<AssetAttributeClassAt
 */
 export class ItemTemplateDataType extends S.Literal("ItemTemplate") {}
 
-export class ItemTemplateAttributes extends S.Class<ItemTemplateAttributes>("ItemTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class SpaceTypeItemTemplateDataType extends S.Literal("SpaceTypeItemTemplate") {}
-
-export class SpaceTypeItemTemplateAttributes extends S.Class<SpaceTypeItemTemplateAttributes>("SpaceTypeItemTemplateAttributes")({
-  "quantity": S.optionalWith(S.Number, { nullable: true }),
-  "likelihood": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class SubmissionTrackTemplateDataType extends S.Literal("SubmissionTrackTemplate") {}
 
-export class SubmissionTrackTemplateAttributes extends S.Class<SubmissionTrackTemplateAttributes>("SubmissionTrackTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ServiceCategoryDataType extends S.Literal("ServiceCategory") {}
-
-export class ServiceCategoryAttributes extends S.Class<ServiceCategoryAttributes>("ServiceCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class ServiceClassDataType extends S.Literal("ServiceClass") {}
 
-export class ServiceClassAttributes extends S.Class<ServiceClassAttributes>("ServiceClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ServiceTypeDataType extends S.Literal("ServiceType") {}
-
-export class ServiceTypeAttributes extends S.Class<ServiceTypeAttributes>("ServiceTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2182,7 +1769,7 @@ export class AuthProfileAttributesProvider extends S.Literal("CLERK", "LOGTO", "
 */
 export class EntrySourceMediaDataType extends S.Literal("EntrySourceMedia") {}
 
-export class EntrySourceMediaAttributes extends S.Class<EntrySourceMediaAttributes>("EntrySourceMediaAttributes")({
+export class CreateEntrySourceMediaAttributes extends S.Class<CreateEntrySourceMediaAttributes>("CreateEntrySourceMediaAttributes")({
   "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
   "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
   "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
@@ -2195,15 +1782,6 @@ export class EntrySourceMediaAttributes extends S.Class<EntrySourceMediaAttribut
 */
 export class ThirdPartyImpactDataType extends S.Literal("ThirdPartyImpact") {}
 
-export class ThirdPartyImpactAttributes extends S.Class<ThirdPartyImpactAttributes>("ThirdPartyImpactAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -2214,36 +1792,22 @@ export class ThirdPartyDataType extends S.Literal("ThirdParty") {}
 */
 export class ThirdPartyDwellingDataType extends S.Literal("ThirdPartyDwelling") {}
 
-export class ThirdPartyDwellingAttributes extends S.Class<ThirdPartyDwellingAttributes>("ThirdPartyDwellingAttributes")({
-  "streetAddress": S.optionalWith(S.String, { nullable: true }),
-  "streetAddress2": S.optionalWith(S.String, { nullable: true }),
-  "city": S.optionalWith(S.String, { nullable: true }),
-  "state": S.optionalWith(S.String, { nullable: true }),
-  "postal": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class ThirdPartyIndividualDataType extends S.Literal("ThirdPartyIndividual") {}
-
-export class ThirdPartyIndividualAttributes extends S.Class<ThirdPartyIndividualAttributes>("ThirdPartyIndividualAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class ProjectImpactDataType extends S.Literal("ProjectImpact") {}
 
-export class ProjectImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {}
+export class CreateIncidentImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {}
 
 /**
 * The type of the referenced entity.
 */
 export class IncidentImpactDataType extends S.Literal("IncidentImpact") {}
-
-export class IncidentImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {}
 
 /**
 * The type of the referenced entity.
@@ -2269,21 +1833,12 @@ export class UserAccountRoleDataType extends S.Literal("UserAccountRole") {}
 /**
 * What level of permissions the user has for this account.
 */
-export class UserAccountRoleAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {}
+export class UpdateUserAccountRoleAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {}
 
 /**
 * The type of the referenced entity.
 */
 export class FinancialDocumentDataType extends S.Literal("FinancialDocument") {}
-
-export class FinancialDocumentAttributes extends S.Class<FinancialDocumentAttributes>("FinancialDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 export class HealthControllerInternalHealthCheck200 extends S.Struct({
   "status": S.optionalWith(S.String, { nullable: true }),
@@ -2296,23 +1851,6 @@ export class HealthControllerInternalHealthCheck200 extends S.Struct({
 * The type of the referenced entity.
 */
 export class UpdateUserDataType extends S.Literal("User") {}
-
-export class UpdateUserAttributes extends S.Class<UpdateUserAttributes>("UpdateUserAttributes")({
-  /**
-* The user's full legal name
-*/
-"legalName": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The user's preferred name (e.g., first name)
-*/
-"preferredName": S.optionalWith(S.String, { nullable: true }),
-  "avatarKey": S.optionalWith(S.String, { nullable: true }),
-  "avatarUrl": S.optionalWith(S.String, { nullable: true }),
-  /**
-* Whether or not the user is an admin
-*/
-"isAdmin": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2338,23 +1876,6 @@ export class CreateUserAccountRoleRefType extends S.Literal("UserAccountRole") {
 * The type of the referenced entity.
 */
 export class CreateUserDataType extends S.Literal("User") {}
-
-export class CreateUserAttributes extends S.Class<CreateUserAttributes>("CreateUserAttributes")({
-  /**
-* The user's full legal name
-*/
-"legalName": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The user's preferred name (e.g., first name)
-*/
-"preferredName": S.optionalWith(S.String, { nullable: true }),
-  "avatarKey": S.optionalWith(S.String, { nullable: true }),
-  "avatarUrl": S.optionalWith(S.String, { nullable: true }),
-  /**
-* Whether or not the user is an admin
-*/
-"isAdmin": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2385,68 +1906,20 @@ export class CreateUserRefType extends S.Literal("User") {}
 */
 export class UpdateEmailAddressDataType extends S.Literal("EmailAddress") {}
 
-export class UpdateEmailAddressAttributes extends S.Class<UpdateEmailAddressAttributes>("UpdateEmailAddressAttributes")({
-  "address": S.optionalWith(S.String, { nullable: true }),
-  /**
-* Whether email address is verified.
-*/
-"isVerified": S.optionalWith(S.Boolean, { nullable: true }),
-  "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateIdentityDataType extends S.Literal("Identity") {}
-
-export class CreateIdentityAttributes extends S.Class<CreateIdentityAttributes>("CreateIdentityAttributes")({
-  /**
-* The user's full legal name
-*/
-"legalName": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The user's preferred name (e.g., first name)
-*/
-"preferredName": S.optionalWith(S.String, { nullable: true }),
-  "avatarKey": S.optionalWith(S.String, { nullable: true }),
-  "avatarUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateIdentityDataType extends S.Literal("Identity") {}
 
-export class UpdateIdentityAttributes extends S.Class<UpdateIdentityAttributes>("UpdateIdentityAttributes")({
-  /**
-* The user's full legal name
-*/
-"legalName": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The user's preferred name (e.g., first name)
-*/
-"preferredName": S.optionalWith(S.String, { nullable: true }),
-  "avatarKey": S.optionalWith(S.String, { nullable: true }),
-  "avatarUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateAccountProviderContactDataType extends S.Literal("AccountProviderContact") {}
-
-export class CreateAccountProviderContactAttributes extends S.Class<CreateAccountProviderContactAttributes>("CreateAccountProviderContactAttributes")({
-  /**
-* The user's full legal name
-*/
-"legalName": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The user's preferred name (e.g., first name)
-*/
-"preferredName": S.optionalWith(S.String, { nullable: true }),
-  "avatarKey": S.optionalWith(S.String, { nullable: true }),
-  "avatarUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2457,19 +1930,6 @@ export class CreateAccountProviderRefType extends S.Literal("AccountProvider") {
 * The type of the referenced entity.
 */
 export class UpdateAccountProviderContactDataType extends S.Literal("AccountProviderContact") {}
-
-export class UpdateAccountProviderContactAttributes extends S.Class<UpdateAccountProviderContactAttributes>("UpdateAccountProviderContactAttributes")({
-  /**
-* The user's full legal name
-*/
-"legalName": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The user's preferred name (e.g., first name)
-*/
-"preferredName": S.optionalWith(S.String, { nullable: true }),
-  "avatarKey": S.optionalWith(S.String, { nullable: true }),
-  "avatarUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2487,24 +1947,10 @@ export class CreatePhoneNumberAttributes extends S.Class<CreatePhoneNumberAttrib
 */
 export class UpdatePhoneNumberDataType extends S.Literal("PhoneNumber") {}
 
-export class UpdatePhoneNumberAttributes extends S.Class<UpdatePhoneNumberAttributes>("UpdatePhoneNumberAttributes")({
-  "number": S.optionalWith(S.String, { nullable: true }),
-  "isVerified": S.optionalWith(S.Boolean, { nullable: true }),
-  "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateAccountProviderDataType extends S.Literal("AccountProvider") {}
-
-export class CreateAccountProviderAttributes extends S.Class<CreateAccountProviderAttributes>("CreateAccountProviderAttributes")({
-  /**
-* Required if provider not set.
-*/
-"name": S.optionalWith(S.String, { nullable: true }),
-  "offerings": S.optionalWith(S.Array(S.Literal("ITEM", "SERVICE", "COVERAGE", "AID")), { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2515,14 +1961,6 @@ export class CreateProviderRefType extends S.Literal("Provider") {}
 * The type of the referenced entity.
 */
 export class UpdateAccountProviderDataType extends S.Literal("AccountProvider") {}
-
-export class UpdateAccountProviderAttributes extends S.Class<UpdateAccountProviderAttributes>("UpdateAccountProviderAttributes")({
-  /**
-* Required if provider not set.
-*/
-"name": S.optionalWith(S.String, { nullable: true }),
-  "offerings": S.optionalWith(S.Array(S.Literal("ITEM", "SERVICE", "COVERAGE", "AID")), { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2556,22 +1994,10 @@ export class CreateCurrencyRefType extends S.Literal("Currency") {}
 */
 export class UpdateAccountDataType extends S.Literal("Account") {}
 
-export class UpdateAccountAttributes extends S.Class<UpdateAccountAttributes>("UpdateAccountAttributes")({
-  /**
-* The name for the account
-*/
-"name": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateProjectDataType extends S.Literal("Project") {}
-
-export class CreateProjectAttributes extends S.Class<CreateProjectAttributes>("CreateProjectAttributes")({
-  "name": S.String,
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2582,11 +2008,6 @@ export class CreateProjectMediaRefType extends S.Literal("ProjectMedia") {}
 * The type of the referenced entity.
 */
 export class UpdateProjectDataType extends S.Literal("Project") {}
-
-export class UpdateProjectAttributes extends S.Class<UpdateProjectAttributes>("UpdateProjectAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2617,21 +2038,10 @@ export class CreateDisasterRefType extends S.Literal("Disaster") {}
 */
 export class UpdateIncidentDataType extends S.Literal("Incident") {}
 
-export class UpdateIncidentAttributes extends S.Class<UpdateIncidentAttributes>("UpdateIncidentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "occurredDate": S.optionalWith(S.String, { nullable: true }),
-  "isFemaDisaster": S.optionalWith(S.Boolean, { nullable: true }),
-  "wasSomeoneInjured": S.optionalWith(S.Boolean, { nullable: true }),
-  "isThereLiability": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateProjectMediaDataType extends S.Literal("ProjectMedia") {}
-
-export class CreateProjectMediaAttributesStage extends S.Literal("BEFORE", "DURING", "AFTER") {}
 
 /**
 * The type of the referenced entity.
@@ -2643,14 +2053,10 @@ export class CreateMediaRefType extends S.Literal("Media") {}
 */
 export class UpdateProjectMediaDataType extends S.Literal("ProjectMedia") {}
 
-export class UpdateProjectMediaAttributesStage extends S.Literal("BEFORE", "DURING", "AFTER") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateMediaDataType extends S.Literal("Media") {}
-
-export class CreateMediaAttributesSubjectState extends S.Literal("INTACT", "DAMAGED", "IN_PROGRESS", "MISSING") {}
 
 /**
 * The type of the referenced entity.
@@ -2671,8 +2077,6 @@ export class CreateEntrySourceMediaRefType extends S.Literal("EntrySourceMedia")
 * The type of the referenced entity.
 */
 export class UpdateMediaDataType extends S.Literal("Media") {}
-
-export class UpdateMediaAttributesSubjectState extends S.Literal("INTACT", "DAMAGED", "IN_PROGRESS", "MISSING") {}
 
 /**
 * The type of the referenced entity.
@@ -2818,11 +2222,6 @@ export class UpdateFileAttributesType extends S.Literal("IMAGE", "VIDEO", "AUDIO
 */
 export class CreateAssetDataType extends S.Literal("Asset") {}
 
-export class CreateAssetAttributes extends S.Class<CreateAssetAttributes>("CreateAssetAttributes")({
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -2833,20 +2232,10 @@ export class CreateAssetTypeRefType extends S.Literal("AssetType") {}
 */
 export class UpdateAssetDataType extends S.Literal("Asset") {}
 
-export class UpdateAssetAttributes extends S.Class<UpdateAssetAttributes>("UpdateAssetAttributes")({
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDwellingDataType extends S.Literal("Dwelling") {}
-
-export class CreateDwellingAttributes extends S.Class<CreateDwellingAttributes>("CreateDwellingAttributes")({
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2858,32 +2247,15 @@ export class CreateAddressRefType extends S.Literal("Address") {}
 */
 export class UpdateDwellingDataType extends S.Literal("Dwelling") {}
 
-export class UpdateDwellingAttributes extends S.Class<UpdateDwellingAttributes>("UpdateDwellingAttributes")({
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateAssetTypeDataType extends S.Literal("AssetType") {}
 
-export class CreateAssetTypeAttributes extends S.Class<CreateAssetTypeAttributes>("CreateAssetTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateAssetTypeDataType extends S.Literal("AssetType") {}
-
-export class UpdateAssetTypeAttributes extends S.Class<UpdateAssetTypeAttributes>("UpdateAssetTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2909,26 +2281,10 @@ export class CreateDocumentTypeRefType extends S.Literal("DocumentType") {}
 */
 export class UpdateAssetAppraisalDataType extends S.Literal("AssetAppraisal") {}
 
-export class UpdateAssetAppraisalAttributes extends S.Class<UpdateAssetAppraisalAttributes>("UpdateAssetAppraisalAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDocumentTypeDataType extends S.Literal("DocumentType") {}
-
-export class CreateDocumentTypeAttributes extends S.Class<CreateDocumentTypeAttributes>("CreateDocumentTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -2940,39 +2296,20 @@ export class CreateDocumentClassRefType extends S.Literal("DocumentClass") {}
 */
 export class UpdateDocumentTypeDataType extends S.Literal("DocumentType") {}
 
-export class UpdateDocumentTypeAttributes extends S.Class<UpdateDocumentTypeAttributes>("UpdateDocumentTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDocumentClassDataType extends S.Literal("DocumentClass") {}
-
-export class CreateDocumentClassAttributes extends S.Class<CreateDocumentClassAttributes>("CreateDocumentClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateDocumentClassDataType extends S.Literal("DocumentClass") {}
 
-export class UpdateDocumentClassAttributes extends S.Class<UpdateDocumentClassAttributes>("UpdateDocumentClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSpaceDataType extends S.Literal("Space") {}
-
-export class CreateSpaceAttributesUse extends S.Literal("PERSONAL", "SHORT_TERM_RENTAL", "LEASED", "BUSINESS", "AGRICULTURAL", "UNUSED") {}
 
 /**
 * The type of the referenced entity.
@@ -2989,19 +2326,10 @@ export class CreateSpaceGroupRefType extends S.Literal("SpaceGroup") {}
 */
 export class UpdateSpaceDataType extends S.Literal("Space") {}
 
-export class UpdateSpaceAttributesUse extends S.Literal("PERSONAL", "SHORT_TERM_RENTAL", "LEASED", "BUSINESS", "AGRICULTURAL", "UNUSED") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSpaceTypeDataType extends S.Literal("SpaceType") {}
-
-export class CreateSpaceTypeAttributes extends S.Class<CreateSpaceTypeAttributes>("CreateSpaceTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3018,23 +2346,10 @@ export class CreateSpaceGroupTypeRefType extends S.Literal("SpaceGroupType") {}
 */
 export class UpdateSpaceTypeDataType extends S.Literal("SpaceType") {}
 
-export class UpdateSpaceTypeAttributes extends S.Class<UpdateSpaceTypeAttributes>("UpdateSpaceTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSpaceClassDataType extends S.Literal("SpaceClass") {}
-
-export class CreateSpaceClassAttributes extends S.Class<CreateSpaceClassAttributes>("CreateSpaceClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3046,44 +2361,20 @@ export class CreateSpaceCategoryRefType extends S.Literal("SpaceCategory") {}
 */
 export class UpdateSpaceClassDataType extends S.Literal("SpaceClass") {}
 
-export class UpdateSpaceClassAttributes extends S.Class<UpdateSpaceClassAttributes>("UpdateSpaceClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSpaceCategoryDataType extends S.Literal("SpaceCategory") {}
-
-export class CreateSpaceCategoryAttributes extends S.Class<CreateSpaceCategoryAttributes>("CreateSpaceCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateSpaceCategoryDataType extends S.Literal("SpaceCategory") {}
 
-export class UpdateSpaceCategoryAttributes extends S.Class<UpdateSpaceCategoryAttributes>("UpdateSpaceCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSpaceGroupTypeDataType extends S.Literal("SpaceGroupType") {}
-
-export class CreateSpaceGroupTypeAttributes extends S.Class<CreateSpaceGroupTypeAttributes>("CreateSpaceGroupTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3095,23 +2386,10 @@ export class CreateBucketTypeRefType extends S.Literal("BucketType") {}
 */
 export class UpdateSpaceGroupTypeDataType extends S.Literal("SpaceGroupType") {}
 
-export class UpdateSpaceGroupTypeAttributes extends S.Class<UpdateSpaceGroupTypeAttributes>("UpdateSpaceGroupTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateBucketTypeDataType extends S.Literal("BucketType") {}
-
-export class CreateBucketTypeAttributes extends S.Class<CreateBucketTypeAttributes>("CreateBucketTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3123,70 +2401,35 @@ export class CreateBucketClassRefType extends S.Literal("BucketClass") {}
 */
 export class UpdateBucketTypeDataType extends S.Literal("BucketType") {}
 
-export class UpdateBucketTypeAttributes extends S.Class<UpdateBucketTypeAttributes>("UpdateBucketTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateBucketClassDataType extends S.Literal("BucketClass") {}
-
-export class CreateBucketClassAttributes extends S.Class<CreateBucketClassAttributes>("CreateBucketClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateBucketClassDataType extends S.Literal("BucketClass") {}
 
-export class UpdateBucketClassAttributes extends S.Class<UpdateBucketClassAttributes>("UpdateBucketClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSpaceGroupDataType extends S.Literal("SpaceGroup") {}
-
-export class CreateSpaceGroupAttributes extends S.Class<CreateSpaceGroupAttributes>("CreateSpaceGroupAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateSpaceGroupDataType extends S.Literal("SpaceGroup") {}
 
-export class UpdateSpaceGroupAttributes extends S.Class<UpdateSpaceGroupAttributes>("UpdateSpaceGroupAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateCurrencyDataType extends S.Literal("Currency") {}
 
-export class CreateCurrencyAttributes extends S.Class<CreateCurrencyAttributes>("CreateCurrencyAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "iso": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateCurrencyDataType extends S.Literal("Currency") {}
-
-export class UpdateCurrencyAttributes extends S.Class<UpdateCurrencyAttributes>("UpdateCurrencyAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "iso": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3211,83 +2454,35 @@ export class CreateCountryRefType extends S.Literal("Country") {}
 */
 export class UpdateAddressDataType extends S.Literal("Address") {}
 
-export class UpdateAddressAttributes extends S.Class<UpdateAddressAttributes>("UpdateAddressAttributes")({
-  "streetAddress": S.optionalWith(S.String, { nullable: true }),
-  "streetAddress2": S.optionalWith(S.String, { nullable: true }),
-  "city": S.optionalWith(S.String, { nullable: true }),
-  "state": S.optionalWith(S.String, { nullable: true }),
-  "postal": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateCountryDataType extends S.Literal("Country") {}
-
-export class CreateCountryAttributes extends S.Class<CreateCountryAttributes>("CreateCountryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "callingCode": S.optionalWith(S.String, { nullable: true }),
-  "iso2": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateCountryDataType extends S.Literal("Country") {}
 
-export class UpdateCountryAttributes extends S.Class<UpdateCountryAttributes>("UpdateCountryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "callingCode": S.optionalWith(S.String, { nullable: true }),
-  "iso2": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateFileProcessDataType extends S.Literal("FileProcess") {}
-
-export class CreateFileProcessAttributesProvider extends S.Literal("TRANSLOADIT") {}
-
-export class CreateFileProcessAttributesType extends S.Literal("CONVERSION", "DATA_EXTRACTION") {}
-
-export class CreateFileProcessAttributesStatus extends S.Literal("QUEUED", "PROCESSING", "PAUSED", "COMPLETED", "FAILED") {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateFileProcessDataType extends S.Literal("FileProcess") {}
 
-export class UpdateFileProcessAttributesProvider extends S.Literal("TRANSLOADIT") {}
-
-export class UpdateFileProcessAttributesType extends S.Literal("CONVERSION", "DATA_EXTRACTION") {}
-
-export class UpdateFileProcessAttributesStatus extends S.Literal("QUEUED", "PROCESSING", "PAUSED", "COMPLETED", "FAILED") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDocumentDataType extends S.Literal("Document") {}
 
-export class CreateDocumentAttributes extends S.Class<CreateDocumentAttributes>("CreateDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateDocumentDataType extends S.Literal("Document") {}
-
-export class UpdateDocumentAttributes extends S.Class<UpdateDocumentAttributes>("UpdateDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3357,102 +2552,25 @@ export class CreateThirdPartyImpactRefType extends S.Literal("ThirdPartyImpact")
 */
 export class UpdateChangeOrderDataType extends S.Literal("ChangeOrder") {}
 
-export class UpdateChangeOrderAttributes extends S.Class<UpdateChangeOrderAttributes>("UpdateChangeOrderAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemizableFinancialDocumentStatsDataType extends S.Literal("ItemizableFinancialDocumentStats") {}
-
-export class CreateItemizableFinancialDocumentStatsAttributes extends S.Class<CreateItemizableFinancialDocumentStatsAttributes>("CreateItemizableFinancialDocumentStatsAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedCount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyItemized": S.optionalWith(S.Boolean, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "isItemizationComplete": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemizableFinancialDocumentStatsDataType extends S.Literal("ItemizableFinancialDocumentStats") {}
 
-export class UpdateItemizableFinancialDocumentStatsAttributes extends S.Class<UpdateItemizableFinancialDocumentStatsAttributes>("UpdateItemizableFinancialDocumentStatsAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedCount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemizedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyItemized": S.optionalWith(S.Boolean, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "isItemizationComplete": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemizableFinancialDocumentDataType extends S.Literal("ItemizableFinancialDocument") {}
 
-export class CreateItemizableFinancialDocumentAttributes extends S.Class<CreateItemizableFinancialDocumentAttributes>("CreateItemizableFinancialDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemizableFinancialDocumentDataType extends S.Literal("ItemizableFinancialDocument") {}
-
-export class UpdateItemizableFinancialDocumentAttributes extends S.Class<UpdateItemizableFinancialDocumentAttributes>("UpdateItemizableFinancialDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3501,29 +2619,6 @@ export class CreateServiceTaskEstimateRefType extends S.Literal("ServiceTaskEsti
 * The type of the referenced entity.
 */
 export class UpdateEstimateDataType extends S.Literal("Estimate") {}
-
-export class UpdateEstimateAttributes extends S.Class<UpdateEstimateAttributes>("UpdateEstimateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "currentAmount": S.optionalWith(S.Number, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3616,50 +2711,15 @@ export class CreateServiceTaskInvoiceRefType extends S.Literal("ServiceTaskInvoi
 */
 export class UpdateServiceDataType extends S.Literal("Service") {}
 
-export class UpdateServiceAttributes extends S.Class<UpdateServiceAttributes>("UpdateServiceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-  "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-  "paidLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-  "estimatedLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateEntrySourceMetadataDataType extends S.Literal("EntrySourceMetadata") {}
 
-export class CreateEntrySourceMetadataAttributesEntrySourceType extends S.Literal("ITEM", "ITEM_IMPACT", "SERVICE", "SERVICE_TASK", "THIRD_PARTY_IMPACT") {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateEntrySourceMetadataDataType extends S.Literal("EntrySourceMetadata") {}
-
-export class UpdateEntrySourceMetadataAttributesEntrySourceType extends S.Literal("ITEM", "ITEM_IMPACT", "SERVICE", "SERVICE_TASK", "THIRD_PARTY_IMPACT") {}
 
 /**
 * The type of the referenced entity.
@@ -3680,23 +2740,10 @@ export class CreateEntrySourceAttributes extends S.Class<CreateEntrySourceAttrib
 */
 export class UpdateEntrySourceDataType extends S.Literal("EntrySource") {}
 
-export class UpdateEntrySourceAttributes extends S.Class<UpdateEntrySourceAttributes>("UpdateEntrySourceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemImpactDataType extends S.Literal("ItemImpact") {}
-
-export class CreateItemImpactAttributesConditionAtImpact extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
-
-export class CreateItemImpactAttributesItemQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
 
 /**
 * The type of the referenced entity.
@@ -3708,18 +2755,10 @@ export class CreateItemTypeRefType extends S.Literal("ItemType") {}
 */
 export class UpdateItemImpactDataType extends S.Literal("ItemImpact") {}
 
-export class UpdateItemImpactAttributesConditionAtImpact extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
-
-export class UpdateItemImpactAttributesItemQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateEntryDataType extends S.Literal("Entry") {}
-
-export class CreateEntryAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
-export class CreateEntryAttributesSubmissionStatus extends S.Literal("NOT_SUBMITTED", "SUBMITTED", "REVISED") {}
 
 /**
 * The type of the referenced entity.
@@ -3740,10 +2779,6 @@ export class CreateClaimRefType extends S.Literal("Claim") {}
 * The type of the referenced entity.
 */
 export class UpdateEntryDataType extends S.Literal("Entry") {}
-
-export class UpdateEntryAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
-export class UpdateEntryAttributesSubmissionStatus extends S.Literal("NOT_SUBMITTED", "SUBMITTED", "REVISED") {}
 
 /**
 * The type of the referenced entity.
@@ -3767,14 +2802,10 @@ export class CreateBucketFundingRefType extends S.Literal("BucketFunding") {}
 */
 export class UpdateBaseBucketDataType extends S.Literal("BaseBucket") {}
 
-export class UpdateBaseBucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateBucketDataType extends S.Literal("Bucket") {}
-
-export class CreateBucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
 /**
 * The type of the referenced entity.
@@ -3796,8 +2827,6 @@ export class CreateClaimDeductibleRefType extends S.Literal("ClaimDeductible") {
 */
 export class UpdateBucketDataType extends S.Literal("Bucket") {}
 
-export class UpdateBucketAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
 /**
 * The type of the referenced entity.
 */
@@ -3813,17 +2842,10 @@ export class CreateFundingSourceAttributes extends S.Class<CreateFundingSourceAt
 */
 export class UpdateFundingSourceDataType extends S.Literal("FundingSource") {}
 
-export class UpdateFundingSourceAttributes extends S.Class<UpdateFundingSourceAttributes>("UpdateFundingSourceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateClaimDataType extends S.Literal("Claim") {}
-
-export class CreateClaimAttributesStatus extends S.Literal("OPEN", "CLOSED") {}
 
 /**
 * The type of the referenced entity.
@@ -3835,43 +2857,15 @@ export class CreatePolicyTermRefType extends S.Literal("PolicyTerm") {}
 */
 export class UpdateClaimDataType extends S.Literal("Claim") {}
 
-export class UpdateClaimAttributesStatus extends S.Literal("OPEN", "CLOSED") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateFundingDataType extends S.Literal("Funding") {}
 
-export class CreateFundingAttributes extends S.Class<CreateFundingAttributes>("CreateFundingAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "isAllocated": S.optionalWith(S.Boolean, { nullable: true }),
-  "allocatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "allocatedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAllocated": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateFundingDataType extends S.Literal("Funding") {}
-
-export class UpdateFundingAttributes extends S.Class<UpdateFundingAttributes>("UpdateFundingAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "isAllocated": S.optionalWith(S.Boolean, { nullable: true }),
-  "allocatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "allocatedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAllocated": S.optionalWith(S.Boolean, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3888,11 +2882,6 @@ export class CreateBucketFundingAttributes extends S.Class<CreateBucketFundingAt
 */
 export class UpdateBucketFundingDataType extends S.Literal("BucketFunding") {}
 
-export class UpdateBucketFundingAttributes extends S.Class<UpdateBucketFundingAttributes>("UpdateBucketFundingAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -3904,8 +2893,6 @@ export class CreateClaimTargetAttributesLossSettlementType extends S.Literal("AC
 * The type of the referenced entity.
 */
 export class UpdateClaimTargetDataType extends S.Literal("ClaimTarget") {}
-
-export class UpdateClaimTargetAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
 /**
 * The type of the referenced entity.
@@ -3929,29 +2916,15 @@ export class CreatePolicyTemplateRefType extends S.Literal("PolicyTemplate") {}
 */
 export class UpdatePolicyTermDataType extends S.Literal("PolicyTerm") {}
 
-export class UpdatePolicyTermAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateProviderDataType extends S.Literal("Provider") {}
 
-export class CreateProviderAttributes extends S.Class<CreateProviderAttributes>("CreateProviderAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "offerings": S.optionalWith(S.Array(S.Literal("ITEM", "SERVICE", "COVERAGE", "AID")), { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateProviderDataType extends S.Literal("Provider") {}
-
-export class UpdateProviderAttributes extends S.Class<UpdateProviderAttributes>("UpdateProviderAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "offerings": S.optionalWith(S.Array(S.Literal("ITEM", "SERVICE", "COVERAGE", "AID")), { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -3974,17 +2947,6 @@ export class CreateDeductibleAttributes extends S.Class<CreateDeductibleAttribut
 */
 export class UpdateDeductibleDataType extends S.Literal("Deductible") {}
 
-export class UpdateDeductibleAttributes extends S.Class<UpdateDeductibleAttributes>("UpdateDeductibleAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isDeductiblePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-  "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-  "accruedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "accruedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAccrued": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -4006,19 +2968,9 @@ export class CreateSubCoverageRefType extends S.Literal("SubCoverage") {}
 export class UpdateBucketDefinitionDataType extends S.Literal("BucketDefinition") {}
 
 /**
-* Is required if not set in .basis
-*/
-export class UpdateBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
-/**
 * The type of the referenced entity.
 */
 export class CreateCoverageDataType extends S.Literal("Coverage") {}
-
-/**
-* Is required if not set in .basis
-*/
-export class CreateCoverageAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
 /**
 * The type of the referenced entity.
@@ -4046,11 +2998,6 @@ export class CreateEndorsementRefType extends S.Literal("Endorsement") {}
 export class UpdateCoverageDataType extends S.Literal("Coverage") {}
 
 /**
-* Is required if not set in .basis
-*/
-export class UpdateCoverageAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
-/**
 * The type of the referenced entity.
 */
 export class CreateSubBucketDefinitionDataType extends S.Literal("SubBucketDefinition") {}
@@ -4062,14 +3009,10 @@ export class CreateSubBucketDefinitionAttributesLossSettlementType extends S.Lit
 */
 export class UpdateSubBucketDefinitionDataType extends S.Literal("SubBucketDefinition") {}
 
-export class UpdateSubBucketDefinitionAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSubCoverageDataType extends S.Literal("SubCoverage") {}
-
-export class CreateSubCoverageAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
 /**
 * The type of the referenced entity.
@@ -4081,24 +3024,10 @@ export class CreateSubCoverageTemplateRefType extends S.Literal("SubCoverageTemp
 */
 export class UpdateSubCoverageDataType extends S.Literal("SubCoverage") {}
 
-export class UpdateSubCoverageAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSubBucketDataType extends S.Literal("SubBucket") {}
-
-export class CreateSubBucketAttributes extends S.Class<CreateSubBucketAttributes>("CreateSubBucketAttributes")({
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4110,52 +3039,20 @@ export class CreateBaseSubBucketMetadataRefType extends S.Literal("BaseSubBucket
 */
 export class UpdateSubBucketDataType extends S.Literal("SubBucket") {}
 
-export class UpdateSubBucketAttributes extends S.Class<UpdateSubBucketAttributes>("UpdateSubBucketAttributes")({
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateBaseSubBucketMetadataDataType extends S.Literal("BaseSubBucketMetadata") {}
-
-export class CreateBaseSubBucketMetadataAttributes extends S.Class<CreateBaseSubBucketMetadataAttributes>("CreateBaseSubBucketMetadataAttributes")({
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateBaseSubBucketMetadataDataType extends S.Literal("BaseSubBucketMetadata") {}
 
-export class UpdateBaseSubBucketMetadataAttributes extends S.Class<UpdateBaseSubBucketMetadataAttributes>("UpdateBaseSubBucketMetadataAttributes")({
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateSubCoverageTemplateDataType extends S.Literal("SubCoverageTemplate") {}
-
-export class CreateSubCoverageTemplateAttributes extends S.Class<CreateSubCoverageTemplateAttributes>("CreateSubCoverageTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4167,22 +3064,10 @@ export class CreateEndorsementTemplateRefType extends S.Literal("EndorsementTemp
 */
 export class UpdateSubCoverageTemplateDataType extends S.Literal("SubCoverageTemplate") {}
 
-export class UpdateSubCoverageTemplateAttributes extends S.Class<UpdateSubCoverageTemplateAttributes>("UpdateSubCoverageTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateCoverageTemplateDataType extends S.Literal("CoverageTemplate") {}
-
-export class CreateCoverageTemplateAttributes extends S.Class<CreateCoverageTemplateAttributes>("CreateCoverageTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4194,71 +3079,35 @@ export class CreateCoverageGroupTemplateRefType extends S.Literal("CoverageGroup
 */
 export class UpdateCoverageTemplateDataType extends S.Literal("CoverageTemplate") {}
 
-export class UpdateCoverageTemplateAttributes extends S.Class<UpdateCoverageTemplateAttributes>("UpdateCoverageTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateCoverageGroupTemplateDataType extends S.Literal("CoverageGroupTemplate") {}
-
-export class CreateCoverageGroupTemplateAttributes extends S.Class<CreateCoverageGroupTemplateAttributes>("CreateCoverageGroupTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateCoverageGroupTemplateDataType extends S.Literal("CoverageGroupTemplate") {}
 
-export class UpdateCoverageGroupTemplateAttributes extends S.Class<UpdateCoverageGroupTemplateAttributes>("UpdateCoverageGroupTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreatePerilDataType extends S.Literal("Peril") {}
-
-export class CreatePerilAttributes extends S.Class<CreatePerilAttributes>("CreatePerilAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdatePerilDataType extends S.Literal("Peril") {}
 
-export class UpdatePerilAttributes extends S.Class<UpdatePerilAttributes>("UpdatePerilAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateEndorsementTemplateDataType extends S.Literal("EndorsementTemplate") {}
 
-export class CreateEndorsementTemplateAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {}
-
-export class CreateEndorsementTemplateAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateEndorsementTemplateDataType extends S.Literal("EndorsementTemplate") {}
-
-export class UpdateEndorsementTemplateAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {}
-
-export class UpdateEndorsementTemplateAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
 /**
 * The type of the referenced entity.
@@ -4273,10 +3122,6 @@ export class CreateEndorsementAttributesLossSettlementType extends S.Literal("AC
 * The type of the referenced entity.
 */
 export class UpdateEndorsementDataType extends S.Literal("Endorsement") {}
-
-export class UpdateEndorsementAttributesEffect extends S.Literal("COVERAGE", "ADJUSTMENT", "PERIL", "LOSS_SETTLEMENT_TYPE", "OTHER") {}
-
-export class UpdateEndorsementAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "REPLACEMENT_COST_VALUE", "AGREED_VALUE", "FUNCTIONAL_REPLACEMENT_COST", "STATED_AMOUNT", "GUARANTEED_REPLACEMENT_COST", "EXTENDED_REPLACEMENT_COST", "MARKET_VALUE") {}
 
 /**
 * The type of the referenced entity.
@@ -4293,88 +3138,40 @@ export class UpdateCoverageGroupDataType extends S.Literal("CoverageGroup") {}
 */
 export class CreateClaimDeductibleDataType extends S.Literal("ClaimDeductible") {}
 
-export class CreateClaimDeductibleAttributes extends S.Class<CreateClaimDeductibleAttributes>("CreateClaimDeductibleAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isDeductiblePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-  "accruedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "accruedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAccrued": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateClaimDeductibleDataType extends S.Literal("ClaimDeductible") {}
-
-export class UpdateClaimDeductibleAttributes extends S.Class<UpdateClaimDeductibleAttributes>("UpdateClaimDeductibleAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isDeductiblePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-  "accruedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "accruedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAccrued": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreatePolicyDataType extends S.Literal("Policy") {}
 
-export class CreatePolicyAttributesStatus extends S.Literal("ACTIVE", "CANCELED", "EXPIRED", "UNVERIFIED", "PENDING_ACTIVATION", "PENDING_CANCELLATION", "RESCINDED") {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdatePolicyDataType extends S.Literal("Policy") {}
-
-export class UpdatePolicyAttributesStatus extends S.Literal("ACTIVE", "CANCELED", "EXPIRED", "UNVERIFIED", "PENDING_ACTIVATION", "PENDING_CANCELLATION", "RESCINDED") {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreatePolicyTemplateDataType extends S.Literal("PolicyTemplate") {}
 
-export class CreatePolicyTemplateAttributes extends S.Class<CreatePolicyTemplateAttributes>("CreatePolicyTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdatePolicyTemplateDataType extends S.Literal("PolicyTemplate") {}
-
-export class UpdatePolicyTemplateAttributes extends S.Class<UpdatePolicyTemplateAttributes>("UpdatePolicyTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateBaseBucketMetadataDataType extends S.Literal("BaseBucketMetadata") {}
 
-export class CreateBaseBucketMetadataAttributes extends S.Class<CreateBaseBucketMetadataAttributes>("CreateBaseBucketMetadataAttributes")({
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateBaseBucketMetadataDataType extends S.Literal("BaseBucketMetadata") {}
-
-export class UpdateBaseBucketMetadataAttributes extends S.Class<UpdateBaseBucketMetadataAttributes>("UpdateBaseBucketMetadataAttributes")({
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4397,34 +3194,15 @@ export class CreateBaseSubBucketAttributes extends S.Class<CreateBaseSubBucketAt
 */
 export class UpdateBaseSubBucketDataType extends S.Literal("BaseSubBucket") {}
 
-export class UpdateBaseSubBucketAttributes extends S.Class<UpdateBaseSubBucketAttributes>("UpdateBaseSubBucketAttributes")({
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemAppraisalDataType extends S.Literal("ItemAppraisal") {}
 
-export class CreateItemAppraisalAttributes extends S.Class<CreateItemAppraisalAttributes>("CreateItemAppraisalAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemAppraisalDataType extends S.Literal("ItemAppraisal") {}
-
-export class UpdateItemAppraisalAttributes extends S.Class<UpdateItemAppraisalAttributes>("UpdateItemAppraisalAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4551,33 +3329,15 @@ export class CreateThirdPartyIndividualRefType extends S.Literal("ThirdPartyIndi
 */
 export class UpdateAppraisalDataType extends S.Literal("Appraisal") {}
 
-export class UpdateAppraisalAttributes extends S.Class<UpdateAppraisalAttributes>("UpdateAppraisalAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.String, { nullable: true }),
-  "lineCount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateAppraisalLineDataType extends S.Literal("AppraisalLine") {}
 
-export class CreateAppraisalLineAttributes extends S.Class<CreateAppraisalLineAttributes>("CreateAppraisalLineAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateAppraisalLineDataType extends S.Literal("AppraisalLine") {}
-
-export class UpdateAppraisalLineAttributes extends S.Class<UpdateAppraisalLineAttributes>("UpdateAppraisalLineAttributes")({
-  "amount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4594,36 +3354,10 @@ export class UpdateBaseEntityDataType extends S.Literal("BaseEntity") {}
 */
 export class CreateInvoiceDataType extends S.Literal("Invoice") {}
 
-export class CreateInvoiceAttributes extends S.Class<CreateInvoiceAttributes>("CreateInvoiceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateInvoiceDataType extends S.Literal("Invoice") {}
-
-export class UpdateInvoiceAttributes extends S.Class<UpdateInvoiceAttributes>("UpdateInvoiceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4643,14 +3377,6 @@ export class CreateInvoiceLineAttributes extends S.Class<CreateInvoiceLineAttrib
 */
 export class UpdateInvoiceLineDataType extends S.Literal("InvoiceLine") {}
 
-export class UpdateInvoiceLineAttributes extends S.Class<UpdateInvoiceLineAttributes>("UpdateInvoiceLineAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -4662,8 +3388,6 @@ export class CreateItemInvoiceAttributesPurpose extends S.Literal("PURCHASE", "B
 * The type of the referenced entity.
 */
 export class UpdateItemInvoiceDataType extends S.Literal("ItemInvoice") {}
-
-export class UpdateItemInvoiceAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {}
 
 /**
 * The type of the referenced entity.
@@ -4679,197 +3403,85 @@ export class CreateItemAttributesCondition extends S.Literal("NEW", "EXCELLENT",
 */
 export class UpdateItemDataType extends S.Literal("Item") {}
 
-export class UpdateItemAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
-
-export class UpdateItemAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemTypeDataType extends S.Literal("ItemType") {}
-
-export class CreateItemTypeAttributes extends S.Class<CreateItemTypeAttributes>("CreateItemTypeAttributes")({
-  "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemTypeDataType extends S.Literal("ItemType") {}
 
-export class UpdateItemTypeAttributes extends S.Class<UpdateItemTypeAttributes>("UpdateItemTypeAttributes")({
-  "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDepreciationModifierDataType extends S.Literal("DepreciationModifier") {}
-
-export class CreateDepreciationModifierAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
-
-export class CreateDepreciationModifierAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateDepreciationModifierDataType extends S.Literal("DepreciationModifier") {}
 
-export class UpdateDepreciationModifierAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
-
-export class UpdateDepreciationModifierAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDepreciationScheduleDataType extends S.Literal("DepreciationSchedule") {}
-
-export class CreateDepreciationScheduleAttributes extends S.Class<CreateDepreciationScheduleAttributes>("CreateDepreciationScheduleAttributes")({
-  "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateDepreciationScheduleDataType extends S.Literal("DepreciationSchedule") {}
 
-export class UpdateDepreciationScheduleAttributes extends S.Class<UpdateDepreciationScheduleAttributes>("UpdateDepreciationScheduleAttributes")({
-  "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDepreciationOverrideDataType extends S.Literal("DepreciationOverride") {}
-
-export class CreateDepreciationOverrideAttributes extends S.Class<CreateDepreciationOverrideAttributes>("CreateDepreciationOverrideAttributes")({
-  "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "valuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateDepreciationOverrideDataType extends S.Literal("DepreciationOverride") {}
 
-export class UpdateDepreciationOverrideAttributes extends S.Class<UpdateDepreciationOverrideAttributes>("UpdateDepreciationOverrideAttributes")({
-  "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "valuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemClassDataType extends S.Literal("ItemClass") {}
-
-export class CreateItemClassAttributes extends S.Class<CreateItemClassAttributes>("CreateItemClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemClassDataType extends S.Literal("ItemClass") {}
 
-export class UpdateItemClassAttributes extends S.Class<UpdateItemClassAttributes>("UpdateItemClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemCategoryDataType extends S.Literal("ItemCategory") {}
-
-export class CreateItemCategoryAttributes extends S.Class<CreateItemCategoryAttributes>("CreateItemCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemCategoryDataType extends S.Literal("ItemCategory") {}
 
-export class UpdateItemCategoryAttributes extends S.Class<UpdateItemCategoryAttributes>("UpdateItemCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreatePaymentDataType extends S.Literal("Payment") {}
-
-export class CreatePaymentAttributes extends S.Class<CreatePaymentAttributes>("CreatePaymentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdatePaymentDataType extends S.Literal("Payment") {}
 
-export class UpdatePaymentAttributes extends S.Class<UpdatePaymentAttributes>("UpdatePaymentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreatePaymentLineDataType extends S.Literal("PaymentLine") {}
 
-export class CreatePaymentLineAttributes extends S.Class<CreatePaymentLineAttributes>("CreatePaymentLineAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdatePaymentLineDataType extends S.Literal("PaymentLine") {}
-
-export class UpdatePaymentLineAttributes extends S.Class<UpdatePaymentLineAttributes>("UpdatePaymentLineAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4883,59 +3495,25 @@ export class CreateItemPaymentAttributesPurpose extends S.Literal("PURCHASE", "B
 */
 export class UpdateItemPaymentDataType extends S.Literal("ItemPayment") {}
 
-export class UpdateItemPaymentAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemImpactPaymentDataType extends S.Literal("ItemImpactPayment") {}
-
-export class CreateItemImpactPaymentAttributes extends S.Class<CreateItemImpactPaymentAttributes>("CreateItemImpactPaymentAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemImpactPaymentDataType extends S.Literal("ItemImpactPayment") {}
 
-export class UpdateItemImpactPaymentAttributes extends S.Class<UpdateItemImpactPaymentAttributes>("UpdateItemImpactPaymentAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateServiceTaskPaymentDataType extends S.Literal("ServiceTaskPayment") {}
 
-export class CreateServiceTaskPaymentAttributes extends S.Class<CreateServiceTaskPaymentAttributes>("CreateServiceTaskPaymentAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateServiceTaskPaymentDataType extends S.Literal("ServiceTaskPayment") {}
-
-export class UpdateServiceTaskPaymentAttributes extends S.Class<UpdateServiceTaskPaymentAttributes>("UpdateServiceTaskPaymentAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -4975,475 +3553,175 @@ export class CreateServiceTaskAttributes extends S.Class<CreateServiceTaskAttrib
 */
 export class UpdateServiceTaskDataType extends S.Literal("ServiceTask") {}
 
-export class UpdateServiceTaskAttributes extends S.Class<UpdateServiceTaskAttributes>("UpdateServiceTaskAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-  "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemImpactInvoiceDataType extends S.Literal("ItemImpactInvoice") {}
-
-export class CreateItemImpactInvoiceAttributes extends S.Class<CreateItemImpactInvoiceAttributes>("CreateItemImpactInvoiceAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemImpactInvoiceDataType extends S.Literal("ItemImpactInvoice") {}
 
-export class UpdateItemImpactInvoiceAttributes extends S.Class<UpdateItemImpactInvoiceAttributes>("UpdateItemImpactInvoiceAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateServiceTaskInvoiceDataType extends S.Literal("ServiceTaskInvoice") {}
-
-export class CreateServiceTaskInvoiceAttributes extends S.Class<CreateServiceTaskInvoiceAttributes>("CreateServiceTaskInvoiceAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateServiceTaskInvoiceDataType extends S.Literal("ServiceTaskInvoice") {}
 
-export class UpdateServiceTaskInvoiceAttributes extends S.Class<UpdateServiceTaskInvoiceAttributes>("UpdateServiceTaskInvoiceAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateIncidentReportDataType extends S.Literal("IncidentReport") {}
-
-export class CreateIncidentReportAttributes extends S.Class<CreateIncidentReportAttributes>("CreateIncidentReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateIncidentReportDataType extends S.Literal("IncidentReport") {}
 
-export class UpdateIncidentReportAttributes extends S.Class<UpdateIncidentReportAttributes>("UpdateIncidentReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreatePoliceReportDataType extends S.Literal("PoliceReport") {}
-
-export class CreatePoliceReportAttributes extends S.Class<CreatePoliceReportAttributes>("CreatePoliceReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdatePoliceReportDataType extends S.Literal("PoliceReport") {}
 
-export class UpdatePoliceReportAttributes extends S.Class<UpdatePoliceReportAttributes>("UpdatePoliceReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateParamedicReportDataType extends S.Literal("ParamedicReport") {}
-
-export class CreateParamedicReportAttributes extends S.Class<CreateParamedicReportAttributes>("CreateParamedicReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateParamedicReportDataType extends S.Literal("ParamedicReport") {}
 
-export class UpdateParamedicReportAttributes extends S.Class<UpdateParamedicReportAttributes>("UpdateParamedicReportAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateContractDataType extends S.Literal("Contract") {}
-
-export class CreateContractAttributes extends S.Class<CreateContractAttributes>("CreateContractAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateContractDataType extends S.Literal("Contract") {}
 
-export class UpdateContractAttributes extends S.Class<UpdateContractAttributes>("UpdateContractAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateRentRollDataType extends S.Literal("RentRoll") {}
-
-export class CreateRentRollAttributes extends S.Class<CreateRentRollAttributes>("CreateRentRollAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateRentRollDataType extends S.Literal("RentRoll") {}
 
-export class UpdateRentRollAttributes extends S.Class<UpdateRentRollAttributes>("UpdateRentRollAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreatePermitDataType extends S.Literal("Permit") {}
-
-export class CreatePermitAttributes extends S.Class<CreatePermitAttributes>("CreatePermitAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdatePermitDataType extends S.Literal("Permit") {}
 
-export class UpdatePermitAttributes extends S.Class<UpdatePermitAttributes>("UpdatePermitAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateBlueprintDataType extends S.Literal("Blueprint") {}
-
-export class CreateBlueprintAttributes extends S.Class<CreateBlueprintAttributes>("CreateBlueprintAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateBlueprintDataType extends S.Literal("Blueprint") {}
 
-export class UpdateBlueprintAttributes extends S.Class<UpdateBlueprintAttributes>("UpdateBlueprintAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDeclarationsPageDataType extends S.Literal("DeclarationsPage") {}
-
-export class CreateDeclarationsPageAttributes extends S.Class<CreateDeclarationsPageAttributes>("CreateDeclarationsPageAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateDeclarationsPageDataType extends S.Literal("DeclarationsPage") {}
 
-export class UpdateDeclarationsPageAttributes extends S.Class<UpdateDeclarationsPageAttributes>("UpdateDeclarationsPageAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreatePolicyJacketDataType extends S.Literal("PolicyJacket") {}
-
-export class CreatePolicyJacketAttributes extends S.Class<CreatePolicyJacketAttributes>("CreatePolicyJacketAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdatePolicyJacketDataType extends S.Literal("PolicyJacket") {}
 
-export class UpdatePolicyJacketAttributes extends S.Class<UpdatePolicyJacketAttributes>("UpdatePolicyJacketAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateScopeOfLossDataType extends S.Literal("ScopeOfLoss") {}
-
-export class CreateScopeOfLossAttributes extends S.Class<CreateScopeOfLossAttributes>("CreateScopeOfLossAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateScopeOfLossDataType extends S.Literal("ScopeOfLoss") {}
 
-export class UpdateScopeOfLossAttributes extends S.Class<UpdateScopeOfLossAttributes>("UpdateScopeOfLossAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDeliveryPaperworkDataType extends S.Literal("DeliveryPaperwork") {}
-
-export class CreateDeliveryPaperworkAttributes extends S.Class<CreateDeliveryPaperworkAttributes>("CreateDeliveryPaperworkAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateDeliveryPaperworkDataType extends S.Literal("DeliveryPaperwork") {}
 
-export class UpdateDeliveryPaperworkAttributes extends S.Class<UpdateDeliveryPaperworkAttributes>("UpdateDeliveryPaperworkAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateProductSpecDataType extends S.Literal("ProductSpec") {}
-
-export class CreateProductSpecAttributes extends S.Class<CreateProductSpecAttributes>("CreateProductSpecAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateProductSpecDataType extends S.Literal("ProductSpec") {}
 
-export class UpdateProductSpecAttributes extends S.Class<UpdateProductSpecAttributes>("UpdateProductSpecAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateUserManualDataType extends S.Literal("UserManual") {}
-
-export class CreateUserManualAttributes extends S.Class<CreateUserManualAttributes>("CreateUserManualAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateUserManualDataType extends S.Literal("UserManual") {}
 
-export class UpdateUserManualAttributes extends S.Class<UpdateUserManualAttributes>("UpdateUserManualAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateWarrantyDataType extends S.Literal("Warranty") {}
-
-export class CreateWarrantyAttributes extends S.Class<CreateWarrantyAttributes>("CreateWarrantyAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateWarrantyDataType extends S.Literal("Warranty") {}
 
-export class UpdateWarrantyAttributes extends S.Class<UpdateWarrantyAttributes>("UpdateWarrantyAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateDeedDataType extends S.Literal("Deed") {}
 
-export class CreateDeedAttributes extends S.Class<CreateDeedAttributes>("CreateDeedAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateDeedDataType extends S.Literal("Deed") {}
-
-export class UpdateDeedAttributes extends S.Class<UpdateDeedAttributes>("UpdateDeedAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -5457,8 +3735,6 @@ export class CreateItemChangeOrderAttributesPurpose extends S.Literal("PURCHASE"
 */
 export class UpdateItemChangeOrderDataType extends S.Literal("ItemChangeOrder") {}
 
-export class UpdateItemChangeOrderAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {}
-
 /**
 * The type of the referenced entity.
 */
@@ -5470,8 +3746,6 @@ export class CreateItemEstimateAttributesPurpose extends S.Literal("PURCHASE", "
 * The type of the referenced entity.
 */
 export class UpdateItemEstimateDataType extends S.Literal("ItemEstimate") {}
-
-export class UpdateItemEstimateAttributesPurpose extends S.Literal("PURCHASE", "BUILD", "SOURCING", "REPAIR", "MODIFICATION", "RELOCATION", "REMOVAL", "MAINTENANCE", "INSPECTION", "APPRAISAL") {}
 
 /**
 * The type of the referenced entity.
@@ -5491,162 +3765,20 @@ export class CreateChangeOrderLineAttributes extends S.Class<CreateChangeOrderLi
 */
 export class UpdateChangeOrderLineDataType extends S.Literal("ChangeOrderLine") {}
 
-export class UpdateChangeOrderLineAttributes extends S.Class<UpdateChangeOrderLineAttributes>("UpdateChangeOrderLineAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemImpactChangeOrderDataType extends S.Literal("ItemImpactChangeOrder") {}
-
-export class CreateItemImpactChangeOrderAttributes extends S.Class<CreateItemImpactChangeOrderAttributes>("CreateItemImpactChangeOrderAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemImpactChangeOrderDataType extends S.Literal("ItemImpactChangeOrder") {}
 
-export class UpdateItemImpactChangeOrderAttributes extends S.Class<UpdateItemImpactChangeOrderAttributes>("UpdateItemImpactChangeOrderAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateItemImpactEstimateDataType extends S.Literal("ItemImpactEstimate") {}
-
-export class CreateItemImpactEstimateAttributes extends S.Class<CreateItemImpactEstimateAttributes>("CreateItemImpactEstimateAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class UpdateItemImpactEstimateDataType extends S.Literal("ItemImpactEstimate") {}
-
-export class UpdateItemImpactEstimateAttributes extends S.Class<UpdateItemImpactEstimateAttributes>("UpdateItemImpactEstimateAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {}
-
-export class CreateServiceTaskChangeOrderAttributes extends S.Class<CreateServiceTaskChangeOrderAttributes>("CreateServiceTaskChangeOrderAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {}
-
-export class UpdateServiceTaskChangeOrderAttributes extends S.Class<UpdateServiceTaskChangeOrderAttributes>("UpdateServiceTaskChangeOrderAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class CreateServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {}
-
-export class CreateServiceTaskEstimateAttributes extends S.Class<CreateServiceTaskEstimateAttributes>("CreateServiceTaskEstimateAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.Number,
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class UpdateServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {}
-
-export class UpdateServiceTaskEstimateAttributes extends S.Class<UpdateServiceTaskEstimateAttributes>("UpdateServiceTaskEstimateAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-/**
-* The type of the referenced entity.
-*/
-export class CreateEstimateLineDataType extends S.Literal("EstimateLine") {}
 
 export class CreateEstimateLineAttributes extends S.Class<CreateEstimateLineAttributes>("CreateEstimateLineAttributes")({
   "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
@@ -5669,279 +3801,157 @@ export class CreateEstimateLineAttributes extends S.Class<CreateEstimateLineAttr
 /**
 * The type of the referenced entity.
 */
-export class UpdateEstimateLineDataType extends S.Literal("EstimateLine") {}
+export class UpdateItemImpactEstimateDataType extends S.Literal("ItemImpactEstimate") {}
 
-export class UpdateEstimateLineAttributes extends S.Class<UpdateEstimateLineAttributes>("UpdateEstimateLineAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
-}) {}
+/**
+* The type of the referenced entity.
+*/
+export class CreateServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {}
+
+/**
+* The type of the referenced entity.
+*/
+export class UpdateServiceTaskChangeOrderDataType extends S.Literal("ServiceTaskChangeOrder") {}
+
+/**
+* The type of the referenced entity.
+*/
+export class CreateServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {}
+
+/**
+* The type of the referenced entity.
+*/
+export class UpdateServiceTaskEstimateDataType extends S.Literal("ServiceTaskEstimate") {}
+
+/**
+* The type of the referenced entity.
+*/
+export class CreateEstimateLineDataType extends S.Literal("EstimateLine") {}
+
+/**
+* The type of the referenced entity.
+*/
+export class UpdateEstimateLineDataType extends S.Literal("EstimateLine") {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateDisasterDataType extends S.Literal("Disaster") {}
 
-export class CreateDisasterAttributes extends S.Class<CreateDisasterAttributes>("CreateDisasterAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateDisasterDataType extends S.Literal("Disaster") {}
-
-export class UpdateDisasterAttributes extends S.Class<UpdateDisasterAttributes>("UpdateDisasterAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateIncidentTypeDataType extends S.Literal("IncidentType") {}
 
-export class CreateIncidentTypeAttributes extends S.Class<CreateIncidentTypeAttributes>("CreateIncidentTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateIncidentTypeDataType extends S.Literal("IncidentType") {}
-
-export class UpdateIncidentTypeAttributes extends S.Class<UpdateIncidentTypeAttributes>("UpdateIncidentTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateIncidentClassDataType extends S.Literal("IncidentClass") {}
 
-export class CreateIncidentClassAttributes extends S.Class<CreateIncidentClassAttributes>("CreateIncidentClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateIncidentClassDataType extends S.Literal("IncidentClass") {}
-
-export class UpdateIncidentClassAttributes extends S.Class<UpdateIncidentClassAttributes>("UpdateIncidentClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateAssetAttributeTypeItemTemplateDataType extends S.Literal("AssetAttributeTypeItemTemplate") {}
 
-export class CreateAssetAttributeTypeItemTemplateAttributes extends S.Class<CreateAssetAttributeTypeItemTemplateAttributes>("CreateAssetAttributeTypeItemTemplateAttributes")({
-  "quantity": S.optionalWith(S.Number, { nullable: true }),
-  "likelihood": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateAssetAttributeTypeItemTemplateDataType extends S.Literal("AssetAttributeTypeItemTemplate") {}
-
-export class UpdateAssetAttributeTypeItemTemplateAttributes extends S.Class<UpdateAssetAttributeTypeItemTemplateAttributes>("UpdateAssetAttributeTypeItemTemplateAttributes")({
-  "quantity": S.optionalWith(S.Number, { nullable: true }),
-  "likelihood": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateAssetAttributeTypeDataType extends S.Literal("AssetAttributeType") {}
 
-export class CreateAssetAttributeTypeAttributes extends S.Class<CreateAssetAttributeTypeAttributes>("CreateAssetAttributeTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "question": S.optionalWith(S.String, { nullable: true }),
-  "maxMagnitude": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateAssetAttributeTypeDataType extends S.Literal("AssetAttributeType") {}
-
-export class UpdateAssetAttributeTypeAttributes extends S.Class<UpdateAssetAttributeTypeAttributes>("UpdateAssetAttributeTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "question": S.optionalWith(S.String, { nullable: true }),
-  "maxMagnitude": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateAssetAttributeClassDataType extends S.Literal("AssetAttributeClass") {}
 
-export class CreateAssetAttributeClassAttributes extends S.Class<CreateAssetAttributeClassAttributes>("CreateAssetAttributeClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "question": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateAssetAttributeClassDataType extends S.Literal("AssetAttributeClass") {}
-
-export class UpdateAssetAttributeClassAttributes extends S.Class<UpdateAssetAttributeClassAttributes>("UpdateAssetAttributeClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "question": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateItemTemplateDataType extends S.Literal("ItemTemplate") {}
 
-export class CreateItemTemplateAttributes extends S.Class<CreateItemTemplateAttributes>("CreateItemTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateItemTemplateDataType extends S.Literal("ItemTemplate") {}
-
-export class UpdateItemTemplateAttributes extends S.Class<UpdateItemTemplateAttributes>("UpdateItemTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateSpaceTypeItemTemplateDataType extends S.Literal("SpaceTypeItemTemplate") {}
 
-export class CreateSpaceTypeItemTemplateAttributes extends S.Class<CreateSpaceTypeItemTemplateAttributes>("CreateSpaceTypeItemTemplateAttributes")({
-  "quantity": S.optionalWith(S.Number, { nullable: true }),
-  "likelihood": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateSpaceTypeItemTemplateDataType extends S.Literal("SpaceTypeItemTemplate") {}
-
-export class UpdateSpaceTypeItemTemplateAttributes extends S.Class<UpdateSpaceTypeItemTemplateAttributes>("UpdateSpaceTypeItemTemplateAttributes")({
-  "quantity": S.optionalWith(S.Number, { nullable: true }),
-  "likelihood": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateSubmissionTrackTemplateDataType extends S.Literal("SubmissionTrackTemplate") {}
 
-export class CreateSubmissionTrackTemplateAttributes extends S.Class<CreateSubmissionTrackTemplateAttributes>("CreateSubmissionTrackTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateSubmissionTrackTemplateDataType extends S.Literal("SubmissionTrackTemplate") {}
-
-export class UpdateSubmissionTrackTemplateAttributes extends S.Class<UpdateSubmissionTrackTemplateAttributes>("UpdateSubmissionTrackTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateServiceCategoryDataType extends S.Literal("ServiceCategory") {}
 
-export class CreateServiceCategoryAttributes extends S.Class<CreateServiceCategoryAttributes>("CreateServiceCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateServiceCategoryDataType extends S.Literal("ServiceCategory") {}
-
-export class UpdateServiceCategoryAttributes extends S.Class<UpdateServiceCategoryAttributes>("UpdateServiceCategoryAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateServiceClassDataType extends S.Literal("ServiceClass") {}
 
-export class CreateServiceClassAttributes extends S.Class<CreateServiceClassAttributes>("CreateServiceClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateServiceClassDataType extends S.Literal("ServiceClass") {}
-
-export class UpdateServiceClassAttributes extends S.Class<UpdateServiceClassAttributes>("UpdateServiceClassAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateServiceTypeDataType extends S.Literal("ServiceType") {}
 
-export class CreateServiceTypeAttributes extends S.Class<CreateServiceTypeAttributes>("CreateServiceTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateServiceTypeDataType extends S.Literal("ServiceType") {}
-
-export class UpdateServiceTypeAttributes extends S.Class<UpdateServiceTypeAttributes>("UpdateServiceTypeAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -5959,11 +3969,6 @@ export class CreateAccountInviteAttributesRole extends S.Literal("OWNER", "MANAG
 export class UpdateAccountInviteDataType extends S.Literal("AccountInvite") {}
 
 /**
-* What level of permissions the user has for this account.
-*/
-export class UpdateAccountInviteAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {}
-
-/**
 * The type of the referenced entity.
 */
 export class CreateAuthProfileDataType extends S.Literal("AuthProfile") {}
@@ -5975,33 +3980,15 @@ export class CreateAuthProfileAttributesProvider extends S.Literal("CLERK", "LOG
 */
 export class UpdateAuthProfileDataType extends S.Literal("AuthProfile") {}
 
-export class UpdateAuthProfileAttributesProvider extends S.Literal("CLERK", "LOGTO", "TEST") {}
-
 /**
 * The type of the referenced entity.
 */
 export class CreateEntrySourceMediaDataType extends S.Literal("EntrySourceMedia") {}
 
-export class CreateEntrySourceMediaAttributes extends S.Class<CreateEntrySourceMediaAttributes>("CreateEntrySourceMediaAttributes")({
-  "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "timestamp": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateEntrySourceMediaDataType extends S.Literal("EntrySourceMedia") {}
-
-export class UpdateEntrySourceMediaAttributes extends S.Class<UpdateEntrySourceMediaAttributes>("UpdateEntrySourceMediaAttributes")({
-  "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "timestamp": S.optionalWith(S.Number, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
@@ -6022,15 +4009,6 @@ export class CreateThirdPartyImpactAttributes extends S.Class<CreateThirdPartyIm
 */
 export class UpdateThirdPartyImpactDataType extends S.Literal("ThirdPartyImpact") {}
 
-export class UpdateThirdPartyImpactAttributes extends S.Class<UpdateThirdPartyImpactAttributes>("UpdateThirdPartyImpactAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 /**
 * The type of the referenced entity.
 */
@@ -6046,72 +4024,40 @@ export class UpdateThirdPartyDataType extends S.Literal("ThirdParty") {}
 */
 export class CreateThirdPartyDwellingDataType extends S.Literal("ThirdPartyDwelling") {}
 
-export class CreateThirdPartyDwellingAttributes extends S.Class<CreateThirdPartyDwellingAttributes>("CreateThirdPartyDwellingAttributes")({
-  "streetAddress": S.String,
-  "streetAddress2": S.optionalWith(S.String, { nullable: true }),
-  "city": S.String,
-  "state": S.String,
-  "postal": S.String
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateThirdPartyDwellingDataType extends S.Literal("ThirdPartyDwelling") {}
-
-export class UpdateThirdPartyDwellingAttributes extends S.Class<UpdateThirdPartyDwellingAttributes>("UpdateThirdPartyDwellingAttributes")({
-  "streetAddress": S.optionalWith(S.String, { nullable: true }),
-  "streetAddress2": S.optionalWith(S.String, { nullable: true }),
-  "city": S.optionalWith(S.String, { nullable: true }),
-  "state": S.optionalWith(S.String, { nullable: true }),
-  "postal": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateThirdPartyIndividualDataType extends S.Literal("ThirdPartyIndividual") {}
 
-export class CreateThirdPartyIndividualAttributes extends S.Class<CreateThirdPartyIndividualAttributes>("CreateThirdPartyIndividualAttributes")({
-  "name": S.String
-}) {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateThirdPartyIndividualDataType extends S.Literal("ThirdPartyIndividual") {}
-
-export class UpdateThirdPartyIndividualAttributes extends S.Class<UpdateThirdPartyIndividualAttributes>("UpdateThirdPartyIndividualAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateProjectImpactDataType extends S.Literal("ProjectImpact") {}
 
-export class CreateProjectImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateProjectImpactDataType extends S.Literal("ProjectImpact") {}
-
-export class UpdateProjectImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {}
 
 /**
 * The type of the referenced entity.
 */
 export class CreateIncidentImpactDataType extends S.Literal("IncidentImpact") {}
 
-export class CreateIncidentImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {}
-
 /**
 * The type of the referenced entity.
 */
 export class UpdateIncidentImpactDataType extends S.Literal("IncidentImpact") {}
-
-export class UpdateIncidentImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {}
 
 /**
 * The type of the referenced entity.
@@ -6127,10 +4073,6 @@ export class CreateItemMediaSuggestionAttributesCondition extends S.Literal("NEW
 */
 export class UpdateItemMediaSuggestionDataType extends S.Literal("ItemMediaSuggestion") {}
 
-export class UpdateItemMediaSuggestionAttributesQuality extends S.Literal("BESPOKE", "LUXURY", "MAINSTREAM", "BUDGET", "GENERIC") {}
-
-export class UpdateItemMediaSuggestionAttributesCondition extends S.Literal("NEW", "EXCELLENT", "AVERAGE", "FAIR", "POOR") {}
-
 /**
 * The type of the referenced entity.
 */
@@ -6142,8 +4084,6 @@ export class CreateItemProductSuggestionAttributesSource extends S.Literal("GOOG
 * The type of the referenced entity.
 */
 export class UpdateItemProductSuggestionDataType extends S.Literal("ItemProductSuggestion") {}
-
-export class UpdateItemProductSuggestionAttributesSource extends S.Literal("GOOGLE_SHOPPING", "AMAZON") {}
 
 /**
 * The type of the referenced entity.
@@ -6161,37 +4101,14 @@ export class CreateUserAccountRoleAttributesRole extends S.Literal("OWNER", "MAN
 export class UpdateUserAccountRoleDataType extends S.Literal("UserAccountRole") {}
 
 /**
-* What level of permissions the user has for this account.
-*/
-export class UpdateUserAccountRoleAttributesRole extends S.Literal("OWNER", "MANAGER", "COLLABORATOR") {}
-
-/**
 * The type of the referenced entity.
 */
 export class CreateFinancialDocumentDataType extends S.Literal("FinancialDocument") {}
-
-export class CreateFinancialDocumentAttributes extends S.Class<CreateFinancialDocumentAttributes>("CreateFinancialDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.String
-}) {}
 
 /**
 * The type of the referenced entity.
 */
 export class UpdateFinancialDocumentDataType extends S.Literal("FinancialDocument") {}
-
-export class UpdateFinancialDocumentAttributes extends S.Class<UpdateFinancialDocumentAttributes>("UpdateFinancialDocumentAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "amount": S.optionalWith(S.String, { nullable: true })
-}) {}
 
 export class UserControllerGetUserAccountRolesParams extends S.Struct({
   "include": S.optionalWith(S.String, { nullable: true }),
@@ -6512,8 +4429,8 @@ export class DisasterRef extends S.Class<DisasterRef>("DisasterRef")({
 "type": DisasterRefType
 }) {}
 
-export class ProjectMediaAttributes extends S.Class<ProjectMediaAttributes>("ProjectMediaAttributes")({
-  "stage": S.optionalWith(ProjectMediaAttributesStage, { nullable: true })
+export class CreateProjectMediaAttributes extends S.Class<CreateProjectMediaAttributes>("CreateProjectMediaAttributes")({
+  "stage": S.optionalWith(CreateProjectMediaAttributesStage, { nullable: true })
 }) {}
 
 export class MediaRef extends S.Class<MediaRef>("MediaRef")({
@@ -6527,10 +4444,10 @@ export class MediaRef extends S.Class<MediaRef>("MediaRef")({
 "type": MediaRefType
 }) {}
 
-export class MediaAttributes extends S.Class<MediaAttributes>("MediaAttributes")({
+export class CreateMediaAttributes extends S.Class<CreateMediaAttributes>("CreateMediaAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "note": S.optionalWith(S.String, { nullable: true }),
-  "subjectState": S.optionalWith(MediaAttributesSubjectState, { nullable: true }),
+  "subjectState": S.optionalWith(CreateMediaAttributesSubjectState, { nullable: true }),
   "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
 }) {}
 
@@ -6891,9 +4808,9 @@ export class DocumentClassRef extends S.Class<DocumentClassRef>("DocumentClassRe
 "type": DocumentClassRefType
 }) {}
 
-export class SpaceAttributes extends S.Class<SpaceAttributes>("SpaceAttributes")({
+export class CreateSpaceAttributes extends S.Class<CreateSpaceAttributes>("CreateSpaceAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
-  "use": S.optionalWith(SpaceAttributesUse, { nullable: true })
+  "use": S.optionalWith(CreateSpaceAttributesUse, { nullable: true })
 }) {}
 
 export class SpaceTypeRef extends S.Class<SpaceTypeRef>("SpaceTypeRef")({
@@ -6984,11 +4901,11 @@ export class CountryRef extends S.Class<CountryRef>("CountryRef")({
 "type": CountryRefType
 }) {}
 
-export class FileProcessAttributes extends S.Class<FileProcessAttributes>("FileProcessAttributes")({
+export class CreateFileProcessAttributes extends S.Class<CreateFileProcessAttributes>("CreateFileProcessAttributes")({
   "processId": S.optionalWith(S.String, { nullable: true }),
-  "provider": S.optionalWith(FileProcessAttributesProvider, { nullable: true }),
-  "type": S.optionalWith(FileProcessAttributesType, { nullable: true }),
-  "status": S.optionalWith(FileProcessAttributesStatus, { nullable: true }),
+  "provider": S.optionalWith(CreateFileProcessAttributesProvider, { nullable: true }),
+  "type": S.optionalWith(CreateFileProcessAttributesType, { nullable: true }),
+  "status": S.optionalWith(CreateFileProcessAttributesStatus, { nullable: true }),
   "startedAt": S.optionalWith(S.String, { nullable: true }),
   "endedAt": S.optionalWith(S.String, { nullable: true })
 }) {}
@@ -7235,14 +5152,14 @@ export class ServiceTaskInvoiceRef extends S.Class<ServiceTaskInvoiceRef>("Servi
 "type": ServiceTaskInvoiceRefType
 }) {}
 
-export class EntrySourceMetadataAttributes extends S.Class<EntrySourceMetadataAttributes>("EntrySourceMetadataAttributes")({
-  "entrySourceType": S.optionalWith(EntrySourceMetadataAttributesEntrySourceType, { nullable: true }),
+export class CreateEntrySourceMetadataAttributes extends S.Class<CreateEntrySourceMetadataAttributes>("CreateEntrySourceMetadataAttributes")({
+  "entrySourceType": S.optionalWith(CreateEntrySourceMetadataAttributesEntrySourceType, { nullable: true }),
   "assignedEntryCount": S.optionalWith(S.Number, { nullable: true }),
   "assignedEntryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
   "assignedEntryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class ItemImpactAttributes extends S.Class<ItemImpactAttributes>("ItemImpactAttributes")({
+export class CreateItemImpactAttributes extends S.Class<CreateItemImpactAttributes>("CreateItemImpactAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "description": S.optionalWith(S.String, { nullable: true }),
   "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
@@ -7258,7 +5175,7 @@ export class ItemImpactAttributes extends S.Class<ItemImpactAttributes>("ItemImp
   "isExactReplacement": S.optionalWith(S.Boolean, { nullable: true }),
   "impactDate": S.optionalWith(S.String, { nullable: true }),
   "isLost": S.optionalWith(S.Boolean, { nullable: true }),
-  "conditionAtImpact": S.optionalWith(ItemImpactAttributesConditionAtImpact, { nullable: true }),
+  "conditionAtImpact": S.optionalWith(CreateItemImpactAttributesConditionAtImpact, { nullable: true }),
   "quantity": S.optionalWith(S.Number, { nullable: true }),
   "paymentCount": S.optionalWith(S.Number, { nullable: true }),
   "paidAmount": S.optionalWith(S.Number, { nullable: true }),
@@ -7291,7 +5208,7 @@ export class ItemImpactAttributes extends S.Class<ItemImpactAttributes>("ItemImp
   "customDepreciationOverrideDescription": S.optionalWith(S.String, { nullable: true }),
   "isDepreciationCustom": S.optionalWith(S.Boolean, { nullable: true }),
   "customDepreciationFieldsSetBySystem": S.optionalWith(S.Array(S.String), { nullable: true }),
-  "itemQuality": S.optionalWith(ItemImpactAttributesItemQuality, { nullable: true }),
+  "itemQuality": S.optionalWith(CreateItemImpactAttributesItemQuality, { nullable: true }),
   "itemAcquiredDate": S.optionalWith(S.String, { nullable: true }),
   "itemAcquiredQuantity": S.optionalWith(S.Number, { nullable: true }),
   "itemIsDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
@@ -7321,8 +5238,8 @@ export class ItemTypeRef extends S.Class<ItemTypeRef>("ItemTypeRef")({
 "type": ItemTypeRefType
 }) {}
 
-export class EntryAttributes extends S.Class<EntryAttributes>("EntryAttributes")({
-  "lossSettlementType": S.optionalWith(EntryAttributesLossSettlementType, { nullable: true }),
+export class CreateEntryAttributes extends S.Class<CreateEntryAttributes>("CreateEntryAttributes")({
+  "lossSettlementType": S.optionalWith(CreateEntryAttributesLossSettlementType, { nullable: true }),
   "incurredAmount": S.optionalWith(S.Number, { nullable: true }),
   "projectedAmount": S.optionalWith(S.Number, { nullable: true }),
   "overriddenIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
@@ -7331,7 +5248,7 @@ export class EntryAttributes extends S.Class<EntryAttributes>("EntryAttributes")
   "isResolved": S.optionalWith(S.Boolean, { nullable: true }),
   "number": S.optionalWith(S.Number, { nullable: true }),
   "targetAssignmentPercentage": S.optionalWith(S.Number, { nullable: true, default: () => 1 as const }),
-  "submissionStatus": S.optionalWith(EntryAttributesSubmissionStatus, { nullable: true, default: () => "NOT_SUBMITTED" as const }),
+  "submissionStatus": S.optionalWith(CreateEntryAttributesSubmissionStatus, { nullable: true, default: () => "NOT_SUBMITTED" as const }),
   "lastSubmittedAmount": S.optionalWith(S.Number, { nullable: true }),
   "lastSubmittedIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
   "lastSubmittedProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
@@ -7559,23 +5476,6 @@ export class SubCoverageRef extends S.Class<SubCoverageRef>("SubCoverageRef")({
 "type": SubCoverageRefType
 }) {}
 
-export class CoverageAttributes extends S.Class<CoverageAttributes>("CoverageAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  /**
-* Is required if not set in .basis
-*/
-"lossSettlementType": S.optionalWith(CoverageAttributesLossSettlementType, { nullable: true }),
-  "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-  "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CoverageTemplateRef extends S.Class<CoverageTemplateRef>("CoverageTemplateRef")({
   /**
 * Entity id
@@ -7632,18 +5532,6 @@ export class SubBucketDefinitionAttributes extends S.Class<SubBucketDefinitionAt
   "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class SubCoverageAttributes extends S.Class<SubCoverageAttributes>("SubCoverageAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(SubCoverageAttributesLossSettlementType, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class SubCoverageTemplateRef extends S.Class<SubCoverageTemplateRef>("SubCoverageTemplateRef")({
   /**
 * Entity id
@@ -7688,14 +5576,14 @@ export class CoverageGroupTemplateRef extends S.Class<CoverageGroupTemplateRef>(
 "type": CoverageGroupTemplateRefType
 }) {}
 
-export class EndorsementTemplateAttributes extends S.Class<EndorsementTemplateAttributes>("EndorsementTemplateAttributes")({
+export class CreateEndorsementTemplateAttributes extends S.Class<CreateEndorsementTemplateAttributes>("CreateEndorsementTemplateAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
   "slug": S.optionalWith(S.String, { nullable: true }),
   "description": S.optionalWith(S.String, { nullable: true }),
   "articleUrl": S.optionalWith(S.String, { nullable: true }),
   "canopyApiTerm": S.optionalWith(S.String, { nullable: true }),
-  "effect": S.optionalWith(EndorsementTemplateAttributesEffect, { nullable: true }),
-  "lossSettlementType": S.optionalWith(EndorsementTemplateAttributesLossSettlementType, { nullable: true }),
+  "effect": S.optionalWith(CreateEndorsementTemplateAttributesEffect, { nullable: true }),
+  "lossSettlementType": S.optionalWith(CreateEndorsementTemplateAttributesLossSettlementType, { nullable: true }),
   "tags": S.optionalWith(S.Array(S.String), { nullable: true })
 }) {}
 
@@ -7711,9 +5599,9 @@ export class EndorsementAttributes extends S.Class<EndorsementAttributes>("Endor
   "lossSettlementType": S.optionalWith(EndorsementAttributesLossSettlementType, { nullable: true })
 }) {}
 
-export class PolicyAttributes extends S.Class<PolicyAttributes>("PolicyAttributes")({
+export class CreatePolicyAttributes extends S.Class<CreatePolicyAttributes>("CreatePolicyAttributes")({
   "name": S.optionalWith(S.String, { nullable: true }),
-  "status": S.optionalWith(PolicyAttributesStatus, { nullable: true, default: () => "ACTIVE" as const }),
+  "status": S.optionalWith(CreatePolicyAttributesStatus, { nullable: true, default: () => "ACTIVE" as const }),
   "policyId": S.optionalWith(S.String, { nullable: true }),
   "isActive": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
   "startDate": S.optionalWith(S.String, { nullable: true }),
@@ -8004,9 +5892,9 @@ export class ItemAttributes extends S.Class<ItemAttributes>("ItemAttributes")({
   "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class DepreciationModifierAttributes extends S.Class<DepreciationModifierAttributes>("DepreciationModifierAttributes")({
-  "condition": S.optionalWith(DepreciationModifierAttributesCondition, { nullable: true }),
-  "quality": S.optionalWith(DepreciationModifierAttributesQuality, { nullable: true }),
+export class CreateDepreciationModifierAttributes extends S.Class<CreateDepreciationModifierAttributes>("CreateDepreciationModifierAttributes")({
+  "condition": S.optionalWith(CreateDepreciationModifierAttributesCondition, { nullable: true }),
+  "quality": S.optionalWith(CreateDepreciationModifierAttributesQuality, { nullable: true }),
   "minimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
   "accelerationFactor": S.optionalWith(S.Number, { nullable: true })
 }) {}
@@ -8070,12 +5958,8 @@ export class AuthProfileAttributes extends S.Class<AuthProfileAttributes>("AuthP
   "externalId": S.optionalWith(S.String, { nullable: true })
 }) {}
 
-export class ProjectImpactAttributes extends S.Class<ProjectImpactAttributes>("ProjectImpactAttributes")({
-  "extent": S.optionalWith(ProjectImpactAttributesExtent, { nullable: true })
-}) {}
-
-export class IncidentImpactAttributes extends S.Class<IncidentImpactAttributes>("IncidentImpactAttributes")({
-  "extent": S.optionalWith(IncidentImpactAttributesExtent, { nullable: true })
+export class CreateIncidentImpactAttributes extends S.Class<CreateIncidentImpactAttributes>("CreateIncidentImpactAttributes")({
+  "extent": S.optionalWith(CreateIncidentImpactAttributesExtent, { nullable: true })
 }) {}
 
 export class ItemMediaSuggestionAttributes extends S.Class<ItemMediaSuggestionAttributes>("ItemMediaSuggestionAttributes")({
@@ -8104,11 +5988,11 @@ export class ItemProductSuggestionAttributes extends S.Class<ItemProductSuggesti
   "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class UserAccountRoleAttributes extends S.Class<UserAccountRoleAttributes>("UserAccountRoleAttributes")({
+export class UpdateUserAccountRoleAttributes extends S.Class<UpdateUserAccountRoleAttributes>("UpdateUserAccountRoleAttributes")({
   /**
 * What level of permissions the user has for this account.
 */
-"role": S.optionalWith(UserAccountRoleAttributesRole, { nullable: true })
+"role": S.optionalWith(UpdateUserAccountRoleAttributesRole, { nullable: true })
 }) {}
 
 export class CreateEmailAddressRef extends S.Class<CreateEmailAddressRef>("CreateEmailAddressRef")({
@@ -8265,10 +6149,6 @@ export class CreateDisasterRef extends S.Class<CreateDisasterRef>("CreateDisaste
 "type": CreateDisasterRefType
 }) {}
 
-export class CreateProjectMediaAttributes extends S.Class<CreateProjectMediaAttributes>("CreateProjectMediaAttributes")({
-  "stage": S.optionalWith(CreateProjectMediaAttributesStage, { nullable: true })
-}) {}
-
 export class CreateMediaRef extends S.Class<CreateMediaRef>("CreateMediaRef")({
   /**
 * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
@@ -8278,17 +6158,6 @@ export class CreateMediaRef extends S.Class<CreateMediaRef>("CreateMediaRef")({
 * The type of the referenced entity.
 */
 "type": CreateMediaRefType
-}) {}
-
-export class UpdateProjectMediaAttributes extends S.Class<UpdateProjectMediaAttributes>("UpdateProjectMediaAttributes")({
-  "stage": S.optionalWith(UpdateProjectMediaAttributesStage, { nullable: true })
-}) {}
-
-export class CreateMediaAttributes extends S.Class<CreateMediaAttributes>("CreateMediaAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "subjectState": S.optionalWith(CreateMediaAttributesSubjectState, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
 }) {}
 
 export class CreateFileRef extends S.Class<CreateFileRef>("CreateFileRef")({
@@ -8322,13 +6191,6 @@ export class CreateEntrySourceMediaRef extends S.Class<CreateEntrySourceMediaRef
 * The type of the referenced entity.
 */
 "type": CreateEntrySourceMediaRefType
-}) {}
-
-export class UpdateMediaAttributes extends S.Class<UpdateMediaAttributes>("UpdateMediaAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "note": S.optionalWith(S.String, { nullable: true }),
-  "subjectState": S.optionalWith(UpdateMediaAttributesSubjectState, { nullable: true }),
-  "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const })
 }) {}
 
 export class CreateFileAttributes extends S.Class<CreateFileAttributes>("CreateFileAttributes")({
@@ -8669,7 +6531,7 @@ export class CreateAssetTypeData extends S.Class<CreateAssetTypeData>("CreateAss
 * The type of the referenced entity.
 */
 "type": CreateAssetTypeDataType,
-  "attributes": S.optionalWith(CreateAssetTypeAttributes, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
 }) {}
 
 export class CreateDocumentTypeRef extends S.Class<CreateDocumentTypeRef>("CreateDocumentTypeRef")({
@@ -8694,11 +6556,6 @@ export class CreateDocumentClassRef extends S.Class<CreateDocumentClassRef>("Cre
 "type": CreateDocumentClassRefType
 }) {}
 
-export class CreateSpaceAttributes extends S.Class<CreateSpaceAttributes>("CreateSpaceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "use": S.optionalWith(CreateSpaceAttributesUse, { nullable: true })
-}) {}
-
 export class CreateSpaceTypeRef extends S.Class<CreateSpaceTypeRef>("CreateSpaceTypeRef")({
   /**
 * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
@@ -8719,11 +6576,6 @@ export class CreateSpaceGroupRef extends S.Class<CreateSpaceGroupRef>("CreateSpa
 * The type of the referenced entity.
 */
 "type": CreateSpaceGroupRefType
-}) {}
-
-export class UpdateSpaceAttributes extends S.Class<UpdateSpaceAttributes>("UpdateSpaceAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "use": S.optionalWith(UpdateSpaceAttributesUse, { nullable: true })
 }) {}
 
 export class CreateSpaceClassRef extends S.Class<CreateSpaceClassRef>("CreateSpaceClassRef")({
@@ -8813,25 +6665,7 @@ export class CreateCountryData extends S.Class<CreateCountryData>("CreateCountry
 * The type of the referenced entity.
 */
 "type": CreateCountryDataType,
-  "attributes": S.optionalWith(CreateCountryAttributes, { nullable: true })
-}) {}
-
-export class CreateFileProcessAttributes extends S.Class<CreateFileProcessAttributes>("CreateFileProcessAttributes")({
-  "processId": S.optionalWith(S.String, { nullable: true }),
-  "provider": S.optionalWith(CreateFileProcessAttributesProvider, { nullable: true }),
-  "type": S.optionalWith(CreateFileProcessAttributesType, { nullable: true }),
-  "status": S.optionalWith(CreateFileProcessAttributesStatus, { nullable: true }),
-  "startedAt": S.optionalWith(S.String, { nullable: true }),
-  "endedAt": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-export class UpdateFileProcessAttributes extends S.Class<UpdateFileProcessAttributes>("UpdateFileProcessAttributes")({
-  "processId": S.optionalWith(S.String, { nullable: true }),
-  "provider": S.optionalWith(UpdateFileProcessAttributesProvider, { nullable: true }),
-  "type": S.optionalWith(UpdateFileProcessAttributesType, { nullable: true }),
-  "status": S.optionalWith(UpdateFileProcessAttributesStatus, { nullable: true }),
-  "startedAt": S.optionalWith(S.String, { nullable: true }),
-  "endedAt": S.optionalWith(S.String, { nullable: true })
+  "attributes": S.optionalWith(CountryAttributes, { nullable: true })
 }) {}
 
 export class CreateItemizableFinancialDocumentStatsRef extends S.Class<CreateItemizableFinancialDocumentStatsRef>("CreateItemizableFinancialDocumentStatsRef")({
@@ -9076,88 +6910,6 @@ export class CreateServiceTaskInvoiceRef extends S.Class<CreateServiceTaskInvoic
 "type": CreateServiceTaskInvoiceRefType
 }) {}
 
-export class CreateEntrySourceMetadataAttributes extends S.Class<CreateEntrySourceMetadataAttributes>("CreateEntrySourceMetadataAttributes")({
-  "entrySourceType": S.optionalWith(CreateEntrySourceMetadataAttributesEntrySourceType, { nullable: true }),
-  "assignedEntryCount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedEntryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedEntryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class UpdateEntrySourceMetadataAttributes extends S.Class<UpdateEntrySourceMetadataAttributes>("UpdateEntrySourceMetadataAttributes")({
-  "entrySourceType": S.optionalWith(UpdateEntrySourceMetadataAttributesEntrySourceType, { nullable: true }),
-  "assignedEntryCount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedEntryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedEntryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class CreateItemImpactAttributes extends S.Class<CreateItemImpactAttributes>("CreateItemImpactAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Struct({
-  "item.type": S.optionalWith(S.Boolean, { nullable: true }),
-  "impactDate": S.optionalWith(S.Boolean, { nullable: true }),
-  "item.quality": S.optionalWith(S.Boolean, { nullable: true }),
-  "item.acquiredDate": S.optionalWith(S.Boolean, { nullable: true }),
-  "conditionAtImpact": S.optionalWith(S.Boolean, { nullable: true })
-}), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "isExactReplacement": S.optionalWith(S.Boolean, { nullable: true }),
-  "impactDate": S.optionalWith(S.String, { nullable: true }),
-  "isLost": S.optionalWith(S.Boolean, { nullable: true }),
-  "conditionAtImpact": S.optionalWith(CreateItemImpactAttributesConditionAtImpact, { nullable: true }),
-  "quantity": S.optionalWith(S.Number, { nullable: true }),
-  "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-  "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-  "replacementPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "replacementInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "replacementEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemDepreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemAppraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "customDepreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationOverrideDescription": S.optionalWith(S.String, { nullable: true }),
-  "isDepreciationCustom": S.optionalWith(S.Boolean, { nullable: true }),
-  "customDepreciationFieldsSetBySystem": S.optionalWith(S.Array(S.String), { nullable: true }),
-  "itemQuality": S.optionalWith(CreateItemImpactAttributesItemQuality, { nullable: true }),
-  "itemAcquiredDate": S.optionalWith(S.String, { nullable: true }),
-  "itemAcquiredQuantity": S.optionalWith(S.Number, { nullable: true }),
-  "itemIsDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-  "depreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true }),
-  "monthlyDepreciationRate": S.optionalWith(S.Number, { nullable: true }),
-  "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "rcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableProjectedRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableIncurredRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableProjectedAcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableIncurredAcvAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CreateItemTypeRef extends S.Class<CreateItemTypeRef>("CreateItemTypeRef")({
   /**
 * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
@@ -9167,96 +6919,6 @@ export class CreateItemTypeRef extends S.Class<CreateItemTypeRef>("CreateItemTyp
 * The type of the referenced entity.
 */
 "type": CreateItemTypeRefType
-}) {}
-
-export class UpdateItemImpactAttributes extends S.Class<UpdateItemImpactAttributes>("UpdateItemImpactAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Struct({
-  "item.type": S.optionalWith(S.Boolean, { nullable: true }),
-  "impactDate": S.optionalWith(S.Boolean, { nullable: true }),
-  "item.quality": S.optionalWith(S.Boolean, { nullable: true }),
-  "item.acquiredDate": S.optionalWith(S.Boolean, { nullable: true }),
-  "conditionAtImpact": S.optionalWith(S.Boolean, { nullable: true })
-}), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "isExactReplacement": S.optionalWith(S.Boolean, { nullable: true }),
-  "impactDate": S.optionalWith(S.String, { nullable: true }),
-  "isLost": S.optionalWith(S.Boolean, { nullable: true }),
-  "conditionAtImpact": S.optionalWith(UpdateItemImpactAttributesConditionAtImpact, { nullable: true }),
-  "quantity": S.optionalWith(S.Number, { nullable: true }),
-  "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-  "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-  "replacementPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "replacementInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "replacementEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemDepreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemAppraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "itemRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "customDepreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 as const }),
-  "customDepreciationOverrideDescription": S.optionalWith(S.String, { nullable: true }),
-  "isDepreciationCustom": S.optionalWith(S.Boolean, { nullable: true }),
-  "customDepreciationFieldsSetBySystem": S.optionalWith(S.Array(S.String), { nullable: true }),
-  "itemQuality": S.optionalWith(UpdateItemImpactAttributesItemQuality, { nullable: true }),
-  "itemAcquiredDate": S.optionalWith(S.String, { nullable: true }),
-  "itemAcquiredQuantity": S.optionalWith(S.Number, { nullable: true }),
-  "itemIsDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-  "depreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true }),
-  "monthlyDepreciationRate": S.optionalWith(S.Number, { nullable: true }),
-  "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true }),
-  "depreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "rcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableProjectedRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableIncurredRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableProjectedAcvAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableIncurredAcvAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class CreateEntryAttributes extends S.Class<CreateEntryAttributes>("CreateEntryAttributes")({
-  "lossSettlementType": S.optionalWith(CreateEntryAttributesLossSettlementType, { nullable: true }),
-  "incurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "projectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "overriddenIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "overriddenProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "approvedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "isResolved": S.optionalWith(S.Boolean, { nullable: true }),
-  "number": S.optionalWith(S.Number, { nullable: true }),
-  "targetAssignmentPercentage": S.optionalWith(S.Number, { nullable: true, default: () => 1 as const }),
-  "submissionStatus": S.optionalWith(CreateEntryAttributesSubmissionStatus, { nullable: true, default: () => "NOT_SUBMITTED" as const }),
-  "lastSubmittedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "lastSubmittedIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "lastSubmittedProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-  "submissionIncurredAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-  "submissionProjectedAmountDelta": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
 export class CreateBucketRef extends S.Class<CreateBucketRef>("CreateBucketRef")({
@@ -9290,28 +6952,6 @@ export class CreateClaimRef extends S.Class<CreateClaimRef>("CreateClaimRef")({
 * The type of the referenced entity.
 */
 "type": CreateClaimRefType
-}) {}
-
-export class UpdateEntryAttributes extends S.Class<UpdateEntryAttributes>("UpdateEntryAttributes")({
-  "lossSettlementType": S.optionalWith(UpdateEntryAttributesLossSettlementType, { nullable: true }),
-  "incurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "projectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "overriddenIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "overriddenProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "approvedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "isResolved": S.optionalWith(S.Boolean, { nullable: true }),
-  "number": S.optionalWith(S.Number, { nullable: true }),
-  "targetAssignmentPercentage": S.optionalWith(S.Number, { nullable: true, default: () => 1 as const }),
-  "submissionStatus": S.optionalWith(UpdateEntryAttributesSubmissionStatus, { nullable: true, default: () => "NOT_SUBMITTED" as const }),
-  "lastSubmittedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "lastSubmittedIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "lastSubmittedProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submissionAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-  "submissionIncurredAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-  "submissionProjectedAmountDelta": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
 export class CreateBaseBucketAttributes extends S.Class<CreateBaseBucketAttributes>("CreateBaseBucketAttributes")({
@@ -9354,43 +6994,6 @@ export class CreateBucketFundingRef extends S.Class<CreateBucketFundingRef>("Cre
 "type": CreateBucketFundingRefType
 }) {}
 
-export class UpdateBaseBucketAttributes extends S.Class<UpdateBaseBucketAttributes>("UpdateBaseBucketAttributes")({
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdateBaseBucketAttributesLossSettlementType, { nullable: true, default: () => "REPLACEMENT_COST_VALUE" as const }),
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-  "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-  "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyFunded": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class CreateBucketAttributes extends S.Class<CreateBucketAttributes>("CreateBucketAttributes")({
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(CreateBucketAttributesLossSettlementType, { nullable: true }),
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-  "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-  "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyFunded": S.optionalWith(S.Number, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 export class CreateCoverageRef extends S.Class<CreateCoverageRef>("CreateCoverageRef")({
   /**
 * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
@@ -9424,34 +7027,6 @@ export class CreateClaimDeductibleRef extends S.Class<CreateClaimDeductibleRef>(
 "type": CreateClaimDeductibleRefType
 }) {}
 
-export class UpdateBucketAttributes extends S.Class<UpdateBucketAttributes>("UpdateBucketAttributes")({
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdateBucketAttributesLossSettlementType, { nullable: true }),
-  "entryCount": S.optionalWith(S.Number, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-  "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-  "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-  "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyFunded": S.optionalWith(S.Number, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-export class CreateClaimAttributes extends S.Class<CreateClaimAttributes>("CreateClaimAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "claimId": S.optionalWith(S.String, { nullable: true }),
-  "status": S.optionalWith(CreateClaimAttributesStatus, { nullable: true, default: () => "OPEN" as const }),
-  "openedDate": S.optionalWith(S.String, { nullable: true }),
-  "closedDate": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 export class CreatePolicyTermRef extends S.Class<CreatePolicyTermRef>("CreatePolicyTermRef")({
   /**
 * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
@@ -9463,29 +7038,12 @@ export class CreatePolicyTermRef extends S.Class<CreatePolicyTermRef>("CreatePol
 "type": CreatePolicyTermRefType
 }) {}
 
-export class UpdateClaimAttributes extends S.Class<UpdateClaimAttributes>("UpdateClaimAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-  "claimId": S.optionalWith(S.String, { nullable: true }),
-  "status": S.optionalWith(UpdateClaimAttributesStatus, { nullable: true, default: () => "OPEN" as const }),
-  "openedDate": S.optionalWith(S.String, { nullable: true }),
-  "closedDate": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 export class CreateClaimTargetAttributes extends S.Class<CreateClaimTargetAttributes>("CreateClaimTargetAttributes")({
   "effectiveStartDate": S.String,
   "effectiveEndDate": S.String,
   "name": S.String,
   "description": S.optionalWith(S.String, { nullable: true }),
   "lossSettlementType": S.optionalWith(CreateClaimTargetAttributesLossSettlementType, { nullable: true })
-}) {}
-
-export class UpdateClaimTargetAttributes extends S.Class<UpdateClaimTargetAttributes>("UpdateClaimTargetAttributes")({
-  "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-  "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdateClaimTargetAttributesLossSettlementType, { nullable: true })
 }) {}
 
 export class CreatePolicyTermAttributes extends S.Class<CreatePolicyTermAttributes>("CreatePolicyTermAttributes")({
@@ -9521,19 +7079,6 @@ export class CreatePolicyTemplateRef extends S.Class<CreatePolicyTemplateRef>("C
 * The type of the referenced entity.
 */
 "type": CreatePolicyTemplateRefType
-}) {}
-
-export class UpdatePolicyTermAttributes extends S.Class<UpdatePolicyTermAttributes>("UpdatePolicyTermAttributes")({
-  "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-  "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdatePolicyTermAttributesLossSettlementType, { nullable: true }),
-  "premiumAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paymentDueDate": S.optionalWith(S.String, { nullable: true }),
-  "isFullyPaid": S.optionalWith(S.Boolean, { nullable: true }),
-  "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "dueAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
 export class CreateProviderData extends S.Class<CreateProviderData>("CreateProviderData")({
@@ -9574,40 +7119,6 @@ export class CreateSubCoverageRef extends S.Class<CreateSubCoverageRef>("CreateS
 * The type of the referenced entity.
 */
 "type": CreateSubCoverageRefType
-}) {}
-
-export class UpdateBucketDefinitionAttributes extends S.Class<UpdateBucketDefinitionAttributes>("UpdateBucketDefinitionAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  /**
-* Is required if not set in .basis
-*/
-"lossSettlementType": S.optionalWith(UpdateBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-  "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-  "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class CreateCoverageAttributes extends S.Class<CreateCoverageAttributes>("CreateCoverageAttributes")({
-  "name": S.String,
-  "limitAmount": S.Number,
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  /**
-* Is required if not set in .basis
-*/
-"lossSettlementType": S.optionalWith(CreateCoverageAttributesLossSettlementType, { nullable: true }),
-  "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-  "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
 export class CreateCoverageTemplateRef extends S.Class<CreateCoverageTemplateRef>("CreateCoverageTemplateRef")({
@@ -9654,52 +7165,11 @@ export class CreateEndorsementRef extends S.Class<CreateEndorsementRef>("CreateE
 "type": CreateEndorsementRefType
 }) {}
 
-export class UpdateCoverageAttributes extends S.Class<UpdateCoverageAttributes>("UpdateCoverageAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  /**
-* Is required if not set in .basis
-*/
-"lossSettlementType": S.optionalWith(UpdateCoverageAttributesLossSettlementType, { nullable: true }),
-  "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-  "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CreateSubBucketDefinitionAttributes extends S.Class<CreateSubBucketDefinitionAttributes>("CreateSubBucketDefinitionAttributes")({
   "name": S.String,
   "limitAmount": S.Number,
   "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
   "lossSettlementType": S.optionalWith(CreateSubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class UpdateSubBucketDefinitionAttributes extends S.Class<UpdateSubBucketDefinitionAttributes>("UpdateSubBucketDefinitionAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdateSubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class CreateSubCoverageAttributes extends S.Class<CreateSubCoverageAttributes>("CreateSubCoverageAttributes")({
-  "name": S.String,
-  "limitAmount": S.Number,
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(CreateSubCoverageAttributesLossSettlementType, { nullable: true }),
   "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
   "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
   "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
@@ -9716,18 +7186,6 @@ export class CreateSubCoverageTemplateRef extends S.Class<CreateSubCoverageTempl
 * The type of the referenced entity.
 */
 "type": CreateSubCoverageTemplateRefType
-}) {}
-
-export class UpdateSubCoverageAttributes extends S.Class<UpdateSubCoverageAttributes>("UpdateSubCoverageAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdateSubCoverageAttributesLossSettlementType, { nullable: true }),
-  "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-  "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-  "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
 export class CreateBaseSubBucketMetadataRef extends S.Class<CreateBaseSubBucketMetadataRef>("CreateBaseSubBucketMetadataRef")({
@@ -9763,28 +7221,6 @@ export class CreateCoverageGroupTemplateRef extends S.Class<CreateCoverageGroupT
 "type": CreateCoverageGroupTemplateRefType
 }) {}
 
-export class CreateEndorsementTemplateAttributes extends S.Class<CreateEndorsementTemplateAttributes>("CreateEndorsementTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true }),
-  "canopyApiTerm": S.optionalWith(S.String, { nullable: true }),
-  "effect": S.optionalWith(CreateEndorsementTemplateAttributesEffect, { nullable: true }),
-  "lossSettlementType": S.optionalWith(CreateEndorsementTemplateAttributesLossSettlementType, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
-
-export class UpdateEndorsementTemplateAttributes extends S.Class<UpdateEndorsementTemplateAttributes>("UpdateEndorsementTemplateAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "slug": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "articleUrl": S.optionalWith(S.String, { nullable: true }),
-  "canopyApiTerm": S.optionalWith(S.String, { nullable: true }),
-  "effect": S.optionalWith(UpdateEndorsementTemplateAttributesEffect, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdateEndorsementTemplateAttributesLossSettlementType, { nullable: true }),
-  "tags": S.optionalWith(S.Array(S.String), { nullable: true })
-}) {}
-
 export class CreateEndorsementAttributes extends S.Class<CreateEndorsementAttributes>("CreateEndorsementAttributes")({
   "formNumber": S.optionalWith(S.String, { nullable: true }),
   "effect": CreateEndorsementAttributesEffect,
@@ -9795,38 +7231,6 @@ export class CreateEndorsementAttributes extends S.Class<CreateEndorsementAttrib
   "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
   "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
   "lossSettlementType": S.optionalWith(CreateEndorsementAttributesLossSettlementType, { nullable: true })
-}) {}
-
-export class UpdateEndorsementAttributes extends S.Class<UpdateEndorsementAttributes>("UpdateEndorsementAttributes")({
-  "formNumber": S.optionalWith(S.String, { nullable: true }),
-  "effect": S.optionalWith(UpdateEndorsementAttributesEffect, { nullable: true }),
-  "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-  "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "lossSettlementType": S.optionalWith(UpdateEndorsementAttributesLossSettlementType, { nullable: true })
-}) {}
-
-export class CreatePolicyAttributes extends S.Class<CreatePolicyAttributes>("CreatePolicyAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "status": S.optionalWith(CreatePolicyAttributesStatus, { nullable: true, default: () => "ACTIVE" as const }),
-  "policyId": S.optionalWith(S.String, { nullable: true }),
-  "isActive": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "startDate": S.optionalWith(S.String, { nullable: true }),
-  "renewalDate": S.optionalWith(S.String, { nullable: true }),
-  "canceledDate": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-export class UpdatePolicyAttributes extends S.Class<UpdatePolicyAttributes>("UpdatePolicyAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "status": S.optionalWith(UpdatePolicyAttributesStatus, { nullable: true, default: () => "ACTIVE" as const }),
-  "policyId": S.optionalWith(S.String, { nullable: true }),
-  "isActive": S.optionalWith(S.Boolean, { nullable: true, default: () => true as const }),
-  "startDate": S.optionalWith(S.String, { nullable: true }),
-  "renewalDate": S.optionalWith(S.String, { nullable: true }),
-  "canceledDate": S.optionalWith(S.String, { nullable: true })
 }) {}
 
 export class CreateDepreciationModifierRef extends S.Class<CreateDepreciationModifierRef>("CreateDepreciationModifierRef")({
@@ -10081,16 +7485,6 @@ export class CreateItemInvoiceAttributes extends S.Class<CreateItemInvoiceAttrib
   "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class UpdateItemInvoiceAttributes extends S.Class<UpdateItemInvoiceAttributes>("UpdateItemInvoiceAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "purpose": S.optionalWith(UpdateItemInvoiceAttributesPurpose, { nullable: true, default: () => "PURCHASE" as const }),
-  "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CreateItemAttributes extends S.Class<CreateItemAttributes>("CreateItemAttributes")({
   "name": S.String,
   "description": S.optionalWith(S.String, { nullable: true }),
@@ -10133,62 +7527,6 @@ export class CreateItemAttributes extends S.Class<CreateItemAttributes>("CreateI
   "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class UpdateItemAttributes extends S.Class<UpdateItemAttributes>("UpdateItemAttributes")({
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
-  "fieldsNeedingAttention": S.optionalWith(S.Struct({
-  "type": S.optionalWith(S.Boolean, { nullable: true }),
-  "quality": S.optionalWith(S.Boolean, { nullable: true }),
-  "acquiredDate": S.optionalWith(S.Boolean, { nullable: true })
-}), { nullable: true }),
-  "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-  "quality": S.optionalWith(UpdateItemAttributesQuality, { nullable: true }),
-  "condition": S.optionalWith(UpdateItemAttributesCondition, { nullable: true }),
-  "isDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-  "acquiredDate": S.optionalWith(S.String, { nullable: true }),
-  "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 as const }),
-  "currentQuantity": S.optionalWith(S.Number, { nullable: true }),
-  "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-  "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-  "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acquisitionPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acquisitionInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acquisitionEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-  "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class CreateDepreciationModifierAttributes extends S.Class<CreateDepreciationModifierAttributes>("CreateDepreciationModifierAttributes")({
-  "condition": S.optionalWith(CreateDepreciationModifierAttributesCondition, { nullable: true }),
-  "quality": S.optionalWith(CreateDepreciationModifierAttributesQuality, { nullable: true }),
-  "minimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "accelerationFactor": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class UpdateDepreciationModifierAttributes extends S.Class<UpdateDepreciationModifierAttributes>("UpdateDepreciationModifierAttributes")({
-  "condition": S.optionalWith(UpdateDepreciationModifierAttributesCondition, { nullable: true }),
-  "quality": S.optionalWith(UpdateDepreciationModifierAttributesQuality, { nullable: true }),
-  "minimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-  "accelerationFactor": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CreateItemPaymentAttributes extends S.Class<CreateItemPaymentAttributes>("CreateItemPaymentAttributes")({
   "date": S.optionalWith(S.String, { nullable: true }),
   "amount": S.optionalWith(S.Number, { nullable: true }),
@@ -10200,17 +7538,6 @@ export class CreateItemPaymentAttributes extends S.Class<CreateItemPaymentAttrib
   "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class UpdateItemPaymentAttributes extends S.Class<UpdateItemPaymentAttributes>("UpdateItemPaymentAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "purpose": S.optionalWith(UpdateItemPaymentAttributesPurpose, { nullable: true, default: () => "PURCHASE" as const }),
-  "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-  "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CreateItemChangeOrderAttributes extends S.Class<CreateItemChangeOrderAttributes>("CreateItemChangeOrderAttributes")({
   "date": S.optionalWith(S.String, { nullable: true }),
   "amount": S.optionalWith(S.Number, { nullable: true }),
@@ -10218,15 +7545,6 @@ export class CreateItemChangeOrderAttributes extends S.Class<CreateItemChangeOrd
   "taxAmount": S.optionalWith(S.Number, { nullable: true }),
   "feeAmount": S.optionalWith(S.Number, { nullable: true }),
   "purpose": S.optionalWith(CreateItemChangeOrderAttributesPurpose, { nullable: true })
-}) {}
-
-export class UpdateItemChangeOrderAttributes extends S.Class<UpdateItemChangeOrderAttributes>("UpdateItemChangeOrderAttributes")({
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "purpose": S.optionalWith(UpdateItemChangeOrderAttributesPurpose, { nullable: true })
 }) {}
 
 export class CreateItemEstimateAttributes extends S.Class<CreateItemEstimateAttributes>("CreateItemEstimateAttributes")({
@@ -10249,26 +7567,6 @@ export class CreateItemEstimateAttributes extends S.Class<CreateItemEstimateAttr
   "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class UpdateItemEstimateAttributes extends S.Class<UpdateItemEstimateAttributes>("UpdateItemEstimateAttributes")({
-  "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-  "date": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-  "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-  "currentFeeAmount": S.optionalWith(S.String, { nullable: true }),
-  "purpose": S.optionalWith(UpdateItemEstimateAttributesPurpose, { nullable: true, default: () => "PURCHASE" as const }),
-  "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CreateAccountInviteAttributes extends S.Class<CreateAccountInviteAttributes>("CreateAccountInviteAttributes")({
   /**
 * What level of permissions the user has for this account.
@@ -10283,44 +7581,9 @@ export class CreateAccountInviteAttributes extends S.Class<CreateAccountInviteAt
   "acceptedAt": S.optionalWith(S.String, { nullable: true })
 }) {}
 
-export class UpdateAccountInviteAttributes extends S.Class<UpdateAccountInviteAttributes>("UpdateAccountInviteAttributes")({
-  /**
-* What level of permissions the user has for this account.
-*/
-"role": S.optionalWith(UpdateAccountInviteAttributesRole, { nullable: true }),
-  /**
-* The user's email
-*/
-"email": S.optionalWith(S.String, { nullable: true }),
-  "phone": S.optionalWith(S.String, { nullable: true }),
-  "invitedAt": S.optionalWith(S.String, { nullable: true }),
-  "acceptedAt": S.optionalWith(S.String, { nullable: true })
-}) {}
-
 export class CreateAuthProfileAttributes extends S.Class<CreateAuthProfileAttributes>("CreateAuthProfileAttributes")({
   "provider": CreateAuthProfileAttributesProvider,
   "externalId": S.String
-}) {}
-
-export class UpdateAuthProfileAttributes extends S.Class<UpdateAuthProfileAttributes>("UpdateAuthProfileAttributes")({
-  "provider": S.optionalWith(UpdateAuthProfileAttributesProvider, { nullable: true }),
-  "externalId": S.optionalWith(S.String, { nullable: true })
-}) {}
-
-export class CreateProjectImpactAttributes extends S.Class<CreateProjectImpactAttributes>("CreateProjectImpactAttributes")({
-  "extent": S.optionalWith(CreateProjectImpactAttributesExtent, { nullable: true })
-}) {}
-
-export class UpdateProjectImpactAttributes extends S.Class<UpdateProjectImpactAttributes>("UpdateProjectImpactAttributes")({
-  "extent": S.optionalWith(UpdateProjectImpactAttributesExtent, { nullable: true })
-}) {}
-
-export class CreateIncidentImpactAttributes extends S.Class<CreateIncidentImpactAttributes>("CreateIncidentImpactAttributes")({
-  "extent": S.optionalWith(CreateIncidentImpactAttributesExtent, { nullable: true })
-}) {}
-
-export class UpdateIncidentImpactAttributes extends S.Class<UpdateIncidentImpactAttributes>("UpdateIncidentImpactAttributes")({
-  "extent": S.optionalWith(UpdateIncidentImpactAttributesExtent, { nullable: true })
 }) {}
 
 export class CreateItemMediaSuggestionAttributes extends S.Class<CreateItemMediaSuggestionAttributes>("CreateItemMediaSuggestionAttributes")({
@@ -10328,19 +7591,6 @@ export class CreateItemMediaSuggestionAttributes extends S.Class<CreateItemMedia
   "name": S.String,
   "quality": S.optionalWith(CreateItemMediaSuggestionAttributesQuality, { nullable: true }),
   "condition": S.optionalWith(CreateItemMediaSuggestionAttributesCondition, { nullable: true }),
-  "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 as const }),
-  "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-  "timestamp": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
-export class UpdateItemMediaSuggestionAttributes extends S.Class<UpdateItemMediaSuggestionAttributes>("UpdateItemMediaSuggestionAttributes")({
-  "data_key": S.optionalWith(S.String, { nullable: true }),
-  "name": S.optionalWith(S.String, { nullable: true }),
-  "quality": S.optionalWith(UpdateItemMediaSuggestionAttributesQuality, { nullable: true }),
-  "condition": S.optionalWith(UpdateItemMediaSuggestionAttributesCondition, { nullable: true }),
   "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 as const }),
   "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
   "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
@@ -10362,31 +7612,11 @@ export class CreateItemProductSuggestionAttributes extends S.Class<CreateItemPro
   "feeAmount": S.optionalWith(S.Number, { nullable: true })
 }) {}
 
-export class UpdateItemProductSuggestionAttributes extends S.Class<UpdateItemProductSuggestionAttributes>("UpdateItemProductSuggestionAttributes")({
-  "source": S.optionalWith(UpdateItemProductSuggestionAttributesSource, { nullable: true }),
-  "source_id": S.optionalWith(S.String, { nullable: true }),
-  "data_key": S.optionalWith(S.String, { nullable: true }),
-  "description": S.optionalWith(S.String, { nullable: true }),
-  "sellerName": S.optionalWith(S.String, { nullable: true }),
-  "sellerLink": S.optionalWith(S.String, { nullable: true }),
-  "amount": S.optionalWith(S.Number, { nullable: true }),
-  "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-  "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-  "feeAmount": S.optionalWith(S.Number, { nullable: true })
-}) {}
-
 export class CreateUserAccountRoleAttributes extends S.Class<CreateUserAccountRoleAttributes>("CreateUserAccountRoleAttributes")({
   /**
 * What level of permissions the user has for this account.
 */
 "role": CreateUserAccountRoleAttributesRole
-}) {}
-
-export class UpdateUserAccountRoleAttributes extends S.Class<UpdateUserAccountRoleAttributes>("UpdateUserAccountRoleAttributes")({
-  /**
-* What level of permissions the user has for this account.
-*/
-"role": S.optionalWith(UpdateUserAccountRoleAttributesRole, { nullable: true })
 }) {}
 
 export class JsonApiEntityReference extends S.Class<JsonApiEntityReference>("JsonApiEntityReference")({
@@ -10554,7 +7784,7 @@ export class CurrencyData extends S.Class<CurrencyData>("CurrencyData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(CurrencyAttributes, { nullable: true })
+  "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
 }) {}
 
 export class CountryData extends S.Class<CountryData>("CountryData")({
@@ -10602,7 +7832,7 @@ export class ProviderData extends S.Class<ProviderData>("ProviderData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ProviderAttributes, { nullable: true })
+  "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
 }) {}
 
 export class BaseEntityData extends S.Class<BaseEntityData>("BaseEntityData")({
@@ -10645,7 +7875,7 @@ export class UpdateAssetTypeData extends S.Class<UpdateAssetTypeData>("UpdateAss
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAssetTypeAttributes, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true })
 }) {}
 
 export class UpdateCurrencyData extends S.Class<UpdateCurrencyData>("UpdateCurrencyData")({
@@ -10665,7 +7895,7 @@ export class UpdateCurrencyData extends S.Class<UpdateCurrencyData>("UpdateCurre
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateCurrencyAttributes, { nullable: true })
+  "attributes": S.optionalWith(CreateCurrencyAttributes, { nullable: true })
 }) {}
 
 export class UpdateCountryData extends S.Class<UpdateCountryData>("UpdateCountryData")({
@@ -10685,7 +7915,7 @@ export class UpdateCountryData extends S.Class<UpdateCountryData>("UpdateCountry
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateCountryAttributes, { nullable: true })
+  "attributes": S.optionalWith(CountryAttributes, { nullable: true })
 }) {}
 
 export class UpdateProviderData extends S.Class<UpdateProviderData>("UpdateProviderData")({
@@ -10705,7 +7935,7 @@ export class UpdateProviderData extends S.Class<UpdateProviderData>("UpdateProvi
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateProviderAttributes, { nullable: true })
+  "attributes": S.optionalWith(CreateProviderAttributes, { nullable: true })
 }) {}
 
 export class UpdateBaseEntityData extends S.Class<UpdateBaseEntityData>("UpdateBaseEntityData")({
@@ -14705,10 +11935,6 @@ export class AuthProfileRelationships extends S.Class<AuthProfileRelationships>(
   "user": S.optionalWith(ReferencedUser, { nullable: true })
 }) {}
 
-export class ThirdPartyRelationships extends S.Class<ThirdPartyRelationships>("ThirdPartyRelationships")({
-  "project": S.optionalWith(ReferencedProject, { nullable: true })
-}) {}
-
 export class ThirdPartyIndividualRelationships extends S.Class<ThirdPartyIndividualRelationships>("ThirdPartyIndividualRelationships")({
   "project": S.optionalWith(ReferencedProject, { nullable: true })
 }) {}
@@ -14763,10 +11989,6 @@ export class UserAccountRoleRelationships extends S.Class<UserAccountRoleRelatio
 }) {}
 
 export class EmailAddressRelationships extends S.Class<EmailAddressRelationships>("EmailAddressRelationships")({
-  "identity": S.optionalWith(ReferencedIdentity, { nullable: true })
-}) {}
-
-export class PhoneNumberRelationships extends S.Class<PhoneNumberRelationships>("PhoneNumberRelationships")({
   "identity": S.optionalWith(ReferencedIdentity, { nullable: true })
 }) {}
 
@@ -14873,10 +12095,6 @@ export class IncidentClassRelationships extends S.Class<IncidentClassRelationshi
   "assetTypes": S.optionalWith(ReferencedAssetTypeList, { nullable: true })
 }) {}
 
-export class ServiceTypeRelationships extends S.Class<ServiceTypeRelationships>("ServiceTypeRelationships")({
-  "assetTypes": S.optionalWith(ReferencedAssetTypeList, { nullable: true })
-}) {}
-
 export class DwellingRelationships extends S.Class<DwellingRelationships>("DwellingRelationships")({
   "assetType": S.optionalWith(ReferencedAssetType, { nullable: true }),
   "account": S.optionalWith(ReferencedAccount, { nullable: true }),
@@ -14898,142 +12116,7 @@ export class AssetAppraisalRelationships extends S.Class<AssetAppraisalRelations
   "asset": S.optionalWith(ReferencedAsset, { nullable: true })
 }) {}
 
-export class DocumentRelationships extends S.Class<DocumentRelationships>("DocumentRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class IncidentReportRelationships extends S.Class<IncidentReportRelationships>("IncidentReportRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class PoliceReportRelationships extends S.Class<PoliceReportRelationships>("PoliceReportRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class ParamedicReportRelationships extends S.Class<ParamedicReportRelationships>("ParamedicReportRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class ContractRelationships extends S.Class<ContractRelationships>("ContractRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class RentRollRelationships extends S.Class<RentRollRelationships>("RentRollRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class PermitRelationships extends S.Class<PermitRelationships>("PermitRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
 export class BlueprintRelationships extends S.Class<BlueprintRelationships>("BlueprintRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class DeclarationsPageRelationships extends S.Class<DeclarationsPageRelationships>("DeclarationsPageRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class PolicyJacketRelationships extends S.Class<PolicyJacketRelationships>("PolicyJacketRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class ScopeOfLossRelationships extends S.Class<ScopeOfLossRelationships>("ScopeOfLossRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class DeliveryPaperworkRelationships extends S.Class<DeliveryPaperworkRelationships>("DeliveryPaperworkRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class ProductSpecRelationships extends S.Class<ProductSpecRelationships>("ProductSpecRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class UserManualRelationships extends S.Class<UserManualRelationships>("UserManualRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class WarrantyRelationships extends S.Class<WarrantyRelationships>("WarrantyRelationships")({
-  "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedProjectList, { nullable: true })
-}) {}
-
-export class DeedRelationships extends S.Class<DeedRelationships>("DeedRelationships")({
   "documentType": S.optionalWith(ReferencedDocumentType, { nullable: true }),
   "account": S.optionalWith(ReferencedAccount, { nullable: true }),
   "file": S.optionalWith(NullableReferencedFile, { nullable: true }),
@@ -15075,12 +12158,6 @@ export class SpaceRelationships extends S.Class<SpaceRelationships>("SpaceRelati
 * The asset to which this space belongs.
 */
 "asset": S.optionalWith(ReferencedAsset, { nullable: true })
-}) {}
-
-export class SpaceTypeRelationships extends S.Class<SpaceTypeRelationships>("SpaceTypeRelationships")({
-  "classes": S.optionalWith(ReferencedSpaceClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedAssetTypeList, { nullable: true }),
-  "groupTypes": S.optionalWith(ReferencedSpaceGroupTypeList, { nullable: true })
 }) {}
 
 export class SpaceCategoryRelationships extends S.Class<SpaceCategoryRelationships>("SpaceCategoryRelationships")({
@@ -15494,17 +12571,9 @@ export class DepreciationModifierRelationships extends S.Class<DepreciationModif
   "schedule": S.optionalWith(ReferencedDepreciationSchedule, { nullable: true })
 }) {}
 
-export class DepreciationOverrideRelationships extends S.Class<DepreciationOverrideRelationships>("DepreciationOverrideRelationships")({
-  "schedule": S.optionalWith(ReferencedDepreciationSchedule, { nullable: true })
-}) {}
-
 export class ItemTemplateRelationships extends S.Class<ItemTemplateRelationships>("ItemTemplateRelationships")({
   "itemType": S.optionalWith(ReferencedItemType, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedAssetTypeList, { nullable: true })
-}) {}
-
-export class BaseSubBucketMetadataRelationships extends S.Class<BaseSubBucketMetadataRelationships>("BaseSubBucketMetadataRelationships")({
-  "object": S.optionalWith(ReferencedBaseBucket, { nullable: true })
 }) {}
 
 export class BaseBucketMetadataRelationships extends S.Class<BaseBucketMetadataRelationships>("BaseBucketMetadataRelationships")({
@@ -15875,14 +12944,6 @@ export class UpdateEmailAddressRelationships extends S.Class<UpdateEmailAddressR
   "identity": S.optionalWith(ReferencedUpsertIdentity, { nullable: true })
 }) {}
 
-export class CreatePhoneNumberRelationships extends S.Class<CreatePhoneNumberRelationships>("CreatePhoneNumberRelationships")({
-  "identity": ReferencedUpsertIdentity
-}) {}
-
-export class UpdatePhoneNumberRelationships extends S.Class<UpdatePhoneNumberRelationships>("UpdatePhoneNumberRelationships")({
-  "identity": S.optionalWith(ReferencedUpsertIdentity, { nullable: true })
-}) {}
-
 export class CreateAccountInviteRelationships extends S.Class<CreateAccountInviteRelationships>("CreateAccountInviteRelationships")({
   /**
 * The account this invite is for.
@@ -15961,14 +13022,6 @@ export class UpdateAccountProviderRelationships extends S.Class<UpdateAccountPro
   "provider": S.optionalWith(NullableReferencedUpsertProvider, { nullable: true })
 }) {}
 
-export class CreateThirdPartyRelationships extends S.Class<CreateThirdPartyRelationships>("CreateThirdPartyRelationships")({
-  "project": ReferencedUpsertProject
-}) {}
-
-export class UpdateThirdPartyRelationships extends S.Class<UpdateThirdPartyRelationships>("UpdateThirdPartyRelationships")({
-  "project": S.optionalWith(ReferencedUpsertProject, { nullable: true })
-}) {}
-
 export class CreateThirdPartyIndividualRelationships extends S.Class<CreateThirdPartyIndividualRelationships>("CreateThirdPartyIndividualRelationships")({
   "project": ReferencedUpsertProject
 }) {}
@@ -16028,10 +13081,6 @@ export class CreateDisasterRelationships extends S.Class<CreateDisasterRelations
   "incidentType": S.optionalWith(ReferencedUpsertIncidentType, { nullable: true })
 }) {}
 
-export class UpdateDisasterRelationships extends S.Class<UpdateDisasterRelationships>("UpdateDisasterRelationships")({
-  "incidentType": S.optionalWith(ReferencedUpsertIncidentType, { nullable: true })
-}) {}
-
 export class CreateIncidentRelationships extends S.Class<CreateIncidentRelationships>("CreateIncidentRelationships")({
   /**
 * The account that owns this project.
@@ -16063,10 +13112,6 @@ export class UpdateProjectMediaRelationships extends S.Class<UpdateProjectMediaR
 }) {}
 
 export class CreateFileProcessRelationships extends S.Class<CreateFileProcessRelationships>("CreateFileProcessRelationships")({
-  "file": S.optionalWith(ReferencedUpsertFile, { nullable: true })
-}) {}
-
-export class UpdateFileProcessRelationships extends S.Class<UpdateFileProcessRelationships>("UpdateFileProcessRelationships")({
   "file": S.optionalWith(ReferencedUpsertFile, { nullable: true })
 }) {}
 
@@ -16110,15 +13155,6 @@ export class UpdateMediaRelationships extends S.Class<UpdateMediaRelationships>(
 }) {}
 
 export class CreateItemizableFinancialDocumentStatsRelationships extends S.Class<CreateItemizableFinancialDocumentStatsRelationships>("CreateItemizableFinancialDocumentStatsRelationships")({
-  "object": S.optionalWith(ReferencedUpsertItemizableFinancialDocument, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(ReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateItemizableFinancialDocumentStatsRelationships extends S.Class<UpdateItemizableFinancialDocumentStatsRelationships>("UpdateItemizableFinancialDocumentStatsRelationships")({
   "object": S.optionalWith(ReferencedUpsertItemizableFinancialDocument, { nullable: true }),
   "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
   "file": S.optionalWith(ReferencedUpsertFile, { nullable: true }),
@@ -16173,25 +13209,8 @@ export class CreatePerilRelationships extends S.Class<CreatePerilRelationships>(
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
 
-export class UpdatePerilRelationships extends S.Class<UpdatePerilRelationships>("UpdatePerilRelationships")({
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
 export class CreateIncidentClassRelationships extends S.Class<CreateIncidentClassRelationships>("CreateIncidentClassRelationships")({
   "types": S.optionalWith(ReferencedUpsertIncidentTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateIncidentClassRelationships extends S.Class<UpdateIncidentClassRelationships>("UpdateIncidentClassRelationships")({
-  "types": S.optionalWith(ReferencedUpsertIncidentTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class CreateServiceTypeRelationships extends S.Class<CreateServiceTypeRelationships>("CreateServiceTypeRelationships")({
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateServiceTypeRelationships extends S.Class<UpdateServiceTypeRelationships>("UpdateServiceTypeRelationships")({
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
 
@@ -16237,132 +13256,6 @@ export class UpdateAssetAppraisalRelationships extends S.Class<UpdateAssetApprai
   "asset": S.optionalWith(ReferencedUpsertAsset, { nullable: true })
 }) {}
 
-export class CreateDocumentRelationships extends S.Class<CreateDocumentRelationships>("CreateDocumentRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateDocumentRelationships extends S.Class<UpdateDocumentRelationships>("UpdateDocumentRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateIncidentReportRelationships extends S.Class<CreateIncidentReportRelationships>("CreateIncidentReportRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateIncidentReportRelationships extends S.Class<UpdateIncidentReportRelationships>("UpdateIncidentReportRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreatePoliceReportRelationships extends S.Class<CreatePoliceReportRelationships>("CreatePoliceReportRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdatePoliceReportRelationships extends S.Class<UpdatePoliceReportRelationships>("UpdatePoliceReportRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateParamedicReportRelationships extends S.Class<CreateParamedicReportRelationships>("CreateParamedicReportRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateParamedicReportRelationships extends S.Class<UpdateParamedicReportRelationships>("UpdateParamedicReportRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateContractRelationships extends S.Class<CreateContractRelationships>("CreateContractRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateContractRelationships extends S.Class<UpdateContractRelationships>("UpdateContractRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateRentRollRelationships extends S.Class<CreateRentRollRelationships>("CreateRentRollRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateRentRollRelationships extends S.Class<UpdateRentRollRelationships>("UpdateRentRollRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreatePermitRelationships extends S.Class<CreatePermitRelationships>("CreatePermitRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdatePermitRelationships extends S.Class<UpdatePermitRelationships>("UpdatePermitRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
 export class CreateBlueprintRelationships extends S.Class<CreateBlueprintRelationships>("CreateBlueprintRelationships")({
   "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
   "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
@@ -16373,150 +13266,6 @@ export class CreateBlueprintRelationships extends S.Class<CreateBlueprintRelatio
 }) {}
 
 export class UpdateBlueprintRelationships extends S.Class<UpdateBlueprintRelationships>("UpdateBlueprintRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateDeclarationsPageRelationships extends S.Class<CreateDeclarationsPageRelationships>("CreateDeclarationsPageRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateDeclarationsPageRelationships extends S.Class<UpdateDeclarationsPageRelationships>("UpdateDeclarationsPageRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreatePolicyJacketRelationships extends S.Class<CreatePolicyJacketRelationships>("CreatePolicyJacketRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdatePolicyJacketRelationships extends S.Class<UpdatePolicyJacketRelationships>("UpdatePolicyJacketRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateScopeOfLossRelationships extends S.Class<CreateScopeOfLossRelationships>("CreateScopeOfLossRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateScopeOfLossRelationships extends S.Class<UpdateScopeOfLossRelationships>("UpdateScopeOfLossRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateDeliveryPaperworkRelationships extends S.Class<CreateDeliveryPaperworkRelationships>("CreateDeliveryPaperworkRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateDeliveryPaperworkRelationships extends S.Class<UpdateDeliveryPaperworkRelationships>("UpdateDeliveryPaperworkRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateProductSpecRelationships extends S.Class<CreateProductSpecRelationships>("CreateProductSpecRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateProductSpecRelationships extends S.Class<UpdateProductSpecRelationships>("UpdateProductSpecRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateUserManualRelationships extends S.Class<CreateUserManualRelationships>("CreateUserManualRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateUserManualRelationships extends S.Class<UpdateUserManualRelationships>("UpdateUserManualRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateWarrantyRelationships extends S.Class<CreateWarrantyRelationships>("CreateWarrantyRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateWarrantyRelationships extends S.Class<UpdateWarrantyRelationships>("UpdateWarrantyRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class CreateDeedRelationships extends S.Class<CreateDeedRelationships>("CreateDeedRelationships")({
-  "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
-  "assets": S.optionalWith(ReferencedUpsertAssetList, { nullable: true }),
-  "spaces": S.optionalWith(ReferencedUpsertSpaceList, { nullable: true }),
-  "projects": S.optionalWith(ReferencedUpsertProjectList, { nullable: true })
-}) {}
-
-export class UpdateDeedRelationships extends S.Class<UpdateDeedRelationships>("UpdateDeedRelationships")({
   "documentType": S.optionalWith(ReferencedUpsertDocumentType, { nullable: true }),
   "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
   "file": S.optionalWith(NullableReferencedUpsertFile, { nullable: true }),
@@ -16550,17 +13299,7 @@ export class CreateDocumentClassRelationships extends S.Class<CreateDocumentClas
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
 
-export class UpdateDocumentClassRelationships extends S.Class<UpdateDocumentClassRelationships>("UpdateDocumentClassRelationships")({
-  "types": S.optionalWith(ReferencedUpsertDocumentTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
 export class CreateDocumentTypeRelationships extends S.Class<CreateDocumentTypeRelationships>("CreateDocumentTypeRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertDocumentClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateDocumentTypeRelationships extends S.Class<UpdateDocumentTypeRelationships>("UpdateDocumentTypeRelationships")({
   "classes": S.optionalWith(ReferencedUpsertDocumentClassList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
@@ -16595,25 +13334,7 @@ export class UpdateSpaceRelationships extends S.Class<UpdateSpaceRelationships>(
 "asset": S.optionalWith(ReferencedUpsertAsset, { nullable: true })
 }) {}
 
-export class CreateSpaceTypeRelationships extends S.Class<CreateSpaceTypeRelationships>("CreateSpaceTypeRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertSpaceClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
-  "groupTypes": S.optionalWith(ReferencedUpsertSpaceGroupTypeList, { nullable: true })
-}) {}
-
-export class UpdateSpaceTypeRelationships extends S.Class<UpdateSpaceTypeRelationships>("UpdateSpaceTypeRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertSpaceClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
-  "groupTypes": S.optionalWith(ReferencedUpsertSpaceGroupTypeList, { nullable: true })
-}) {}
-
 export class CreateSpaceCategoryRelationships extends S.Class<CreateSpaceCategoryRelationships>("CreateSpaceCategoryRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertSpaceClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
-  "groupTypes": S.optionalWith(ReferencedUpsertSpaceGroupTypeList, { nullable: true })
-}) {}
-
-export class UpdateSpaceCategoryRelationships extends S.Class<UpdateSpaceCategoryRelationships>("UpdateSpaceCategoryRelationships")({
   "classes": S.optionalWith(ReferencedUpsertSpaceClassList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
   "groupTypes": S.optionalWith(ReferencedUpsertSpaceGroupTypeList, { nullable: true })
@@ -16626,19 +13347,7 @@ export class CreateSpaceClassRelationships extends S.Class<CreateSpaceClassRelat
   "groupTypes": S.optionalWith(ReferencedUpsertSpaceGroupTypeList, { nullable: true })
 }) {}
 
-export class UpdateSpaceClassRelationships extends S.Class<UpdateSpaceClassRelationships>("UpdateSpaceClassRelationships")({
-  "categories": S.optionalWith(ReferencedUpsertSpaceCategoryList, { nullable: true }),
-  "types": S.optionalWith(ReferencedUpsertSpaceTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
-  "groupTypes": S.optionalWith(ReferencedUpsertSpaceGroupTypeList, { nullable: true })
-}) {}
-
 export class CreateSpaceGroupTypeRelationships extends S.Class<CreateSpaceGroupTypeRelationships>("CreateSpaceGroupTypeRelationships")({
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
-  "bucketTypes": S.optionalWith(ReferencedUpsertBucketTypeList, { nullable: true })
-}) {}
-
-export class UpdateSpaceGroupTypeRelationships extends S.Class<UpdateSpaceGroupTypeRelationships>("UpdateSpaceGroupTypeRelationships")({
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
   "bucketTypes": S.optionalWith(ReferencedUpsertBucketTypeList, { nullable: true })
 }) {}
@@ -16648,17 +13357,7 @@ export class CreateBucketClassRelationships extends S.Class<CreateBucketClassRel
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
 
-export class UpdateBucketClassRelationships extends S.Class<UpdateBucketClassRelationships>("UpdateBucketClassRelationships")({
-  "types": S.optionalWith(ReferencedUpsertBucketTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
 export class CreateBucketTypeRelationships extends S.Class<CreateBucketTypeRelationships>("CreateBucketTypeRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertBucketClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateBucketTypeRelationships extends S.Class<UpdateBucketTypeRelationships>("UpdateBucketTypeRelationships")({
   "classes": S.optionalWith(ReferencedUpsertBucketClassList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
@@ -16912,13 +13611,6 @@ export class UpdateChangeOrderRelationships extends S.Class<UpdateChangeOrderRel
 }) {}
 
 export class CreateEntrySourceMetadataRelationships extends S.Class<CreateEntrySourceMetadataRelationships>("CreateEntrySourceMetadataRelationships")({
-  "object": S.optionalWith(ReferencedUpsertEntrySource, { nullable: true }),
-  "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
-  "project": S.optionalWith(NullableReferencedUpsertProject, { nullable: true }),
-  "currency": S.optionalWith(ReferencedUpsertCurrency, { nullable: true })
-}) {}
-
-export class UpdateEntrySourceMetadataRelationships extends S.Class<UpdateEntrySourceMetadataRelationships>("UpdateEntrySourceMetadataRelationships")({
   "object": S.optionalWith(ReferencedUpsertEntrySource, { nullable: true }),
   "account": S.optionalWith(ReferencedUpsertAccount, { nullable: true }),
   "project": S.optionalWith(NullableReferencedUpsertProject, { nullable: true }),
@@ -17431,41 +14123,12 @@ export class CreateDepreciationModifierRelationships extends S.Class<CreateDepre
   "schedule": S.optionalWith(ReferencedUpsertDepreciationSchedule, { nullable: true })
 }) {}
 
-export class UpdateDepreciationModifierRelationships extends S.Class<UpdateDepreciationModifierRelationships>("UpdateDepreciationModifierRelationships")({
-  "schedule": S.optionalWith(ReferencedUpsertDepreciationSchedule, { nullable: true })
-}) {}
-
-export class CreateDepreciationOverrideRelationships extends S.Class<CreateDepreciationOverrideRelationships>("CreateDepreciationOverrideRelationships")({
-  "schedule": S.optionalWith(ReferencedUpsertDepreciationSchedule, { nullable: true })
-}) {}
-
-export class UpdateDepreciationOverrideRelationships extends S.Class<UpdateDepreciationOverrideRelationships>("UpdateDepreciationOverrideRelationships")({
-  "schedule": S.optionalWith(ReferencedUpsertDepreciationSchedule, { nullable: true })
-}) {}
-
 export class CreateItemTemplateRelationships extends S.Class<CreateItemTemplateRelationships>("CreateItemTemplateRelationships")({
   "itemType": S.optionalWith(ReferencedUpsertItemType, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
 
-export class UpdateItemTemplateRelationships extends S.Class<UpdateItemTemplateRelationships>("UpdateItemTemplateRelationships")({
-  "itemType": S.optionalWith(ReferencedUpsertItemType, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class CreateBaseSubBucketMetadataRelationships extends S.Class<CreateBaseSubBucketMetadataRelationships>("CreateBaseSubBucketMetadataRelationships")({
-  "object": S.optionalWith(ReferencedUpsertBaseBucket, { nullable: true })
-}) {}
-
-export class UpdateBaseSubBucketMetadataRelationships extends S.Class<UpdateBaseSubBucketMetadataRelationships>("UpdateBaseSubBucketMetadataRelationships")({
-  "object": S.optionalWith(ReferencedUpsertBaseBucket, { nullable: true })
-}) {}
-
 export class CreateBaseBucketMetadataRelationships extends S.Class<CreateBaseBucketMetadataRelationships>("CreateBaseBucketMetadataRelationships")({
-  "object": S.optionalWith(ReferencedUpsertBaseBucket, { nullable: true })
-}) {}
-
-export class UpdateBaseBucketMetadataRelationships extends S.Class<UpdateBaseBucketMetadataRelationships>("UpdateBaseBucketMetadataRelationships")({
   "object": S.optionalWith(ReferencedUpsertBaseBucket, { nullable: true })
 }) {}
 
@@ -17713,11 +14376,6 @@ export class CreateSubmissionTrackTemplateRelationships extends S.Class<CreateSu
   "bucketTypes": S.optionalWith(ReferencedUpsertBucketTypeList, { nullable: true })
 }) {}
 
-export class UpdateSubmissionTrackTemplateRelationships extends S.Class<UpdateSubmissionTrackTemplateRelationships>("UpdateSubmissionTrackTemplateRelationships")({
-  "policyTemplate": S.optionalWith(ReferencedUpsertPolicyTemplate, { nullable: true }),
-  "bucketTypes": S.optionalWith(ReferencedUpsertBucketTypeList, { nullable: true })
-}) {}
-
 export class CreateBucketDefinitionRelationships extends S.Class<CreateBucketDefinitionRelationships>("CreateBucketDefinitionRelationships")({
   "basis": ReferencedUpsertClaimTarget,
   "bucketType": S.optionalWith(NullableReferencedUpsertBucketType, { nullable: true }),
@@ -17738,10 +14396,6 @@ export class EndorsementControllerPostEndorsementSubCoveragesRefRequest extends 
 ReferencedUpsertSubCoverageList) {}
 
 export class CreateCoverageGroupTemplateRelationships extends S.Class<CreateCoverageGroupTemplateRelationships>("CreateCoverageGroupTemplateRelationships")({
-  "coverageTemplates": S.optionalWith(ReferencedUpsertCoverageTemplateList, { nullable: true })
-}) {}
-
-export class UpdateCoverageGroupTemplateRelationships extends S.Class<UpdateCoverageGroupTemplateRelationships>("UpdateCoverageGroupTemplateRelationships")({
   "coverageTemplates": S.optionalWith(ReferencedUpsertCoverageTemplateList, { nullable: true })
 }) {}
 
@@ -17812,13 +14466,6 @@ export class CreateEndorsementTemplateRelationships extends S.Class<CreateEndors
   "bucketTypes": S.optionalWith(ReferencedUpsertBucketTypeList, { nullable: true })
 }) {}
 
-export class UpdateEndorsementTemplateRelationships extends S.Class<UpdateEndorsementTemplateRelationships>("UpdateEndorsementTemplateRelationships")({
-  "perils": S.optionalWith(ReferencedUpsertPerilList, { nullable: true }),
-  "coverageTemplates": S.optionalWith(ReferencedUpsertCoverageTemplateList, { nullable: true }),
-  "subCoverageTemplatess": S.optionalWith(ReferencedUpsertSubCoverageTemplateList, { nullable: true }),
-  "bucketTypes": S.optionalWith(ReferencedUpsertBucketTypeList, { nullable: true })
-}) {}
-
 export class CreateSubBucketRelationships extends S.Class<CreateSubBucketRelationships>("CreateSubBucketRelationships")({
   "parent": ReferencedUpsertBaseBucket,
   "metadata": S.optionalWith(ReferencedUpsertBaseSubBucketMetadata, { nullable: true }),
@@ -17862,11 +14509,6 @@ export class CreateSubCoverageTemplateRelationships extends S.Class<CreateSubCov
   "endorsementTemplates": S.optionalWith(ReferencedUpsertEndorsementTemplateList, { nullable: true })
 }) {}
 
-export class UpdateSubCoverageTemplateRelationships extends S.Class<UpdateSubCoverageTemplateRelationships>("UpdateSubCoverageTemplateRelationships")({
-  "coverageTemplate": S.optionalWith(ReferencedUpsertCoverageTemplate, { nullable: true }),
-  "endorsementTemplates": S.optionalWith(ReferencedUpsertEndorsementTemplateList, { nullable: true })
-}) {}
-
 export class CreateEndorsementRelationships extends S.Class<CreateEndorsementRelationships>("CreateEndorsementRelationships")({
   "policyTerm": ReferencedUpsertPolicyTerm,
   "template": S.optionalWith(NullableReferencedUpsertEndorsementTemplate, { nullable: true }),
@@ -17884,14 +14526,6 @@ export class UpdateEndorsementRelationships extends S.Class<UpdateEndorsementRel
 }) {}
 
 export class CreateCoverageTemplateRelationships extends S.Class<CreateCoverageTemplateRelationships>("CreateCoverageTemplateRelationships")({
-  "group": S.optionalWith(NullableReferencedUpsertCoverageGroupTemplate, { nullable: true }),
-  "perils": S.optionalWith(ReferencedUpsertPerilList, { nullable: true }),
-  "bucketType": S.optionalWith(ReferencedUpsertBucketType, { nullable: true }),
-  "subCoverageTemplates": S.optionalWith(ReferencedUpsertSubCoverageTemplateList, { nullable: true }),
-  "endorsementTemplates": S.optionalWith(ReferencedUpsertEndorsementTemplateList, { nullable: true })
-}) {}
-
-export class UpdateCoverageTemplateRelationships extends S.Class<UpdateCoverageTemplateRelationships>("UpdateCoverageTemplateRelationships")({
   "group": S.optionalWith(NullableReferencedUpsertCoverageGroupTemplate, { nullable: true }),
   "perils": S.optionalWith(ReferencedUpsertPerilList, { nullable: true }),
   "bucketType": S.optionalWith(ReferencedUpsertBucketType, { nullable: true }),
@@ -17918,21 +14552,7 @@ export class CreatePolicyTemplateRelationships extends S.Class<CreatePolicyTempl
   "perils": S.optionalWith(ReferencedUpsertPerilList, { nullable: true })
 }) {}
 
-export class UpdatePolicyTemplateRelationships extends S.Class<UpdatePolicyTemplateRelationships>("UpdatePolicyTemplateRelationships")({
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
-  "coverageGroupTemplates": S.optionalWith(ReferencedUpsertCoverageGroupTemplateList, { nullable: true }),
-  "coverageTemplates": S.optionalWith(ReferencedUpsertCoverageTemplateList, { nullable: true }),
-  "subCoverageTemplates": S.optionalWith(ReferencedUpsertSubCoverageTemplateList, { nullable: true }),
-  "endorsementTemplates": S.optionalWith(ReferencedUpsertEndorsementTemplateList, { nullable: true }),
-  "perils": S.optionalWith(ReferencedUpsertPerilList, { nullable: true })
-}) {}
-
 export class CreateDepreciationScheduleRelationships extends S.Class<CreateDepreciationScheduleRelationships>("CreateDepreciationScheduleRelationships")({
-  "depreciationModifiers": S.optionalWith(ReferencedUpsertDepreciationModifierList, { nullable: true }),
-  "depreciationOverrides": S.optionalWith(ReferencedUpsertDepreciationOverrideList, { nullable: true })
-}) {}
-
-export class UpdateDepreciationScheduleRelationships extends S.Class<UpdateDepreciationScheduleRelationships>("UpdateDepreciationScheduleRelationships")({
   "depreciationModifiers": S.optionalWith(ReferencedUpsertDepreciationModifierList, { nullable: true }),
   "depreciationOverrides": S.optionalWith(ReferencedUpsertDepreciationOverrideList, { nullable: true })
 }) {}
@@ -17942,17 +14562,7 @@ export class CreateSpaceTypeItemTemplateRelationships extends S.Class<CreateSpac
   "itemTemplate": S.optionalWith(ReferencedUpsertItemTemplate, { nullable: true })
 }) {}
 
-export class UpdateSpaceTypeItemTemplateRelationships extends S.Class<UpdateSpaceTypeItemTemplateRelationships>("UpdateSpaceTypeItemTemplateRelationships")({
-  "spaceType": S.optionalWith(ReferencedUpsertSpaceType, { nullable: true }),
-  "itemTemplate": S.optionalWith(ReferencedUpsertItemTemplate, { nullable: true })
-}) {}
-
 export class CreateAssetAttributeTypeRelationships extends S.Class<CreateAssetAttributeTypeRelationships>("CreateAssetAttributeTypeRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertAssetAttributeClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateAssetAttributeTypeRelationships extends S.Class<UpdateAssetAttributeTypeRelationships>("UpdateAssetAttributeTypeRelationships")({
   "classes": S.optionalWith(ReferencedUpsertAssetAttributeClassList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
@@ -17962,17 +14572,7 @@ export class CreateAssetAttributeTypeItemTemplateRelationships extends S.Class<C
   "itemTemplate": S.optionalWith(ReferencedUpsertItemTemplate, { nullable: true })
 }) {}
 
-export class UpdateAssetAttributeTypeItemTemplateRelationships extends S.Class<UpdateAssetAttributeTypeItemTemplateRelationships>("UpdateAssetAttributeTypeItemTemplateRelationships")({
-  "assetAttributeType": S.optionalWith(ReferencedUpsertAssetAttributeType, { nullable: true }),
-  "itemTemplate": S.optionalWith(ReferencedUpsertItemTemplate, { nullable: true })
-}) {}
-
 export class CreateAssetAttributeClassRelationships extends S.Class<CreateAssetAttributeClassRelationships>("CreateAssetAttributeClassRelationships")({
-  "types": S.optionalWith(ReferencedUpsertAssetAttributeTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateAssetAttributeClassRelationships extends S.Class<UpdateAssetAttributeClassRelationships>("UpdateAssetAttributeClassRelationships")({
   "types": S.optionalWith(ReferencedUpsertAssetAttributeTypeList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
@@ -17983,19 +14583,7 @@ export class CreateIncidentTypeRelationships extends S.Class<CreateIncidentTypeR
   "perils": S.optionalWith(ReferencedUpsertPerilList, { nullable: true })
 }) {}
 
-export class UpdateIncidentTypeRelationships extends S.Class<UpdateIncidentTypeRelationships>("UpdateIncidentTypeRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertIncidentClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true }),
-  "perils": S.optionalWith(ReferencedUpsertPerilList, { nullable: true })
-}) {}
-
 export class CreateItemClassRelationships extends S.Class<CreateItemClassRelationships>("CreateItemClassRelationships")({
-  "categories": S.optionalWith(ReferencedUpsertItemCategoryList, { nullable: true }),
-  "types": S.optionalWith(ReferencedUpsertItemTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateItemClassRelationships extends S.Class<UpdateItemClassRelationships>("UpdateItemClassRelationships")({
   "categories": S.optionalWith(ReferencedUpsertItemCategoryList, { nullable: true }),
   "types": S.optionalWith(ReferencedUpsertItemTypeList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
@@ -18008,19 +14596,7 @@ export class CreateItemTypeRelationships extends S.Class<CreateItemTypeRelations
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
 
-export class UpdateItemTypeRelationships extends S.Class<UpdateItemTypeRelationships>("UpdateItemTypeRelationships")({
-  "depreciationModifiers": S.optionalWith(ReferencedUpsertDepreciationModifierList, { nullable: true }),
-  "depreciationOverrides": S.optionalWith(ReferencedUpsertDepreciationOverrideList, { nullable: true }),
-  "classes": S.optionalWith(ReferencedUpsertItemClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
 export class CreateItemCategoryRelationships extends S.Class<CreateItemCategoryRelationships>("CreateItemCategoryRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertItemClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateItemCategoryRelationships extends S.Class<UpdateItemCategoryRelationships>("UpdateItemCategoryRelationships")({
   "classes": S.optionalWith(ReferencedUpsertItemClassList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
@@ -18031,18 +14607,7 @@ export class CreateServiceClassRelationships extends S.Class<CreateServiceClassR
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
 
-export class UpdateServiceClassRelationships extends S.Class<UpdateServiceClassRelationships>("UpdateServiceClassRelationships")({
-  "categories": S.optionalWith(ReferencedUpsertServiceCategoryList, { nullable: true }),
-  "types": S.optionalWith(ReferencedUpsertServiceTypeList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
 export class CreateServiceCategoryRelationships extends S.Class<CreateServiceCategoryRelationships>("CreateServiceCategoryRelationships")({
-  "classes": S.optionalWith(ReferencedUpsertServiceClassList, { nullable: true }),
-  "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
-}) {}
-
-export class UpdateServiceCategoryRelationships extends S.Class<UpdateServiceCategoryRelationships>("UpdateServiceCategoryRelationships")({
   "classes": S.optionalWith(ReferencedUpsertServiceClassList, { nullable: true }),
   "assetTypes": S.optionalWith(ReferencedUpsertAssetTypeList, { nullable: true })
 }) {}
@@ -18161,7 +14726,7 @@ export class ThirdPartyData extends S.Class<ThirdPartyData>("ThirdPartyData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "relationships": S.optionalWith(ThirdPartyRelationships, { nullable: true })
+  "relationships": S.optionalWith(ThirdPartyIndividualRelationships, { nullable: true })
 }) {}
 
 export class ThirdPartyIndividualData extends S.Class<ThirdPartyIndividualData>("ThirdPartyIndividualData")({
@@ -18185,7 +14750,7 @@ export class ThirdPartyIndividualData extends S.Class<ThirdPartyIndividualData>(
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ThirdPartyIndividualAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": S.optionalWith(ThirdPartyIndividualRelationships, { nullable: true })
 }) {}
 
@@ -18235,7 +14800,7 @@ export class IdentityData extends S.Class<IdentityData>("IdentityData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(IdentityAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountProviderContactAttributes, { nullable: true }),
   "relationships": S.optionalWith(IdentityRelationships, { nullable: true })
 }) {}
 
@@ -18260,7 +14825,7 @@ export class UserData extends S.Class<UserData>("UserData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(UserAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateUserAttributes, { nullable: true }),
   "relationships": S.optionalWith(UserRelationships, { nullable: true })
 }) {}
 
@@ -18310,7 +14875,7 @@ export class UserAccountRoleData extends S.Class<UserAccountRoleData>("UserAccou
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(UserAccountRoleAttributes, { nullable: true }),
+  "attributes": S.optionalWith(UpdateUserAccountRoleAttributes, { nullable: true }),
   "relationships": S.optionalWith(UserAccountRoleRelationships, { nullable: true })
 }) {}
 
@@ -18361,7 +14926,7 @@ export class PhoneNumberData extends S.Class<PhoneNumberData>("PhoneNumberData")
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
   "attributes": S.optionalWith(PhoneNumberAttributes, { nullable: true }),
-  "relationships": S.optionalWith(PhoneNumberRelationships, { nullable: true })
+  "relationships": S.optionalWith(EmailAddressRelationships, { nullable: true })
 }) {}
 
 export class AccountProviderContactData extends S.Class<AccountProviderContactData>("AccountProviderContactData")({
@@ -18435,7 +15000,7 @@ export class ProjectData extends S.Class<ProjectData>("ProjectData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ProjectAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": S.optionalWith(ProjectRelationships, { nullable: true })
 }) {}
 
@@ -18460,7 +15025,7 @@ export class DisasterData extends S.Class<DisasterData>("DisasterData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DisasterAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(DisasterRelationships, { nullable: true })
 }) {}
 
@@ -18510,7 +15075,7 @@ export class ProjectMediaData extends S.Class<ProjectMediaData>("ProjectMediaDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ProjectMediaAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateProjectMediaAttributes, { nullable: true }),
   "relationships": S.optionalWith(ProjectMediaRelationships, { nullable: true })
 }) {}
 
@@ -18535,7 +15100,7 @@ export class FileProcessData extends S.Class<FileProcessData>("FileProcessData")
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(FileProcessAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateFileProcessAttributes, { nullable: true }),
   "relationships": S.optionalWith(FileProcessRelationships, { nullable: true })
 }) {}
 
@@ -18560,7 +15125,7 @@ export class ProjectImpactData extends S.Class<ProjectImpactData>("ProjectImpact
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ProjectImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateIncidentImpactAttributes, { nullable: true }),
   "relationships": S.optionalWith(ProjectImpactRelationships, { nullable: true })
 }) {}
 
@@ -18585,7 +15150,7 @@ export class MediaData extends S.Class<MediaData>("MediaData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(MediaAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateMediaAttributes, { nullable: true }),
   "relationships": S.optionalWith(MediaRelationships, { nullable: true })
 }) {}
 
@@ -18610,7 +15175,7 @@ export class ItemizableFinancialDocumentStatsData extends S.Class<ItemizableFina
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemizableFinancialDocumentStatsAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateItemizableFinancialDocumentStatsAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemizableFinancialDocumentStatsRelationships, { nullable: true })
 }) {}
 
@@ -18685,7 +15250,32 @@ export class PerilData extends S.Class<PerilData>("PerilData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PerilAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(PerilRelationships, { nullable: true })
+}) {}
+
+export class ServiceTypeData extends S.Class<ServiceTypeData>("ServiceTypeData")({
+  /**
+* Entity id
+*/
+"id": S.String,
+  /**
+* The type of the referenced entity.
+*/
+"type": ServiceTypeDataType,
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* Metadata for the entity
+*/
+"meta": S.optionalWith(EntityMetadata, { nullable: true }),
+  /**
+* Relevant links.
+*/
+"links": S.optionalWith(LinkObject, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(PerilRelationships, { nullable: true })
 }) {}
 
@@ -18710,33 +15300,8 @@ export class IncidentClassData extends S.Class<IncidentClassData>("IncidentClass
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(IncidentClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(IncidentClassRelationships, { nullable: true })
-}) {}
-
-export class ServiceTypeData extends S.Class<ServiceTypeData>("ServiceTypeData")({
-  /**
-* Entity id
-*/
-"id": S.String,
-  /**
-* The type of the referenced entity.
-*/
-"type": ServiceTypeDataType,
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* Metadata for the entity
-*/
-"meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  /**
-* Relevant links.
-*/
-"links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ServiceTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(ServiceTypeRelationships, { nullable: true })
 }) {}
 
 export class DwellingData extends S.Class<DwellingData>("DwellingData")({
@@ -18760,7 +15325,7 @@ export class DwellingData extends S.Class<DwellingData>("DwellingData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DwellingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributes, { nullable: true }),
   "relationships": S.optionalWith(DwellingRelationships, { nullable: true })
 }) {}
 
@@ -18810,8 +15375,8 @@ export class DocumentData extends S.Class<DocumentData>("DocumentData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DocumentAttributes, { nullable: true }),
-  "relationships": S.optionalWith(DocumentRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class IncidentReportData extends S.Class<IncidentReportData>("IncidentReportData")({
@@ -18835,8 +15400,8 @@ export class IncidentReportData extends S.Class<IncidentReportData>("IncidentRep
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(IncidentReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(IncidentReportRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class PoliceReportData extends S.Class<PoliceReportData>("PoliceReportData")({
@@ -18860,8 +15425,8 @@ export class PoliceReportData extends S.Class<PoliceReportData>("PoliceReportDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PoliceReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(PoliceReportRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class ParamedicReportData extends S.Class<ParamedicReportData>("ParamedicReportData")({
@@ -18885,8 +15450,8 @@ export class ParamedicReportData extends S.Class<ParamedicReportData>("Paramedic
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ParamedicReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(ParamedicReportRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class ContractData extends S.Class<ContractData>("ContractData")({
@@ -18910,8 +15475,8 @@ export class ContractData extends S.Class<ContractData>("ContractData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ContractAttributes, { nullable: true }),
-  "relationships": S.optionalWith(ContractRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class RentRollData extends S.Class<RentRollData>("RentRollData")({
@@ -18935,8 +15500,8 @@ export class RentRollData extends S.Class<RentRollData>("RentRollData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(RentRollAttributes, { nullable: true }),
-  "relationships": S.optionalWith(RentRollRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class PermitData extends S.Class<PermitData>("PermitData")({
@@ -18960,8 +15525,8 @@ export class PermitData extends S.Class<PermitData>("PermitData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PermitAttributes, { nullable: true }),
-  "relationships": S.optionalWith(PermitRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class BlueprintData extends S.Class<BlueprintData>("BlueprintData")({
@@ -19010,8 +15575,8 @@ export class DeclarationsPageData extends S.Class<DeclarationsPageData>("Declara
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DeclarationsPageAttributes, { nullable: true }),
-  "relationships": S.optionalWith(DeclarationsPageRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class PolicyJacketData extends S.Class<PolicyJacketData>("PolicyJacketData")({
@@ -19035,8 +15600,8 @@ export class PolicyJacketData extends S.Class<PolicyJacketData>("PolicyJacketDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PolicyJacketAttributes, { nullable: true }),
-  "relationships": S.optionalWith(PolicyJacketRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class ScopeOfLossData extends S.Class<ScopeOfLossData>("ScopeOfLossData")({
@@ -19060,8 +15625,8 @@ export class ScopeOfLossData extends S.Class<ScopeOfLossData>("ScopeOfLossData")
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ScopeOfLossAttributes, { nullable: true }),
-  "relationships": S.optionalWith(ScopeOfLossRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class DeliveryPaperworkData extends S.Class<DeliveryPaperworkData>("DeliveryPaperworkData")({
@@ -19085,8 +15650,8 @@ export class DeliveryPaperworkData extends S.Class<DeliveryPaperworkData>("Deliv
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DeliveryPaperworkAttributes, { nullable: true }),
-  "relationships": S.optionalWith(DeliveryPaperworkRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class ProductSpecData extends S.Class<ProductSpecData>("ProductSpecData")({
@@ -19110,8 +15675,8 @@ export class ProductSpecData extends S.Class<ProductSpecData>("ProductSpecData")
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ProductSpecAttributes, { nullable: true }),
-  "relationships": S.optionalWith(ProductSpecRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class UserManualData extends S.Class<UserManualData>("UserManualData")({
@@ -19135,8 +15700,8 @@ export class UserManualData extends S.Class<UserManualData>("UserManualData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(UserManualAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UserManualRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class WarrantyData extends S.Class<WarrantyData>("WarrantyData")({
@@ -19160,8 +15725,8 @@ export class WarrantyData extends S.Class<WarrantyData>("WarrantyData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(WarrantyAttributes, { nullable: true }),
-  "relationships": S.optionalWith(WarrantyRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class DeedData extends S.Class<DeedData>("DeedData")({
@@ -19185,8 +15750,8 @@ export class DeedData extends S.Class<DeedData>("DeedData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DeedAttributes, { nullable: true }),
-  "relationships": S.optionalWith(DeedRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BlueprintRelationships, { nullable: true })
 }) {}
 
 export class FinancialDocumentData extends S.Class<FinancialDocumentData>("FinancialDocumentData")({
@@ -19210,7 +15775,7 @@ export class FinancialDocumentData extends S.Class<FinancialDocumentData>("Finan
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(FinancialDocumentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAppraisalAttributes, { nullable: true }),
   "relationships": S.optionalWith(FinancialDocumentRelationships, { nullable: true })
 }) {}
 
@@ -19235,7 +15800,7 @@ export class DocumentClassData extends S.Class<DocumentClassData>("DocumentClass
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DocumentClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(DocumentClassRelationships, { nullable: true })
 }) {}
 
@@ -19260,7 +15825,7 @@ export class DocumentTypeData extends S.Class<DocumentTypeData>("DocumentTypeDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DocumentTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateDocumentTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(DocumentTypeRelationships, { nullable: true })
 }) {}
 
@@ -19285,7 +15850,7 @@ export class SpaceGroupData extends S.Class<SpaceGroupData>("SpaceGroupData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SpaceGroupAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": S.optionalWith(SpaceGroupRelationships, { nullable: true })
 }) {}
 
@@ -19310,7 +15875,7 @@ export class SpaceData extends S.Class<SpaceData>("SpaceData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SpaceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateSpaceAttributes, { nullable: true }),
   "relationships": S.optionalWith(SpaceRelationships, { nullable: true })
 }) {}
 
@@ -19335,8 +15900,8 @@ export class SpaceTypeData extends S.Class<SpaceTypeData>("SpaceTypeData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SpaceTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(SpaceTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
+  "relationships": S.optionalWith(SpaceCategoryRelationships, { nullable: true })
 }) {}
 
 export class SpaceCategoryData extends S.Class<SpaceCategoryData>("SpaceCategoryData")({
@@ -19360,7 +15925,7 @@ export class SpaceCategoryData extends S.Class<SpaceCategoryData>("SpaceCategory
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SpaceCategoryAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
   "relationships": S.optionalWith(SpaceCategoryRelationships, { nullable: true })
 }) {}
 
@@ -19385,7 +15950,7 @@ export class SpaceClassData extends S.Class<SpaceClassData>("SpaceClassData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SpaceClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
   "relationships": S.optionalWith(SpaceClassRelationships, { nullable: true })
 }) {}
 
@@ -19410,7 +15975,7 @@ export class SpaceGroupTypeData extends S.Class<SpaceGroupTypeData>("SpaceGroupT
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SpaceGroupTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(SpaceGroupTypeRelationships, { nullable: true })
 }) {}
 
@@ -19435,7 +16000,7 @@ export class BucketClassData extends S.Class<BucketClassData>("BucketClassData")
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(BucketClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(BucketClassRelationships, { nullable: true })
 }) {}
 
@@ -19510,7 +16075,7 @@ export class ThirdPartyDwellingData extends S.Class<ThirdPartyDwellingData>("Thi
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ThirdPartyDwellingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AddressAttributes, { nullable: true }),
   "relationships": S.optionalWith(ThirdPartyDwellingRelationships, { nullable: true })
 }) {}
 
@@ -19535,7 +16100,7 @@ export class ItemizableFinancialDocumentData extends S.Class<ItemizableFinancial
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemizableFinancialDocumentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemizableFinancialDocumentRelationships, { nullable: true })
 }) {}
 
@@ -19560,7 +16125,7 @@ export class ItemImpactPaymentData extends S.Class<ItemImpactPaymentData>("ItemI
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemImpactPaymentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemImpactPaymentRelationships, { nullable: true })
 }) {}
 
@@ -19585,7 +16150,7 @@ export class ItemImpactInvoiceData extends S.Class<ItemImpactInvoiceData>("ItemI
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemImpactInvoiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemImpactInvoiceRelationships, { nullable: true })
 }) {}
 
@@ -19610,7 +16175,7 @@ export class ItemImpactEstimateData extends S.Class<ItemImpactEstimateData>("Ite
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemImpactEstimateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EstimateLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemImpactEstimateRelationships, { nullable: true })
 }) {}
 
@@ -19635,7 +16200,7 @@ export class ItemAppraisalData extends S.Class<ItemAppraisalData>("ItemAppraisal
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemAppraisalAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AppraisalLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemAppraisalRelationships, { nullable: true })
 }) {}
 
@@ -19760,7 +16325,7 @@ export class ServiceTaskPaymentData extends S.Class<ServiceTaskPaymentData>("Ser
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ServiceTaskPaymentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ServiceTaskPaymentRelationships, { nullable: true })
 }) {}
 
@@ -19785,7 +16350,7 @@ export class ServiceTaskInvoiceData extends S.Class<ServiceTaskInvoiceData>("Ser
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ServiceTaskInvoiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ServiceTaskInvoiceRelationships, { nullable: true })
 }) {}
 
@@ -19810,7 +16375,7 @@ export class ServiceTaskEstimateData extends S.Class<ServiceTaskEstimateData>("S
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ServiceTaskEstimateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EstimateLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ServiceTaskEstimateRelationships, { nullable: true })
 }) {}
 
@@ -19860,7 +16425,7 @@ export class EntrySourceMetadataData extends S.Class<EntrySourceMetadataData>("E
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(EntrySourceMetadataAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateEntrySourceMetadataAttributes, { nullable: true }),
   "relationships": S.optionalWith(EntrySourceMetadataRelationships, { nullable: true })
 }) {}
 
@@ -19935,7 +16500,7 @@ export class PaymentLineData extends S.Class<PaymentLineData>("PaymentLineData")
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PaymentLineAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(PaymentLineRelationships, { nullable: true })
 }) {}
 
@@ -19985,7 +16550,7 @@ export class EntrySourceMediaData extends S.Class<EntrySourceMediaData>("EntrySo
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(EntrySourceMediaAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateEntrySourceMediaAttributes, { nullable: true }),
   "relationships": S.optionalWith(EntrySourceMediaRelationships, { nullable: true })
 }) {}
 
@@ -20035,7 +16600,7 @@ export class ItemImpactChangeOrderData extends S.Class<ItemImpactChangeOrderData
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemImpactChangeOrderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemImpactChangeOrderRelationships, { nullable: true })
 }) {}
 
@@ -20110,7 +16675,7 @@ export class ServiceTaskChangeOrderData extends S.Class<ServiceTaskChangeOrderDa
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ServiceTaskChangeOrderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(ServiceTaskChangeOrderRelationships, { nullable: true })
 }) {}
 
@@ -20185,7 +16750,7 @@ export class PaymentData extends S.Class<PaymentData>("PaymentData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PaymentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(PaymentRelationships, { nullable: true })
 }) {}
 
@@ -20235,7 +16800,7 @@ export class InvoiceData extends S.Class<InvoiceData>("InvoiceData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(InvoiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(InvoiceRelationships, { nullable: true })
 }) {}
 
@@ -20260,7 +16825,7 @@ export class ItemImpactData extends S.Class<ItemImpactData>("ItemImpactData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateItemImpactAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemImpactRelationships, { nullable: true })
 }) {}
 
@@ -20335,7 +16900,7 @@ export class DepreciationModifierData extends S.Class<DepreciationModifierData>(
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DepreciationModifierAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateDepreciationModifierAttributes, { nullable: true }),
   "relationships": S.optionalWith(DepreciationModifierRelationships, { nullable: true })
 }) {}
 
@@ -20360,8 +16925,8 @@ export class DepreciationOverrideData extends S.Class<DepreciationOverrideData>(
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DepreciationOverrideAttributes, { nullable: true }),
-  "relationships": S.optionalWith(DepreciationOverrideRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateDepreciationOverrideAttributes, { nullable: true }),
+  "relationships": S.optionalWith(DepreciationModifierRelationships, { nullable: true })
 }) {}
 
 export class ItemTemplateData extends S.Class<ItemTemplateData>("ItemTemplateData")({
@@ -20385,7 +16950,7 @@ export class ItemTemplateData extends S.Class<ItemTemplateData>("ItemTemplateDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemTemplateRelationships, { nullable: true })
 }) {}
 
@@ -20410,8 +16975,8 @@ export class BaseSubBucketMetadataData extends S.Class<BaseSubBucketMetadataData
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(BaseSubBucketMetadataAttributes, { nullable: true }),
-  "relationships": S.optionalWith(BaseSubBucketMetadataRelationships, { nullable: true })
+  "attributes": S.optionalWith(BaseBucketMetadataAttributes, { nullable: true }),
+  "relationships": S.optionalWith(BaseBucketMetadataRelationships, { nullable: true })
 }) {}
 
 export class BaseBucketMetadataData extends S.Class<BaseBucketMetadataData>("BaseBucketMetadataData")({
@@ -20485,7 +17050,7 @@ export class EntryData extends S.Class<EntryData>("EntryData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(EntryAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateEntryAttributes, { nullable: true }),
   "relationships": S.optionalWith(EntryRelationships, { nullable: true })
 }) {}
 
@@ -20560,7 +17125,7 @@ export class FundingData extends S.Class<FundingData>("FundingData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(FundingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateFundingAttributes, { nullable: true }),
   "relationships": S.optionalWith(FundingRelationships, { nullable: true })
 }) {}
 
@@ -20760,7 +17325,7 @@ export class PolicyData extends S.Class<PolicyData>("PolicyData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PolicyAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreatePolicyAttributes, { nullable: true }),
   "relationships": S.optionalWith(PolicyRelationships, { nullable: true })
 }) {}
 
@@ -20785,7 +17350,7 @@ export class SubmissionTrackTemplateData extends S.Class<SubmissionTrackTemplate
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SubmissionTrackTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(SubmissionTrackTemplateRelationships, { nullable: true })
 }) {}
 
@@ -20835,7 +17400,7 @@ export class CoverageGroupTemplateData extends S.Class<CoverageGroupTemplateData
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(CoverageGroupTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CoverageGroupTemplateRelationships, { nullable: true })
 }) {}
 
@@ -20860,7 +17425,7 @@ export class IncidentImpactData extends S.Class<IncidentImpactData>("IncidentImp
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(IncidentImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateIncidentImpactAttributes, { nullable: true }),
   "relationships": S.optionalWith(IncidentImpactRelationships, { nullable: true })
 }) {}
 
@@ -20885,7 +17450,7 @@ export class CoverageData extends S.Class<CoverageData>("CoverageData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(CoverageAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketDefinitionAttributes, { nullable: true }),
   "relationships": S.optionalWith(CoverageRelationships, { nullable: true })
 }) {}
 
@@ -20910,7 +17475,7 @@ export class SubCoverageData extends S.Class<SubCoverageData>("SubCoverageData")
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SubCoverageAttributes, { nullable: true }),
+  "attributes": S.optionalWith(SubBucketDefinitionAttributes, { nullable: true }),
   "relationships": S.optionalWith(SubCoverageRelationships, { nullable: true })
 }) {}
 
@@ -20935,7 +17500,7 @@ export class EndorsementTemplateData extends S.Class<EndorsementTemplateData>("E
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(EndorsementTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateEndorsementTemplateAttributes, { nullable: true }),
   "relationships": S.optionalWith(EndorsementTemplateRelationships, { nullable: true })
 }) {}
 
@@ -20960,7 +17525,7 @@ export class SubBucketData extends S.Class<SubBucketData>("SubBucketData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SubBucketAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateSubBucketAttributes, { nullable: true }),
   "relationships": S.optionalWith(SubBucketRelationships, { nullable: true })
 }) {}
 
@@ -21010,7 +17575,7 @@ export class SubCoverageTemplateData extends S.Class<SubCoverageTemplateData>("S
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SubCoverageTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(SubCoverageTemplateRelationships, { nullable: true })
 }) {}
 
@@ -21060,7 +17625,7 @@ export class CoverageTemplateData extends S.Class<CoverageTemplateData>("Coverag
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(CoverageTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CoverageTemplateRelationships, { nullable: true })
 }) {}
 
@@ -21109,7 +17674,7 @@ export class PolicyTemplateData extends S.Class<PolicyTemplateData>("PolicyTempl
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(PolicyTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(PolicyTemplateRelationships, { nullable: true })
 }) {}
 
@@ -21134,7 +17699,7 @@ export class DepreciationScheduleData extends S.Class<DepreciationScheduleData>(
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(DepreciationScheduleAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateDepreciationScheduleAttributes, { nullable: true }),
   "relationships": S.optionalWith(DepreciationScheduleRelationships, { nullable: true })
 }) {}
 
@@ -21159,7 +17724,7 @@ export class SpaceTypeItemTemplateData extends S.Class<SpaceTypeItemTemplateData
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(SpaceTypeItemTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributeTypeItemTemplateAttributes, { nullable: true }),
   "relationships": S.optionalWith(SpaceTypeItemTemplateRelationships, { nullable: true })
 }) {}
 
@@ -21259,7 +17824,7 @@ export class IncidentTypeData extends S.Class<IncidentTypeData>("IncidentTypeDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(IncidentTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(IncidentTypeRelationships, { nullable: true })
 }) {}
 
@@ -21284,7 +17849,7 @@ export class ItemClassData extends S.Class<ItemClassData>("ItemClassData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemClassRelationships, { nullable: true })
 }) {}
 
@@ -21309,7 +17874,7 @@ export class ItemTypeData extends S.Class<ItemTypeData>("ItemTypeData")({
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateItemTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemTypeRelationships, { nullable: true })
 }) {}
 
@@ -21334,7 +17899,7 @@ export class ItemCategoryData extends S.Class<ItemCategoryData>("ItemCategoryDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ItemCategoryAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(ItemCategoryRelationships, { nullable: true })
 }) {}
 
@@ -21359,7 +17924,7 @@ export class ServiceClassData extends S.Class<ServiceClassData>("ServiceClassDat
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ServiceClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(ServiceClassRelationships, { nullable: true })
 }) {}
 
@@ -21384,7 +17949,7 @@ export class ServiceCategoryData extends S.Class<ServiceCategoryData>("ServiceCa
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ServiceCategoryAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(ServiceCategoryRelationships, { nullable: true })
 }) {}
 
@@ -21434,7 +17999,7 @@ export class ThirdPartyImpactData extends S.Class<ThirdPartyImpactData>("ThirdPa
 * Relevant links.
 */
 "links": S.optionalWith(LinkObject, { nullable: true }),
-  "attributes": S.optionalWith(ThirdPartyImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EntrySourceAttributes, { nullable: true }),
   "relationships": S.optionalWith(ThirdPartyImpactRelationships, { nullable: true })
 }) {}
 
@@ -21447,7 +18012,7 @@ export class CreateIdentityData extends S.Class<CreateIdentityData>("CreateIdent
 * The type of the referenced entity.
 */
 "type": CreateIdentityDataType,
-  "attributes": S.optionalWith(CreateIdentityAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountProviderContactAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateIdentityRelationships, { nullable: true })
 }) {}
 
@@ -21468,7 +18033,7 @@ export class UpdateIdentityData extends S.Class<UpdateIdentityData>("UpdateIdent
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateIdentityAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountProviderContactAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateIdentityRelationships, { nullable: true })
 }) {}
 
@@ -21489,7 +18054,7 @@ export class UpdateUserData extends S.Class<UpdateUserData>("UpdateUserData")({
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateUserAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateUserAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateUserRelationships, { nullable: true })
 }) {}
 
@@ -21519,6 +18084,19 @@ export class CreateEmailAddressData extends S.Class<CreateEmailAddressData>("Cre
   "relationships": CreateEmailAddressRelationships
 }) {}
 
+export class CreatePhoneNumberData extends S.Class<CreatePhoneNumberData>("CreatePhoneNumberData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreatePhoneNumberDataType,
+  "attributes": CreatePhoneNumberAttributes,
+  "relationships": CreateEmailAddressRelationships
+}) {}
+
 export class UpdateEmailAddressData extends S.Class<UpdateEmailAddressData>("UpdateEmailAddressData")({
   /**
 * Entity id
@@ -21536,21 +18114,8 @@ export class UpdateEmailAddressData extends S.Class<UpdateEmailAddressData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEmailAddressAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EmailAddressAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateEmailAddressRelationships, { nullable: true })
-}) {}
-
-export class CreatePhoneNumberData extends S.Class<CreatePhoneNumberData>("CreatePhoneNumberData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreatePhoneNumberDataType,
-  "attributes": CreatePhoneNumberAttributes,
-  "relationships": CreatePhoneNumberRelationships
 }) {}
 
 export class UpdatePhoneNumberData extends S.Class<UpdatePhoneNumberData>("UpdatePhoneNumberData")({
@@ -21570,8 +18135,8 @@ export class UpdatePhoneNumberData extends S.Class<UpdatePhoneNumberData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePhoneNumberAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdatePhoneNumberRelationships, { nullable: true })
+  "attributes": S.optionalWith(PhoneNumberAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateEmailAddressRelationships, { nullable: true })
 }) {}
 
 export class CreateAccountInviteData extends S.Class<CreateAccountInviteData>("CreateAccountInviteData")({
@@ -21604,7 +18169,7 @@ export class UpdateAccountInviteData extends S.Class<UpdateAccountInviteData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAccountInviteAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountInviteAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAccountInviteRelationships, { nullable: true })
 }) {}
 
@@ -21638,7 +18203,7 @@ export class UpdateAuthProfileData extends S.Class<UpdateAuthProfileData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAuthProfileAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AuthProfileAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAuthProfileRelationships, { nullable: true })
 }) {}
 
@@ -21685,7 +18250,7 @@ export class CreateAccountProviderContactData extends S.Class<CreateAccountProvi
 * The type of the referenced entity.
 */
 "type": CreateAccountProviderContactDataType,
-  "attributes": S.optionalWith(CreateAccountProviderContactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountProviderContactAttributes, { nullable: true }),
   "relationships": CreateAccountProviderContactRelationships
 }) {}
 
@@ -21706,7 +18271,7 @@ export class UpdateAccountProviderContactData extends S.Class<UpdateAccountProvi
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAccountProviderContactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountProviderContactAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAccountProviderContactRelationships, { nullable: true })
 }) {}
 
@@ -21719,7 +18284,7 @@ export class CreateAccountProviderData extends S.Class<CreateAccountProviderData
 * The type of the referenced entity.
 */
 "type": CreateAccountProviderDataType,
-  "attributes": S.optionalWith(CreateAccountProviderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountProviderAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateAccountProviderRelationships, { nullable: true })
 }) {}
 
@@ -21740,7 +18305,7 @@ export class UpdateAccountProviderData extends S.Class<UpdateAccountProviderData
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAccountProviderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountProviderAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAccountProviderRelationships, { nullable: true })
 }) {}
 
@@ -21753,7 +18318,20 @@ export class CreateThirdPartyData extends S.Class<CreateThirdPartyData>("CreateT
 * The type of the referenced entity.
 */
 "type": CreateThirdPartyDataType,
-  "relationships": CreateThirdPartyRelationships
+  "relationships": CreateThirdPartyIndividualRelationships
+}) {}
+
+export class CreateThirdPartyIndividualData extends S.Class<CreateThirdPartyIndividualData>("CreateThirdPartyIndividualData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateThirdPartyIndividualDataType,
+  "attributes": CreateAccountAttributes,
+  "relationships": CreateThirdPartyIndividualRelationships
 }) {}
 
 export class UpdateThirdPartyData extends S.Class<UpdateThirdPartyData>("UpdateThirdPartyData")({
@@ -21773,20 +18351,7 @@ export class UpdateThirdPartyData extends S.Class<UpdateThirdPartyData>("UpdateT
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "relationships": S.optionalWith(UpdateThirdPartyRelationships, { nullable: true })
-}) {}
-
-export class CreateThirdPartyIndividualData extends S.Class<CreateThirdPartyIndividualData>("CreateThirdPartyIndividualData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateThirdPartyIndividualDataType,
-  "attributes": CreateThirdPartyIndividualAttributes,
-  "relationships": CreateThirdPartyIndividualRelationships
+  "relationships": S.optionalWith(UpdateThirdPartyIndividualRelationships, { nullable: true })
 }) {}
 
 export class UpdateThirdPartyIndividualData extends S.Class<UpdateThirdPartyIndividualData>("UpdateThirdPartyIndividualData")({
@@ -21806,7 +18371,7 @@ export class UpdateThirdPartyIndividualData extends S.Class<UpdateThirdPartyIndi
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateThirdPartyIndividualAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateThirdPartyIndividualRelationships, { nullable: true })
 }) {}
 
@@ -21840,7 +18405,7 @@ export class UpdateAccountData extends S.Class<UpdateAccountData>("UpdateAccount
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAccountAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAccountRelationships, { nullable: true })
 }) {}
 
@@ -21853,7 +18418,7 @@ export class CreateProjectData extends S.Class<CreateProjectData>("CreateProject
 * The type of the referenced entity.
 */
 "type": CreateProjectDataType,
-  "attributes": CreateProjectAttributes,
+  "attributes": CreateAccountAttributes,
   "relationships": S.optionalWith(CreateProjectRelationships, { nullable: true })
 }) {}
 
@@ -21874,7 +18439,7 @@ export class UpdateProjectData extends S.Class<UpdateProjectData>("UpdateProject
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateProjectAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateProjectRelationships, { nullable: true })
 }) {}
 
@@ -21887,7 +18452,7 @@ export class CreateDisasterData extends S.Class<CreateDisasterData>("CreateDisas
 * The type of the referenced entity.
 */
 "type": CreateDisasterDataType,
-  "attributes": S.optionalWith(CreateDisasterAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateDisasterRelationships, { nullable: true })
 }) {}
 
@@ -21908,8 +18473,8 @@ export class UpdateDisasterData extends S.Class<UpdateDisasterData>("UpdateDisas
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDisasterAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDisasterRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateDisasterRelationships, { nullable: true })
 }) {}
 
 export class CreateIncidentData extends S.Class<CreateIncidentData>("CreateIncidentData")({
@@ -21942,7 +18507,7 @@ export class UpdateIncidentData extends S.Class<UpdateIncidentData>("UpdateIncid
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateIncidentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(IncidentAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateIncidentRelationships, { nullable: true })
 }) {}
 
@@ -21976,7 +18541,7 @@ export class UpdateProjectMediaData extends S.Class<UpdateProjectMediaData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateProjectMediaAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateProjectMediaAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateProjectMediaRelationships, { nullable: true })
 }) {}
 
@@ -22010,8 +18575,8 @@ export class UpdateFileProcessData extends S.Class<UpdateFileProcessData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateFileProcessAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateFileProcessRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateFileProcessAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateFileProcessRelationships, { nullable: true })
 }) {}
 
 export class CreateProjectImpactData extends S.Class<CreateProjectImpactData>("CreateProjectImpactData")({
@@ -22023,7 +18588,7 @@ export class CreateProjectImpactData extends S.Class<CreateProjectImpactData>("C
 * The type of the referenced entity.
 */
 "type": CreateProjectImpactDataType,
-  "attributes": S.optionalWith(CreateProjectImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateIncidentImpactAttributes, { nullable: true }),
   "relationships": CreateProjectImpactRelationships
 }) {}
 
@@ -22044,7 +18609,7 @@ export class UpdateProjectImpactData extends S.Class<UpdateProjectImpactData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateProjectImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateIncidentImpactAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateProjectImpactRelationships, { nullable: true })
 }) {}
 
@@ -22078,7 +18643,7 @@ export class UpdateMediaData extends S.Class<UpdateMediaData>("UpdateMediaData")
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateMediaAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateMediaAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateMediaRelationships, { nullable: true })
 }) {}
 
@@ -22112,8 +18677,8 @@ export class UpdateItemizableFinancialDocumentStatsData extends S.Class<UpdateIt
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemizableFinancialDocumentStatsAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateItemizableFinancialDocumentStatsRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateItemizableFinancialDocumentStatsAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateItemizableFinancialDocumentStatsRelationships, { nullable: true })
 }) {}
 
 export class CreateFileData extends S.Class<CreateFileData>("CreateFileData")({
@@ -22159,7 +18724,7 @@ export class CreateAssetData extends S.Class<CreateAssetData>("CreateAssetData")
 * The type of the referenced entity.
 */
 "type": CreateAssetDataType,
-  "attributes": S.optionalWith(CreateAssetAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributes, { nullable: true }),
   "relationships": CreateAssetRelationships
 }) {}
 
@@ -22180,7 +18745,7 @@ export class UpdateAssetData extends S.Class<UpdateAssetData>("UpdateAssetData")
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAssetAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAssetRelationships, { nullable: true })
 }) {}
 
@@ -22193,7 +18758,7 @@ export class CreatePerilData extends S.Class<CreatePerilData>("CreatePerilData")
 * The type of the referenced entity.
 */
 "type": CreatePerilDataType,
-  "attributes": S.optionalWith(CreatePerilAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreatePerilRelationships, { nullable: true })
 }) {}
 
@@ -22214,8 +18779,42 @@ export class UpdatePerilData extends S.Class<UpdatePerilData>("UpdatePerilData")
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePerilAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdatePerilRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreatePerilRelationships, { nullable: true })
+}) {}
+
+export class CreateServiceTypeData extends S.Class<CreateServiceTypeData>("CreateServiceTypeData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateServiceTypeDataType,
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreatePerilRelationships, { nullable: true })
+}) {}
+
+export class UpdateServiceTypeData extends S.Class<UpdateServiceTypeData>("UpdateServiceTypeData")({
+  /**
+* Entity id
+*/
+"id": S.String,
+  /**
+* The type of the referenced entity.
+*/
+"type": UpdateServiceTypeDataType,
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* Metadata for the entity
+*/
+"meta": S.optionalWith(EntityMetadata, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreatePerilRelationships, { nullable: true })
 }) {}
 
 export class CreateIncidentClassData extends S.Class<CreateIncidentClassData>("CreateIncidentClassData")({
@@ -22227,7 +18826,7 @@ export class CreateIncidentClassData extends S.Class<CreateIncidentClassData>("C
 * The type of the referenced entity.
 */
 "type": CreateIncidentClassDataType,
-  "attributes": S.optionalWith(CreateIncidentClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateIncidentClassRelationships, { nullable: true })
 }) {}
 
@@ -22248,42 +18847,8 @@ export class UpdateIncidentClassData extends S.Class<UpdateIncidentClassData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateIncidentClassAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateIncidentClassRelationships, { nullable: true })
-}) {}
-
-export class CreateServiceTypeData extends S.Class<CreateServiceTypeData>("CreateServiceTypeData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateServiceTypeDataType,
-  "attributes": S.optionalWith(CreateServiceTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateServiceTypeRelationships, { nullable: true })
-}) {}
-
-export class UpdateServiceTypeData extends S.Class<UpdateServiceTypeData>("UpdateServiceTypeData")({
-  /**
-* Entity id
-*/
-"id": S.String,
-  /**
-* The type of the referenced entity.
-*/
-"type": UpdateServiceTypeDataType,
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* Metadata for the entity
-*/
-"meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateServiceTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateIncidentClassRelationships, { nullable: true })
 }) {}
 
 export class CreateDwellingData extends S.Class<CreateDwellingData>("CreateDwellingData")({
@@ -22295,7 +18860,7 @@ export class CreateDwellingData extends S.Class<CreateDwellingData>("CreateDwell
 * The type of the referenced entity.
 */
 "type": CreateDwellingDataType,
-  "attributes": S.optionalWith(CreateDwellingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributes, { nullable: true }),
   "relationships": CreateDwellingRelationships
 }) {}
 
@@ -22316,7 +18881,7 @@ export class UpdateDwellingData extends S.Class<UpdateDwellingData>("UpdateDwell
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDwellingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateDwellingRelationships, { nullable: true })
 }) {}
 
@@ -22350,7 +18915,7 @@ export class UpdateAssetAppraisalData extends S.Class<UpdateAssetAppraisalData>(
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAssetAppraisalAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAppraisalAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAssetAppraisalRelationships, { nullable: true })
 }) {}
 
@@ -22363,8 +18928,203 @@ export class CreateDocumentData extends S.Class<CreateDocumentData>("CreateDocum
 * The type of the referenced entity.
 */
 "type": CreateDocumentDataType,
-  "attributes": S.optionalWith(CreateDocumentAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateDocumentRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateIncidentReportData extends S.Class<CreateIncidentReportData>("CreateIncidentReportData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateIncidentReportDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreatePoliceReportData extends S.Class<CreatePoliceReportData>("CreatePoliceReportData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreatePoliceReportDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateParamedicReportData extends S.Class<CreateParamedicReportData>("CreateParamedicReportData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateParamedicReportDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateContractData extends S.Class<CreateContractData>("CreateContractData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateContractDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateRentRollData extends S.Class<CreateRentRollData>("CreateRentRollData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateRentRollDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreatePermitData extends S.Class<CreatePermitData>("CreatePermitData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreatePermitDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateBlueprintData extends S.Class<CreateBlueprintData>("CreateBlueprintData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateBlueprintDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateDeclarationsPageData extends S.Class<CreateDeclarationsPageData>("CreateDeclarationsPageData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateDeclarationsPageDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreatePolicyJacketData extends S.Class<CreatePolicyJacketData>("CreatePolicyJacketData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreatePolicyJacketDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateScopeOfLossData extends S.Class<CreateScopeOfLossData>("CreateScopeOfLossData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateScopeOfLossDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateDeliveryPaperworkData extends S.Class<CreateDeliveryPaperworkData>("CreateDeliveryPaperworkData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateDeliveryPaperworkDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateProductSpecData extends S.Class<CreateProductSpecData>("CreateProductSpecData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateProductSpecDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateUserManualData extends S.Class<CreateUserManualData>("CreateUserManualData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateUserManualDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateWarrantyData extends S.Class<CreateWarrantyData>("CreateWarrantyData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateWarrantyDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+}) {}
+
+export class CreateDeedData extends S.Class<CreateDeedData>("CreateDeedData")({
+  /**
+* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
+*/
+"lid": S.optionalWith(S.String, { nullable: true }),
+  /**
+* The type of the referenced entity.
+*/
+"type": CreateDeedDataType,
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateDocumentData extends S.Class<UpdateDocumentData>("UpdateDocumentData")({
@@ -22384,21 +19144,8 @@ export class UpdateDocumentData extends S.Class<UpdateDocumentData>("UpdateDocum
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDocumentAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDocumentRelationships, { nullable: true })
-}) {}
-
-export class CreateIncidentReportData extends S.Class<CreateIncidentReportData>("CreateIncidentReportData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateIncidentReportDataType,
-  "attributes": S.optionalWith(CreateIncidentReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateIncidentReportRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateIncidentReportData extends S.Class<UpdateIncidentReportData>("UpdateIncidentReportData")({
@@ -22418,21 +19165,8 @@ export class UpdateIncidentReportData extends S.Class<UpdateIncidentReportData>(
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateIncidentReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateIncidentReportRelationships, { nullable: true })
-}) {}
-
-export class CreatePoliceReportData extends S.Class<CreatePoliceReportData>("CreatePoliceReportData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreatePoliceReportDataType,
-  "attributes": S.optionalWith(CreatePoliceReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreatePoliceReportRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdatePoliceReportData extends S.Class<UpdatePoliceReportData>("UpdatePoliceReportData")({
@@ -22452,21 +19186,8 @@ export class UpdatePoliceReportData extends S.Class<UpdatePoliceReportData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePoliceReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdatePoliceReportRelationships, { nullable: true })
-}) {}
-
-export class CreateParamedicReportData extends S.Class<CreateParamedicReportData>("CreateParamedicReportData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateParamedicReportDataType,
-  "attributes": S.optionalWith(CreateParamedicReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateParamedicReportRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateParamedicReportData extends S.Class<UpdateParamedicReportData>("UpdateParamedicReportData")({
@@ -22486,21 +19207,8 @@ export class UpdateParamedicReportData extends S.Class<UpdateParamedicReportData
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateParamedicReportAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateParamedicReportRelationships, { nullable: true })
-}) {}
-
-export class CreateContractData extends S.Class<CreateContractData>("CreateContractData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateContractDataType,
-  "attributes": S.optionalWith(CreateContractAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateContractRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateContractData extends S.Class<UpdateContractData>("UpdateContractData")({
@@ -22520,21 +19228,8 @@ export class UpdateContractData extends S.Class<UpdateContractData>("UpdateContr
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateContractAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateContractRelationships, { nullable: true })
-}) {}
-
-export class CreateRentRollData extends S.Class<CreateRentRollData>("CreateRentRollData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateRentRollDataType,
-  "attributes": S.optionalWith(CreateRentRollAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateRentRollRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateRentRollData extends S.Class<UpdateRentRollData>("UpdateRentRollData")({
@@ -22554,21 +19249,8 @@ export class UpdateRentRollData extends S.Class<UpdateRentRollData>("UpdateRentR
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateRentRollAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateRentRollRelationships, { nullable: true })
-}) {}
-
-export class CreatePermitData extends S.Class<CreatePermitData>("CreatePermitData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreatePermitDataType,
-  "attributes": S.optionalWith(CreatePermitAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreatePermitRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdatePermitData extends S.Class<UpdatePermitData>("UpdatePermitData")({
@@ -22588,21 +19270,8 @@ export class UpdatePermitData extends S.Class<UpdatePermitData>("UpdatePermitDat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePermitAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdatePermitRelationships, { nullable: true })
-}) {}
-
-export class CreateBlueprintData extends S.Class<CreateBlueprintData>("CreateBlueprintData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateBlueprintDataType,
-  "attributes": S.optionalWith(CreateBlueprintAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateBlueprintRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateBlueprintData extends S.Class<UpdateBlueprintData>("UpdateBlueprintData")({
@@ -22622,21 +19291,8 @@ export class UpdateBlueprintData extends S.Class<UpdateBlueprintData>("UpdateBlu
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBlueprintAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
-}) {}
-
-export class CreateDeclarationsPageData extends S.Class<CreateDeclarationsPageData>("CreateDeclarationsPageData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateDeclarationsPageDataType,
-  "attributes": S.optionalWith(CreateDeclarationsPageAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateDeclarationsPageRelationships, { nullable: true })
 }) {}
 
 export class UpdateDeclarationsPageData extends S.Class<UpdateDeclarationsPageData>("UpdateDeclarationsPageData")({
@@ -22656,21 +19312,8 @@ export class UpdateDeclarationsPageData extends S.Class<UpdateDeclarationsPageDa
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDeclarationsPageAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDeclarationsPageRelationships, { nullable: true })
-}) {}
-
-export class CreatePolicyJacketData extends S.Class<CreatePolicyJacketData>("CreatePolicyJacketData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreatePolicyJacketDataType,
-  "attributes": S.optionalWith(CreatePolicyJacketAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreatePolicyJacketRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdatePolicyJacketData extends S.Class<UpdatePolicyJacketData>("UpdatePolicyJacketData")({
@@ -22690,21 +19333,8 @@ export class UpdatePolicyJacketData extends S.Class<UpdatePolicyJacketData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePolicyJacketAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdatePolicyJacketRelationships, { nullable: true })
-}) {}
-
-export class CreateScopeOfLossData extends S.Class<CreateScopeOfLossData>("CreateScopeOfLossData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateScopeOfLossDataType,
-  "attributes": S.optionalWith(CreateScopeOfLossAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateScopeOfLossRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateScopeOfLossData extends S.Class<UpdateScopeOfLossData>("UpdateScopeOfLossData")({
@@ -22724,21 +19354,8 @@ export class UpdateScopeOfLossData extends S.Class<UpdateScopeOfLossData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateScopeOfLossAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateScopeOfLossRelationships, { nullable: true })
-}) {}
-
-export class CreateDeliveryPaperworkData extends S.Class<CreateDeliveryPaperworkData>("CreateDeliveryPaperworkData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateDeliveryPaperworkDataType,
-  "attributes": S.optionalWith(CreateDeliveryPaperworkAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateDeliveryPaperworkRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateDeliveryPaperworkData extends S.Class<UpdateDeliveryPaperworkData>("UpdateDeliveryPaperworkData")({
@@ -22758,21 +19375,8 @@ export class UpdateDeliveryPaperworkData extends S.Class<UpdateDeliveryPaperwork
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDeliveryPaperworkAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDeliveryPaperworkRelationships, { nullable: true })
-}) {}
-
-export class CreateProductSpecData extends S.Class<CreateProductSpecData>("CreateProductSpecData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateProductSpecDataType,
-  "attributes": S.optionalWith(CreateProductSpecAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateProductSpecRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateProductSpecData extends S.Class<UpdateProductSpecData>("UpdateProductSpecData")({
@@ -22792,21 +19396,8 @@ export class UpdateProductSpecData extends S.Class<UpdateProductSpecData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateProductSpecAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateProductSpecRelationships, { nullable: true })
-}) {}
-
-export class CreateUserManualData extends S.Class<CreateUserManualData>("CreateUserManualData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateUserManualDataType,
-  "attributes": S.optionalWith(CreateUserManualAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateUserManualRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateUserManualData extends S.Class<UpdateUserManualData>("UpdateUserManualData")({
@@ -22826,21 +19417,8 @@ export class UpdateUserManualData extends S.Class<UpdateUserManualData>("UpdateU
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateUserManualAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateUserManualRelationships, { nullable: true })
-}) {}
-
-export class CreateWarrantyData extends S.Class<CreateWarrantyData>("CreateWarrantyData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateWarrantyDataType,
-  "attributes": S.optionalWith(CreateWarrantyAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateWarrantyRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateWarrantyData extends S.Class<UpdateWarrantyData>("UpdateWarrantyData")({
@@ -22860,21 +19438,8 @@ export class UpdateWarrantyData extends S.Class<UpdateWarrantyData>("UpdateWarra
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateWarrantyAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateWarrantyRelationships, { nullable: true })
-}) {}
-
-export class CreateDeedData extends S.Class<CreateDeedData>("CreateDeedData")({
-  /**
-* Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
-*/
-"lid": S.optionalWith(S.String, { nullable: true }),
-  /**
-* The type of the referenced entity.
-*/
-"type": CreateDeedDataType,
-  "attributes": S.optionalWith(CreateDeedAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateDeedRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class UpdateDeedData extends S.Class<UpdateDeedData>("UpdateDeedData")({
@@ -22894,8 +19459,8 @@ export class UpdateDeedData extends S.Class<UpdateDeedData>("UpdateDeedData")({
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDeedAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDeedRelationships, { nullable: true })
+  "attributes": S.optionalWith(BlueprintAttributes, { nullable: true }),
+  "relationships": S.optionalWith(UpdateBlueprintRelationships, { nullable: true })
 }) {}
 
 export class CreateFinancialDocumentData extends S.Class<CreateFinancialDocumentData>("CreateFinancialDocumentData")({
@@ -22907,7 +19472,7 @@ export class CreateFinancialDocumentData extends S.Class<CreateFinancialDocument
 * The type of the referenced entity.
 */
 "type": CreateFinancialDocumentDataType,
-  "attributes": CreateFinancialDocumentAttributes,
+  "attributes": CreateAssetAppraisalAttributes,
   "relationships": S.optionalWith(CreateFinancialDocumentRelationships, { nullable: true })
 }) {}
 
@@ -22928,7 +19493,7 @@ export class UpdateFinancialDocumentData extends S.Class<UpdateFinancialDocument
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateFinancialDocumentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAppraisalAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateFinancialDocumentRelationships, { nullable: true })
 }) {}
 
@@ -22941,7 +19506,7 @@ export class CreateDocumentClassData extends S.Class<CreateDocumentClassData>("C
 * The type of the referenced entity.
 */
 "type": CreateDocumentClassDataType,
-  "attributes": S.optionalWith(CreateDocumentClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateDocumentClassRelationships, { nullable: true })
 }) {}
 
@@ -22962,8 +19527,8 @@ export class UpdateDocumentClassData extends S.Class<UpdateDocumentClassData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDocumentClassAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDocumentClassRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateDocumentClassRelationships, { nullable: true })
 }) {}
 
 export class CreateDocumentTypeData extends S.Class<CreateDocumentTypeData>("CreateDocumentTypeData")({
@@ -22996,8 +19561,8 @@ export class UpdateDocumentTypeData extends S.Class<UpdateDocumentTypeData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDocumentTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDocumentTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateDocumentTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateDocumentTypeRelationships, { nullable: true })
 }) {}
 
 export class CreateSpaceGroupData extends S.Class<CreateSpaceGroupData>("CreateSpaceGroupData")({
@@ -23009,7 +19574,7 @@ export class CreateSpaceGroupData extends S.Class<CreateSpaceGroupData>("CreateS
 * The type of the referenced entity.
 */
 "type": CreateSpaceGroupDataType,
-  "attributes": S.optionalWith(CreateSpaceGroupAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": CreateSpaceGroupRelationships
 }) {}
 
@@ -23030,7 +19595,7 @@ export class UpdateSpaceGroupData extends S.Class<UpdateSpaceGroupData>("UpdateS
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSpaceGroupAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AccountAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateSpaceGroupRelationships, { nullable: true })
 }) {}
 
@@ -23064,7 +19629,7 @@ export class UpdateSpaceData extends S.Class<UpdateSpaceData>("UpdateSpaceData")
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSpaceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateSpaceAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateSpaceRelationships, { nullable: true })
 }) {}
 
@@ -23077,8 +19642,8 @@ export class CreateSpaceTypeData extends S.Class<CreateSpaceTypeData>("CreateSpa
 * The type of the referenced entity.
 */
 "type": CreateSpaceTypeDataType,
-  "attributes": S.optionalWith(CreateSpaceTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateSpaceTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSpaceCategoryRelationships, { nullable: true })
 }) {}
 
 export class UpdateSpaceTypeData extends S.Class<UpdateSpaceTypeData>("UpdateSpaceTypeData")({
@@ -23098,8 +19663,8 @@ export class UpdateSpaceTypeData extends S.Class<UpdateSpaceTypeData>("UpdateSpa
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSpaceTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateSpaceTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSpaceCategoryRelationships, { nullable: true })
 }) {}
 
 export class CreateSpaceCategoryData extends S.Class<CreateSpaceCategoryData>("CreateSpaceCategoryData")({
@@ -23132,8 +19697,8 @@ export class UpdateSpaceCategoryData extends S.Class<UpdateSpaceCategoryData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSpaceCategoryAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateSpaceCategoryRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSpaceCategoryRelationships, { nullable: true })
 }) {}
 
 export class CreateSpaceClassData extends S.Class<CreateSpaceClassData>("CreateSpaceClassData")({
@@ -23145,7 +19710,7 @@ export class CreateSpaceClassData extends S.Class<CreateSpaceClassData>("CreateS
 * The type of the referenced entity.
 */
 "type": CreateSpaceClassDataType,
-  "attributes": S.optionalWith(CreateSpaceClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateSpaceClassRelationships, { nullable: true })
 }) {}
 
@@ -23166,8 +19731,8 @@ export class UpdateSpaceClassData extends S.Class<UpdateSpaceClassData>("UpdateS
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSpaceClassAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateSpaceClassRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateSpaceCategoryAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSpaceClassRelationships, { nullable: true })
 }) {}
 
 export class CreateSpaceGroupTypeData extends S.Class<CreateSpaceGroupTypeData>("CreateSpaceGroupTypeData")({
@@ -23179,7 +19744,7 @@ export class CreateSpaceGroupTypeData extends S.Class<CreateSpaceGroupTypeData>(
 * The type of the referenced entity.
 */
 "type": CreateSpaceGroupTypeDataType,
-  "attributes": S.optionalWith(CreateSpaceGroupTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateSpaceGroupTypeRelationships, { nullable: true })
 }) {}
 
@@ -23200,8 +19765,8 @@ export class UpdateSpaceGroupTypeData extends S.Class<UpdateSpaceGroupTypeData>(
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSpaceGroupTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateSpaceGroupTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSpaceGroupTypeRelationships, { nullable: true })
 }) {}
 
 export class CreateBucketClassData extends S.Class<CreateBucketClassData>("CreateBucketClassData")({
@@ -23213,7 +19778,7 @@ export class CreateBucketClassData extends S.Class<CreateBucketClassData>("Creat
 * The type of the referenced entity.
 */
 "type": CreateBucketClassDataType,
-  "attributes": S.optionalWith(CreateBucketClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateBucketClassRelationships, { nullable: true })
 }) {}
 
@@ -23234,8 +19799,8 @@ export class UpdateBucketClassData extends S.Class<UpdateBucketClassData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBucketClassAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateBucketClassRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBucketClassRelationships, { nullable: true })
 }) {}
 
 export class CreateBucketTypeData extends S.Class<CreateBucketTypeData>("CreateBucketTypeData")({
@@ -23247,7 +19812,7 @@ export class CreateBucketTypeData extends S.Class<CreateBucketTypeData>("CreateB
 * The type of the referenced entity.
 */
 "type": CreateBucketTypeDataType,
-  "attributes": S.optionalWith(CreateBucketTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateBucketTypeRelationships, { nullable: true })
 }) {}
 
@@ -23268,8 +19833,8 @@ export class UpdateBucketTypeData extends S.Class<UpdateBucketTypeData>("UpdateB
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBucketTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateBucketTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(BucketTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBucketTypeRelationships, { nullable: true })
 }) {}
 
 export class CreateAddressData extends S.Class<CreateAddressData>("CreateAddressData")({
@@ -23302,7 +19867,7 @@ export class UpdateAddressData extends S.Class<UpdateAddressData>("UpdateAddress
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAddressAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AddressAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAddressRelationships, { nullable: true })
 }) {}
 
@@ -23315,7 +19880,7 @@ export class CreateThirdPartyDwellingData extends S.Class<CreateThirdPartyDwelli
 * The type of the referenced entity.
 */
 "type": CreateThirdPartyDwellingDataType,
-  "attributes": CreateThirdPartyDwellingAttributes,
+  "attributes": CreateAddressAttributes,
   "relationships": CreateThirdPartyDwellingRelationships
 }) {}
 
@@ -23336,7 +19901,7 @@ export class UpdateThirdPartyDwellingData extends S.Class<UpdateThirdPartyDwelli
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateThirdPartyDwellingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AddressAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateThirdPartyDwellingRelationships, { nullable: true })
 }) {}
 
@@ -23349,7 +19914,7 @@ export class CreateItemizableFinancialDocumentData extends S.Class<CreateItemiza
 * The type of the referenced entity.
 */
 "type": CreateItemizableFinancialDocumentDataType,
-  "attributes": CreateItemizableFinancialDocumentAttributes,
+  "attributes": CreateChangeOrderAttributes,
   "relationships": S.optionalWith(CreateItemizableFinancialDocumentRelationships, { nullable: true })
 }) {}
 
@@ -23370,7 +19935,7 @@ export class UpdateItemizableFinancialDocumentData extends S.Class<UpdateItemiza
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemizableFinancialDocumentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemizableFinancialDocumentRelationships, { nullable: true })
 }) {}
 
@@ -23383,7 +19948,7 @@ export class CreateItemImpactPaymentData extends S.Class<CreateItemImpactPayment
 * The type of the referenced entity.
 */
 "type": CreateItemImpactPaymentDataType,
-  "attributes": CreateItemImpactPaymentAttributes,
+  "attributes": CreateInvoiceLineAttributes,
   "relationships": CreateItemImpactPaymentRelationships
 }) {}
 
@@ -23404,7 +19969,7 @@ export class UpdateItemImpactPaymentData extends S.Class<UpdateItemImpactPayment
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemImpactPaymentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemImpactPaymentRelationships, { nullable: true })
 }) {}
 
@@ -23417,7 +19982,7 @@ export class CreateItemImpactInvoiceData extends S.Class<CreateItemImpactInvoice
 * The type of the referenced entity.
 */
 "type": CreateItemImpactInvoiceDataType,
-  "attributes": CreateItemImpactInvoiceAttributes,
+  "attributes": CreateInvoiceLineAttributes,
   "relationships": CreateItemImpactInvoiceRelationships
 }) {}
 
@@ -23438,7 +20003,7 @@ export class UpdateItemImpactInvoiceData extends S.Class<UpdateItemImpactInvoice
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemImpactInvoiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemImpactInvoiceRelationships, { nullable: true })
 }) {}
 
@@ -23451,7 +20016,7 @@ export class CreateItemImpactEstimateData extends S.Class<CreateItemImpactEstima
 * The type of the referenced entity.
 */
 "type": CreateItemImpactEstimateDataType,
-  "attributes": CreateItemImpactEstimateAttributes,
+  "attributes": CreateEstimateLineAttributes,
   "relationships": CreateItemImpactEstimateRelationships
 }) {}
 
@@ -23472,7 +20037,7 @@ export class UpdateItemImpactEstimateData extends S.Class<UpdateItemImpactEstima
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemImpactEstimateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EstimateLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemImpactEstimateRelationships, { nullable: true })
 }) {}
 
@@ -23485,7 +20050,7 @@ export class CreateItemAppraisalData extends S.Class<CreateItemAppraisalData>("C
 * The type of the referenced entity.
 */
 "type": CreateItemAppraisalDataType,
-  "attributes": S.optionalWith(CreateItemAppraisalAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AppraisalLineAttributes, { nullable: true }),
   "relationships": CreateItemAppraisalRelationships
 }) {}
 
@@ -23506,7 +20071,7 @@ export class UpdateItemAppraisalData extends S.Class<UpdateItemAppraisalData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemAppraisalAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AppraisalLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemAppraisalRelationships, { nullable: true })
 }) {}
 
@@ -23540,7 +20105,7 @@ export class UpdateItemInvoiceData extends S.Class<UpdateItemInvoiceData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemInvoiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ItemInvoiceAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemInvoiceRelationships, { nullable: true })
 }) {}
 
@@ -23574,7 +20139,7 @@ export class UpdateItemPaymentData extends S.Class<UpdateItemPaymentData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemPaymentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ItemPaymentAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemPaymentRelationships, { nullable: true })
 }) {}
 
@@ -23608,7 +20173,7 @@ export class UpdateItemEstimateData extends S.Class<UpdateItemEstimateData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemEstimateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ItemEstimateAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemEstimateRelationships, { nullable: true })
 }) {}
 
@@ -23642,7 +20207,7 @@ export class UpdateItemProductSuggestionData extends S.Class<UpdateItemProductSu
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemProductSuggestionAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ItemProductSuggestionAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemProductSuggestionRelationships, { nullable: true })
 }) {}
 
@@ -23655,7 +20220,7 @@ export class CreateServiceTaskPaymentData extends S.Class<CreateServiceTaskPayme
 * The type of the referenced entity.
 */
 "type": CreateServiceTaskPaymentDataType,
-  "attributes": CreateServiceTaskPaymentAttributes,
+  "attributes": CreateInvoiceLineAttributes,
   "relationships": CreateServiceTaskPaymentRelationships
 }) {}
 
@@ -23676,7 +20241,7 @@ export class UpdateServiceTaskPaymentData extends S.Class<UpdateServiceTaskPayme
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceTaskPaymentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateServiceTaskPaymentRelationships, { nullable: true })
 }) {}
 
@@ -23689,7 +20254,7 @@ export class CreateServiceTaskInvoiceData extends S.Class<CreateServiceTaskInvoi
 * The type of the referenced entity.
 */
 "type": CreateServiceTaskInvoiceDataType,
-  "attributes": CreateServiceTaskInvoiceAttributes,
+  "attributes": CreateInvoiceLineAttributes,
   "relationships": CreateServiceTaskInvoiceRelationships
 }) {}
 
@@ -23710,7 +20275,7 @@ export class UpdateServiceTaskInvoiceData extends S.Class<UpdateServiceTaskInvoi
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceTaskInvoiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateServiceTaskInvoiceRelationships, { nullable: true })
 }) {}
 
@@ -23723,7 +20288,7 @@ export class CreateServiceTaskEstimateData extends S.Class<CreateServiceTaskEsti
 * The type of the referenced entity.
 */
 "type": CreateServiceTaskEstimateDataType,
-  "attributes": CreateServiceTaskEstimateAttributes,
+  "attributes": CreateEstimateLineAttributes,
   "relationships": CreateServiceTaskEstimateRelationships
 }) {}
 
@@ -23744,7 +20309,7 @@ export class UpdateServiceTaskEstimateData extends S.Class<UpdateServiceTaskEsti
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceTaskEstimateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EstimateLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateServiceTaskEstimateRelationships, { nullable: true })
 }) {}
 
@@ -23778,7 +20343,7 @@ export class UpdateChangeOrderData extends S.Class<UpdateChangeOrderData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateChangeOrderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateChangeOrderRelationships, { nullable: true })
 }) {}
 
@@ -23812,8 +20377,8 @@ export class UpdateEntrySourceMetadataData extends S.Class<UpdateEntrySourceMeta
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEntrySourceMetadataAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateEntrySourceMetadataRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateEntrySourceMetadataAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateEntrySourceMetadataRelationships, { nullable: true })
 }) {}
 
 export class CreateAppraisalLineData extends S.Class<CreateAppraisalLineData>("CreateAppraisalLineData")({
@@ -23825,7 +20390,7 @@ export class CreateAppraisalLineData extends S.Class<CreateAppraisalLineData>("C
 * The type of the referenced entity.
 */
 "type": CreateAppraisalLineDataType,
-  "attributes": S.optionalWith(CreateAppraisalLineAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AppraisalLineAttributes, { nullable: true }),
   "relationships": CreateAppraisalLineRelationships
 }) {}
 
@@ -23846,7 +20411,7 @@ export class UpdateAppraisalLineData extends S.Class<UpdateAppraisalLineData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAppraisalLineAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AppraisalLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAppraisalLineRelationships, { nullable: true })
 }) {}
 
@@ -23880,7 +20445,7 @@ export class UpdateInvoiceLineData extends S.Class<UpdateInvoiceLineData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateInvoiceLineAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateInvoiceLineRelationships, { nullable: true })
 }) {}
 
@@ -23893,7 +20458,7 @@ export class CreatePaymentLineData extends S.Class<CreatePaymentLineData>("Creat
 * The type of the referenced entity.
 */
 "type": CreatePaymentLineDataType,
-  "attributes": CreatePaymentLineAttributes,
+  "attributes": CreateInvoiceLineAttributes,
   "relationships": CreatePaymentLineRelationships
 }) {}
 
@@ -23914,7 +20479,7 @@ export class UpdatePaymentLineData extends S.Class<UpdatePaymentLineData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePaymentLineAttributes, { nullable: true }),
+  "attributes": S.optionalWith(InvoiceLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdatePaymentLineRelationships, { nullable: true })
 }) {}
 
@@ -23948,7 +20513,7 @@ export class UpdateEstimateLineData extends S.Class<UpdateEstimateLineData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEstimateLineAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EstimateLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateEstimateLineRelationships, { nullable: true })
 }) {}
 
@@ -23982,7 +20547,7 @@ export class UpdateEntrySourceMediaData extends S.Class<UpdateEntrySourceMediaDa
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEntrySourceMediaAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateEntrySourceMediaAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateEntrySourceMediaRelationships, { nullable: true })
 }) {}
 
@@ -24016,7 +20581,7 @@ export class UpdateItemChangeOrderData extends S.Class<UpdateItemChangeOrderData
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemChangeOrderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ItemChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemChangeOrderRelationships, { nullable: true })
 }) {}
 
@@ -24029,7 +20594,7 @@ export class CreateItemImpactChangeOrderData extends S.Class<CreateItemImpactCha
 * The type of the referenced entity.
 */
 "type": CreateItemImpactChangeOrderDataType,
-  "attributes": CreateItemImpactChangeOrderAttributes,
+  "attributes": CreateChangeOrderLineAttributes,
   "relationships": CreateItemImpactChangeOrderRelationships
 }) {}
 
@@ -24050,7 +20615,7 @@ export class UpdateItemImpactChangeOrderData extends S.Class<UpdateItemImpactCha
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemImpactChangeOrderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemImpactChangeOrderRelationships, { nullable: true })
 }) {}
 
@@ -24084,7 +20649,7 @@ export class UpdateEstimateData extends S.Class<UpdateEstimateData>("UpdateEstim
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEstimateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EstimateAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateEstimateRelationships, { nullable: true })
 }) {}
 
@@ -24118,7 +20683,7 @@ export class UpdateChangeOrderLineData extends S.Class<UpdateChangeOrderLineData
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateChangeOrderLineAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateChangeOrderLineRelationships, { nullable: true })
 }) {}
 
@@ -24131,7 +20696,7 @@ export class CreateServiceTaskChangeOrderData extends S.Class<CreateServiceTaskC
 * The type of the referenced entity.
 */
 "type": CreateServiceTaskChangeOrderDataType,
-  "attributes": CreateServiceTaskChangeOrderAttributes,
+  "attributes": CreateChangeOrderLineAttributes,
   "relationships": CreateServiceTaskChangeOrderRelationships
 }) {}
 
@@ -24152,7 +20717,7 @@ export class UpdateServiceTaskChangeOrderData extends S.Class<UpdateServiceTaskC
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceTaskChangeOrderAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderLineAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateServiceTaskChangeOrderRelationships, { nullable: true })
 }) {}
 
@@ -24186,7 +20751,7 @@ export class UpdateEntrySourceData extends S.Class<UpdateEntrySourceData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEntrySourceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EntrySourceAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateEntrySourceRelationships, { nullable: true })
 }) {}
 
@@ -24220,7 +20785,7 @@ export class UpdateServiceTaskData extends S.Class<UpdateServiceTaskData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceTaskAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ServiceTaskAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateServiceTaskRelationships, { nullable: true })
 }) {}
 
@@ -24233,7 +20798,7 @@ export class CreatePaymentData extends S.Class<CreatePaymentData>("CreatePayment
 * The type of the referenced entity.
 */
 "type": CreatePaymentDataType,
-  "attributes": CreatePaymentAttributes,
+  "attributes": CreateChangeOrderAttributes,
   "relationships": S.optionalWith(CreatePaymentRelationships, { nullable: true })
 }) {}
 
@@ -24254,7 +20819,7 @@ export class UpdatePaymentData extends S.Class<UpdatePaymentData>("UpdatePayment
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePaymentAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdatePaymentRelationships, { nullable: true })
 }) {}
 
@@ -24288,7 +20853,7 @@ export class UpdateServiceData extends S.Class<UpdateServiceData>("UpdateService
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ServiceAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateServiceRelationships, { nullable: true })
 }) {}
 
@@ -24301,7 +20866,7 @@ export class CreateInvoiceData extends S.Class<CreateInvoiceData>("CreateInvoice
 * The type of the referenced entity.
 */
 "type": CreateInvoiceDataType,
-  "attributes": CreateInvoiceAttributes,
+  "attributes": CreateChangeOrderAttributes,
   "relationships": S.optionalWith(CreateInvoiceRelationships, { nullable: true })
 }) {}
 
@@ -24322,7 +20887,7 @@ export class UpdateInvoiceData extends S.Class<UpdateInvoiceData>("UpdateInvoice
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateInvoiceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ChangeOrderAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateInvoiceRelationships, { nullable: true })
 }) {}
 
@@ -24356,7 +20921,7 @@ export class UpdateItemImpactData extends S.Class<UpdateItemImpactData>("UpdateI
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateItemImpactAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemImpactRelationships, { nullable: true })
 }) {}
 
@@ -24390,7 +20955,7 @@ export class UpdateItemData extends S.Class<UpdateItemData>("UpdateItemData")({
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ItemAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemRelationships, { nullable: true })
 }) {}
 
@@ -24424,7 +20989,7 @@ export class UpdateItemMediaSuggestionData extends S.Class<UpdateItemMediaSugges
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemMediaSuggestionAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ItemMediaSuggestionAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateItemMediaSuggestionRelationships, { nullable: true })
 }) {}
 
@@ -24458,8 +21023,8 @@ export class UpdateDepreciationModifierData extends S.Class<UpdateDepreciationMo
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDepreciationModifierAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDepreciationModifierRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateDepreciationModifierAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateDepreciationModifierRelationships, { nullable: true })
 }) {}
 
 export class CreateDepreciationOverrideData extends S.Class<CreateDepreciationOverrideData>("CreateDepreciationOverrideData")({
@@ -24472,7 +21037,7 @@ export class CreateDepreciationOverrideData extends S.Class<CreateDepreciationOv
 */
 "type": CreateDepreciationOverrideDataType,
   "attributes": S.optionalWith(CreateDepreciationOverrideAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateDepreciationOverrideRelationships, { nullable: true })
+  "relationships": S.optionalWith(CreateDepreciationModifierRelationships, { nullable: true })
 }) {}
 
 export class UpdateDepreciationOverrideData extends S.Class<UpdateDepreciationOverrideData>("UpdateDepreciationOverrideData")({
@@ -24492,8 +21057,8 @@ export class UpdateDepreciationOverrideData extends S.Class<UpdateDepreciationOv
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDepreciationOverrideAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDepreciationOverrideRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateDepreciationOverrideAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateDepreciationModifierRelationships, { nullable: true })
 }) {}
 
 export class CreateItemTemplateData extends S.Class<CreateItemTemplateData>("CreateItemTemplateData")({
@@ -24505,7 +21070,7 @@ export class CreateItemTemplateData extends S.Class<CreateItemTemplateData>("Cre
 * The type of the referenced entity.
 */
 "type": CreateItemTemplateDataType,
-  "attributes": S.optionalWith(CreateItemTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateItemTemplateRelationships, { nullable: true })
 }) {}
 
@@ -24526,8 +21091,8 @@ export class UpdateItemTemplateData extends S.Class<UpdateItemTemplateData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateItemTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateItemTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateBaseSubBucketMetadataData extends S.Class<CreateBaseSubBucketMetadataData>("CreateBaseSubBucketMetadataData")({
@@ -24539,8 +21104,8 @@ export class CreateBaseSubBucketMetadataData extends S.Class<CreateBaseSubBucket
 * The type of the referenced entity.
 */
 "type": CreateBaseSubBucketMetadataDataType,
-  "attributes": S.optionalWith(CreateBaseSubBucketMetadataAttributes, { nullable: true }),
-  "relationships": S.optionalWith(CreateBaseSubBucketMetadataRelationships, { nullable: true })
+  "attributes": S.optionalWith(BaseBucketMetadataAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBaseBucketMetadataRelationships, { nullable: true })
 }) {}
 
 export class UpdateBaseSubBucketMetadataData extends S.Class<UpdateBaseSubBucketMetadataData>("UpdateBaseSubBucketMetadataData")({
@@ -24560,8 +21125,8 @@ export class UpdateBaseSubBucketMetadataData extends S.Class<UpdateBaseSubBucket
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBaseSubBucketMetadataAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateBaseSubBucketMetadataRelationships, { nullable: true })
+  "attributes": S.optionalWith(BaseBucketMetadataAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBaseBucketMetadataRelationships, { nullable: true })
 }) {}
 
 export class CreateBaseBucketMetadataData extends S.Class<CreateBaseBucketMetadataData>("CreateBaseBucketMetadataData")({
@@ -24573,7 +21138,7 @@ export class CreateBaseBucketMetadataData extends S.Class<CreateBaseBucketMetada
 * The type of the referenced entity.
 */
 "type": CreateBaseBucketMetadataDataType,
-  "attributes": S.optionalWith(CreateBaseBucketMetadataAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BaseBucketMetadataAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateBaseBucketMetadataRelationships, { nullable: true })
 }) {}
 
@@ -24594,8 +21159,8 @@ export class UpdateBaseBucketMetadataData extends S.Class<UpdateBaseBucketMetada
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBaseBucketMetadataAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateBaseBucketMetadataRelationships, { nullable: true })
+  "attributes": S.optionalWith(BaseBucketMetadataAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateBaseBucketMetadataRelationships, { nullable: true })
 }) {}
 
 export class CreateFundingSourceData extends S.Class<CreateFundingSourceData>("CreateFundingSourceData")({
@@ -24628,7 +21193,7 @@ export class UpdateFundingSourceData extends S.Class<UpdateFundingSourceData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateFundingSourceAttributes, { nullable: true }),
+  "attributes": S.optionalWith(FundingSourceAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateFundingSourceRelationships, { nullable: true })
 }) {}
 
@@ -24662,7 +21227,7 @@ export class UpdateEntryData extends S.Class<UpdateEntryData>("UpdateEntryData")
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEntryAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateEntryAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateEntryRelationships, { nullable: true })
 }) {}
 
@@ -24696,7 +21261,7 @@ export class UpdateBucketFundingData extends S.Class<UpdateBucketFundingData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBucketFundingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketFundingAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateBucketFundingRelationships, { nullable: true })
 }) {}
 
@@ -24730,7 +21295,7 @@ export class UpdateBaseBucketData extends S.Class<UpdateBaseBucketData>("UpdateB
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBaseBucketAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BaseBucketAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateBaseBucketRelationships, { nullable: true })
 }) {}
 
@@ -24764,7 +21329,7 @@ export class UpdateFundingData extends S.Class<UpdateFundingData>("UpdateFunding
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateFundingAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateFundingAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateFundingRelationships, { nullable: true })
 }) {}
 
@@ -24798,7 +21363,7 @@ export class UpdateSubBucketDefinitionData extends S.Class<UpdateSubBucketDefini
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSubBucketDefinitionAttributes, { nullable: true }),
+  "attributes": S.optionalWith(SubBucketDefinitionAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateSubBucketDefinitionRelationships, { nullable: true })
 }) {}
 
@@ -24832,7 +21397,7 @@ export class UpdateClaimTargetData extends S.Class<UpdateClaimTargetData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateClaimTargetAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ClaimTargetAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateClaimTargetRelationships, { nullable: true })
 }) {}
 
@@ -24845,7 +21410,7 @@ export class CreateBucketData extends S.Class<CreateBucketData>("CreateBucketDat
 * The type of the referenced entity.
 */
 "type": CreateBucketDataType,
-  "attributes": S.optionalWith(CreateBucketAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketAttributes, { nullable: true }),
   "relationships": CreateBucketRelationships
 }) {}
 
@@ -24866,7 +21431,7 @@ export class UpdateBucketData extends S.Class<UpdateBucketData>("UpdateBucketDat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBucketAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateBucketRelationships, { nullable: true })
 }) {}
 
@@ -24879,7 +21444,7 @@ export class CreateClaimData extends S.Class<CreateClaimData>("CreateClaimData")
 * The type of the referenced entity.
 */
 "type": CreateClaimDataType,
-  "attributes": S.optionalWith(CreateClaimAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ClaimAttributes, { nullable: true }),
   "relationships": CreateClaimRelationships
 }) {}
 
@@ -24900,7 +21465,7 @@ export class UpdateClaimData extends S.Class<UpdateClaimData>("UpdateClaimData")
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateClaimAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ClaimAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateClaimRelationships, { nullable: true })
 }) {}
 
@@ -24934,7 +21499,7 @@ export class UpdateDeductibleData extends S.Class<UpdateDeductibleData>("UpdateD
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDeductibleAttributes, { nullable: true }),
+  "attributes": S.optionalWith(DeductibleAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateDeductibleRelationships, { nullable: true })
 }) {}
 
@@ -24947,7 +21512,7 @@ export class CreateClaimDeductibleData extends S.Class<CreateClaimDeductibleData
 * The type of the referenced entity.
 */
 "type": CreateClaimDeductibleDataType,
-  "attributes": S.optionalWith(CreateClaimDeductibleAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ClaimDeductibleAttributes, { nullable: true }),
   "relationships": CreateClaimDeductibleRelationships
 }) {}
 
@@ -24968,7 +21533,7 @@ export class UpdateClaimDeductibleData extends S.Class<UpdateClaimDeductibleData
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateClaimDeductibleAttributes, { nullable: true }),
+  "attributes": S.optionalWith(ClaimDeductibleAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateClaimDeductibleRelationships, { nullable: true })
 }) {}
 
@@ -25002,7 +21567,7 @@ export class UpdatePolicyTermData extends S.Class<UpdatePolicyTermData>("UpdateP
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePolicyTermAttributes, { nullable: true }),
+  "attributes": S.optionalWith(PolicyTermAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdatePolicyTermRelationships, { nullable: true })
 }) {}
 
@@ -25036,7 +21601,7 @@ export class UpdatePolicyData extends S.Class<UpdatePolicyData>("UpdatePolicyDat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePolicyAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreatePolicyAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdatePolicyRelationships, { nullable: true })
 }) {}
 
@@ -25049,7 +21614,7 @@ export class CreateSubmissionTrackTemplateData extends S.Class<CreateSubmissionT
 * The type of the referenced entity.
 */
 "type": CreateSubmissionTrackTemplateDataType,
-  "attributes": S.optionalWith(CreateSubmissionTrackTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateSubmissionTrackTemplateRelationships, { nullable: true })
 }) {}
 
@@ -25070,8 +21635,8 @@ export class UpdateSubmissionTrackTemplateData extends S.Class<UpdateSubmissionT
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSubmissionTrackTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateSubmissionTrackTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSubmissionTrackTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateBucketDefinitionData extends S.Class<CreateBucketDefinitionData>("CreateBucketDefinitionData")({
@@ -25104,7 +21669,7 @@ export class UpdateBucketDefinitionData extends S.Class<UpdateBucketDefinitionDa
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBucketDefinitionAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketDefinitionAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateBucketDefinitionRelationships, { nullable: true })
 }) {}
 
@@ -25117,7 +21682,7 @@ export class CreateCoverageGroupTemplateData extends S.Class<CreateCoverageGroup
 * The type of the referenced entity.
 */
 "type": CreateCoverageGroupTemplateDataType,
-  "attributes": S.optionalWith(CreateCoverageGroupTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateCoverageGroupTemplateRelationships, { nullable: true })
 }) {}
 
@@ -25138,8 +21703,8 @@ export class UpdateCoverageGroupTemplateData extends S.Class<UpdateCoverageGroup
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateCoverageGroupTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateCoverageGroupTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateCoverageGroupTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateIncidentImpactData extends S.Class<CreateIncidentImpactData>("CreateIncidentImpactData")({
@@ -25172,7 +21737,7 @@ export class UpdateIncidentImpactData extends S.Class<UpdateIncidentImpactData>(
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateIncidentImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateIncidentImpactAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateIncidentImpactRelationships, { nullable: true })
 }) {}
 
@@ -25185,7 +21750,7 @@ export class CreateCoverageData extends S.Class<CreateCoverageData>("CreateCover
 * The type of the referenced entity.
 */
 "type": CreateCoverageDataType,
-  "attributes": CreateCoverageAttributes,
+  "attributes": CreateBucketDefinitionAttributes,
   "relationships": CreateCoverageRelationships
 }) {}
 
@@ -25206,7 +21771,7 @@ export class UpdateCoverageData extends S.Class<UpdateCoverageData>("UpdateCover
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateCoverageAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketDefinitionAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateCoverageRelationships, { nullable: true })
 }) {}
 
@@ -25219,7 +21784,7 @@ export class CreateSubCoverageData extends S.Class<CreateSubCoverageData>("Creat
 * The type of the referenced entity.
 */
 "type": CreateSubCoverageDataType,
-  "attributes": CreateSubCoverageAttributes,
+  "attributes": CreateSubBucketDefinitionAttributes,
   "relationships": CreateSubCoverageRelationships
 }) {}
 
@@ -25240,7 +21805,7 @@ export class UpdateSubCoverageData extends S.Class<UpdateSubCoverageData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSubCoverageAttributes, { nullable: true }),
+  "attributes": S.optionalWith(SubBucketDefinitionAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateSubCoverageRelationships, { nullable: true })
 }) {}
 
@@ -25274,8 +21839,8 @@ export class UpdateEndorsementTemplateData extends S.Class<UpdateEndorsementTemp
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEndorsementTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateEndorsementTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateEndorsementTemplateAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateEndorsementTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateSubBucketData extends S.Class<CreateSubBucketData>("CreateSubBucketData")({
@@ -25308,7 +21873,7 @@ export class UpdateSubBucketData extends S.Class<UpdateSubBucketData>("UpdateSub
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSubBucketAttributes, { nullable: true }),
+  "attributes": S.optionalWith(CreateSubBucketAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateSubBucketRelationships, { nullable: true })
 }) {}
 
@@ -25342,7 +21907,7 @@ export class UpdateBaseSubBucketData extends S.Class<UpdateBaseSubBucketData>("U
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateBaseSubBucketAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BaseSubBucketAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateBaseSubBucketRelationships, { nullable: true })
 }) {}
 
@@ -25355,7 +21920,7 @@ export class CreateSubCoverageTemplateData extends S.Class<CreateSubCoverageTemp
 * The type of the referenced entity.
 */
 "type": CreateSubCoverageTemplateDataType,
-  "attributes": S.optionalWith(CreateSubCoverageTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateSubCoverageTemplateRelationships, { nullable: true })
 }) {}
 
@@ -25376,8 +21941,8 @@ export class UpdateSubCoverageTemplateData extends S.Class<UpdateSubCoverageTemp
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSubCoverageTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateSubCoverageTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSubCoverageTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateEndorsementData extends S.Class<CreateEndorsementData>("CreateEndorsementData")({
@@ -25410,7 +21975,7 @@ export class UpdateEndorsementData extends S.Class<UpdateEndorsementData>("Updat
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateEndorsementAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EndorsementAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateEndorsementRelationships, { nullable: true })
 }) {}
 
@@ -25423,7 +21988,7 @@ export class CreateCoverageTemplateData extends S.Class<CreateCoverageTemplateDa
 * The type of the referenced entity.
 */
 "type": CreateCoverageTemplateDataType,
-  "attributes": S.optionalWith(CreateCoverageTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateCoverageTemplateRelationships, { nullable: true })
 }) {}
 
@@ -25444,8 +22009,8 @@ export class UpdateCoverageTemplateData extends S.Class<UpdateCoverageTemplateDa
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateCoverageTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateCoverageTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateCoverageTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateCoverageGroupData extends S.Class<CreateCoverageGroupData>("CreateCoverageGroupData")({
@@ -25489,7 +22054,7 @@ export class CreatePolicyTemplateData extends S.Class<CreatePolicyTemplateData>(
 * The type of the referenced entity.
 */
 "type": CreatePolicyTemplateDataType,
-  "attributes": S.optionalWith(CreatePolicyTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreatePolicyTemplateRelationships, { nullable: true })
 }) {}
 
@@ -25510,8 +22075,8 @@ export class UpdatePolicyTemplateData extends S.Class<UpdatePolicyTemplateData>(
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdatePolicyTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdatePolicyTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreatePolicyTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateDepreciationScheduleData extends S.Class<CreateDepreciationScheduleData>("CreateDepreciationScheduleData")({
@@ -25544,8 +22109,8 @@ export class UpdateDepreciationScheduleData extends S.Class<UpdateDepreciationSc
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateDepreciationScheduleAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateDepreciationScheduleRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateDepreciationScheduleAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateDepreciationScheduleRelationships, { nullable: true })
 }) {}
 
 export class CreateSpaceTypeItemTemplateData extends S.Class<CreateSpaceTypeItemTemplateData>("CreateSpaceTypeItemTemplateData")({
@@ -25557,7 +22122,7 @@ export class CreateSpaceTypeItemTemplateData extends S.Class<CreateSpaceTypeItem
 * The type of the referenced entity.
 */
 "type": CreateSpaceTypeItemTemplateDataType,
-  "attributes": S.optionalWith(CreateSpaceTypeItemTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributeTypeItemTemplateAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateSpaceTypeItemTemplateRelationships, { nullable: true })
 }) {}
 
@@ -25578,8 +22143,8 @@ export class UpdateSpaceTypeItemTemplateData extends S.Class<UpdateSpaceTypeItem
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateSpaceTypeItemTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateSpaceTypeItemTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetAttributeTypeItemTemplateAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateSpaceTypeItemTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateAssetAttributeTypeData extends S.Class<CreateAssetAttributeTypeData>("CreateAssetAttributeTypeData")({
@@ -25591,7 +22156,7 @@ export class CreateAssetAttributeTypeData extends S.Class<CreateAssetAttributeTy
 * The type of the referenced entity.
 */
 "type": CreateAssetAttributeTypeDataType,
-  "attributes": S.optionalWith(CreateAssetAttributeTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributeTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateAssetAttributeTypeRelationships, { nullable: true })
 }) {}
 
@@ -25612,8 +22177,8 @@ export class UpdateAssetAttributeTypeData extends S.Class<UpdateAssetAttributeTy
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAssetAttributeTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateAssetAttributeTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetAttributeTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateAssetAttributeTypeRelationships, { nullable: true })
 }) {}
 
 export class CreateAssetAttributeTypeItemTemplateData extends S.Class<CreateAssetAttributeTypeItemTemplateData>("CreateAssetAttributeTypeItemTemplateData")({
@@ -25625,7 +22190,7 @@ export class CreateAssetAttributeTypeItemTemplateData extends S.Class<CreateAsse
 * The type of the referenced entity.
 */
 "type": CreateAssetAttributeTypeItemTemplateDataType,
-  "attributes": S.optionalWith(CreateAssetAttributeTypeItemTemplateAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributeTypeItemTemplateAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateAssetAttributeTypeItemTemplateRelationships, { nullable: true })
 }) {}
 
@@ -25646,8 +22211,8 @@ export class UpdateAssetAttributeTypeItemTemplateData extends S.Class<UpdateAsse
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAssetAttributeTypeItemTemplateAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateAssetAttributeTypeItemTemplateRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetAttributeTypeItemTemplateAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateAssetAttributeTypeItemTemplateRelationships, { nullable: true })
 }) {}
 
 export class CreateAssetAttributeClassData extends S.Class<CreateAssetAttributeClassData>("CreateAssetAttributeClassData")({
@@ -25659,7 +22224,7 @@ export class CreateAssetAttributeClassData extends S.Class<CreateAssetAttributeC
 * The type of the referenced entity.
 */
 "type": CreateAssetAttributeClassDataType,
-  "attributes": S.optionalWith(CreateAssetAttributeClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetAttributeClassAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateAssetAttributeClassRelationships, { nullable: true })
 }) {}
 
@@ -25680,8 +22245,8 @@ export class UpdateAssetAttributeClassData extends S.Class<UpdateAssetAttributeC
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAssetAttributeClassAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateAssetAttributeClassRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetAttributeClassAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateAssetAttributeClassRelationships, { nullable: true })
 }) {}
 
 export class CreateIncidentTypeData extends S.Class<CreateIncidentTypeData>("CreateIncidentTypeData")({
@@ -25693,7 +22258,7 @@ export class CreateIncidentTypeData extends S.Class<CreateIncidentTypeData>("Cre
 * The type of the referenced entity.
 */
 "type": CreateIncidentTypeDataType,
-  "attributes": S.optionalWith(CreateIncidentTypeAttributes, { nullable: true }),
+  "attributes": S.optionalWith(BucketTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateIncidentTypeRelationships, { nullable: true })
 }) {}
 
@@ -25714,8 +22279,8 @@ export class UpdateIncidentTypeData extends S.Class<UpdateIncidentTypeData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateIncidentTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateIncidentTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(BucketTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateIncidentTypeRelationships, { nullable: true })
 }) {}
 
 export class CreateItemClassData extends S.Class<CreateItemClassData>("CreateItemClassData")({
@@ -25727,7 +22292,7 @@ export class CreateItemClassData extends S.Class<CreateItemClassData>("CreateIte
 * The type of the referenced entity.
 */
 "type": CreateItemClassDataType,
-  "attributes": S.optionalWith(CreateItemClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateItemClassRelationships, { nullable: true })
 }) {}
 
@@ -25748,8 +22313,8 @@ export class UpdateItemClassData extends S.Class<UpdateItemClassData>("UpdateIte
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemClassAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateItemClassRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateItemClassRelationships, { nullable: true })
 }) {}
 
 export class CreateItemTypeData extends S.Class<CreateItemTypeData>("CreateItemTypeData")({
@@ -25782,8 +22347,8 @@ export class UpdateItemTypeData extends S.Class<UpdateItemTypeData>("UpdateItemT
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemTypeAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateItemTypeRelationships, { nullable: true })
+  "attributes": S.optionalWith(CreateItemTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateItemTypeRelationships, { nullable: true })
 }) {}
 
 export class CreateItemCategoryData extends S.Class<CreateItemCategoryData>("CreateItemCategoryData")({
@@ -25795,7 +22360,7 @@ export class CreateItemCategoryData extends S.Class<CreateItemCategoryData>("Cre
 * The type of the referenced entity.
 */
 "type": CreateItemCategoryDataType,
-  "attributes": S.optionalWith(CreateItemCategoryAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateItemCategoryRelationships, { nullable: true })
 }) {}
 
@@ -25816,8 +22381,8 @@ export class UpdateItemCategoryData extends S.Class<UpdateItemCategoryData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateItemCategoryAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateItemCategoryRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateItemCategoryRelationships, { nullable: true })
 }) {}
 
 export class CreateServiceClassData extends S.Class<CreateServiceClassData>("CreateServiceClassData")({
@@ -25829,7 +22394,7 @@ export class CreateServiceClassData extends S.Class<CreateServiceClassData>("Cre
 * The type of the referenced entity.
 */
 "type": CreateServiceClassDataType,
-  "attributes": S.optionalWith(CreateServiceClassAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateServiceClassRelationships, { nullable: true })
 }) {}
 
@@ -25850,8 +22415,8 @@ export class UpdateServiceClassData extends S.Class<UpdateServiceClassData>("Upd
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceClassAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateServiceClassRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateServiceClassRelationships, { nullable: true })
 }) {}
 
 export class CreateServiceCategoryData extends S.Class<CreateServiceCategoryData>("CreateServiceCategoryData")({
@@ -25863,7 +22428,7 @@ export class CreateServiceCategoryData extends S.Class<CreateServiceCategoryData
 * The type of the referenced entity.
 */
 "type": CreateServiceCategoryDataType,
-  "attributes": S.optionalWith(CreateServiceCategoryAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
   "relationships": S.optionalWith(CreateServiceCategoryRelationships, { nullable: true })
 }) {}
 
@@ -25884,8 +22449,8 @@ export class UpdateServiceCategoryData extends S.Class<UpdateServiceCategoryData
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateServiceCategoryAttributes, { nullable: true }),
-  "relationships": S.optionalWith(UpdateServiceCategoryRelationships, { nullable: true })
+  "attributes": S.optionalWith(AssetTypeAttributes, { nullable: true }),
+  "relationships": S.optionalWith(CreateServiceCategoryRelationships, { nullable: true })
 }) {}
 
 export class CreateAppraisalData extends S.Class<CreateAppraisalData>("CreateAppraisalData")({
@@ -25918,7 +22483,7 @@ export class UpdateAppraisalData extends S.Class<UpdateAppraisalData>("UpdateApp
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateAppraisalAttributes, { nullable: true }),
+  "attributes": S.optionalWith(AppraisalAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateAppraisalRelationships, { nullable: true })
 }) {}
 
@@ -25952,7 +22517,7 @@ export class UpdateThirdPartyImpactData extends S.Class<UpdateThirdPartyImpactDa
 * Metadata for the entity
 */
 "meta": S.optionalWith(EntityMetadata, { nullable: true }),
-  "attributes": S.optionalWith(UpdateThirdPartyImpactAttributes, { nullable: true }),
+  "attributes": S.optionalWith(EntrySourceAttributes, { nullable: true }),
   "relationships": S.optionalWith(UpdateThirdPartyImpactRelationships, { nullable: true })
 }) {}
 
@@ -34187,2072 +30752,4717 @@ UpsertAppraisalLineList) {}
 export class PermissionsControllerCheckUpsertPermissionsRequest extends S.Union(UpsertBaseEntity,
 UpsertBaseEntityList) {}
 
+export { AssetList as AccountControllerGetAccountAssets200 }
 export { UserControllerGetUserAccountRolesParams as AccountControllerGetAccountAssetsParams }
+export { ReferencedAssetList as AccountControllerGetAccountAssetsRef200 }
+export { Account as AccountControllerGetAccountById200 }
 export { AccountControllerGetCurrentAccountParams as AccountControllerGetAccountByIdParams }
+export { Currency as AccountControllerGetAccountDefaultCurrency200 }
 export { AccountControllerGetCurrentAccountParams as AccountControllerGetAccountDefaultCurrencyParams }
+export { ReferencedCurrency as AccountControllerGetAccountDefaultCurrencyRef200 }
+export { User as AccountControllerGetAccountOwner200 }
 export { AccountControllerGetCurrentAccountParams as AccountControllerGetAccountOwnerParams }
+export { ReferencedUser as AccountControllerGetAccountOwnerRef200 }
+export { ProjectList as AccountControllerGetAccountProjects200 }
 export { UserControllerGetUserAccountRolesParams as AccountControllerGetAccountProjectsParams }
+export { ReferencedProjectList as AccountControllerGetAccountProjectsRef200 }
+export { UserAccountRoleList as AccountControllerGetAccountUserRoles200 }
 export { UserControllerGetUserAccountRolesParams as AccountControllerGetAccountUserRolesParams }
+export { ReferencedUserAccountRoleList as AccountControllerGetAccountUserRolesRef200 }
+export { Account as AccountControllerGetCurrentAccount200 }
+export { ReferencedCurrency as AccountControllerPatchAccountDefaultCurrencyRef200 }
+export { ReferencedUpdateCurrency as AccountControllerPatchAccountDefaultCurrencyRefRequest }
+export { ReferencedUser as AccountControllerPatchAccountOwnerRef200 }
+export { ReferencedUpdateUser as AccountControllerPatchAccountOwnerRefRequest }
+export { Account as AccountControllerUpdateAccountById200 }
 export { AccountControllerGetCurrentAccountParams as AccountControllerUpdateAccountByIdParams }
+export { UpdateAccount as AccountControllerUpdateAccountByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountInviteControllerCreateAccountInviteParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountInviteControllerDeleteAccountInviteByIdParams }
+export { NullableUser as AccountInviteControllerGetAccountInviteAcceptedBy200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountInviteControllerGetAccountInviteAcceptedByParams }
+export { NullableReferencedUser as AccountInviteControllerGetAccountInviteAcceptedByRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountInviteControllerGetAccountInviteAcceptedByRefParams }
+export { Account as AccountInviteControllerGetAccountInviteAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountInviteControllerGetAccountInviteAccountParams }
+export { ReferencedAccount as AccountInviteControllerGetAccountInviteAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountInviteControllerGetAccountInviteAccountRefParams }
+export { AccountInvite as AccountInviteControllerGetAccountInviteById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountInviteControllerGetAccountInviteByIdParams }
+export { User as AccountInviteControllerGetAccountInviteInvitedBy200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountInviteControllerGetAccountInviteInvitedByParams }
+export { ReferencedUser as AccountInviteControllerGetAccountInviteInvitedByRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountInviteControllerGetAccountInviteInvitedByRefParams }
+export { AccountInviteList as AccountInviteControllerGetAccountInviteList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AccountInviteControllerGetAccountInviteListParams }
+export { ReferencedAccount as AccountInviteControllerPatchAccountInviteAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountInviteControllerPatchAccountInviteAccountRefParams }
+export { ReferencedUpdateAccount as AccountInviteControllerPatchAccountInviteAccountRefRequest }
+export { AccountInvite as AccountInviteControllerUpdateAccountInviteById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountInviteControllerUpdateAccountInviteByIdParams }
+export { UpdateAccountInvite as AccountInviteControllerUpdateAccountInviteByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderContactControllerCreateAccountProviderContactParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerDeleteAccountProviderContactByIdParams }
+export { AccountProviderContact as AccountProviderContactControllerGetAccountProviderContactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderContactControllerGetAccountProviderContactByIdParams }
+export { AccountProviderContactList as AccountProviderContactControllerGetAccountProviderContactList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AccountProviderContactControllerGetAccountProviderContactListParams }
+export { NullableEmailAddress as AccountProviderContactControllerGetAccountProviderContactPrimaryEmailAddress200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderContactControllerGetAccountProviderContactPrimaryEmailAddressParams }
+export { NullableReferencedEmailAddress as AccountProviderContactControllerGetAccountProviderContactPrimaryEmailAddressRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerGetAccountProviderContactPrimaryEmailAddressRefParams }
+export { NullablePhoneNumber as AccountProviderContactControllerGetAccountProviderContactPrimaryPhoneNumber200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderContactControllerGetAccountProviderContactPrimaryPhoneNumberParams }
+export { NullableReferencedPhoneNumber as AccountProviderContactControllerGetAccountProviderContactPrimaryPhoneNumberRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerGetAccountProviderContactPrimaryPhoneNumberRefParams }
+export { AccountProvider as AccountProviderContactControllerGetAccountProviderContactProvider200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderContactControllerGetAccountProviderContactProviderParams }
+export { ReferencedAccountProvider as AccountProviderContactControllerGetAccountProviderContactProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerGetAccountProviderContactProviderRefParams }
+export { NullableUser as AccountProviderContactControllerGetAccountProviderContactUser200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderContactControllerGetAccountProviderContactUserParams }
+export { NullableReferencedUser as AccountProviderContactControllerGetAccountProviderContactUserRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerGetAccountProviderContactUserRefParams }
+export { NullableReferencedEmailAddress as AccountProviderContactControllerPatchAccountProviderContactPrimaryEmailAddressRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerPatchAccountProviderContactPrimaryEmailAddressRefParams }
+export { NullableReferencedUpdateEmailAddress as AccountProviderContactControllerPatchAccountProviderContactPrimaryEmailAddressRefRequest }
+export { NullableReferencedPhoneNumber as AccountProviderContactControllerPatchAccountProviderContactPrimaryPhoneNumberRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerPatchAccountProviderContactPrimaryPhoneNumberRefParams }
+export { NullableReferencedUpdatePhoneNumber as AccountProviderContactControllerPatchAccountProviderContactPrimaryPhoneNumberRefRequest }
+export { ReferencedAccountProvider as AccountProviderContactControllerPatchAccountProviderContactProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerPatchAccountProviderContactProviderRefParams }
+export { ReferencedUpdateAccountProvider as AccountProviderContactControllerPatchAccountProviderContactProviderRefRequest }
+export { NullableReferencedUser as AccountProviderContactControllerPatchAccountProviderContactUserRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderContactControllerPatchAccountProviderContactUserRefParams }
+export { NullableReferencedUpdateUser as AccountProviderContactControllerPatchAccountProviderContactUserRefRequest }
+export { AccountProviderContact as AccountProviderContactControllerUpdateAccountProviderContactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderContactControllerUpdateAccountProviderContactByIdParams }
+export { UpdateAccountProviderContact as AccountProviderContactControllerUpdateAccountProviderContactByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderControllerCreateAccountProviderParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderControllerDeleteAccountProviderByIdParams }
+export { Account as AccountProviderControllerGetAccountProviderAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderControllerGetAccountProviderAccountParams }
+export { ReferencedAccount as AccountProviderControllerGetAccountProviderAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderControllerGetAccountProviderAccountRefParams }
+export { AccountProvider as AccountProviderControllerGetAccountProviderById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderControllerGetAccountProviderByIdParams }
+export { AccountProviderList as AccountProviderControllerGetAccountProviderList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AccountProviderControllerGetAccountProviderListParams }
+export { NullableProvider as AccountProviderControllerGetAccountProviderProvider200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderControllerGetAccountProviderProviderParams }
+export { NullableReferencedProvider as AccountProviderControllerGetAccountProviderProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderControllerGetAccountProviderProviderRefParams }
+export { ReferencedAccount as AccountProviderControllerPatchAccountProviderAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderControllerPatchAccountProviderAccountRefParams }
+export { ReferencedUpdateAccount as AccountProviderControllerPatchAccountProviderAccountRefRequest }
+export { NullableReferencedProvider as AccountProviderControllerPatchAccountProviderProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AccountProviderControllerPatchAccountProviderProviderRefParams }
+export { NullableReferencedUpdateProvider as AccountProviderControllerPatchAccountProviderProviderRefRequest }
+export { AccountProvider as AccountProviderControllerUpdateAccountProviderById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AccountProviderControllerUpdateAccountProviderByIdParams }
+export { UpdateAccountProvider as AccountProviderControllerUpdateAccountProviderByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AddressControllerCreateAddressParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AddressControllerDeleteAddressByIdParams }
+export { Account as AddressControllerGetAddressAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AddressControllerGetAddressAccountParams }
+export { ReferencedAccount as AddressControllerGetAddressAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AddressControllerGetAddressAccountRefParams }
+export { Address as AddressControllerGetAddressById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AddressControllerGetAddressByIdParams }
+export { Country as AddressControllerGetAddressCountry200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AddressControllerGetAddressCountryParams }
+export { ReferencedCountry as AddressControllerGetAddressCountryRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AddressControllerGetAddressCountryRefParams }
+export { AddressList as AddressControllerGetAddressList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AddressControllerGetAddressListParams }
+export { ReferencedAccount as AddressControllerPatchAddressAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AddressControllerPatchAddressAccountRefParams }
+export { ReferencedUpdateAccount as AddressControllerPatchAddressAccountRefRequest }
+export { ReferencedCountry as AddressControllerPatchAddressCountryRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AddressControllerPatchAddressCountryRefParams }
+export { ReferencedUpdateCountry as AddressControllerPatchAddressCountryRefRequest }
+export { Address as AddressControllerUpdateAddressById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AddressControllerUpdateAddressByIdParams }
+export { UpdateAddress as AddressControllerUpdateAddressByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerCreateAppraisalParams }
+export { ReferencedAssetList as AppraisalControllerDeleteAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerDeleteAppraisalAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as AppraisalControllerDeleteAppraisalAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerDeleteAppraisalByIdParams }
+export { ReferencedProjectList as AppraisalControllerDeleteAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerDeleteAppraisalProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as AppraisalControllerDeleteAppraisalProjectsRefRequest }
+export { ReferencedSpaceList as AppraisalControllerDeleteAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerDeleteAppraisalSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as AppraisalControllerDeleteAppraisalSpacesRefRequest }
+export { Account as AppraisalControllerGetAppraisalAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerGetAppraisalAccountParams }
+export { ReferencedAccount as AppraisalControllerGetAppraisalAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalAccountRefParams }
+export { AssetList as AppraisalControllerGetAppraisalAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AppraisalControllerGetAppraisalAssetsParams }
+export { ReferencedAssetList as AppraisalControllerGetAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalAssetsRefParams }
+export { Appraisal as AppraisalControllerGetAppraisalById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerGetAppraisalByIdParams }
+export { Currency as AppraisalControllerGetAppraisalCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerGetAppraisalCurrencyParams }
+export { ReferencedCurrency as AppraisalControllerGetAppraisalCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalCurrencyRefParams }
+export { DocumentType as AppraisalControllerGetAppraisalDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerGetAppraisalDocumentTypeParams }
+export { ReferencedDocumentType as AppraisalControllerGetAppraisalDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalDocumentTypeRefParams }
+export { NullableFile as AppraisalControllerGetAppraisalFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerGetAppraisalFileParams }
+export { NullableReferencedFile as AppraisalControllerGetAppraisalFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalFileRefParams }
+export { AppraisalLineList as AppraisalControllerGetAppraisalLines200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AppraisalControllerGetAppraisalLinesParams }
+export { ReferencedAppraisalLineList as AppraisalControllerGetAppraisalLinesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalLinesRefParams }
+export { AppraisalList as AppraisalControllerGetAppraisalList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AppraisalControllerGetAppraisalListParams }
+export { ProjectList as AppraisalControllerGetAppraisalProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AppraisalControllerGetAppraisalProjectsParams }
+export { ReferencedProjectList as AppraisalControllerGetAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalProjectsRefParams }
+export { SpaceList as AppraisalControllerGetAppraisalSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AppraisalControllerGetAppraisalSpacesParams }
+export { ReferencedSpaceList as AppraisalControllerGetAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalSpacesRefParams }
+export { BaseEntityList as AppraisalControllerGetAppraisalSubjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AppraisalControllerGetAppraisalSubjectsParams }
+export { ReferencedBaseEntityList as AppraisalControllerGetAppraisalSubjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalSubjectsRefParams }
+export { NullableAccountProvider as AppraisalControllerGetAppraisalVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerGetAppraisalVendorParams }
+export { NullableReferencedAccountProvider as AppraisalControllerGetAppraisalVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerGetAppraisalVendorRefParams }
+export { ReferencedAccount as AppraisalControllerPatchAppraisalAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPatchAppraisalAccountRefParams }
+export { ReferencedUpdateAccount as AppraisalControllerPatchAppraisalAccountRefRequest }
+export { ReferencedAssetList as AppraisalControllerPatchAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPatchAppraisalAssetsRefParams }
+export { ReferencedUpdateAssetList as AppraisalControllerPatchAppraisalAssetsRefRequest }
+export { ReferencedCurrency as AppraisalControllerPatchAppraisalCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPatchAppraisalCurrencyRefParams }
+export { ReferencedUpdateCurrency as AppraisalControllerPatchAppraisalCurrencyRefRequest }
+export { NullableReferencedFile as AppraisalControllerPatchAppraisalFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPatchAppraisalFileRefParams }
+export { NullableReferencedUpdateFile as AppraisalControllerPatchAppraisalFileRefRequest }
+export { ReferencedProjectList as AppraisalControllerPatchAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPatchAppraisalProjectsRefParams }
+export { ReferencedUpdateProjectList as AppraisalControllerPatchAppraisalProjectsRefRequest }
+export { ReferencedSpaceList as AppraisalControllerPatchAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPatchAppraisalSpacesRefParams }
+export { ReferencedUpdateSpaceList as AppraisalControllerPatchAppraisalSpacesRefRequest }
+export { NullableReferencedAccountProvider as AppraisalControllerPatchAppraisalVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPatchAppraisalVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as AppraisalControllerPatchAppraisalVendorRefRequest }
+export { ReferencedAssetList as AppraisalControllerPostAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPostAppraisalAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as AppraisalControllerPostAppraisalAssetsRefRequest }
+export { ReferencedProjectList as AppraisalControllerPostAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPostAppraisalProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as AppraisalControllerPostAppraisalProjectsRefRequest }
+export { ReferencedSpaceList as AppraisalControllerPostAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalControllerPostAppraisalSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as AppraisalControllerPostAppraisalSpacesRefRequest }
+export { Appraisal as AppraisalControllerUpdateAppraisalById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalControllerUpdateAppraisalByIdParams }
+export { UpdateAppraisal as AppraisalControllerUpdateAppraisalByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalLineControllerCreateAppraisalLineParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalLineControllerDeleteAppraisalLineByIdParams }
+export { Appraisal as AppraisalLineControllerGetAppraisalLineAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalLineControllerGetAppraisalLineAppraisalParams }
+export { ReferencedAppraisal as AppraisalLineControllerGetAppraisalLineAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalLineControllerGetAppraisalLineAppraisalRefParams }
+export { AppraisalLine as AppraisalLineControllerGetAppraisalLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalLineControllerGetAppraisalLineByIdParams }
+export { AppraisalLineList as AppraisalLineControllerGetAppraisalLineList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AppraisalLineControllerGetAppraisalLineListParams }
+export { EntrySource as AppraisalLineControllerGetAppraisalLineSubject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalLineControllerGetAppraisalLineSubjectParams }
+export { ReferencedEntrySource as AppraisalLineControllerGetAppraisalLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalLineControllerGetAppraisalLineSubjectRefParams }
+export { ReferencedAppraisal as AppraisalLineControllerPatchAppraisalLineAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalLineControllerPatchAppraisalLineAppraisalRefParams }
+export { ReferencedUpdateAppraisal as AppraisalLineControllerPatchAppraisalLineAppraisalRefRequest }
+export { ReferencedEntrySource as AppraisalLineControllerPatchAppraisalLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AppraisalLineControllerPatchAppraisalLineSubjectRefParams }
+export { ReferencedUpdateEntrySource as AppraisalLineControllerPatchAppraisalLineSubjectRefRequest }
+export { AppraisalLine as AppraisalLineControllerUpdateAppraisalLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AppraisalLineControllerUpdateAppraisalLineByIdParams }
+export { UpdateAppraisalLine as AppraisalLineControllerUpdateAppraisalLineByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerCreateAssetAppraisalParams }
+export { ReferencedAssetList as AssetAppraisalControllerDeleteAssetAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerDeleteAssetAppraisalAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as AssetAppraisalControllerDeleteAssetAppraisalAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerDeleteAssetAppraisalByIdParams }
+export { ReferencedProjectList as AssetAppraisalControllerDeleteAssetAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerDeleteAssetAppraisalProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as AssetAppraisalControllerDeleteAssetAppraisalProjectsRefRequest }
+export { ReferencedSpaceList as AssetAppraisalControllerDeleteAssetAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerDeleteAssetAppraisalSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as AssetAppraisalControllerDeleteAssetAppraisalSpacesRefRequest }
+export { Account as AssetAppraisalControllerGetAssetAppraisalAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerGetAssetAppraisalAccountParams }
+export { ReferencedAccount as AssetAppraisalControllerGetAssetAppraisalAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalAccountRefParams }
+export { Asset as AssetAppraisalControllerGetAssetAppraisalAsset200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerGetAssetAppraisalAssetParams }
+export { ReferencedAsset as AssetAppraisalControllerGetAssetAppraisalAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalAssetRefParams }
+export { AssetList as AssetAppraisalControllerGetAssetAppraisalAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AssetAppraisalControllerGetAssetAppraisalAssetsParams }
+export { ReferencedAssetList as AssetAppraisalControllerGetAssetAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalAssetsRefParams }
+export { AssetAppraisal as AssetAppraisalControllerGetAssetAppraisalById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerGetAssetAppraisalByIdParams }
+export { Currency as AssetAppraisalControllerGetAssetAppraisalCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerGetAssetAppraisalCurrencyParams }
+export { ReferencedCurrency as AssetAppraisalControllerGetAssetAppraisalCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalCurrencyRefParams }
+export { DocumentType as AssetAppraisalControllerGetAssetAppraisalDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerGetAssetAppraisalDocumentTypeParams }
+export { ReferencedDocumentType as AssetAppraisalControllerGetAssetAppraisalDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalDocumentTypeRefParams }
+export { NullableFile as AssetAppraisalControllerGetAssetAppraisalFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerGetAssetAppraisalFileParams }
+export { NullableReferencedFile as AssetAppraisalControllerGetAssetAppraisalFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalFileRefParams }
+export { AssetAppraisalList as AssetAppraisalControllerGetAssetAppraisalList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AssetAppraisalControllerGetAssetAppraisalListParams }
+export { ProjectList as AssetAppraisalControllerGetAssetAppraisalProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AssetAppraisalControllerGetAssetAppraisalProjectsParams }
+export { ReferencedProjectList as AssetAppraisalControllerGetAssetAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalProjectsRefParams }
+export { SpaceList as AssetAppraisalControllerGetAssetAppraisalSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AssetAppraisalControllerGetAssetAppraisalSpacesParams }
+export { ReferencedSpaceList as AssetAppraisalControllerGetAssetAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalSpacesRefParams }
+export { NullableAccountProvider as AssetAppraisalControllerGetAssetAppraisalVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerGetAssetAppraisalVendorParams }
+export { NullableReferencedAccountProvider as AssetAppraisalControllerGetAssetAppraisalVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerGetAssetAppraisalVendorRefParams }
+export { ReferencedAccount as AssetAppraisalControllerPatchAssetAppraisalAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalAccountRefParams }
+export { ReferencedUpdateAccount as AssetAppraisalControllerPatchAssetAppraisalAccountRefRequest }
+export { ReferencedAsset as AssetAppraisalControllerPatchAssetAppraisalAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalAssetRefParams }
+export { ReferencedUpdateAsset as AssetAppraisalControllerPatchAssetAppraisalAssetRefRequest }
+export { ReferencedAssetList as AssetAppraisalControllerPatchAssetAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalAssetsRefParams }
+export { ReferencedUpdateAssetList as AssetAppraisalControllerPatchAssetAppraisalAssetsRefRequest }
+export { ReferencedCurrency as AssetAppraisalControllerPatchAssetAppraisalCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalCurrencyRefParams }
+export { ReferencedUpdateCurrency as AssetAppraisalControllerPatchAssetAppraisalCurrencyRefRequest }
+export { NullableReferencedFile as AssetAppraisalControllerPatchAssetAppraisalFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalFileRefParams }
+export { NullableReferencedUpdateFile as AssetAppraisalControllerPatchAssetAppraisalFileRefRequest }
+export { ReferencedProjectList as AssetAppraisalControllerPatchAssetAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalProjectsRefParams }
+export { ReferencedUpdateProjectList as AssetAppraisalControllerPatchAssetAppraisalProjectsRefRequest }
+export { ReferencedSpaceList as AssetAppraisalControllerPatchAssetAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalSpacesRefParams }
+export { ReferencedUpdateSpaceList as AssetAppraisalControllerPatchAssetAppraisalSpacesRefRequest }
+export { NullableReferencedAccountProvider as AssetAppraisalControllerPatchAssetAppraisalVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPatchAssetAppraisalVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as AssetAppraisalControllerPatchAssetAppraisalVendorRefRequest }
+export { ReferencedAssetList as AssetAppraisalControllerPostAssetAppraisalAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPostAssetAppraisalAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as AssetAppraisalControllerPostAssetAppraisalAssetsRefRequest }
+export { ReferencedProjectList as AssetAppraisalControllerPostAssetAppraisalProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPostAssetAppraisalProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as AssetAppraisalControllerPostAssetAppraisalProjectsRefRequest }
+export { ReferencedSpaceList as AssetAppraisalControllerPostAssetAppraisalSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetAppraisalControllerPostAssetAppraisalSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as AssetAppraisalControllerPostAssetAppraisalSpacesRefRequest }
+export { AssetAppraisal as AssetAppraisalControllerUpdateAssetAppraisalById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetAppraisalControllerUpdateAssetAppraisalByIdParams }
+export { UpdateAssetAppraisal as AssetAppraisalControllerUpdateAssetAppraisalByIdRequest }
+export { AssetTypeList as AssetAttributeClassControllerGetAssetAttributeClassAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as AssetAttributeClassControllerGetAssetAttributeClassAssetTypesParams }
+export { ReferencedAssetTypeList as AssetAttributeClassControllerGetAssetAttributeClassAssetTypesRef200 }
+export { AssetAttributeClass as AssetAttributeClassControllerGetAssetAttributeClassById200 }
 export { AccountControllerGetCurrentAccountParams as AssetAttributeClassControllerGetAssetAttributeClassByIdParams }
+export { AssetAttributeClassList as AssetAttributeClassControllerGetAssetAttributeClassList200 }
 export { UserControllerGetUserAccountRolesParams as AssetAttributeClassControllerGetAssetAttributeClassListParams }
+export { AssetAttributeTypeList as AssetAttributeClassControllerGetAssetAttributeClassTypes200 }
 export { UserControllerGetUserAccountRolesParams as AssetAttributeClassControllerGetAssetAttributeClassTypesParams }
+export { ReferencedAssetAttributeTypeList as AssetAttributeClassControllerGetAssetAttributeClassTypesRef200 }
+export { AssetTypeList as AssetAttributeTypeControllerGetAssetAttributeTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as AssetAttributeTypeControllerGetAssetAttributeTypeAssetTypesParams }
+export { ReferencedAssetTypeList as AssetAttributeTypeControllerGetAssetAttributeTypeAssetTypesRef200 }
+export { AssetAttributeType as AssetAttributeTypeControllerGetAssetAttributeTypeById200 }
 export { AccountControllerGetCurrentAccountParams as AssetAttributeTypeControllerGetAssetAttributeTypeByIdParams }
+export { AssetAttributeClassList as AssetAttributeTypeControllerGetAssetAttributeTypeClasses200 }
 export { UserControllerGetUserAccountRolesParams as AssetAttributeTypeControllerGetAssetAttributeTypeClassesParams }
+export { ReferencedAssetAttributeClassList as AssetAttributeTypeControllerGetAssetAttributeTypeClassesRef200 }
+export { AssetAttributeTypeList as AssetAttributeTypeControllerGetAssetAttributeTypeList200 }
 export { UserControllerGetUserAccountRolesParams as AssetAttributeTypeControllerGetAssetAttributeTypeListParams }
+export { AssetAttributeType as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateAssetAttributeType200 }
 export { AccountControllerGetCurrentAccountParams as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateAssetAttributeTypeParams }
+export { ReferencedAssetAttributeType as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateAssetAttributeTypeRef200 }
+export { AssetAttributeTypeItemTemplate as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateByIdParams }
+export { ItemTemplate as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateItemTemplate200 }
 export { AccountControllerGetCurrentAccountParams as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateItemTemplateParams }
+export { ReferencedItemTemplate as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateItemTemplateRef200 }
+export { AssetAttributeTypeItemTemplateList as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as AssetAttributeTypeItemTemplateControllerGetAssetAttributeTypeItemTemplateListParams }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetControllerCreateAssetParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerDeleteAssetByIdParams }
+export { Account as AssetControllerGetAssetAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetControllerGetAssetAccountParams }
+export { ReferencedAccount as AssetControllerGetAssetAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerGetAssetAccountRefParams }
+export { AssetAppraisalList as AssetControllerGetAssetAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AssetControllerGetAssetAppraisalsParams }
+export { ReferencedAssetAppraisalList as AssetControllerGetAssetAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerGetAssetAppraisalsRefParams }
+export { AssetType as AssetControllerGetAssetAssetType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetControllerGetAssetAssetTypeParams }
+export { ReferencedAssetType as AssetControllerGetAssetAssetTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerGetAssetAssetTypeRefParams }
+export { Asset as AssetControllerGetAssetById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetControllerGetAssetByIdParams }
+export { AssetList as AssetControllerGetAssetList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as AssetControllerGetAssetListParams }
+export { NullableAssetAppraisal as AssetControllerGetAssetRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetControllerGetAssetRelevantAppraisalParams }
+export { NullableReferencedAssetAppraisal as AssetControllerGetAssetRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerGetAssetRelevantAppraisalRefParams }
+export { NullableAssetAppraisal as AssetControllerGetAssetSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetControllerGetAssetSelectedAppraisalParams }
+export { NullableReferencedAssetAppraisal as AssetControllerGetAssetSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerGetAssetSelectedAppraisalRefParams }
+export { ReferencedAccount as AssetControllerPatchAssetAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerPatchAssetAccountRefParams }
+export { ReferencedUpdateAccount as AssetControllerPatchAssetAccountRefRequest }
+export { ReferencedAssetType as AssetControllerPatchAssetAssetTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerPatchAssetAssetTypeRefParams }
+export { ReferencedUpdateAssetType as AssetControllerPatchAssetAssetTypeRefRequest }
+export { NullableReferencedAssetAppraisal as AssetControllerPatchAssetSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as AssetControllerPatchAssetSelectedAppraisalRefParams }
+export { NullableReferencedUpdateAssetAppraisal as AssetControllerPatchAssetSelectedAppraisalRefRequest }
+export { Asset as AssetControllerUpdateAssetById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as AssetControllerUpdateAssetByIdParams }
+export { UpdateAsset as AssetControllerUpdateAssetByIdRequest }
+export { AssetType as AssetTypeControllerGetAssetTypeById200 }
 export { AccountControllerGetCurrentAccountParams as AssetTypeControllerGetAssetTypeByIdParams }
+export { AssetTypeList as AssetTypeControllerGetAssetTypeList200 }
 export { UserControllerGetUserAccountRolesParams as AssetTypeControllerGetAssetTypeListParams }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerCreateBaseBucketParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerDeleteBaseBucketByIdParams }
+export { Account as BaseBucketControllerGetBaseBucketAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerGetBaseBucketAccountParams }
+export { ReferencedAccount as BaseBucketControllerGetBaseBucketAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketAccountRefParams }
+export { BaseBucket as BaseBucketControllerGetBaseBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerGetBaseBucketByIdParams }
+export { EntryList as BaseBucketControllerGetBaseBucketEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseBucketControllerGetBaseBucketEntriesParams }
+export { ReferencedEntryList as BaseBucketControllerGetBaseBucketEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketEntriesRefParams }
+export { BucketFundingList as BaseBucketControllerGetBaseBucketFundings200 }
+export { FundingSource as BaseBucketControllerGetBaseBucketFundingSource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerGetBaseBucketFundingSourceParams }
+export { ReferencedFundingSource as BaseBucketControllerGetBaseBucketFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketFundingSourceRefParams }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseBucketControllerGetBaseBucketFundingsParams }
+export { ReferencedBucketFundingList as BaseBucketControllerGetBaseBucketFundingsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketFundingsRefParams }
+export { BaseBucketList as BaseBucketControllerGetBaseBucketList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseBucketControllerGetBaseBucketListParams }
+export { BaseBucketMetadata as BaseBucketControllerGetBaseBucketMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerGetBaseBucketMetadataParams }
+export { ReferencedBaseBucketMetadata as BaseBucketControllerGetBaseBucketMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketMetadataRefParams }
+export { Project as BaseBucketControllerGetBaseBucketProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerGetBaseBucketProjectParams }
+export { ReferencedProject as BaseBucketControllerGetBaseBucketProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketProjectRefParams }
+export { BaseSubBucketList as BaseBucketControllerGetBaseBucketSubBuckets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseBucketControllerGetBaseBucketSubBucketsParams }
+export { ReferencedBaseSubBucketList as BaseBucketControllerGetBaseBucketSubBucketsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketSubBucketsRefParams }
+export { NullableBucketType as BaseBucketControllerGetBaseBucketType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerGetBaseBucketTypeParams }
+export { NullableReferencedBucketType as BaseBucketControllerGetBaseBucketTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerGetBaseBucketTypeRefParams }
+export { ReferencedFundingSource as BaseBucketControllerPatchBaseBucketFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerPatchBaseBucketFundingSourceRefParams }
+export { ReferencedUpdateFundingSource as BaseBucketControllerPatchBaseBucketFundingSourceRefRequest }
+export { NullableReferencedBucketType as BaseBucketControllerPatchBaseBucketTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketControllerPatchBaseBucketTypeRefParams }
+export { NullableReferencedUpdateBucketType as BaseBucketControllerPatchBaseBucketTypeRefRequest }
+export { BaseBucket as BaseBucketControllerUpdateBaseBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketControllerUpdateBaseBucketByIdParams }
+export { UpdateBaseBucket as BaseBucketControllerUpdateBaseBucketByIdRequest }
+export { BaseBucketMetadata as BaseBucketMetadataControllerGetBaseBucketMetadataById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketMetadataControllerGetBaseBucketMetadataByIdParams }
+export { BaseBucketMetadataList as BaseBucketMetadataControllerGetBaseBucketMetadataList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseBucketMetadataControllerGetBaseBucketMetadataListParams }
+export { BaseBucket as BaseBucketMetadataControllerGetBaseBucketMetadataObject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseBucketMetadataControllerGetBaseBucketMetadataObjectParams }
+export { ReferencedBaseBucket as BaseBucketMetadataControllerGetBaseBucketMetadataObjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseBucketMetadataControllerGetBaseBucketMetadataObjectRefParams }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerCreateBaseSubBucketParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerDeleteBaseSubBucketByIdParams }
+export { Account as BaseSubBucketControllerGetBaseSubBucketAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerGetBaseSubBucketAccountParams }
+export { ReferencedAccount as BaseSubBucketControllerGetBaseSubBucketAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerGetBaseSubBucketAccountRefParams }
+export { BaseSubBucket as BaseSubBucketControllerGetBaseSubBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerGetBaseSubBucketByIdParams }
+export { EntryList as BaseSubBucketControllerGetBaseSubBucketEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseSubBucketControllerGetBaseSubBucketEntriesParams }
+export { ReferencedEntryList as BaseSubBucketControllerGetBaseSubBucketEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerGetBaseSubBucketEntriesRefParams }
+export { FundingSource as BaseSubBucketControllerGetBaseSubBucketFundingSource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerGetBaseSubBucketFundingSourceParams }
+export { ReferencedFundingSource as BaseSubBucketControllerGetBaseSubBucketFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerGetBaseSubBucketFundingSourceRefParams }
+export { BaseSubBucketList as BaseSubBucketControllerGetBaseSubBucketList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseSubBucketControllerGetBaseSubBucketListParams }
+export { BaseSubBucketMetadata as BaseSubBucketControllerGetBaseSubBucketMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerGetBaseSubBucketMetadataParams }
+export { ReferencedBaseSubBucketMetadata as BaseSubBucketControllerGetBaseSubBucketMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerGetBaseSubBucketMetadataRefParams }
+export { BaseBucket as BaseSubBucketControllerGetBaseSubBucketParent200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerGetBaseSubBucketParentParams }
+export { ReferencedBaseBucket as BaseSubBucketControllerGetBaseSubBucketParentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerGetBaseSubBucketParentRefParams }
+export { Project as BaseSubBucketControllerGetBaseSubBucketProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerGetBaseSubBucketProjectParams }
+export { ReferencedProject as BaseSubBucketControllerGetBaseSubBucketProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerGetBaseSubBucketProjectRefParams }
+export { ReferencedBaseBucket as BaseSubBucketControllerPatchBaseSubBucketParentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketControllerPatchBaseSubBucketParentRefParams }
+export { ReferencedUpdateBaseBucket as BaseSubBucketControllerPatchBaseSubBucketParentRefRequest }
+export { BaseSubBucket as BaseSubBucketControllerUpdateBaseSubBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketControllerUpdateBaseSubBucketByIdParams }
+export { UpdateBaseSubBucket as BaseSubBucketControllerUpdateBaseSubBucketByIdRequest }
+export { BaseBucketMetadataAttributes as BaseSubBucketMetadataAttributes }
+export { BaseSubBucketMetadata as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataByIdParams }
+export { BaseSubBucketMetadataList as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataListParams }
+export { BaseBucket as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataObject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataObjectParams }
+export { ReferencedBaseBucket as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataObjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BaseSubBucketMetadataControllerGetBaseSubBucketMetadataObjectRefParams }
+export { BaseBucketMetadataRelationships as BaseSubBucketMetadataRelationships }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BlueprintControllerCreateBlueprintParams }
+export { ReferencedAssetList as BlueprintControllerDeleteBlueprintAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerDeleteBlueprintAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as BlueprintControllerDeleteBlueprintAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerDeleteBlueprintByIdParams }
+export { ReferencedProjectList as BlueprintControllerDeleteBlueprintProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerDeleteBlueprintProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as BlueprintControllerDeleteBlueprintProjectsRefRequest }
+export { ReferencedSpaceList as BlueprintControllerDeleteBlueprintSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerDeleteBlueprintSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as BlueprintControllerDeleteBlueprintSpacesRefRequest }
+export { Account as BlueprintControllerGetBlueprintAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BlueprintControllerGetBlueprintAccountParams }
+export { ReferencedAccount as BlueprintControllerGetBlueprintAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerGetBlueprintAccountRefParams }
+export { AssetList as BlueprintControllerGetBlueprintAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BlueprintControllerGetBlueprintAssetsParams }
+export { ReferencedAssetList as BlueprintControllerGetBlueprintAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerGetBlueprintAssetsRefParams }
+export { Blueprint as BlueprintControllerGetBlueprintById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BlueprintControllerGetBlueprintByIdParams }
+export { DocumentType as BlueprintControllerGetBlueprintDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BlueprintControllerGetBlueprintDocumentTypeParams }
+export { ReferencedDocumentType as BlueprintControllerGetBlueprintDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerGetBlueprintDocumentTypeRefParams }
+export { NullableFile as BlueprintControllerGetBlueprintFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BlueprintControllerGetBlueprintFileParams }
+export { NullableReferencedFile as BlueprintControllerGetBlueprintFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerGetBlueprintFileRefParams }
+export { BlueprintList as BlueprintControllerGetBlueprintList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BlueprintControllerGetBlueprintListParams }
+export { ProjectList as BlueprintControllerGetBlueprintProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BlueprintControllerGetBlueprintProjectsParams }
+export { ReferencedProjectList as BlueprintControllerGetBlueprintProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerGetBlueprintProjectsRefParams }
+export { SpaceList as BlueprintControllerGetBlueprintSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BlueprintControllerGetBlueprintSpacesParams }
+export { ReferencedSpaceList as BlueprintControllerGetBlueprintSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerGetBlueprintSpacesRefParams }
+export { ReferencedAccount as BlueprintControllerPatchBlueprintAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPatchBlueprintAccountRefParams }
+export { ReferencedUpdateAccount as BlueprintControllerPatchBlueprintAccountRefRequest }
+export { ReferencedAssetList as BlueprintControllerPatchBlueprintAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPatchBlueprintAssetsRefParams }
+export { ReferencedUpdateAssetList as BlueprintControllerPatchBlueprintAssetsRefRequest }
+export { NullableReferencedFile as BlueprintControllerPatchBlueprintFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPatchBlueprintFileRefParams }
+export { NullableReferencedUpdateFile as BlueprintControllerPatchBlueprintFileRefRequest }
+export { ReferencedProjectList as BlueprintControllerPatchBlueprintProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPatchBlueprintProjectsRefParams }
+export { ReferencedUpdateProjectList as BlueprintControllerPatchBlueprintProjectsRefRequest }
+export { ReferencedSpaceList as BlueprintControllerPatchBlueprintSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPatchBlueprintSpacesRefParams }
+export { ReferencedUpdateSpaceList as BlueprintControllerPatchBlueprintSpacesRefRequest }
+export { ReferencedAssetList as BlueprintControllerPostBlueprintAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPostBlueprintAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as BlueprintControllerPostBlueprintAssetsRefRequest }
+export { ReferencedProjectList as BlueprintControllerPostBlueprintProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPostBlueprintProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as BlueprintControllerPostBlueprintProjectsRefRequest }
+export { ReferencedSpaceList as BlueprintControllerPostBlueprintSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BlueprintControllerPostBlueprintSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as BlueprintControllerPostBlueprintSpacesRefRequest }
+export { Blueprint as BlueprintControllerUpdateBlueprintById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BlueprintControllerUpdateBlueprintByIdParams }
+export { UpdateBlueprint as BlueprintControllerUpdateBlueprintByIdRequest }
+export { AssetTypeAttributes as BucketClassAttributes }
+export { AssetTypeList as BucketClassControllerGetBucketClassAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as BucketClassControllerGetBucketClassAssetTypesParams }
+export { ReferencedAssetTypeList as BucketClassControllerGetBucketClassAssetTypesRef200 }
+export { BucketClass as BucketClassControllerGetBucketClassById200 }
 export { AccountControllerGetCurrentAccountParams as BucketClassControllerGetBucketClassByIdParams }
+export { BucketClassList as BucketClassControllerGetBucketClassList200 }
 export { UserControllerGetUserAccountRolesParams as BucketClassControllerGetBucketClassListParams }
+export { BucketTypeList as BucketClassControllerGetBucketClassTypes200 }
 export { UserControllerGetUserAccountRolesParams as BucketClassControllerGetBucketClassTypesParams }
+export { ReferencedBucketTypeList as BucketClassControllerGetBucketClassTypesRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerCreateBucketParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerDeleteBucketByIdParams }
+export { Account as BucketControllerGetBucketAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketAccountParams }
+export { ReferencedAccount as BucketControllerGetBucketAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketAccountRefParams }
+export { Bucket as BucketControllerGetBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketByIdParams }
+export { ClaimDeductible as BucketControllerGetBucketClaimDeductible200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketClaimDeductibleParams }
+export { ReferencedClaimDeductible as BucketControllerGetBucketClaimDeductibleRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketClaimDeductibleRefParams }
+export { Deductible as BucketControllerGetBucketDeductible200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketDeductibleParams }
+export { ReferencedDeductible as BucketControllerGetBucketDeductibleRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketDeductibleRefParams }
+export { BucketDefinition as BucketControllerGetBucketDefinition200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketDefinitionParams }
+export { ReferencedBucketDefinition as BucketControllerGetBucketDefinitionRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketDefinitionRefParams }
+export { EntryList as BucketControllerGetBucketEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BucketControllerGetBucketEntriesParams }
+export { ReferencedEntryList as BucketControllerGetBucketEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketEntriesRefParams }
+export { BucketFundingList as BucketControllerGetBucketFundings200 }
+export { FundingSource as BucketControllerGetBucketFundingSource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketFundingSourceParams }
+export { ReferencedFundingSource as BucketControllerGetBucketFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketFundingSourceRefParams }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BucketControllerGetBucketFundingsParams }
+export { ReferencedBucketFundingList as BucketControllerGetBucketFundingsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketFundingsRefParams }
+export { BucketList as BucketControllerGetBucketList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BucketControllerGetBucketListParams }
+export { BaseBucketMetadata as BucketControllerGetBucketMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketMetadataParams }
+export { ReferencedBaseBucketMetadata as BucketControllerGetBucketMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketMetadataRefParams }
+export { Project as BucketControllerGetBucketProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketProjectParams }
+export { ReferencedProject as BucketControllerGetBucketProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketProjectRefParams }
+export { BaseSubBucketList as BucketControllerGetBucketSubBuckets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BucketControllerGetBucketSubBucketsParams }
+export { ReferencedBaseSubBucketList as BucketControllerGetBucketSubBucketsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketSubBucketsRefParams }
+export { NullableBucketType as BucketControllerGetBucketType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerGetBucketTypeParams }
+export { NullableReferencedBucketType as BucketControllerGetBucketTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerGetBucketTypeRefParams }
+export { ReferencedBucketDefinition as BucketControllerPatchBucketDefinitionRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerPatchBucketDefinitionRefParams }
+export { ReferencedUpdateBucketDefinition as BucketControllerPatchBucketDefinitionRefRequest }
+export { ReferencedFundingSource as BucketControllerPatchBucketFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerPatchBucketFundingSourceRefParams }
+export { ReferencedUpdateFundingSource as BucketControllerPatchBucketFundingSourceRefRequest }
+export { NullableReferencedBucketType as BucketControllerPatchBucketTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketControllerPatchBucketTypeRefParams }
+export { NullableReferencedUpdateBucketType as BucketControllerPatchBucketTypeRefRequest }
+export { Bucket as BucketControllerUpdateBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketControllerUpdateBucketByIdParams }
+export { UpdateBucket as BucketControllerUpdateBucketByIdRequest }
 export { AccountControllerGetCurrentAccountParams as BucketDefinitionControllerCreateBucketDefinitionParams }
+export { ClaimTarget as BucketDefinitionControllerGetBucketDefinitionBasis200 }
 export { AccountControllerGetCurrentAccountParams as BucketDefinitionControllerGetBucketDefinitionBasisParams }
+export { ReferencedClaimTarget as BucketDefinitionControllerGetBucketDefinitionBasisRef200 }
+export { BucketList as BucketDefinitionControllerGetBucketDefinitionBuckets200 }
 export { UserControllerGetUserAccountRolesParams as BucketDefinitionControllerGetBucketDefinitionBucketsParams }
+export { ReferencedBucketList as BucketDefinitionControllerGetBucketDefinitionBucketsRef200 }
+export { NullableBucketType as BucketDefinitionControllerGetBucketDefinitionBucketType200 }
 export { AccountControllerGetCurrentAccountParams as BucketDefinitionControllerGetBucketDefinitionBucketTypeParams }
+export { NullableReferencedBucketType as BucketDefinitionControllerGetBucketDefinitionBucketTypeRef200 }
+export { BucketDefinition as BucketDefinitionControllerGetBucketDefinitionById200 }
 export { AccountControllerGetCurrentAccountParams as BucketDefinitionControllerGetBucketDefinitionByIdParams }
+export { NullableDeductible as BucketDefinitionControllerGetBucketDefinitionDeductible200 }
 export { AccountControllerGetCurrentAccountParams as BucketDefinitionControllerGetBucketDefinitionDeductibleParams }
+export { NullableReferencedDeductible as BucketDefinitionControllerGetBucketDefinitionDeductibleRef200 }
+export { BucketDefinitionList as BucketDefinitionControllerGetBucketDefinitionList200 }
 export { UserControllerGetUserAccountRolesParams as BucketDefinitionControllerGetBucketDefinitionListParams }
+export { SubBucketDefinitionList as BucketDefinitionControllerGetBucketDefinitionSubBucketDefinitions200 }
 export { UserControllerGetUserAccountRolesParams as BucketDefinitionControllerGetBucketDefinitionSubBucketDefinitionsParams }
+export { ReferencedSubBucketDefinitionList as BucketDefinitionControllerGetBucketDefinitionSubBucketDefinitionsRef200 }
+export { ReferencedClaimTarget as BucketDefinitionControllerPatchBucketDefinitionBasisRef200 }
+export { ReferencedUpdateClaimTarget as BucketDefinitionControllerPatchBucketDefinitionBasisRefRequest }
+export { NullableReferencedBucketType as BucketDefinitionControllerPatchBucketDefinitionBucketTypeRef200 }
+export { NullableReferencedUpdateBucketType as BucketDefinitionControllerPatchBucketDefinitionBucketTypeRefRequest }
+export { NullableReferencedDeductible as BucketDefinitionControllerPatchBucketDefinitionDeductibleRef200 }
+export { NullableReferencedUpdateDeductible as BucketDefinitionControllerPatchBucketDefinitionDeductibleRefRequest }
+export { BucketDefinition as BucketDefinitionControllerUpdateBucketDefinitionById200 }
 export { AccountControllerGetCurrentAccountParams as BucketDefinitionControllerUpdateBucketDefinitionByIdParams }
+export { UpdateBucketDefinition as BucketDefinitionControllerUpdateBucketDefinitionByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketFundingControllerCreateBucketFundingParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketFundingControllerDeleteBucketFundingByIdParams }
+export { BaseBucket as BucketFundingControllerGetBucketFundingBucket200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketFundingControllerGetBucketFundingBucketParams }
+export { ReferencedBaseBucket as BucketFundingControllerGetBucketFundingBucketRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketFundingControllerGetBucketFundingBucketRefParams }
+export { BucketFunding as BucketFundingControllerGetBucketFundingById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketFundingControllerGetBucketFundingByIdParams }
+export { Currency as BucketFundingControllerGetBucketFundingCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketFundingControllerGetBucketFundingCurrencyParams }
+export { ReferencedCurrency as BucketFundingControllerGetBucketFundingCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketFundingControllerGetBucketFundingCurrencyRefParams }
+export { Funding as BucketFundingControllerGetBucketFundingFunding200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketFundingControllerGetBucketFundingFundingParams }
+export { ReferencedFunding as BucketFundingControllerGetBucketFundingFundingRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketFundingControllerGetBucketFundingFundingRefParams }
+export { FundingSource as BucketFundingControllerGetBucketFundingFundingSource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketFundingControllerGetBucketFundingFundingSourceParams }
+export { ReferencedFundingSource as BucketFundingControllerGetBucketFundingFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketFundingControllerGetBucketFundingFundingSourceRefParams }
+export { BucketFundingList as BucketFundingControllerGetBucketFundingList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as BucketFundingControllerGetBucketFundingListParams }
+export { ReferencedBaseBucket as BucketFundingControllerPatchBucketFundingBucketRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketFundingControllerPatchBucketFundingBucketRefParams }
+export { ReferencedUpdateBaseBucket as BucketFundingControllerPatchBucketFundingBucketRefRequest }
+export { ReferencedFunding as BucketFundingControllerPatchBucketFundingFundingRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as BucketFundingControllerPatchBucketFundingFundingRefParams }
+export { ReferencedUpdateFunding as BucketFundingControllerPatchBucketFundingFundingRefRequest }
+export { BucketFunding as BucketFundingControllerUpdateBucketFundingById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as BucketFundingControllerUpdateBucketFundingByIdParams }
+export { UpdateBucketFunding as BucketFundingControllerUpdateBucketFundingByIdRequest }
+export { AssetTypeList as BucketTypeControllerGetBucketTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as BucketTypeControllerGetBucketTypeAssetTypesParams }
+export { ReferencedAssetTypeList as BucketTypeControllerGetBucketTypeAssetTypesRef200 }
+export { BucketType as BucketTypeControllerGetBucketTypeById200 }
 export { AccountControllerGetCurrentAccountParams as BucketTypeControllerGetBucketTypeByIdParams }
+export { BucketClassList as BucketTypeControllerGetBucketTypeClasses200 }
 export { UserControllerGetUserAccountRolesParams as BucketTypeControllerGetBucketTypeClassesParams }
+export { ReferencedBucketClassList as BucketTypeControllerGetBucketTypeClassesRef200 }
+export { BucketTypeList as BucketTypeControllerGetBucketTypeList200 }
 export { UserControllerGetUserAccountRolesParams as BucketTypeControllerGetBucketTypeListParams }
+export { FilesCdnSignedUrlsResponseDto as CdnControllerGetSignedUrls200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CdnControllerGetSignedUrlsParams }
+export { FilesCdnSignedUrlsDto as CdnControllerGetSignedUrlsRequest }
+export { FilesCdnAccessResponseDto as CdnControllerSetCdnCookies200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CdnControllerSetCdnCookiesParams }
+export { FilesCdnAccessDto as CdnControllerSetCdnCookiesRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerCreateChangeOrderParams }
+export { ReferencedAssetList as ChangeOrderControllerDeleteChangeOrderAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerDeleteChangeOrderAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ChangeOrderControllerDeleteChangeOrderAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerDeleteChangeOrderByIdParams }
+export { ReferencedProjectList as ChangeOrderControllerDeleteChangeOrderProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerDeleteChangeOrderProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ChangeOrderControllerDeleteChangeOrderProjectsRefRequest }
+export { ReferencedSpaceList as ChangeOrderControllerDeleteChangeOrderSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerDeleteChangeOrderSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ChangeOrderControllerDeleteChangeOrderSpacesRefRequest }
+export { Account as ChangeOrderControllerGetChangeOrderAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderAccountParams }
+export { ReferencedAccount as ChangeOrderControllerGetChangeOrderAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderAccountRefParams }
+export { AssetList as ChangeOrderControllerGetChangeOrderAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ChangeOrderControllerGetChangeOrderAssetsParams }
+export { ReferencedAssetList as ChangeOrderControllerGetChangeOrderAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderAssetsRefParams }
+export { ChangeOrder as ChangeOrderControllerGetChangeOrderById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderByIdParams }
+export { Currency as ChangeOrderControllerGetChangeOrderCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderCurrencyParams }
+export { ReferencedCurrency as ChangeOrderControllerGetChangeOrderCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderCurrencyRefParams }
+export { DocumentType as ChangeOrderControllerGetChangeOrderDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderDocumentTypeParams }
+export { ReferencedDocumentType as ChangeOrderControllerGetChangeOrderDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderDocumentTypeRefParams }
+export { Estimate as ChangeOrderControllerGetChangeOrderEstimate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderEstimateParams }
+export { ReferencedEstimate as ChangeOrderControllerGetChangeOrderEstimateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderEstimateRefParams }
+export { NullableFile as ChangeOrderControllerGetChangeOrderFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderFileParams }
+export { NullableReferencedFile as ChangeOrderControllerGetChangeOrderFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderFileRefParams }
+export { ChangeOrderLineList as ChangeOrderControllerGetChangeOrderLines200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ChangeOrderControllerGetChangeOrderLinesParams }
+export { ReferencedChangeOrderLineList as ChangeOrderControllerGetChangeOrderLinesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderLinesRefParams }
+export { EntrySourceList as ChangeOrderControllerGetChangeOrderLineSubjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ChangeOrderControllerGetChangeOrderLineSubjectsParams }
+export { ReferencedEntrySourceList as ChangeOrderControllerGetChangeOrderLineSubjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderLineSubjectsRefParams }
+export { ChangeOrderList as ChangeOrderControllerGetChangeOrderList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ChangeOrderControllerGetChangeOrderListParams }
+export { ProjectList as ChangeOrderControllerGetChangeOrderProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ChangeOrderControllerGetChangeOrderProjectsParams }
+export { ReferencedProjectList as ChangeOrderControllerGetChangeOrderProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderProjectsRefParams }
+export { Service as ChangeOrderControllerGetChangeOrderService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderServiceParams }
+export { ReferencedService as ChangeOrderControllerGetChangeOrderServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderServiceRefParams }
+export { SpaceList as ChangeOrderControllerGetChangeOrderSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ChangeOrderControllerGetChangeOrderSpacesParams }
+export { ReferencedSpaceList as ChangeOrderControllerGetChangeOrderSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderSpacesRefParams }
+export { ItemizableFinancialDocumentStats as ChangeOrderControllerGetChangeOrderStats200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderStatsParams }
+export { ReferencedItemizableFinancialDocumentStats as ChangeOrderControllerGetChangeOrderStatsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderStatsRefParams }
+export { AccountProvider as ChangeOrderControllerGetChangeOrderVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerGetChangeOrderVendorParams }
+export { ReferencedAccountProvider as ChangeOrderControllerGetChangeOrderVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerGetChangeOrderVendorRefParams }
+export { ReferencedAccount as ChangeOrderControllerPatchChangeOrderAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPatchChangeOrderAccountRefParams }
+export { ReferencedUpdateAccount as ChangeOrderControllerPatchChangeOrderAccountRefRequest }
+export { ReferencedAssetList as ChangeOrderControllerPatchChangeOrderAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPatchChangeOrderAssetsRefParams }
+export { ReferencedUpdateAssetList as ChangeOrderControllerPatchChangeOrderAssetsRefRequest }
+export { ReferencedCurrency as ChangeOrderControllerPatchChangeOrderCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPatchChangeOrderCurrencyRefParams }
+export { ReferencedUpdateCurrency as ChangeOrderControllerPatchChangeOrderCurrencyRefRequest }
+export { ReferencedEstimate as ChangeOrderControllerPatchChangeOrderEstimateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPatchChangeOrderEstimateRefParams }
+export { ReferencedUpdateEstimate as ChangeOrderControllerPatchChangeOrderEstimateRefRequest }
+export { NullableReferencedFile as ChangeOrderControllerPatchChangeOrderFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPatchChangeOrderFileRefParams }
+export { NullableReferencedUpdateFile as ChangeOrderControllerPatchChangeOrderFileRefRequest }
+export { ReferencedProjectList as ChangeOrderControllerPatchChangeOrderProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPatchChangeOrderProjectsRefParams }
+export { ReferencedUpdateProjectList as ChangeOrderControllerPatchChangeOrderProjectsRefRequest }
+export { ReferencedSpaceList as ChangeOrderControllerPatchChangeOrderSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPatchChangeOrderSpacesRefParams }
+export { ReferencedUpdateSpaceList as ChangeOrderControllerPatchChangeOrderSpacesRefRequest }
+export { ReferencedAssetList as ChangeOrderControllerPostChangeOrderAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPostChangeOrderAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ChangeOrderControllerPostChangeOrderAssetsRefRequest }
+export { ReferencedProjectList as ChangeOrderControllerPostChangeOrderProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPostChangeOrderProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ChangeOrderControllerPostChangeOrderProjectsRefRequest }
+export { ReferencedSpaceList as ChangeOrderControllerPostChangeOrderSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderControllerPostChangeOrderSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ChangeOrderControllerPostChangeOrderSpacesRefRequest }
+export { ChangeOrder as ChangeOrderControllerUpdateChangeOrderById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderControllerUpdateChangeOrderByIdParams }
+export { UpdateChangeOrder as ChangeOrderControllerUpdateChangeOrderByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerCreateChangeOrderLineParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerDeleteChangeOrderLineByIdParams }
+export { ChangeOrderLine as ChangeOrderLineControllerGetChangeOrderLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerGetChangeOrderLineByIdParams }
+export { ChangeOrder as ChangeOrderLineControllerGetChangeOrderLineChangeOrder200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerGetChangeOrderLineChangeOrderParams }
+export { ReferencedChangeOrder as ChangeOrderLineControllerGetChangeOrderLineChangeOrderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerGetChangeOrderLineChangeOrderRefParams }
+export { EstimateLine as ChangeOrderLineControllerGetChangeOrderLineEstimateLine200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerGetChangeOrderLineEstimateLineParams }
+export { ReferencedEstimateLine as ChangeOrderLineControllerGetChangeOrderLineEstimateLineRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerGetChangeOrderLineEstimateLineRefParams }
+export { ChangeOrderLineList as ChangeOrderLineControllerGetChangeOrderLineList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ChangeOrderLineControllerGetChangeOrderLineListParams }
+export { Service as ChangeOrderLineControllerGetChangeOrderLineService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerGetChangeOrderLineServiceParams }
+export { ReferencedService as ChangeOrderLineControllerGetChangeOrderLineServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerGetChangeOrderLineServiceRefParams }
+export { EntrySource as ChangeOrderLineControllerGetChangeOrderLineSubject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerGetChangeOrderLineSubjectParams }
+export { ReferencedEntrySource as ChangeOrderLineControllerGetChangeOrderLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerGetChangeOrderLineSubjectRefParams }
+export { AccountProvider as ChangeOrderLineControllerGetChangeOrderLineVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerGetChangeOrderLineVendorParams }
+export { ReferencedAccountProvider as ChangeOrderLineControllerGetChangeOrderLineVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerGetChangeOrderLineVendorRefParams }
+export { ReferencedChangeOrder as ChangeOrderLineControllerPatchChangeOrderLineChangeOrderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerPatchChangeOrderLineChangeOrderRefParams }
+export { ReferencedUpdateChangeOrder as ChangeOrderLineControllerPatchChangeOrderLineChangeOrderRefRequest }
+export { ReferencedEstimateLine as ChangeOrderLineControllerPatchChangeOrderLineEstimateLineRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ChangeOrderLineControllerPatchChangeOrderLineEstimateLineRefParams }
+export { ReferencedUpdateEstimateLine as ChangeOrderLineControllerPatchChangeOrderLineEstimateLineRefRequest }
+export { ChangeOrderLine as ChangeOrderLineControllerUpdateChangeOrderLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ChangeOrderLineControllerUpdateChangeOrderLineByIdParams }
+export { UpdateChangeOrderLine as ChangeOrderLineControllerUpdateChangeOrderLineByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerCreateClaimParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerDeleteClaimByIdParams }
+export { ReferencedAccountProviderContactList as ClaimControllerDeleteClaimContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerDeleteClaimContactsRefParams }
 export { FundingSourceControllerPostFundingSourceContactsRefRequest as ClaimControllerDeleteClaimContactsRefRequest }
+export { Account as ClaimControllerGetClaimAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerGetClaimAccountParams }
+export { ReferencedAccount as ClaimControllerGetClaimAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimAccountRefParams }
+export { BaseBucketList as ClaimControllerGetClaimBuckets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ClaimControllerGetClaimBucketsParams }
+export { ReferencedBaseBucketList as ClaimControllerGetClaimBucketsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimBucketsRefParams }
+export { Claim as ClaimControllerGetClaimById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerGetClaimByIdParams }
+export { AccountProviderContactList as ClaimControllerGetClaimContacts200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ClaimControllerGetClaimContactsParams }
+export { ReferencedAccountProviderContactList as ClaimControllerGetClaimContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimContactsRefParams }
+export { Currency as ClaimControllerGetClaimCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerGetClaimCurrencyParams }
+export { ReferencedCurrency as ClaimControllerGetClaimCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimCurrencyRefParams }
+export { DeductibleList as ClaimControllerGetClaimDeductibles200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ClaimControllerGetClaimDeductiblesParams }
+export { ReferencedDeductibleList as ClaimControllerGetClaimDeductiblesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimDeductiblesRefParams }
+export { FundingList as ClaimControllerGetClaimFundings200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ClaimControllerGetClaimFundingsParams }
+export { ReferencedFundingList as ClaimControllerGetClaimFundingsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimFundingsRefParams }
+export { ClaimList as ClaimControllerGetClaimList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ClaimControllerGetClaimListParams }
+export { Project as ClaimControllerGetClaimProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerGetClaimProjectParams }
+export { ReferencedProject as ClaimControllerGetClaimProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimProjectRefParams }
+export { Provider as ClaimControllerGetClaimProvider200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerGetClaimProviderParams }
+export { ReferencedProvider as ClaimControllerGetClaimProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimProviderRefParams }
+export { ClaimTarget as ClaimControllerGetClaimTarget200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerGetClaimTargetParams }
+export { ReferencedClaimTarget as ClaimControllerGetClaimTargetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerGetClaimTargetRefParams }
+export { ReferencedAccountProviderContactList as ClaimControllerPatchClaimContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerPatchClaimContactsRefParams }
+export { ReferencedUpdateAccountProviderContactList as ClaimControllerPatchClaimContactsRefRequest }
+export { ReferencedCurrency as ClaimControllerPatchClaimCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerPatchClaimCurrencyRefParams }
+export { ReferencedUpdateCurrency as ClaimControllerPatchClaimCurrencyRefRequest }
+export { ReferencedProject as ClaimControllerPatchClaimProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerPatchClaimProjectRefParams }
+export { ReferencedUpdateProject as ClaimControllerPatchClaimProjectRefRequest }
+export { ReferencedClaimTarget as ClaimControllerPatchClaimTargetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerPatchClaimTargetRefParams }
+export { ReferencedUpdateClaimTarget as ClaimControllerPatchClaimTargetRefRequest }
+export { ReferencedAccountProviderContactList as ClaimControllerPostClaimContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimControllerPostClaimContactsRefParams }
 export { FundingSourceControllerPostFundingSourceContactsRefRequest as ClaimControllerPostClaimContactsRefRequest }
+export { Claim as ClaimControllerUpdateClaimById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimControllerUpdateClaimByIdParams }
+export { UpdateClaim as ClaimControllerUpdateClaimByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimDeductibleControllerCreateClaimDeductibleParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimDeductibleControllerDeleteClaimDeductibleByIdParams }
+export { BucketList as ClaimDeductibleControllerGetClaimDeductibleBuckets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ClaimDeductibleControllerGetClaimDeductibleBucketsParams }
+export { ReferencedBucketList as ClaimDeductibleControllerGetClaimDeductibleBucketsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimDeductibleControllerGetClaimDeductibleBucketsRefParams }
+export { ClaimDeductible as ClaimDeductibleControllerGetClaimDeductibleById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimDeductibleControllerGetClaimDeductibleByIdParams }
+export { Claim as ClaimDeductibleControllerGetClaimDeductibleClaim200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimDeductibleControllerGetClaimDeductibleClaimParams }
+export { ReferencedClaim as ClaimDeductibleControllerGetClaimDeductibleClaimRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimDeductibleControllerGetClaimDeductibleClaimRefParams }
+export { Deductible as ClaimDeductibleControllerGetClaimDeductibleContext200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimDeductibleControllerGetClaimDeductibleContextParams }
+export { ReferencedDeductible as ClaimDeductibleControllerGetClaimDeductibleContextRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimDeductibleControllerGetClaimDeductibleContextRefParams }
+export { ClaimDeductibleList as ClaimDeductibleControllerGetClaimDeductibleList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ClaimDeductibleControllerGetClaimDeductibleListParams }
+export { ClaimTarget as ClaimDeductibleControllerGetClaimDeductibleTarget200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimDeductibleControllerGetClaimDeductibleTargetParams }
+export { ReferencedClaimTarget as ClaimDeductibleControllerGetClaimDeductibleTargetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimDeductibleControllerGetClaimDeductibleTargetRefParams }
+export { ReferencedClaim as ClaimDeductibleControllerPatchClaimDeductibleClaimRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimDeductibleControllerPatchClaimDeductibleClaimRefParams }
+export { ReferencedUpdateClaim as ClaimDeductibleControllerPatchClaimDeductibleClaimRefRequest }
+export { ReferencedDeductible as ClaimDeductibleControllerPatchClaimDeductibleContextRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ClaimDeductibleControllerPatchClaimDeductibleContextRefParams }
+export { ReferencedUpdateDeductible as ClaimDeductibleControllerPatchClaimDeductibleContextRefRequest }
+export { ClaimDeductible as ClaimDeductibleControllerUpdateClaimDeductibleById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ClaimDeductibleControllerUpdateClaimDeductibleByIdParams }
+export { UpdateClaimDeductible as ClaimDeductibleControllerUpdateClaimDeductibleByIdRequest }
+export { BlueprintAttributes as ContractAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ContractControllerCreateContractParams }
+export { ReferencedAssetList as ContractControllerDeleteContractAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerDeleteContractAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ContractControllerDeleteContractAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerDeleteContractByIdParams }
+export { ReferencedProjectList as ContractControllerDeleteContractProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerDeleteContractProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ContractControllerDeleteContractProjectsRefRequest }
+export { ReferencedSpaceList as ContractControllerDeleteContractSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerDeleteContractSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ContractControllerDeleteContractSpacesRefRequest }
+export { Account as ContractControllerGetContractAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ContractControllerGetContractAccountParams }
+export { ReferencedAccount as ContractControllerGetContractAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerGetContractAccountRefParams }
+export { AssetList as ContractControllerGetContractAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ContractControllerGetContractAssetsParams }
+export { ReferencedAssetList as ContractControllerGetContractAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerGetContractAssetsRefParams }
+export { Contract as ContractControllerGetContractById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ContractControllerGetContractByIdParams }
+export { DocumentType as ContractControllerGetContractDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ContractControllerGetContractDocumentTypeParams }
+export { ReferencedDocumentType as ContractControllerGetContractDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerGetContractDocumentTypeRefParams }
+export { NullableFile as ContractControllerGetContractFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ContractControllerGetContractFileParams }
+export { NullableReferencedFile as ContractControllerGetContractFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerGetContractFileRefParams }
+export { ContractList as ContractControllerGetContractList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ContractControllerGetContractListParams }
+export { ProjectList as ContractControllerGetContractProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ContractControllerGetContractProjectsParams }
+export { ReferencedProjectList as ContractControllerGetContractProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerGetContractProjectsRefParams }
+export { SpaceList as ContractControllerGetContractSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ContractControllerGetContractSpacesParams }
+export { ReferencedSpaceList as ContractControllerGetContractSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerGetContractSpacesRefParams }
+export { ReferencedAccount as ContractControllerPatchContractAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPatchContractAccountRefParams }
+export { ReferencedUpdateAccount as ContractControllerPatchContractAccountRefRequest }
+export { ReferencedAssetList as ContractControllerPatchContractAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPatchContractAssetsRefParams }
+export { ReferencedUpdateAssetList as ContractControllerPatchContractAssetsRefRequest }
+export { NullableReferencedFile as ContractControllerPatchContractFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPatchContractFileRefParams }
+export { NullableReferencedUpdateFile as ContractControllerPatchContractFileRefRequest }
+export { ReferencedProjectList as ContractControllerPatchContractProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPatchContractProjectsRefParams }
+export { ReferencedUpdateProjectList as ContractControllerPatchContractProjectsRefRequest }
+export { ReferencedSpaceList as ContractControllerPatchContractSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPatchContractSpacesRefParams }
+export { ReferencedUpdateSpaceList as ContractControllerPatchContractSpacesRefRequest }
+export { ReferencedAssetList as ContractControllerPostContractAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPostContractAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ContractControllerPostContractAssetsRefRequest }
+export { ReferencedProjectList as ContractControllerPostContractProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPostContractProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ContractControllerPostContractProjectsRefRequest }
+export { ReferencedSpaceList as ContractControllerPostContractSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ContractControllerPostContractSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ContractControllerPostContractSpacesRefRequest }
+export { Contract as ContractControllerUpdateContractById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ContractControllerUpdateContractByIdParams }
+export { UpdateContract as ContractControllerUpdateContractByIdRequest }
+export { BlueprintRelationships as ContractRelationships }
+export { Country as CountryControllerGetCountryById200 }
 export { AccountControllerGetCurrentAccountParams as CountryControllerGetCountryByIdParams }
+export { CountryList as CountryControllerGetCountryList200 }
 export { UserControllerGetUserAccountRolesParams as CountryControllerGetCountryListParams }
+export { BucketDefinitionAttributes as CoverageAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerCreateCoverageParams }
+export { ReferencedAssetList as CoverageControllerDeleteCoverageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerDeleteCoverageAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as CoverageControllerDeleteCoverageAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerDeleteCoverageByIdParams }
+export { ReferencedPerilList as CoverageControllerDeleteCoveragePerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerDeleteCoveragePerilsRefParams }
 export { IncidentImpactControllerPostIncidentImpactPerilsRefRequest as CoverageControllerDeleteCoveragePerilsRefRequest }
+export { AssetList as CoverageControllerGetCoverageAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as CoverageControllerGetCoverageAssetsParams }
+export { ReferencedAssetList as CoverageControllerGetCoverageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageAssetsRefParams }
+export { PolicyTerm as CoverageControllerGetCoverageBasis200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerGetCoverageBasisParams }
+export { ReferencedPolicyTerm as CoverageControllerGetCoverageBasisRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageBasisRefParams }
+export { BucketList as CoverageControllerGetCoverageBuckets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as CoverageControllerGetCoverageBucketsParams }
+export { ReferencedBucketList as CoverageControllerGetCoverageBucketsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageBucketsRefParams }
+export { NullableBucketType as CoverageControllerGetCoverageBucketType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerGetCoverageBucketTypeParams }
+export { NullableReferencedBucketType as CoverageControllerGetCoverageBucketTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageBucketTypeRefParams }
+export { Coverage as CoverageControllerGetCoverageById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerGetCoverageByIdParams }
+export { NullableDeductible as CoverageControllerGetCoverageDeductible200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerGetCoverageDeductibleParams }
+export { NullableReferencedDeductible as CoverageControllerGetCoverageDeductibleRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageDeductibleRefParams }
+export { EndorsementList as CoverageControllerGetCoverageEndorsements200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as CoverageControllerGetCoverageEndorsementsParams }
+export { ReferencedEndorsementList as CoverageControllerGetCoverageEndorsementsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageEndorsementsRefParams }
+export { NullableCoverageGroup as CoverageControllerGetCoverageGroup200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerGetCoverageGroupParams }
+export { NullableReferencedCoverageGroup as CoverageControllerGetCoverageGroupRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageGroupRefParams }
+export { CoverageList as CoverageControllerGetCoverageList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as CoverageControllerGetCoverageListParams }
+export { PerilList as CoverageControllerGetCoveragePerils200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as CoverageControllerGetCoveragePerilsParams }
+export { ReferencedPerilList as CoverageControllerGetCoveragePerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoveragePerilsRefParams }
+export { SubBucketDefinitionList as CoverageControllerGetCoverageSubBucketDefinitions200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as CoverageControllerGetCoverageSubBucketDefinitionsParams }
+export { ReferencedSubBucketDefinitionList as CoverageControllerGetCoverageSubBucketDefinitionsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageSubBucketDefinitionsRefParams }
+export { NullableCoverageTemplate as CoverageControllerGetCoverageTemplate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerGetCoverageTemplateParams }
+export { NullableReferencedCoverageTemplate as CoverageControllerGetCoverageTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerGetCoverageTemplateRefParams }
+export { ReferencedAssetList as CoverageControllerPatchCoverageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPatchCoverageAssetsRefParams }
+export { ReferencedUpdateAssetList as CoverageControllerPatchCoverageAssetsRefRequest }
+export { ReferencedPolicyTerm as CoverageControllerPatchCoverageBasisRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPatchCoverageBasisRefParams }
+export { ReferencedUpdatePolicyTerm as CoverageControllerPatchCoverageBasisRefRequest }
+export { NullableReferencedBucketType as CoverageControllerPatchCoverageBucketTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPatchCoverageBucketTypeRefParams }
+export { NullableReferencedUpdateBucketType as CoverageControllerPatchCoverageBucketTypeRefRequest }
+export { NullableReferencedDeductible as CoverageControllerPatchCoverageDeductibleRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPatchCoverageDeductibleRefParams }
+export { NullableReferencedUpdateDeductible as CoverageControllerPatchCoverageDeductibleRefRequest }
+export { NullableReferencedCoverageGroup as CoverageControllerPatchCoverageGroupRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPatchCoverageGroupRefParams }
+export { NullableReferencedUpdateCoverageGroup as CoverageControllerPatchCoverageGroupRefRequest }
+export { ReferencedPerilList as CoverageControllerPatchCoveragePerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPatchCoveragePerilsRefParams }
+export { ReferencedUpdatePerilList as CoverageControllerPatchCoveragePerilsRefRequest }
+export { NullableReferencedCoverageTemplate as CoverageControllerPatchCoverageTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPatchCoverageTemplateRefParams }
+export { NullableReferencedUpdateCoverageTemplate as CoverageControllerPatchCoverageTemplateRefRequest }
+export { ReferencedAssetList as CoverageControllerPostCoverageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPostCoverageAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as CoverageControllerPostCoverageAssetsRefRequest }
+export { ReferencedPerilList as CoverageControllerPostCoveragePerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageControllerPostCoveragePerilsRefParams }
 export { IncidentImpactControllerPostIncidentImpactPerilsRefRequest as CoverageControllerPostCoveragePerilsRefRequest }
+export { Coverage as CoverageControllerUpdateCoverageById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageControllerUpdateCoverageByIdParams }
+export { UpdateCoverage as CoverageControllerUpdateCoverageByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageGroupControllerCreateCoverageGroupParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageGroupControllerDeleteCoverageGroupByIdParams }
+export { CoverageGroup as CoverageGroupControllerGetCoverageGroupById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageGroupControllerGetCoverageGroupByIdParams }
+export { CoverageGroupList as CoverageGroupControllerGetCoverageGroupList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as CoverageGroupControllerGetCoverageGroupListParams }
+export { PolicyTerm as CoverageGroupControllerGetCoverageGroupPolicyTerm200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageGroupControllerGetCoverageGroupPolicyTermParams }
+export { ReferencedPolicyTerm as CoverageGroupControllerGetCoverageGroupPolicyTermRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageGroupControllerGetCoverageGroupPolicyTermRefParams }
+export { NullableCoverageGroupTemplate as CoverageGroupControllerGetCoverageGroupTemplate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageGroupControllerGetCoverageGroupTemplateParams }
+export { NullableReferencedCoverageGroupTemplate as CoverageGroupControllerGetCoverageGroupTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageGroupControllerGetCoverageGroupTemplateRefParams }
+export { ReferencedPolicyTerm as CoverageGroupControllerPatchCoverageGroupPolicyTermRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageGroupControllerPatchCoverageGroupPolicyTermRefParams }
+export { ReferencedUpdatePolicyTerm as CoverageGroupControllerPatchCoverageGroupPolicyTermRefRequest }
+export { NullableReferencedCoverageGroupTemplate as CoverageGroupControllerPatchCoverageGroupTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as CoverageGroupControllerPatchCoverageGroupTemplateRefParams }
+export { NullableReferencedUpdateCoverageGroupTemplate as CoverageGroupControllerPatchCoverageGroupTemplateRefRequest }
+export { CoverageGroup as CoverageGroupControllerUpdateCoverageGroupById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as CoverageGroupControllerUpdateCoverageGroupByIdParams }
+export { UpdateCoverageGroup as CoverageGroupControllerUpdateCoverageGroupByIdRequest }
+export { AssetTypeAttributes as CoverageGroupTemplateAttributes }
+export { CoverageGroupTemplate as CoverageGroupTemplateControllerGetCoverageGroupTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as CoverageGroupTemplateControllerGetCoverageGroupTemplateByIdParams }
+export { CoverageTemplateList as CoverageGroupTemplateControllerGetCoverageGroupTemplateCoverageTemplates200 }
 export { UserControllerGetUserAccountRolesParams as CoverageGroupTemplateControllerGetCoverageGroupTemplateCoverageTemplatesParams }
+export { ReferencedCoverageTemplateList as CoverageGroupTemplateControllerGetCoverageGroupTemplateCoverageTemplatesRef200 }
+export { CoverageGroupTemplateList as CoverageGroupTemplateControllerGetCoverageGroupTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as CoverageGroupTemplateControllerGetCoverageGroupTemplateListParams }
+export { AssetTypeAttributes as CoverageTemplateAttributes }
+export { BucketType as CoverageTemplateControllerGetCoverageTemplateBucketType200 }
 export { AccountControllerGetCurrentAccountParams as CoverageTemplateControllerGetCoverageTemplateBucketTypeParams }
+export { ReferencedBucketType as CoverageTemplateControllerGetCoverageTemplateBucketTypeRef200 }
+export { CoverageTemplate as CoverageTemplateControllerGetCoverageTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as CoverageTemplateControllerGetCoverageTemplateByIdParams }
+export { EndorsementTemplateList as CoverageTemplateControllerGetCoverageTemplateEndorsementTemplates200 }
 export { UserControllerGetUserAccountRolesParams as CoverageTemplateControllerGetCoverageTemplateEndorsementTemplatesParams }
+export { ReferencedEndorsementTemplateList as CoverageTemplateControllerGetCoverageTemplateEndorsementTemplatesRef200 }
+export { NullableCoverageGroupTemplate as CoverageTemplateControllerGetCoverageTemplateGroup200 }
 export { AccountControllerGetCurrentAccountParams as CoverageTemplateControllerGetCoverageTemplateGroupParams }
+export { NullableReferencedCoverageGroupTemplate as CoverageTemplateControllerGetCoverageTemplateGroupRef200 }
+export { CoverageTemplateList as CoverageTemplateControllerGetCoverageTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as CoverageTemplateControllerGetCoverageTemplateListParams }
+export { PerilList as CoverageTemplateControllerGetCoverageTemplatePerils200 }
 export { UserControllerGetUserAccountRolesParams as CoverageTemplateControllerGetCoverageTemplatePerilsParams }
+export { ReferencedPerilList as CoverageTemplateControllerGetCoverageTemplatePerilsRef200 }
+export { SubCoverageTemplateList as CoverageTemplateControllerGetCoverageTemplateSubCoverageTemplates200 }
 export { UserControllerGetUserAccountRolesParams as CoverageTemplateControllerGetCoverageTemplateSubCoverageTemplatesParams }
+export { ReferencedSubCoverageTemplateList as CoverageTemplateControllerGetCoverageTemplateSubCoverageTemplatesRef200 }
+export { AccountProviderAttributes as CreateAccountProviderAttributes }
+export { AccountProviderContactAttributes as CreateAccountProviderContactAttributes }
+export { AppraisalLineAttributes as CreateAppraisalLineAttributes }
+export { AssetAttributeClassAttributes as CreateAssetAttributeClassAttributes }
+export { AssetAttributes as CreateAssetAttributes }
+export { AssetAttributeTypeAttributes as CreateAssetAttributeTypeAttributes }
+export { AssetAttributeTypeItemTemplateAttributes as CreateAssetAttributeTypeItemTemplateAttributes }
+export { AssetTypeAttributes as CreateAssetTypeAttributes }
+export { BaseBucketMetadataAttributes as CreateBaseBucketMetadataAttributes }
+export { BaseBucketMetadataAttributes as CreateBaseSubBucketMetadataAttributes }
+export { CreateBaseBucketMetadataRelationships as CreateBaseSubBucketMetadataRelationships }
+export { BlueprintAttributes as CreateBlueprintAttributes }
+export { BucketAttributes as CreateBucketAttributes }
+export { AssetTypeAttributes as CreateBucketClassAttributes }
+export { BucketTypeAttributes as CreateBucketTypeAttributes }
+export { ClaimAttributes as CreateClaimAttributes }
+export { ClaimDeductibleAttributes as CreateClaimDeductibleAttributes }
+export { BlueprintAttributes as CreateContractAttributes }
+export { CreateBlueprintRelationships as CreateContractRelationships }
+export { CountryAttributes as CreateCountryAttributes }
+export { CreateBucketDefinitionAttributes as CreateCoverageAttributes }
+export { AssetTypeAttributes as CreateCoverageGroupTemplateAttributes }
+export { AssetTypeAttributes as CreateCoverageTemplateAttributes }
+export { BlueprintAttributes as CreateDeclarationsPageAttributes }
+export { CreateBlueprintRelationships as CreateDeclarationsPageRelationships }
+export { BlueprintAttributes as CreateDeedAttributes }
+export { CreateBlueprintRelationships as CreateDeedRelationships }
+export { BlueprintAttributes as CreateDeliveryPaperworkAttributes }
+export { CreateBlueprintRelationships as CreateDeliveryPaperworkRelationships }
+export { CreateDepreciationModifierRelationships as CreateDepreciationOverrideRelationships }
+export { AssetTypeAttributes as CreateDisasterAttributes }
+export { BlueprintAttributes as CreateDocumentAttributes }
+export { AssetTypeAttributes as CreateDocumentClassAttributes }
+export { CreateBlueprintRelationships as CreateDocumentRelationships }
+export { AssetAttributes as CreateDwellingAttributes }
+export { CreateAssetAppraisalAttributes as CreateFinancialDocumentAttributes }
+export { AccountProviderContactAttributes as CreateIdentityAttributes }
+export { AssetTypeAttributes as CreateIncidentClassAttributes }
+export { BlueprintAttributes as CreateIncidentReportAttributes }
+export { CreateBlueprintRelationships as CreateIncidentReportRelationships }
+export { BucketTypeAttributes as CreateIncidentTypeAttributes }
+export { CreateChangeOrderAttributes as CreateInvoiceAttributes }
+export { AppraisalLineAttributes as CreateItemAppraisalAttributes }
+export { AssetTypeAttributes as CreateItemCategoryAttributes }
+export { AssetTypeAttributes as CreateItemClassAttributes }
+export { CreateChangeOrderLineAttributes as CreateItemImpactChangeOrderAttributes }
+export { CreateEstimateLineAttributes as CreateItemImpactEstimateAttributes }
+export { CreateInvoiceLineAttributes as CreateItemImpactInvoiceAttributes }
+export { CreateInvoiceLineAttributes as CreateItemImpactPaymentAttributes }
+export { CreateChangeOrderAttributes as CreateItemizableFinancialDocumentAttributes }
+export { AssetTypeAttributes as CreateItemTemplateAttributes }
+export { BlueprintAttributes as CreateParamedicReportAttributes }
+export { CreateBlueprintRelationships as CreateParamedicReportRelationships }
+export { CreateChangeOrderAttributes as CreatePaymentAttributes }
+export { CreateInvoiceLineAttributes as CreatePaymentLineAttributes }
+export { AssetTypeAttributes as CreatePerilAttributes }
+export { BlueprintAttributes as CreatePermitAttributes }
+export { CreateBlueprintRelationships as CreatePermitRelationships }
+export { CreateEmailAddressRelationships as CreatePhoneNumberRelationships }
+export { BlueprintAttributes as CreatePoliceReportAttributes }
+export { CreateBlueprintRelationships as CreatePoliceReportRelationships }
+export { BlueprintAttributes as CreatePolicyJacketAttributes }
+export { CreateBlueprintRelationships as CreatePolicyJacketRelationships }
+export { AssetTypeAttributes as CreatePolicyTemplateAttributes }
+export { BlueprintAttributes as CreateProductSpecAttributes }
+export { CreateBlueprintRelationships as CreateProductSpecRelationships }
+export { CreateAccountAttributes as CreateProjectAttributes }
+export { CreateIncidentImpactAttributes as CreateProjectImpactAttributes }
+export { BlueprintAttributes as CreateRentRollAttributes }
+export { CreateBlueprintRelationships as CreateRentRollRelationships }
+export { BlueprintAttributes as CreateScopeOfLossAttributes }
+export { CreateBlueprintRelationships as CreateScopeOfLossRelationships }
+export { AssetTypeAttributes as CreateServiceCategoryAttributes }
+export { AssetTypeAttributes as CreateServiceClassAttributes }
+export { CreateChangeOrderLineAttributes as CreateServiceTaskChangeOrderAttributes }
+export { CreateEstimateLineAttributes as CreateServiceTaskEstimateAttributes }
+export { CreateInvoiceLineAttributes as CreateServiceTaskInvoiceAttributes }
+export { CreateInvoiceLineAttributes as CreateServiceTaskPaymentAttributes }
+export { AssetTypeAttributes as CreateServiceTypeAttributes }
+export { CreatePerilRelationships as CreateServiceTypeRelationships }
+export { CreateSpaceCategoryAttributes as CreateSpaceClassAttributes }
+export { AccountAttributes as CreateSpaceGroupAttributes }
+export { AssetTypeAttributes as CreateSpaceGroupTypeAttributes }
+export { CreateSpaceCategoryAttributes as CreateSpaceTypeAttributes }
+export { AssetAttributeTypeItemTemplateAttributes as CreateSpaceTypeItemTemplateAttributes }
+export { CreateSpaceCategoryRelationships as CreateSpaceTypeRelationships }
+export { CreateSubBucketDefinitionAttributes as CreateSubCoverageAttributes }
+export { AssetTypeAttributes as CreateSubCoverageTemplateAttributes }
+export { AssetTypeAttributes as CreateSubmissionTrackTemplateAttributes }
+export { CreateAddressAttributes as CreateThirdPartyDwellingAttributes }
+export { CreateAccountAttributes as CreateThirdPartyIndividualAttributes }
+export { CreateThirdPartyIndividualRelationships as CreateThirdPartyRelationships }
+export { BlueprintAttributes as CreateUserManualAttributes }
+export { CreateBlueprintRelationships as CreateUserManualRelationships }
+export { BlueprintAttributes as CreateWarrantyAttributes }
+export { CreateBlueprintRelationships as CreateWarrantyRelationships }
+export { CreateCurrencyAttributes as CurrencyAttributes }
+export { Currency as CurrencyControllerGetCurrencyById200 }
 export { AccountControllerGetCurrentAccountParams as CurrencyControllerGetCurrencyByIdParams }
+export { CurrencyList as CurrencyControllerGetCurrencyList200 }
 export { UserControllerGetUserAccountRolesParams as CurrencyControllerGetCurrencyListParams }
+export { BlueprintAttributes as DeclarationsPageAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeclarationsPageControllerCreateDeclarationsPageParams }
+export { ReferencedAssetList as DeclarationsPageControllerDeleteDeclarationsPageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerDeleteDeclarationsPageAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DeclarationsPageControllerDeleteDeclarationsPageAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerDeleteDeclarationsPageByIdParams }
+export { ReferencedProjectList as DeclarationsPageControllerDeleteDeclarationsPageProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerDeleteDeclarationsPageProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DeclarationsPageControllerDeleteDeclarationsPageProjectsRefRequest }
+export { ReferencedSpaceList as DeclarationsPageControllerDeleteDeclarationsPageSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerDeleteDeclarationsPageSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DeclarationsPageControllerDeleteDeclarationsPageSpacesRefRequest }
+export { Account as DeclarationsPageControllerGetDeclarationsPageAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeclarationsPageControllerGetDeclarationsPageAccountParams }
+export { ReferencedAccount as DeclarationsPageControllerGetDeclarationsPageAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerGetDeclarationsPageAccountRefParams }
+export { AssetList as DeclarationsPageControllerGetDeclarationsPageAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeclarationsPageControllerGetDeclarationsPageAssetsParams }
+export { ReferencedAssetList as DeclarationsPageControllerGetDeclarationsPageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerGetDeclarationsPageAssetsRefParams }
+export { DeclarationsPage as DeclarationsPageControllerGetDeclarationsPageById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeclarationsPageControllerGetDeclarationsPageByIdParams }
+export { DocumentType as DeclarationsPageControllerGetDeclarationsPageDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeclarationsPageControllerGetDeclarationsPageDocumentTypeParams }
+export { ReferencedDocumentType as DeclarationsPageControllerGetDeclarationsPageDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerGetDeclarationsPageDocumentTypeRefParams }
+export { NullableFile as DeclarationsPageControllerGetDeclarationsPageFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeclarationsPageControllerGetDeclarationsPageFileParams }
+export { NullableReferencedFile as DeclarationsPageControllerGetDeclarationsPageFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerGetDeclarationsPageFileRefParams }
+export { DeclarationsPageList as DeclarationsPageControllerGetDeclarationsPageList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeclarationsPageControllerGetDeclarationsPageListParams }
+export { ProjectList as DeclarationsPageControllerGetDeclarationsPageProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeclarationsPageControllerGetDeclarationsPageProjectsParams }
+export { ReferencedProjectList as DeclarationsPageControllerGetDeclarationsPageProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerGetDeclarationsPageProjectsRefParams }
+export { SpaceList as DeclarationsPageControllerGetDeclarationsPageSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeclarationsPageControllerGetDeclarationsPageSpacesParams }
+export { ReferencedSpaceList as DeclarationsPageControllerGetDeclarationsPageSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerGetDeclarationsPageSpacesRefParams }
+export { ReferencedAccount as DeclarationsPageControllerPatchDeclarationsPageAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPatchDeclarationsPageAccountRefParams }
+export { ReferencedUpdateAccount as DeclarationsPageControllerPatchDeclarationsPageAccountRefRequest }
+export { ReferencedAssetList as DeclarationsPageControllerPatchDeclarationsPageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPatchDeclarationsPageAssetsRefParams }
+export { ReferencedUpdateAssetList as DeclarationsPageControllerPatchDeclarationsPageAssetsRefRequest }
+export { NullableReferencedFile as DeclarationsPageControllerPatchDeclarationsPageFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPatchDeclarationsPageFileRefParams }
+export { NullableReferencedUpdateFile as DeclarationsPageControllerPatchDeclarationsPageFileRefRequest }
+export { ReferencedProjectList as DeclarationsPageControllerPatchDeclarationsPageProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPatchDeclarationsPageProjectsRefParams }
+export { ReferencedUpdateProjectList as DeclarationsPageControllerPatchDeclarationsPageProjectsRefRequest }
+export { ReferencedSpaceList as DeclarationsPageControllerPatchDeclarationsPageSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPatchDeclarationsPageSpacesRefParams }
+export { ReferencedUpdateSpaceList as DeclarationsPageControllerPatchDeclarationsPageSpacesRefRequest }
+export { ReferencedAssetList as DeclarationsPageControllerPostDeclarationsPageAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPostDeclarationsPageAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DeclarationsPageControllerPostDeclarationsPageAssetsRefRequest }
+export { ReferencedProjectList as DeclarationsPageControllerPostDeclarationsPageProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPostDeclarationsPageProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DeclarationsPageControllerPostDeclarationsPageProjectsRefRequest }
+export { ReferencedSpaceList as DeclarationsPageControllerPostDeclarationsPageSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeclarationsPageControllerPostDeclarationsPageSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DeclarationsPageControllerPostDeclarationsPageSpacesRefRequest }
+export { DeclarationsPage as DeclarationsPageControllerUpdateDeclarationsPageById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeclarationsPageControllerUpdateDeclarationsPageByIdParams }
+export { UpdateDeclarationsPage as DeclarationsPageControllerUpdateDeclarationsPageByIdRequest }
+export { BlueprintRelationships as DeclarationsPageRelationships }
 export { AccountControllerGetCurrentAccountParams as DeductibleControllerCreateDeductibleParams }
+export { BucketDefinitionList as DeductibleControllerGetDeductibleBucketDefinitions200 }
 export { UserControllerGetUserAccountRolesParams as DeductibleControllerGetDeductibleBucketDefinitionsParams }
+export { ReferencedBucketDefinitionList as DeductibleControllerGetDeductibleBucketDefinitionsRef200 }
+export { Deductible as DeductibleControllerGetDeductibleById200 }
 export { AccountControllerGetCurrentAccountParams as DeductibleControllerGetDeductibleByIdParams }
+export { ClaimDeductibleList as DeductibleControllerGetDeductibleClaimDeductibles200 }
 export { UserControllerGetUserAccountRolesParams as DeductibleControllerGetDeductibleClaimDeductiblesParams }
+export { ReferencedClaimDeductibleList as DeductibleControllerGetDeductibleClaimDeductiblesRef200 }
+export { ClaimTarget as DeductibleControllerGetDeductibleClaimTarget200 }
 export { AccountControllerGetCurrentAccountParams as DeductibleControllerGetDeductibleClaimTargetParams }
+export { ReferencedClaimTarget as DeductibleControllerGetDeductibleClaimTargetRef200 }
+export { DeductibleList as DeductibleControllerGetDeductibleList200 }
 export { UserControllerGetUserAccountRolesParams as DeductibleControllerGetDeductibleListParams }
+export { ReferencedClaimTarget as DeductibleControllerPatchDeductibleClaimTargetRef200 }
+export { ReferencedUpdateClaimTarget as DeductibleControllerPatchDeductibleClaimTargetRefRequest }
+export { Deductible as DeductibleControllerUpdateDeductibleById200 }
 export { AccountControllerGetCurrentAccountParams as DeductibleControllerUpdateDeductibleByIdParams }
+export { UpdateDeductible as DeductibleControllerUpdateDeductibleByIdRequest }
+export { BlueprintAttributes as DeedAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeedControllerCreateDeedParams }
+export { ReferencedAssetList as DeedControllerDeleteDeedAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerDeleteDeedAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DeedControllerDeleteDeedAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerDeleteDeedByIdParams }
+export { ReferencedProjectList as DeedControllerDeleteDeedProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerDeleteDeedProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DeedControllerDeleteDeedProjectsRefRequest }
+export { ReferencedSpaceList as DeedControllerDeleteDeedSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerDeleteDeedSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DeedControllerDeleteDeedSpacesRefRequest }
+export { Account as DeedControllerGetDeedAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeedControllerGetDeedAccountParams }
+export { ReferencedAccount as DeedControllerGetDeedAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerGetDeedAccountRefParams }
+export { AssetList as DeedControllerGetDeedAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeedControllerGetDeedAssetsParams }
+export { ReferencedAssetList as DeedControllerGetDeedAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerGetDeedAssetsRefParams }
+export { Deed as DeedControllerGetDeedById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeedControllerGetDeedByIdParams }
+export { DocumentType as DeedControllerGetDeedDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeedControllerGetDeedDocumentTypeParams }
+export { ReferencedDocumentType as DeedControllerGetDeedDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerGetDeedDocumentTypeRefParams }
+export { NullableFile as DeedControllerGetDeedFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeedControllerGetDeedFileParams }
+export { NullableReferencedFile as DeedControllerGetDeedFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerGetDeedFileRefParams }
+export { DeedList as DeedControllerGetDeedList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeedControllerGetDeedListParams }
+export { ProjectList as DeedControllerGetDeedProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeedControllerGetDeedProjectsParams }
+export { ReferencedProjectList as DeedControllerGetDeedProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerGetDeedProjectsRefParams }
+export { SpaceList as DeedControllerGetDeedSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeedControllerGetDeedSpacesParams }
+export { ReferencedSpaceList as DeedControllerGetDeedSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerGetDeedSpacesRefParams }
+export { ReferencedAccount as DeedControllerPatchDeedAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPatchDeedAccountRefParams }
+export { ReferencedUpdateAccount as DeedControllerPatchDeedAccountRefRequest }
+export { ReferencedAssetList as DeedControllerPatchDeedAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPatchDeedAssetsRefParams }
+export { ReferencedUpdateAssetList as DeedControllerPatchDeedAssetsRefRequest }
+export { NullableReferencedFile as DeedControllerPatchDeedFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPatchDeedFileRefParams }
+export { NullableReferencedUpdateFile as DeedControllerPatchDeedFileRefRequest }
+export { ReferencedProjectList as DeedControllerPatchDeedProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPatchDeedProjectsRefParams }
+export { ReferencedUpdateProjectList as DeedControllerPatchDeedProjectsRefRequest }
+export { ReferencedSpaceList as DeedControllerPatchDeedSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPatchDeedSpacesRefParams }
+export { ReferencedUpdateSpaceList as DeedControllerPatchDeedSpacesRefRequest }
+export { ReferencedAssetList as DeedControllerPostDeedAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPostDeedAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DeedControllerPostDeedAssetsRefRequest }
+export { ReferencedProjectList as DeedControllerPostDeedProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPostDeedProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DeedControllerPostDeedProjectsRefRequest }
+export { ReferencedSpaceList as DeedControllerPostDeedSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeedControllerPostDeedSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DeedControllerPostDeedSpacesRefRequest }
+export { Deed as DeedControllerUpdateDeedById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeedControllerUpdateDeedByIdParams }
+export { UpdateDeed as DeedControllerUpdateDeedByIdRequest }
+export { BlueprintRelationships as DeedRelationships }
+export { BlueprintAttributes as DeliveryPaperworkAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeliveryPaperworkControllerCreateDeliveryPaperworkParams }
+export { ReferencedAssetList as DeliveryPaperworkControllerDeleteDeliveryPaperworkAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerDeleteDeliveryPaperworkAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DeliveryPaperworkControllerDeleteDeliveryPaperworkAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerDeleteDeliveryPaperworkByIdParams }
+export { ReferencedProjectList as DeliveryPaperworkControllerDeleteDeliveryPaperworkProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerDeleteDeliveryPaperworkProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DeliveryPaperworkControllerDeleteDeliveryPaperworkProjectsRefRequest }
+export { ReferencedSpaceList as DeliveryPaperworkControllerDeleteDeliveryPaperworkSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerDeleteDeliveryPaperworkSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DeliveryPaperworkControllerDeleteDeliveryPaperworkSpacesRefRequest }
+export { Account as DeliveryPaperworkControllerGetDeliveryPaperworkAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeliveryPaperworkControllerGetDeliveryPaperworkAccountParams }
+export { ReferencedAccount as DeliveryPaperworkControllerGetDeliveryPaperworkAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerGetDeliveryPaperworkAccountRefParams }
+export { AssetList as DeliveryPaperworkControllerGetDeliveryPaperworkAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeliveryPaperworkControllerGetDeliveryPaperworkAssetsParams }
+export { ReferencedAssetList as DeliveryPaperworkControllerGetDeliveryPaperworkAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerGetDeliveryPaperworkAssetsRefParams }
+export { DeliveryPaperwork as DeliveryPaperworkControllerGetDeliveryPaperworkById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeliveryPaperworkControllerGetDeliveryPaperworkByIdParams }
+export { DocumentType as DeliveryPaperworkControllerGetDeliveryPaperworkDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeliveryPaperworkControllerGetDeliveryPaperworkDocumentTypeParams }
+export { ReferencedDocumentType as DeliveryPaperworkControllerGetDeliveryPaperworkDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerGetDeliveryPaperworkDocumentTypeRefParams }
+export { NullableFile as DeliveryPaperworkControllerGetDeliveryPaperworkFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeliveryPaperworkControllerGetDeliveryPaperworkFileParams }
+export { NullableReferencedFile as DeliveryPaperworkControllerGetDeliveryPaperworkFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerGetDeliveryPaperworkFileRefParams }
+export { DeliveryPaperworkList as DeliveryPaperworkControllerGetDeliveryPaperworkList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeliveryPaperworkControllerGetDeliveryPaperworkListParams }
+export { ProjectList as DeliveryPaperworkControllerGetDeliveryPaperworkProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeliveryPaperworkControllerGetDeliveryPaperworkProjectsParams }
+export { ReferencedProjectList as DeliveryPaperworkControllerGetDeliveryPaperworkProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerGetDeliveryPaperworkProjectsRefParams }
+export { SpaceList as DeliveryPaperworkControllerGetDeliveryPaperworkSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DeliveryPaperworkControllerGetDeliveryPaperworkSpacesParams }
+export { ReferencedSpaceList as DeliveryPaperworkControllerGetDeliveryPaperworkSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerGetDeliveryPaperworkSpacesRefParams }
+export { ReferencedAccount as DeliveryPaperworkControllerPatchDeliveryPaperworkAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPatchDeliveryPaperworkAccountRefParams }
+export { ReferencedUpdateAccount as DeliveryPaperworkControllerPatchDeliveryPaperworkAccountRefRequest }
+export { ReferencedAssetList as DeliveryPaperworkControllerPatchDeliveryPaperworkAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPatchDeliveryPaperworkAssetsRefParams }
+export { ReferencedUpdateAssetList as DeliveryPaperworkControllerPatchDeliveryPaperworkAssetsRefRequest }
+export { NullableReferencedFile as DeliveryPaperworkControllerPatchDeliveryPaperworkFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPatchDeliveryPaperworkFileRefParams }
+export { NullableReferencedUpdateFile as DeliveryPaperworkControllerPatchDeliveryPaperworkFileRefRequest }
+export { ReferencedProjectList as DeliveryPaperworkControllerPatchDeliveryPaperworkProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPatchDeliveryPaperworkProjectsRefParams }
+export { ReferencedUpdateProjectList as DeliveryPaperworkControllerPatchDeliveryPaperworkProjectsRefRequest }
+export { ReferencedSpaceList as DeliveryPaperworkControllerPatchDeliveryPaperworkSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPatchDeliveryPaperworkSpacesRefParams }
+export { ReferencedUpdateSpaceList as DeliveryPaperworkControllerPatchDeliveryPaperworkSpacesRefRequest }
+export { ReferencedAssetList as DeliveryPaperworkControllerPostDeliveryPaperworkAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPostDeliveryPaperworkAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DeliveryPaperworkControllerPostDeliveryPaperworkAssetsRefRequest }
+export { ReferencedProjectList as DeliveryPaperworkControllerPostDeliveryPaperworkProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPostDeliveryPaperworkProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DeliveryPaperworkControllerPostDeliveryPaperworkProjectsRefRequest }
+export { ReferencedSpaceList as DeliveryPaperworkControllerPostDeliveryPaperworkSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DeliveryPaperworkControllerPostDeliveryPaperworkSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DeliveryPaperworkControllerPostDeliveryPaperworkSpacesRefRequest }
+export { DeliveryPaperwork as DeliveryPaperworkControllerUpdateDeliveryPaperworkById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DeliveryPaperworkControllerUpdateDeliveryPaperworkByIdParams }
+export { UpdateDeliveryPaperwork as DeliveryPaperworkControllerUpdateDeliveryPaperworkByIdRequest }
+export { BlueprintRelationships as DeliveryPaperworkRelationships }
+export { CreateDepreciationModifierAttributes as DepreciationModifierAttributes }
+export { CreateDepreciationOverrideAttributes as DepreciationOverrideAttributes }
+export { DepreciationModifierRelationships as DepreciationOverrideRelationships }
+export { CreateDepreciationScheduleAttributes as DepreciationScheduleAttributes }
+export { AssetTypeAttributes as DisasterAttributes }
+export { Disaster as DisasterControllerGetDisasterById200 }
 export { AccountControllerGetCurrentAccountParams as DisasterControllerGetDisasterByIdParams }
+export { IncidentType as DisasterControllerGetDisasterIncidentType200 }
 export { AccountControllerGetCurrentAccountParams as DisasterControllerGetDisasterIncidentTypeParams }
+export { ReferencedIncidentType as DisasterControllerGetDisasterIncidentTypeRef200 }
+export { DisasterList as DisasterControllerGetDisasterList200 }
 export { UserControllerGetUserAccountRolesParams as DisasterControllerGetDisasterListParams }
+export { BlueprintAttributes as DocumentAttributes }
+export { AssetTypeAttributes as DocumentClassAttributes }
+export { AssetTypeList as DocumentClassControllerGetDocumentClassAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as DocumentClassControllerGetDocumentClassAssetTypesParams }
+export { ReferencedAssetTypeList as DocumentClassControllerGetDocumentClassAssetTypesRef200 }
+export { DocumentClass as DocumentClassControllerGetDocumentClassById200 }
 export { AccountControllerGetCurrentAccountParams as DocumentClassControllerGetDocumentClassByIdParams }
+export { DocumentClassList as DocumentClassControllerGetDocumentClassList200 }
 export { UserControllerGetUserAccountRolesParams as DocumentClassControllerGetDocumentClassListParams }
+export { DocumentTypeList as DocumentClassControllerGetDocumentClassTypes200 }
 export { UserControllerGetUserAccountRolesParams as DocumentClassControllerGetDocumentClassTypesParams }
+export { ReferencedDocumentTypeList as DocumentClassControllerGetDocumentClassTypesRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DocumentControllerCreateDocumentParams }
+export { ReferencedAssetList as DocumentControllerDeleteDocumentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerDeleteDocumentAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DocumentControllerDeleteDocumentAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerDeleteDocumentByIdParams }
+export { ReferencedProjectList as DocumentControllerDeleteDocumentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerDeleteDocumentProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DocumentControllerDeleteDocumentProjectsRefRequest }
+export { ReferencedSpaceList as DocumentControllerDeleteDocumentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerDeleteDocumentSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DocumentControllerDeleteDocumentSpacesRefRequest }
+export { Account as DocumentControllerGetDocumentAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DocumentControllerGetDocumentAccountParams }
+export { ReferencedAccount as DocumentControllerGetDocumentAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerGetDocumentAccountRefParams }
+export { AssetList as DocumentControllerGetDocumentAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DocumentControllerGetDocumentAssetsParams }
+export { ReferencedAssetList as DocumentControllerGetDocumentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerGetDocumentAssetsRefParams }
+export { Document as DocumentControllerGetDocumentById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DocumentControllerGetDocumentByIdParams }
+export { DocumentType as DocumentControllerGetDocumentDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DocumentControllerGetDocumentDocumentTypeParams }
+export { ReferencedDocumentType as DocumentControllerGetDocumentDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerGetDocumentDocumentTypeRefParams }
+export { NullableFile as DocumentControllerGetDocumentFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DocumentControllerGetDocumentFileParams }
+export { NullableReferencedFile as DocumentControllerGetDocumentFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerGetDocumentFileRefParams }
+export { DocumentList as DocumentControllerGetDocumentList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DocumentControllerGetDocumentListParams }
+export { ProjectList as DocumentControllerGetDocumentProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DocumentControllerGetDocumentProjectsParams }
+export { ReferencedProjectList as DocumentControllerGetDocumentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerGetDocumentProjectsRefParams }
+export { SpaceList as DocumentControllerGetDocumentSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DocumentControllerGetDocumentSpacesParams }
+export { ReferencedSpaceList as DocumentControllerGetDocumentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerGetDocumentSpacesRefParams }
+export { ReferencedAccount as DocumentControllerPatchDocumentAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPatchDocumentAccountRefParams }
+export { ReferencedUpdateAccount as DocumentControllerPatchDocumentAccountRefRequest }
+export { ReferencedAssetList as DocumentControllerPatchDocumentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPatchDocumentAssetsRefParams }
+export { ReferencedUpdateAssetList as DocumentControllerPatchDocumentAssetsRefRequest }
+export { NullableReferencedFile as DocumentControllerPatchDocumentFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPatchDocumentFileRefParams }
+export { NullableReferencedUpdateFile as DocumentControllerPatchDocumentFileRefRequest }
+export { ReferencedProjectList as DocumentControllerPatchDocumentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPatchDocumentProjectsRefParams }
+export { ReferencedUpdateProjectList as DocumentControllerPatchDocumentProjectsRefRequest }
+export { ReferencedSpaceList as DocumentControllerPatchDocumentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPatchDocumentSpacesRefParams }
+export { ReferencedUpdateSpaceList as DocumentControllerPatchDocumentSpacesRefRequest }
+export { ReferencedAssetList as DocumentControllerPostDocumentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPostDocumentAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as DocumentControllerPostDocumentAssetsRefRequest }
+export { ReferencedProjectList as DocumentControllerPostDocumentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPostDocumentProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as DocumentControllerPostDocumentProjectsRefRequest }
+export { ReferencedSpaceList as DocumentControllerPostDocumentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DocumentControllerPostDocumentSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as DocumentControllerPostDocumentSpacesRefRequest }
+export { Document as DocumentControllerUpdateDocumentById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DocumentControllerUpdateDocumentByIdParams }
+export { UpdateDocument as DocumentControllerUpdateDocumentByIdRequest }
+export { BlueprintRelationships as DocumentRelationships }
+export { CreateDocumentTypeAttributes as DocumentTypeAttributes }
+export { AssetTypeList as DocumentTypeControllerGetDocumentTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as DocumentTypeControllerGetDocumentTypeAssetTypesParams }
+export { ReferencedAssetTypeList as DocumentTypeControllerGetDocumentTypeAssetTypesRef200 }
+export { DocumentType as DocumentTypeControllerGetDocumentTypeById200 }
 export { AccountControllerGetCurrentAccountParams as DocumentTypeControllerGetDocumentTypeByIdParams }
+export { DocumentClassList as DocumentTypeControllerGetDocumentTypeClasses200 }
 export { UserControllerGetUserAccountRolesParams as DocumentTypeControllerGetDocumentTypeClassesParams }
+export { ReferencedDocumentClassList as DocumentTypeControllerGetDocumentTypeClassesRef200 }
+export { DocumentTypeList as DocumentTypeControllerGetDocumentTypeList200 }
 export { UserControllerGetUserAccountRolesParams as DocumentTypeControllerGetDocumentTypeListParams }
+export { AssetAttributes as DwellingAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerCreateDwellingParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerDeleteDwellingByIdParams }
+export { Account as DwellingControllerGetDwellingAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerGetDwellingAccountParams }
+export { ReferencedAccount as DwellingControllerGetDwellingAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerGetDwellingAccountRefParams }
+export { Address as DwellingControllerGetDwellingAddress200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerGetDwellingAddressParams }
+export { ReferencedAddress as DwellingControllerGetDwellingAddressRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerGetDwellingAddressRefParams }
+export { AssetAppraisalList as DwellingControllerGetDwellingAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DwellingControllerGetDwellingAppraisalsParams }
+export { ReferencedAssetAppraisalList as DwellingControllerGetDwellingAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerGetDwellingAppraisalsRefParams }
+export { AssetType as DwellingControllerGetDwellingAssetType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerGetDwellingAssetTypeParams }
+export { ReferencedAssetType as DwellingControllerGetDwellingAssetTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerGetDwellingAssetTypeRefParams }
+export { Dwelling as DwellingControllerGetDwellingById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerGetDwellingByIdParams }
+export { DwellingList as DwellingControllerGetDwellingList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as DwellingControllerGetDwellingListParams }
+export { NullableAssetAppraisal as DwellingControllerGetDwellingRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerGetDwellingRelevantAppraisalParams }
+export { NullableReferencedAssetAppraisal as DwellingControllerGetDwellingRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerGetDwellingRelevantAppraisalRefParams }
+export { NullableAssetAppraisal as DwellingControllerGetDwellingSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerGetDwellingSelectedAppraisalParams }
+export { NullableReferencedAssetAppraisal as DwellingControllerGetDwellingSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerGetDwellingSelectedAppraisalRefParams }
+export { ReferencedAccount as DwellingControllerPatchDwellingAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerPatchDwellingAccountRefParams }
+export { ReferencedUpdateAccount as DwellingControllerPatchDwellingAccountRefRequest }
+export { ReferencedAddress as DwellingControllerPatchDwellingAddressRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerPatchDwellingAddressRefParams }
+export { ReferencedUpdateAddress as DwellingControllerPatchDwellingAddressRefRequest }
+export { ReferencedAssetType as DwellingControllerPatchDwellingAssetTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerPatchDwellingAssetTypeRefParams }
+export { ReferencedUpdateAssetType as DwellingControllerPatchDwellingAssetTypeRefRequest }
+export { NullableReferencedAssetAppraisal as DwellingControllerPatchDwellingSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as DwellingControllerPatchDwellingSelectedAppraisalRefParams }
+export { NullableReferencedUpdateAssetAppraisal as DwellingControllerPatchDwellingSelectedAppraisalRefRequest }
+export { Dwelling as DwellingControllerUpdateDwellingById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as DwellingControllerUpdateDwellingByIdParams }
+export { UpdateDwelling as DwellingControllerUpdateDwellingByIdRequest }
 export { AccountControllerGetCurrentAccountParams as EmailAddressControllerCreateEmailAddressParams }
+export { EmailAddress as EmailAddressControllerGetEmailAddressById200 }
 export { AccountControllerGetCurrentAccountParams as EmailAddressControllerGetEmailAddressByIdParams }
+export { Identity as EmailAddressControllerGetEmailAddressIdentity200 }
 export { AccountControllerGetCurrentAccountParams as EmailAddressControllerGetEmailAddressIdentityParams }
+export { ReferencedIdentity as EmailAddressControllerGetEmailAddressIdentityRef200 }
+export { EmailAddressList as EmailAddressControllerGetEmailAddressList200 }
 export { UserControllerGetUserAccountRolesParams as EmailAddressControllerGetEmailAddressListParams }
+export { ReferencedIdentity as EmailAddressControllerPatchEmailAddressIdentityRef200 }
+export { ReferencedUpdateIdentity as EmailAddressControllerPatchEmailAddressIdentityRefRequest }
+export { EmailAddress as EmailAddressControllerUpdateEmailAddressById200 }
 export { AccountControllerGetCurrentAccountParams as EmailAddressControllerUpdateEmailAddressByIdParams }
+export { UpdateEmailAddress as EmailAddressControllerUpdateEmailAddressByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EndorsementControllerCreateEndorsementParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerDeleteEndorsementByIdParams }
+export { ReferencedCoverageList as EndorsementControllerDeleteEndorsementCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerDeleteEndorsementCoveragesRefParams }
 export { EndorsementControllerPostEndorsementCoveragesRefRequest as EndorsementControllerDeleteEndorsementCoveragesRefRequest }
+export { ReferencedPerilList as EndorsementControllerDeleteEndorsementPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerDeleteEndorsementPerilsRefParams }
 export { IncidentImpactControllerPostIncidentImpactPerilsRefRequest as EndorsementControllerDeleteEndorsementPerilsRefRequest }
+export { ReferencedSubCoverageList as EndorsementControllerDeleteEndorsementSubCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerDeleteEndorsementSubCoveragesRefParams }
 export { EndorsementControllerPostEndorsementSubCoveragesRefRequest as EndorsementControllerDeleteEndorsementSubCoveragesRefRequest }
+export { Endorsement as EndorsementControllerGetEndorsementById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EndorsementControllerGetEndorsementByIdParams }
+export { CoverageList as EndorsementControllerGetEndorsementCoverages200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EndorsementControllerGetEndorsementCoveragesParams }
+export { ReferencedCoverageList as EndorsementControllerGetEndorsementCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerGetEndorsementCoveragesRefParams }
+export { EndorsementList as EndorsementControllerGetEndorsementList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EndorsementControllerGetEndorsementListParams }
+export { PerilList as EndorsementControllerGetEndorsementPerils200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EndorsementControllerGetEndorsementPerilsParams }
+export { ReferencedPerilList as EndorsementControllerGetEndorsementPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerGetEndorsementPerilsRefParams }
+export { PolicyTerm as EndorsementControllerGetEndorsementPolicyTerm200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EndorsementControllerGetEndorsementPolicyTermParams }
+export { ReferencedPolicyTerm as EndorsementControllerGetEndorsementPolicyTermRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerGetEndorsementPolicyTermRefParams }
+export { SubCoverageList as EndorsementControllerGetEndorsementSubCoverages200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EndorsementControllerGetEndorsementSubCoveragesParams }
+export { ReferencedSubCoverageList as EndorsementControllerGetEndorsementSubCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerGetEndorsementSubCoveragesRefParams }
+export { NullableEndorsementTemplate as EndorsementControllerGetEndorsementTemplate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EndorsementControllerGetEndorsementTemplateParams }
+export { NullableReferencedEndorsementTemplate as EndorsementControllerGetEndorsementTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerGetEndorsementTemplateRefParams }
+export { ReferencedCoverageList as EndorsementControllerPatchEndorsementCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPatchEndorsementCoveragesRefParams }
+export { ReferencedUpdateCoverageList as EndorsementControllerPatchEndorsementCoveragesRefRequest }
+export { ReferencedPerilList as EndorsementControllerPatchEndorsementPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPatchEndorsementPerilsRefParams }
+export { ReferencedUpdatePerilList as EndorsementControllerPatchEndorsementPerilsRefRequest }
+export { ReferencedPolicyTerm as EndorsementControllerPatchEndorsementPolicyTermRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPatchEndorsementPolicyTermRefParams }
+export { ReferencedUpdatePolicyTerm as EndorsementControllerPatchEndorsementPolicyTermRefRequest }
+export { ReferencedSubCoverageList as EndorsementControllerPatchEndorsementSubCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPatchEndorsementSubCoveragesRefParams }
+export { ReferencedUpdateSubCoverageList as EndorsementControllerPatchEndorsementSubCoveragesRefRequest }
+export { NullableReferencedEndorsementTemplate as EndorsementControllerPatchEndorsementTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPatchEndorsementTemplateRefParams }
+export { NullableReferencedUpdateEndorsementTemplate as EndorsementControllerPatchEndorsementTemplateRefRequest }
+export { ReferencedCoverageList as EndorsementControllerPostEndorsementCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPostEndorsementCoveragesRefParams }
+export { ReferencedPerilList as EndorsementControllerPostEndorsementPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPostEndorsementPerilsRefParams }
 export { IncidentImpactControllerPostIncidentImpactPerilsRefRequest as EndorsementControllerPostEndorsementPerilsRefRequest }
+export { ReferencedSubCoverageList as EndorsementControllerPostEndorsementSubCoveragesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EndorsementControllerPostEndorsementSubCoveragesRefParams }
+export { Endorsement as EndorsementControllerUpdateEndorsementById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EndorsementControllerUpdateEndorsementByIdParams }
+export { UpdateEndorsement as EndorsementControllerUpdateEndorsementByIdRequest }
+export { CreateEndorsementTemplateAttributes as EndorsementTemplateAttributes }
+export { BucketTypeList as EndorsementTemplateControllerGetEndorsementTemplateBucketTypes200 }
 export { UserControllerGetUserAccountRolesParams as EndorsementTemplateControllerGetEndorsementTemplateBucketTypesParams }
+export { ReferencedBucketTypeList as EndorsementTemplateControllerGetEndorsementTemplateBucketTypesRef200 }
+export { EndorsementTemplate as EndorsementTemplateControllerGetEndorsementTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as EndorsementTemplateControllerGetEndorsementTemplateByIdParams }
+export { CoverageTemplateList as EndorsementTemplateControllerGetEndorsementTemplateCoverageTemplates200 }
 export { UserControllerGetUserAccountRolesParams as EndorsementTemplateControllerGetEndorsementTemplateCoverageTemplatesParams }
+export { ReferencedCoverageTemplateList as EndorsementTemplateControllerGetEndorsementTemplateCoverageTemplatesRef200 }
+export { EndorsementTemplateList as EndorsementTemplateControllerGetEndorsementTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as EndorsementTemplateControllerGetEndorsementTemplateListParams }
+export { PerilList as EndorsementTemplateControllerGetEndorsementTemplatePerils200 }
 export { UserControllerGetUserAccountRolesParams as EndorsementTemplateControllerGetEndorsementTemplatePerilsParams }
+export { ReferencedPerilList as EndorsementTemplateControllerGetEndorsementTemplatePerilsRef200 }
+export { SubCoverageTemplateList as EndorsementTemplateControllerGetEndorsementTemplateSubCoverageTemplatess200 }
 export { UserControllerGetUserAccountRolesParams as EndorsementTemplateControllerGetEndorsementTemplateSubCoverageTemplatessParams }
+export { ReferencedSubCoverageTemplateList as EndorsementTemplateControllerGetEndorsementTemplateSubCoverageTemplatessRef200 }
+export { CreateEntryAttributes as EntryAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerCreateEntryParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerDeleteEntryByIdParams }
+export { Account as EntryControllerGetEntryAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntryAccountParams }
+export { ReferencedAccount as EntryControllerGetEntryAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerGetEntryAccountRefParams }
+export { BaseBucket as EntryControllerGetEntryBucket200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntryBucketParams }
+export { ReferencedBaseBucket as EntryControllerGetEntryBucketRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerGetEntryBucketRefParams }
+export { Entry as EntryControllerGetEntryById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntryByIdParams }
+export { Currency as EntryControllerGetEntryCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntryCurrencyParams }
+export { ReferencedCurrency as EntryControllerGetEntryCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerGetEntryCurrencyRefParams }
+export { FundingSource as EntryControllerGetEntryFundingSource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntryFundingSourceParams }
+export { ReferencedFundingSource as EntryControllerGetEntryFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerGetEntryFundingSourceRefParams }
+export { EntryList as EntryControllerGetEntryList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EntryControllerGetEntryListParams }
+export { Project as EntryControllerGetEntryProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntryProjectParams }
+export { ReferencedProject as EntryControllerGetEntryProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerGetEntryProjectRefParams }
+export { EntrySource as EntryControllerGetEntrySource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntrySourceParams }
+export { ReferencedEntrySource as EntryControllerGetEntrySourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerGetEntrySourceRefParams }
+export { NullableBaseSubBucket as EntryControllerGetEntrySubBucket200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerGetEntrySubBucketParams }
+export { NullableReferencedBaseSubBucket as EntryControllerGetEntrySubBucketRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerGetEntrySubBucketRefParams }
+export { ReferencedBaseBucket as EntryControllerPatchEntryBucketRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerPatchEntryBucketRefParams }
+export { ReferencedUpdateBaseBucket as EntryControllerPatchEntryBucketRefRequest }
+export { ReferencedEntrySource as EntryControllerPatchEntrySourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerPatchEntrySourceRefParams }
+export { ReferencedUpdateEntrySource as EntryControllerPatchEntrySourceRefRequest }
+export { NullableReferencedBaseSubBucket as EntryControllerPatchEntrySubBucketRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntryControllerPatchEntrySubBucketRefParams }
+export { NullableReferencedUpdateBaseSubBucket as EntryControllerPatchEntrySubBucketRefRequest }
+export { Entry as EntryControllerUpdateEntryById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntryControllerUpdateEntryByIdParams }
+export { UpdateEntry as EntryControllerUpdateEntryByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerCreateEntrySourceParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerDeleteEntrySourceByIdParams }
+export { Account as EntrySourceControllerGetEntrySourceAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerGetEntrySourceAccountParams }
+export { ReferencedAccount as EntrySourceControllerGetEntrySourceAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceAccountRefParams }
+export { ItemAppraisalList as EntrySourceControllerGetEntrySourceAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EntrySourceControllerGetEntrySourceAppraisalsParams }
+export { ReferencedItemAppraisalList as EntrySourceControllerGetEntrySourceAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceAppraisalsRefParams }
+export { EntrySource as EntrySourceControllerGetEntrySourceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerGetEntrySourceByIdParams }
+export { Currency as EntrySourceControllerGetEntrySourceCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerGetEntrySourceCurrencyParams }
+export { ReferencedCurrency as EntrySourceControllerGetEntrySourceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceCurrencyRefParams }
+export { EntryList as EntrySourceControllerGetEntrySourceEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EntrySourceControllerGetEntrySourceEntriesParams }
+export { ReferencedEntryList as EntrySourceControllerGetEntrySourceEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceEntriesRefParams }
+export { EntrySourceList as EntrySourceControllerGetEntrySourceList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EntrySourceControllerGetEntrySourceListParams }
+export { EntrySourceMetadata as EntrySourceControllerGetEntrySourceMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerGetEntrySourceMetadataParams }
+export { ReferencedEntrySourceMetadata as EntrySourceControllerGetEntrySourceMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceMetadataRefParams }
+export { NullableProject as EntrySourceControllerGetEntrySourceProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerGetEntrySourceProjectParams }
+export { NullableReferencedProject as EntrySourceControllerGetEntrySourceProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceProjectRefParams }
+export { NullableItemAppraisal as EntrySourceControllerGetEntrySourceRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerGetEntrySourceRelevantAppraisalParams }
+export { NullableReferencedItemAppraisal as EntrySourceControllerGetEntrySourceRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceRelevantAppraisalRefParams }
+export { NullableItemAppraisal as EntrySourceControllerGetEntrySourceSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerGetEntrySourceSelectedAppraisalParams }
+export { NullableReferencedItemAppraisal as EntrySourceControllerGetEntrySourceSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerGetEntrySourceSelectedAppraisalRefParams }
+export { ReferencedAccount as EntrySourceControllerPatchEntrySourceAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerPatchEntrySourceAccountRefParams }
+export { ReferencedUpdateAccount as EntrySourceControllerPatchEntrySourceAccountRefRequest }
+export { ReferencedCurrency as EntrySourceControllerPatchEntrySourceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerPatchEntrySourceCurrencyRefParams }
+export { ReferencedUpdateCurrency as EntrySourceControllerPatchEntrySourceCurrencyRefRequest }
+export { NullableReferencedProject as EntrySourceControllerPatchEntrySourceProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerPatchEntrySourceProjectRefParams }
+export { NullableReferencedUpdateProject as EntrySourceControllerPatchEntrySourceProjectRefRequest }
+export { NullableReferencedItemAppraisal as EntrySourceControllerPatchEntrySourceSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceControllerPatchEntrySourceSelectedAppraisalRefParams }
+export { NullableReferencedUpdateItemAppraisal as EntrySourceControllerPatchEntrySourceSelectedAppraisalRefRequest }
+export { EntrySource as EntrySourceControllerUpdateEntrySourceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceControllerUpdateEntrySourceByIdParams }
+export { UpdateEntrySource as EntrySourceControllerUpdateEntrySourceByIdRequest }
+export { CreateEntrySourceMediaAttributes as EntrySourceMediaAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMediaControllerCreateEntrySourceMediaParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMediaControllerDeleteEntrySourceMediaByIdParams }
+export { EntrySourceMedia as EntrySourceMediaControllerGetEntrySourceMediaById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMediaControllerGetEntrySourceMediaByIdParams }
+export { EntrySource as EntrySourceMediaControllerGetEntrySourceMediaEntrySource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMediaControllerGetEntrySourceMediaEntrySourceParams }
+export { ReferencedEntrySource as EntrySourceMediaControllerGetEntrySourceMediaEntrySourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMediaControllerGetEntrySourceMediaEntrySourceRefParams }
+export { EntrySourceMediaList as EntrySourceMediaControllerGetEntrySourceMediaList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EntrySourceMediaControllerGetEntrySourceMediaListParams }
+export { Media as EntrySourceMediaControllerGetEntrySourceMediaMedia200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMediaControllerGetEntrySourceMediaMediaParams }
+export { ReferencedMedia as EntrySourceMediaControllerGetEntrySourceMediaMediaRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMediaControllerGetEntrySourceMediaMediaRefParams }
+export { ReferencedEntrySource as EntrySourceMediaControllerPatchEntrySourceMediaEntrySourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMediaControllerPatchEntrySourceMediaEntrySourceRefParams }
+export { ReferencedUpdateEntrySource as EntrySourceMediaControllerPatchEntrySourceMediaEntrySourceRefRequest }
+export { ReferencedMedia as EntrySourceMediaControllerPatchEntrySourceMediaMediaRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMediaControllerPatchEntrySourceMediaMediaRefParams }
+export { ReferencedUpdateMedia as EntrySourceMediaControllerPatchEntrySourceMediaMediaRefRequest }
+export { EntrySourceMedia as EntrySourceMediaControllerUpdateEntrySourceMediaById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMediaControllerUpdateEntrySourceMediaByIdParams }
+export { UpdateEntrySourceMedia as EntrySourceMediaControllerUpdateEntrySourceMediaByIdRequest }
+export { CreateEntrySourceMetadataAttributes as EntrySourceMetadataAttributes }
+export { Account as EntrySourceMetadataControllerGetEntrySourceMetadataAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMetadataControllerGetEntrySourceMetadataAccountParams }
+export { ReferencedAccount as EntrySourceMetadataControllerGetEntrySourceMetadataAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMetadataControllerGetEntrySourceMetadataAccountRefParams }
+export { EntrySourceMetadata as EntrySourceMetadataControllerGetEntrySourceMetadataById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMetadataControllerGetEntrySourceMetadataByIdParams }
+export { Currency as EntrySourceMetadataControllerGetEntrySourceMetadataCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMetadataControllerGetEntrySourceMetadataCurrencyParams }
+export { ReferencedCurrency as EntrySourceMetadataControllerGetEntrySourceMetadataCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMetadataControllerGetEntrySourceMetadataCurrencyRefParams }
+export { EntrySourceMetadataList as EntrySourceMetadataControllerGetEntrySourceMetadataList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EntrySourceMetadataControllerGetEntrySourceMetadataListParams }
+export { EntrySource as EntrySourceMetadataControllerGetEntrySourceMetadataObject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMetadataControllerGetEntrySourceMetadataObjectParams }
+export { ReferencedEntrySource as EntrySourceMetadataControllerGetEntrySourceMetadataObjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMetadataControllerGetEntrySourceMetadataObjectRefParams }
+export { NullableProject as EntrySourceMetadataControllerGetEntrySourceMetadataProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EntrySourceMetadataControllerGetEntrySourceMetadataProjectParams }
+export { NullableReferencedProject as EntrySourceMetadataControllerGetEntrySourceMetadataProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EntrySourceMetadataControllerGetEntrySourceMetadataProjectRefParams }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerCreateEstimateParams }
+export { ReferencedAssetList as EstimateControllerDeleteEstimateAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerDeleteEstimateAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as EstimateControllerDeleteEstimateAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerDeleteEstimateByIdParams }
+export { ReferencedProjectList as EstimateControllerDeleteEstimateProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerDeleteEstimateProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as EstimateControllerDeleteEstimateProjectsRefRequest }
+export { ReferencedSpaceList as EstimateControllerDeleteEstimateSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerDeleteEstimateSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as EstimateControllerDeleteEstimateSpacesRefRequest }
+export { Account as EstimateControllerGetEstimateAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateAccountParams }
+export { ReferencedAccount as EstimateControllerGetEstimateAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateAccountRefParams }
+export { AssetList as EstimateControllerGetEstimateAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateControllerGetEstimateAssetsParams }
+export { ReferencedAssetList as EstimateControllerGetEstimateAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateAssetsRefParams }
+export { Estimate as EstimateControllerGetEstimateById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateByIdParams }
+export { ChangeOrderList as EstimateControllerGetEstimateChangeOrders200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateControllerGetEstimateChangeOrdersParams }
+export { ReferencedChangeOrderList as EstimateControllerGetEstimateChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateChangeOrdersRefParams }
+export { Currency as EstimateControllerGetEstimateCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateCurrencyParams }
+export { ReferencedCurrency as EstimateControllerGetEstimateCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateCurrencyRefParams }
+export { DocumentType as EstimateControllerGetEstimateDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateDocumentTypeParams }
+export { ReferencedDocumentType as EstimateControllerGetEstimateDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateDocumentTypeRefParams }
+export { NullableFile as EstimateControllerGetEstimateFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateFileParams }
+export { NullableReferencedFile as EstimateControllerGetEstimateFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateFileRefParams }
+export { EstimateLineList as EstimateControllerGetEstimateLines200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateControllerGetEstimateLinesParams }
+export { ReferencedEstimateLineList as EstimateControllerGetEstimateLinesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateLinesRefParams }
+export { EntrySourceList as EstimateControllerGetEstimateLineSubjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateControllerGetEstimateLineSubjectsParams }
+export { ReferencedEntrySourceList as EstimateControllerGetEstimateLineSubjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateLineSubjectsRefParams }
+export { EstimateList as EstimateControllerGetEstimateList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateControllerGetEstimateListParams }
+export { ProjectList as EstimateControllerGetEstimateProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateControllerGetEstimateProjectsParams }
+export { ReferencedProjectList as EstimateControllerGetEstimateProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateProjectsRefParams }
+export { NullableService as EstimateControllerGetEstimateService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateServiceParams }
+export { NullableReferencedService as EstimateControllerGetEstimateServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateServiceRefParams }
+export { SpaceList as EstimateControllerGetEstimateSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateControllerGetEstimateSpacesParams }
+export { ReferencedSpaceList as EstimateControllerGetEstimateSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateSpacesRefParams }
+export { ItemizableFinancialDocumentStats as EstimateControllerGetEstimateStats200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateStatsParams }
+export { ReferencedItemizableFinancialDocumentStats as EstimateControllerGetEstimateStatsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateStatsRefParams }
+export { NullableAccountProvider as EstimateControllerGetEstimateVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerGetEstimateVendorParams }
+export { NullableReferencedAccountProvider as EstimateControllerGetEstimateVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerGetEstimateVendorRefParams }
+export { ReferencedAccount as EstimateControllerPatchEstimateAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateAccountRefParams }
+export { ReferencedUpdateAccount as EstimateControllerPatchEstimateAccountRefRequest }
+export { ReferencedAssetList as EstimateControllerPatchEstimateAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateAssetsRefParams }
+export { ReferencedUpdateAssetList as EstimateControllerPatchEstimateAssetsRefRequest }
+export { ReferencedCurrency as EstimateControllerPatchEstimateCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateCurrencyRefParams }
+export { ReferencedUpdateCurrency as EstimateControllerPatchEstimateCurrencyRefRequest }
+export { NullableReferencedFile as EstimateControllerPatchEstimateFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateFileRefParams }
+export { NullableReferencedUpdateFile as EstimateControllerPatchEstimateFileRefRequest }
+export { ReferencedProjectList as EstimateControllerPatchEstimateProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateProjectsRefParams }
+export { ReferencedUpdateProjectList as EstimateControllerPatchEstimateProjectsRefRequest }
+export { NullableReferencedService as EstimateControllerPatchEstimateServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateServiceRefParams }
+export { NullableReferencedUpdateService as EstimateControllerPatchEstimateServiceRefRequest }
+export { ReferencedSpaceList as EstimateControllerPatchEstimateSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateSpacesRefParams }
+export { ReferencedUpdateSpaceList as EstimateControllerPatchEstimateSpacesRefRequest }
+export { NullableReferencedAccountProvider as EstimateControllerPatchEstimateVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPatchEstimateVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as EstimateControllerPatchEstimateVendorRefRequest }
+export { ReferencedAssetList as EstimateControllerPostEstimateAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPostEstimateAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as EstimateControllerPostEstimateAssetsRefRequest }
+export { ReferencedProjectList as EstimateControllerPostEstimateProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPostEstimateProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as EstimateControllerPostEstimateProjectsRefRequest }
+export { ReferencedSpaceList as EstimateControllerPostEstimateSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateControllerPostEstimateSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as EstimateControllerPostEstimateSpacesRefRequest }
+export { Estimate as EstimateControllerUpdateEstimateById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateControllerUpdateEstimateByIdParams }
+export { UpdateEstimate as EstimateControllerUpdateEstimateByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateLineControllerCreateEstimateLineParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerDeleteEstimateLineByIdParams }
+export { ReferencedChangeOrderLineList as EstimateLineControllerDeleteEstimateLineChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerDeleteEstimateLineChangeOrdersRefParams }
 export { EstimateLineControllerPostEstimateLineChangeOrdersRefRequest as EstimateLineControllerDeleteEstimateLineChangeOrdersRefRequest }
+export { EstimateLine as EstimateLineControllerGetEstimateLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateLineControllerGetEstimateLineByIdParams }
+export { ChangeOrderLineList as EstimateLineControllerGetEstimateLineChangeOrders200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateLineControllerGetEstimateLineChangeOrdersParams }
+export { ReferencedChangeOrderLineList as EstimateLineControllerGetEstimateLineChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerGetEstimateLineChangeOrdersRefParams }
+export { NullableEstimate as EstimateLineControllerGetEstimateLineEstimate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateLineControllerGetEstimateLineEstimateParams }
+export { NullableReferencedEstimate as EstimateLineControllerGetEstimateLineEstimateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerGetEstimateLineEstimateRefParams }
+export { EstimateLineList as EstimateLineControllerGetEstimateLineList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as EstimateLineControllerGetEstimateLineListParams }
+export { NullableService as EstimateLineControllerGetEstimateLineService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateLineControllerGetEstimateLineServiceParams }
+export { NullableReferencedService as EstimateLineControllerGetEstimateLineServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerGetEstimateLineServiceRefParams }
+export { EntrySource as EstimateLineControllerGetEstimateLineSubject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateLineControllerGetEstimateLineSubjectParams }
+export { ReferencedEntrySource as EstimateLineControllerGetEstimateLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerGetEstimateLineSubjectRefParams }
+export { NullableAccountProvider as EstimateLineControllerGetEstimateLineVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateLineControllerGetEstimateLineVendorParams }
+export { NullableReferencedAccountProvider as EstimateLineControllerGetEstimateLineVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerGetEstimateLineVendorRefParams }
+export { ReferencedChangeOrderLineList as EstimateLineControllerPatchEstimateLineChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerPatchEstimateLineChangeOrdersRefParams }
+export { ReferencedUpdateChangeOrderLineList as EstimateLineControllerPatchEstimateLineChangeOrdersRefRequest }
+export { NullableReferencedEstimate as EstimateLineControllerPatchEstimateLineEstimateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerPatchEstimateLineEstimateRefParams }
+export { NullableReferencedUpdateEstimate as EstimateLineControllerPatchEstimateLineEstimateRefRequest }
+export { NullableReferencedService as EstimateLineControllerPatchEstimateLineServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerPatchEstimateLineServiceRefParams }
+export { NullableReferencedUpdateService as EstimateLineControllerPatchEstimateLineServiceRefRequest }
+export { ReferencedEntrySource as EstimateLineControllerPatchEstimateLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerPatchEstimateLineSubjectRefParams }
+export { ReferencedUpdateEntrySource as EstimateLineControllerPatchEstimateLineSubjectRefRequest }
+export { NullableReferencedAccountProvider as EstimateLineControllerPatchEstimateLineVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerPatchEstimateLineVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as EstimateLineControllerPatchEstimateLineVendorRefRequest }
+export { ReferencedChangeOrderLineList as EstimateLineControllerPostEstimateLineChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as EstimateLineControllerPostEstimateLineChangeOrdersRefParams }
+export { EstimateLine as EstimateLineControllerUpdateEstimateLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as EstimateLineControllerUpdateEstimateLineByIdParams }
+export { UpdateEstimateLine as EstimateLineControllerUpdateEstimateLineByIdRequest }
+export { ReferencedAssetList as FileControllerDeleteFileAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerDeleteFileAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as FileControllerDeleteFileAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerDeleteFileByIdParams }
+export { ReferencedProjectList as FileControllerDeleteFileProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerDeleteFileProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as FileControllerDeleteFileProjectsRefRequest }
+export { Account as FileControllerGetFileAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FileControllerGetFileAccountParams }
+export { ReferencedAccount as FileControllerGetFileAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerGetFileAccountRefParams }
+export { User as FileControllerGetFileAddedBy200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FileControllerGetFileAddedByParams }
+export { ReferencedUser as FileControllerGetFileAddedByRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerGetFileAddedByRefParams }
+export { AssetList as FileControllerGetFileAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FileControllerGetFileAssetsParams }
+export { ReferencedAssetList as FileControllerGetFileAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerGetFileAssetsRefParams }
+export { File as FileControllerGetFileById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FileControllerGetFileByIdParams }
+export { DocumentList as FileControllerGetFileDocuments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FileControllerGetFileDocumentsParams }
+export { ReferencedDocumentList as FileControllerGetFileDocumentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerGetFileDocumentsRefParams }
+export { FileList as FileControllerGetFileList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FileControllerGetFileListParams }
+export { MediaList as FileControllerGetFileMedia200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FileControllerGetFileMediaParams }
+export { ReferencedMediaList as FileControllerGetFileMediaRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerGetFileMediaRefParams }
+export { FileProcessList as FileControllerGetFileProcesses200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FileControllerGetFileProcessesParams }
+export { ReferencedFileProcessList as FileControllerGetFileProcessesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerGetFileProcessesRefParams }
+export { ProjectList as FileControllerGetFileProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FileControllerGetFileProjectsParams }
+export { ReferencedProjectList as FileControllerGetFileProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerGetFileProjectsRefParams }
+export { ReferencedAccount as FileControllerPatchFileAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerPatchFileAccountRefParams }
+export { ReferencedUpdateAccount as FileControllerPatchFileAccountRefRequest }
+export { ReferencedAssetList as FileControllerPatchFileAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerPatchFileAssetsRefParams }
+export { ReferencedUpdateAssetList as FileControllerPatchFileAssetsRefRequest }
+export { ReferencedProjectList as FileControllerPatchFileProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerPatchFileProjectsRefParams }
+export { ReferencedUpdateProjectList as FileControllerPatchFileProjectsRefRequest }
+export { ReferencedAssetList as FileControllerPostFileAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerPostFileAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as FileControllerPostFileAssetsRefRequest }
+export { ReferencedProjectList as FileControllerPostFileProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileControllerPostFileProjectsRefParams }
+export { File as FileControllerUpdateFileById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FileControllerUpdateFileByIdParams }
+export { UpdateFile as FileControllerUpdateFileByIdRequest }
+export { CreateFileProcessAttributes as FileProcessAttributes }
+export { FileProcess as FileProcessControllerGetFileProcessById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FileProcessControllerGetFileProcessByIdParams }
+export { File as FileProcessControllerGetFileProcessFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FileProcessControllerGetFileProcessFileParams }
+export { ReferencedFile as FileProcessControllerGetFileProcessFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FileProcessControllerGetFileProcessFileRefParams }
+export { FileProcessList as FileProcessControllerGetFileProcessList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FileProcessControllerGetFileProcessListParams }
+export { AssetAppraisalAttributes as FinancialDocumentAttributes }
+export { CreateFundingAttributes as FundingAttributes }
 export { AccountControllerGetCurrentAccountParams as FundingControllerCreateFundingParams }
+export { ReferencedAssetList as FundingControllerDeleteFundingAssetsRef200 }
 export { PolicyControllerPostPolicyAssetsRefRequest as FundingControllerDeleteFundingAssetsRefRequest }
+export { ReferencedProjectList as FundingControllerDeleteFundingProjectsRef200 }
 export { FileControllerPostFileProjectsRefRequest as FundingControllerDeleteFundingProjectsRefRequest }
+export { ReferencedSpaceList as FundingControllerDeleteFundingSpacesRef200 }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as FundingControllerDeleteFundingSpacesRefRequest }
+export { Account as FundingControllerGetFundingAccount200 }
 export { AccountControllerGetCurrentAccountParams as FundingControllerGetFundingAccountParams }
+export { ReferencedAccount as FundingControllerGetFundingAccountRef200 }
+export { BucketFundingList as FundingControllerGetFundingAllocations200 }
 export { UserControllerGetUserAccountRolesParams as FundingControllerGetFundingAllocationsParams }
+export { ReferencedBucketFundingList as FundingControllerGetFundingAllocationsRef200 }
+export { AssetList as FundingControllerGetFundingAssets200 }
 export { UserControllerGetUserAccountRolesParams as FundingControllerGetFundingAssetsParams }
+export { ReferencedAssetList as FundingControllerGetFundingAssetsRef200 }
+export { Funding as FundingControllerGetFundingById200 }
 export { AccountControllerGetCurrentAccountParams as FundingControllerGetFundingByIdParams }
+export { DocumentType as FundingControllerGetFundingDocumentType200 }
 export { AccountControllerGetCurrentAccountParams as FundingControllerGetFundingDocumentTypeParams }
+export { ReferencedDocumentType as FundingControllerGetFundingDocumentTypeRef200 }
+export { NullableFile as FundingControllerGetFundingFile200 }
 export { AccountControllerGetCurrentAccountParams as FundingControllerGetFundingFileParams }
+export { NullableReferencedFile as FundingControllerGetFundingFileRef200 }
+export { FundingList as FundingControllerGetFundingList200 }
 export { UserControllerGetUserAccountRolesParams as FundingControllerGetFundingListParams }
+export { ProjectList as FundingControllerGetFundingProjects200 }
 export { UserControllerGetUserAccountRolesParams as FundingControllerGetFundingProjectsParams }
+export { ReferencedProjectList as FundingControllerGetFundingProjectsRef200 }
+export { FundingSource as FundingControllerGetFundingSource200 }
 export { AccountControllerGetCurrentAccountParams as FundingControllerGetFundingSourceParams }
+export { ReferencedFundingSource as FundingControllerGetFundingSourceRef200 }
+export { SpaceList as FundingControllerGetFundingSpaces200 }
 export { UserControllerGetUserAccountRolesParams as FundingControllerGetFundingSpacesParams }
+export { ReferencedSpaceList as FundingControllerGetFundingSpacesRef200 }
+export { ReferencedAccount as FundingControllerPatchFundingAccountRef200 }
+export { ReferencedUpdateAccount as FundingControllerPatchFundingAccountRefRequest }
+export { ReferencedAssetList as FundingControllerPatchFundingAssetsRef200 }
+export { ReferencedUpdateAssetList as FundingControllerPatchFundingAssetsRefRequest }
+export { NullableReferencedFile as FundingControllerPatchFundingFileRef200 }
+export { NullableReferencedUpdateFile as FundingControllerPatchFundingFileRefRequest }
+export { ReferencedProjectList as FundingControllerPatchFundingProjectsRef200 }
+export { ReferencedUpdateProjectList as FundingControllerPatchFundingProjectsRefRequest }
+export { ReferencedFundingSource as FundingControllerPatchFundingSourceRef200 }
+export { ReferencedUpdateFundingSource as FundingControllerPatchFundingSourceRefRequest }
+export { ReferencedSpaceList as FundingControllerPatchFundingSpacesRef200 }
+export { ReferencedUpdateSpaceList as FundingControllerPatchFundingSpacesRefRequest }
+export { ReferencedAssetList as FundingControllerPostFundingAssetsRef200 }
 export { PolicyControllerPostPolicyAssetsRefRequest as FundingControllerPostFundingAssetsRefRequest }
+export { ReferencedProjectList as FundingControllerPostFundingProjectsRef200 }
 export { FileControllerPostFileProjectsRefRequest as FundingControllerPostFundingProjectsRefRequest }
+export { ReferencedSpaceList as FundingControllerPostFundingSpacesRef200 }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as FundingControllerPostFundingSpacesRefRequest }
+export { Funding as FundingControllerUpdateFundingById200 }
 export { AccountControllerGetCurrentAccountParams as FundingControllerUpdateFundingByIdParams }
+export { UpdateFunding as FundingControllerUpdateFundingByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FundingSourceControllerCreateFundingSourceParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerDeleteFundingSourceByIdParams }
+export { ReferencedAccountProviderContactList as FundingSourceControllerDeleteFundingSourceContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerDeleteFundingSourceContactsRefParams }
 export { FundingSourceControllerPostFundingSourceContactsRefRequest as FundingSourceControllerDeleteFundingSourceContactsRefRequest }
+export { Account as FundingSourceControllerGetFundingSourceAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FundingSourceControllerGetFundingSourceAccountParams }
+export { ReferencedAccount as FundingSourceControllerGetFundingSourceAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerGetFundingSourceAccountRefParams }
+export { BaseBucketList as FundingSourceControllerGetFundingSourceBuckets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FundingSourceControllerGetFundingSourceBucketsParams }
+export { ReferencedBaseBucketList as FundingSourceControllerGetFundingSourceBucketsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerGetFundingSourceBucketsRefParams }
+export { FundingSource as FundingSourceControllerGetFundingSourceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FundingSourceControllerGetFundingSourceByIdParams }
+export { AccountProviderContactList as FundingSourceControllerGetFundingSourceContacts200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FundingSourceControllerGetFundingSourceContactsParams }
+export { ReferencedAccountProviderContactList as FundingSourceControllerGetFundingSourceContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerGetFundingSourceContactsRefParams }
+export { Currency as FundingSourceControllerGetFundingSourceCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FundingSourceControllerGetFundingSourceCurrencyParams }
+export { ReferencedCurrency as FundingSourceControllerGetFundingSourceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerGetFundingSourceCurrencyRefParams }
+export { FundingList as FundingSourceControllerGetFundingSourceFundings200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FundingSourceControllerGetFundingSourceFundingsParams }
+export { ReferencedFundingList as FundingSourceControllerGetFundingSourceFundingsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerGetFundingSourceFundingsRefParams }
+export { FundingSourceList as FundingSourceControllerGetFundingSourceList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as FundingSourceControllerGetFundingSourceListParams }
+export { Project as FundingSourceControllerGetFundingSourceProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FundingSourceControllerGetFundingSourceProjectParams }
+export { ReferencedProject as FundingSourceControllerGetFundingSourceProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerGetFundingSourceProjectRefParams }
+export { ReferencedAccountProviderContactList as FundingSourceControllerPatchFundingSourceContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerPatchFundingSourceContactsRefParams }
+export { ReferencedUpdateAccountProviderContactList as FundingSourceControllerPatchFundingSourceContactsRefRequest }
+export { ReferencedCurrency as FundingSourceControllerPatchFundingSourceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerPatchFundingSourceCurrencyRefParams }
+export { ReferencedUpdateCurrency as FundingSourceControllerPatchFundingSourceCurrencyRefRequest }
+export { ReferencedProject as FundingSourceControllerPatchFundingSourceProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerPatchFundingSourceProjectRefParams }
+export { ReferencedUpdateProject as FundingSourceControllerPatchFundingSourceProjectRefRequest }
+export { ReferencedAccountProviderContactList as FundingSourceControllerPostFundingSourceContactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as FundingSourceControllerPostFundingSourceContactsRefParams }
+export { FundingSource as FundingSourceControllerUpdateFundingSourceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as FundingSourceControllerUpdateFundingSourceByIdParams }
+export { UpdateFundingSource as FundingSourceControllerUpdateFundingSourceByIdRequest }
 export { HealthControllerInternalHealthCheck200 as HealthControllerExternalHealthCheck200 }
 export { HealthControllerInternalHealthCheck200 as HealthControllerExternalHealthCheck503 }
 export { HealthControllerInternalHealthCheck200 as HealthControllerInternalHealthCheck503 }
+export { AccountProviderContactAttributes as IdentityAttributes }
+export { AssetTypeAttributes as IncidentClassAttributes }
+export { AssetTypeList as IncidentClassControllerGetIncidentClassAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as IncidentClassControllerGetIncidentClassAssetTypesParams }
+export { ReferencedAssetTypeList as IncidentClassControllerGetIncidentClassAssetTypesRef200 }
+export { IncidentClass as IncidentClassControllerGetIncidentClassById200 }
 export { AccountControllerGetCurrentAccountParams as IncidentClassControllerGetIncidentClassByIdParams }
+export { IncidentClassList as IncidentClassControllerGetIncidentClassList200 }
 export { UserControllerGetUserAccountRolesParams as IncidentClassControllerGetIncidentClassListParams }
+export { IncidentTypeList as IncidentClassControllerGetIncidentClassTypes200 }
 export { UserControllerGetUserAccountRolesParams as IncidentClassControllerGetIncidentClassTypesParams }
+export { ReferencedIncidentTypeList as IncidentClassControllerGetIncidentClassTypesRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentControllerCreateIncidentParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerDeleteIncidentByIdParams }
+export { ReferencedProjectMediaList as IncidentControllerDeleteIncidentMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerDeleteIncidentMediaAttachmentsRefParams }
 export { ProjectControllerPostProjectMediaAttachmentsRefRequest as IncidentControllerDeleteIncidentMediaAttachmentsRefRequest }
+export { Account as IncidentControllerGetIncidentAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentControllerGetIncidentAccountParams }
+export { ReferencedAccount as IncidentControllerGetIncidentAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerGetIncidentAccountRefParams }
+export { Incident as IncidentControllerGetIncidentById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentControllerGetIncidentByIdParams }
+export { NullableDisaster as IncidentControllerGetIncidentDisaster200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentControllerGetIncidentDisasterParams }
+export { NullableReferencedDisaster as IncidentControllerGetIncidentDisasterRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerGetIncidentDisasterRefParams }
+export { IncidentList as IncidentControllerGetIncidentList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentControllerGetIncidentListParams }
+export { ProjectMediaList as IncidentControllerGetIncidentMediaAttachments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentControllerGetIncidentMediaAttachmentsParams }
+export { ReferencedProjectMediaList as IncidentControllerGetIncidentMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerGetIncidentMediaAttachmentsRefParams }
+export { IncidentType as IncidentControllerGetIncidentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentControllerGetIncidentTypeParams }
+export { ReferencedIncidentType as IncidentControllerGetIncidentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerGetIncidentTypeRefParams }
+export { ReferencedAccount as IncidentControllerPatchIncidentAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerPatchIncidentAccountRefParams }
+export { ReferencedUpdateAccount as IncidentControllerPatchIncidentAccountRefRequest }
+export { NullableReferencedDisaster as IncidentControllerPatchIncidentDisasterRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerPatchIncidentDisasterRefParams }
+export { NullableReferencedUpdateDisaster as IncidentControllerPatchIncidentDisasterRefRequest }
+export { ReferencedProjectMediaList as IncidentControllerPatchIncidentMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerPatchIncidentMediaAttachmentsRefParams }
+export { ReferencedUpdateProjectMediaList as IncidentControllerPatchIncidentMediaAttachmentsRefRequest }
+export { ReferencedIncidentType as IncidentControllerPatchIncidentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerPatchIncidentTypeRefParams }
+export { ReferencedUpdateIncidentType as IncidentControllerPatchIncidentTypeRefRequest }
+export { ReferencedProjectMediaList as IncidentControllerPostIncidentMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentControllerPostIncidentMediaAttachmentsRefParams }
 export { ProjectControllerPostProjectMediaAttachmentsRefRequest as IncidentControllerPostIncidentMediaAttachmentsRefRequest }
+export { Incident as IncidentControllerUpdateIncidentById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentControllerUpdateIncidentByIdParams }
+export { UpdateIncident as IncidentControllerUpdateIncidentByIdRequest }
+export { CreateIncidentImpactAttributes as IncidentImpactAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentImpactControllerCreateIncidentImpactParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerDeleteIncidentImpactByIdParams }
+export { ReferencedPerilList as IncidentImpactControllerDeleteIncidentImpactPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerDeleteIncidentImpactPerilsRefParams }
 export { IncidentImpactControllerPostIncidentImpactPerilsRefRequest as IncidentImpactControllerDeleteIncidentImpactPerilsRefRequest }
+export { ReferencedSpaceList as IncidentImpactControllerDeleteIncidentImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerDeleteIncidentImpactSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as IncidentImpactControllerDeleteIncidentImpactSpacesRefRequest }
+export { Asset as IncidentImpactControllerGetIncidentImpactAsset200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentImpactControllerGetIncidentImpactAssetParams }
+export { ReferencedAsset as IncidentImpactControllerGetIncidentImpactAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerGetIncidentImpactAssetRefParams }
+export { IncidentImpact as IncidentImpactControllerGetIncidentImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentImpactControllerGetIncidentImpactByIdParams }
+export { IncidentImpactList as IncidentImpactControllerGetIncidentImpactList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentImpactControllerGetIncidentImpactListParams }
+export { PerilList as IncidentImpactControllerGetIncidentImpactPerils200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentImpactControllerGetIncidentImpactPerilsParams }
+export { ReferencedPerilList as IncidentImpactControllerGetIncidentImpactPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerGetIncidentImpactPerilsRefParams }
+export { Project as IncidentImpactControllerGetIncidentImpactProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentImpactControllerGetIncidentImpactProjectParams }
+export { ReferencedProject as IncidentImpactControllerGetIncidentImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerGetIncidentImpactProjectRefParams }
+export { SpaceList as IncidentImpactControllerGetIncidentImpactSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentImpactControllerGetIncidentImpactSpacesParams }
+export { ReferencedSpaceList as IncidentImpactControllerGetIncidentImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerGetIncidentImpactSpacesRefParams }
+export { ReferencedAsset as IncidentImpactControllerPatchIncidentImpactAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerPatchIncidentImpactAssetRefParams }
+export { ReferencedUpdateAsset as IncidentImpactControllerPatchIncidentImpactAssetRefRequest }
+export { ReferencedPerilList as IncidentImpactControllerPatchIncidentImpactPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerPatchIncidentImpactPerilsRefParams }
+export { ReferencedUpdatePerilList as IncidentImpactControllerPatchIncidentImpactPerilsRefRequest }
+export { ReferencedProject as IncidentImpactControllerPatchIncidentImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerPatchIncidentImpactProjectRefParams }
+export { ReferencedUpdateProject as IncidentImpactControllerPatchIncidentImpactProjectRefRequest }
+export { ReferencedSpaceList as IncidentImpactControllerPatchIncidentImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerPatchIncidentImpactSpacesRefParams }
+export { ReferencedUpdateSpaceList as IncidentImpactControllerPatchIncidentImpactSpacesRefRequest }
+export { ReferencedPerilList as IncidentImpactControllerPostIncidentImpactPerilsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerPostIncidentImpactPerilsRefParams }
+export { ReferencedSpaceList as IncidentImpactControllerPostIncidentImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentImpactControllerPostIncidentImpactSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as IncidentImpactControllerPostIncidentImpactSpacesRefRequest }
+export { IncidentImpact as IncidentImpactControllerUpdateIncidentImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentImpactControllerUpdateIncidentImpactByIdParams }
+export { UpdateIncidentImpact as IncidentImpactControllerUpdateIncidentImpactByIdRequest }
+export { BlueprintAttributes as IncidentReportAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentReportControllerCreateIncidentReportParams }
+export { ReferencedAssetList as IncidentReportControllerDeleteIncidentReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerDeleteIncidentReportAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as IncidentReportControllerDeleteIncidentReportAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerDeleteIncidentReportByIdParams }
+export { ReferencedProjectList as IncidentReportControllerDeleteIncidentReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerDeleteIncidentReportProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as IncidentReportControllerDeleteIncidentReportProjectsRefRequest }
+export { ReferencedSpaceList as IncidentReportControllerDeleteIncidentReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerDeleteIncidentReportSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as IncidentReportControllerDeleteIncidentReportSpacesRefRequest }
+export { Account as IncidentReportControllerGetIncidentReportAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentReportControllerGetIncidentReportAccountParams }
+export { ReferencedAccount as IncidentReportControllerGetIncidentReportAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerGetIncidentReportAccountRefParams }
+export { AssetList as IncidentReportControllerGetIncidentReportAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentReportControllerGetIncidentReportAssetsParams }
+export { ReferencedAssetList as IncidentReportControllerGetIncidentReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerGetIncidentReportAssetsRefParams }
+export { IncidentReport as IncidentReportControllerGetIncidentReportById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentReportControllerGetIncidentReportByIdParams }
+export { DocumentType as IncidentReportControllerGetIncidentReportDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentReportControllerGetIncidentReportDocumentTypeParams }
+export { ReferencedDocumentType as IncidentReportControllerGetIncidentReportDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerGetIncidentReportDocumentTypeRefParams }
+export { NullableFile as IncidentReportControllerGetIncidentReportFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentReportControllerGetIncidentReportFileParams }
+export { NullableReferencedFile as IncidentReportControllerGetIncidentReportFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerGetIncidentReportFileRefParams }
+export { IncidentReportList as IncidentReportControllerGetIncidentReportList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentReportControllerGetIncidentReportListParams }
+export { ProjectList as IncidentReportControllerGetIncidentReportProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentReportControllerGetIncidentReportProjectsParams }
+export { ReferencedProjectList as IncidentReportControllerGetIncidentReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerGetIncidentReportProjectsRefParams }
+export { SpaceList as IncidentReportControllerGetIncidentReportSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as IncidentReportControllerGetIncidentReportSpacesParams }
+export { ReferencedSpaceList as IncidentReportControllerGetIncidentReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerGetIncidentReportSpacesRefParams }
+export { ReferencedAccount as IncidentReportControllerPatchIncidentReportAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPatchIncidentReportAccountRefParams }
+export { ReferencedUpdateAccount as IncidentReportControllerPatchIncidentReportAccountRefRequest }
+export { ReferencedAssetList as IncidentReportControllerPatchIncidentReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPatchIncidentReportAssetsRefParams }
+export { ReferencedUpdateAssetList as IncidentReportControllerPatchIncidentReportAssetsRefRequest }
+export { NullableReferencedFile as IncidentReportControllerPatchIncidentReportFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPatchIncidentReportFileRefParams }
+export { NullableReferencedUpdateFile as IncidentReportControllerPatchIncidentReportFileRefRequest }
+export { ReferencedProjectList as IncidentReportControllerPatchIncidentReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPatchIncidentReportProjectsRefParams }
+export { ReferencedUpdateProjectList as IncidentReportControllerPatchIncidentReportProjectsRefRequest }
+export { ReferencedSpaceList as IncidentReportControllerPatchIncidentReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPatchIncidentReportSpacesRefParams }
+export { ReferencedUpdateSpaceList as IncidentReportControllerPatchIncidentReportSpacesRefRequest }
+export { ReferencedAssetList as IncidentReportControllerPostIncidentReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPostIncidentReportAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as IncidentReportControllerPostIncidentReportAssetsRefRequest }
+export { ReferencedProjectList as IncidentReportControllerPostIncidentReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPostIncidentReportProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as IncidentReportControllerPostIncidentReportProjectsRefRequest }
+export { ReferencedSpaceList as IncidentReportControllerPostIncidentReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as IncidentReportControllerPostIncidentReportSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as IncidentReportControllerPostIncidentReportSpacesRefRequest }
+export { IncidentReport as IncidentReportControllerUpdateIncidentReportById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as IncidentReportControllerUpdateIncidentReportByIdParams }
+export { UpdateIncidentReport as IncidentReportControllerUpdateIncidentReportByIdRequest }
+export { BlueprintRelationships as IncidentReportRelationships }
+export { BucketTypeAttributes as IncidentTypeAttributes }
+export { AssetTypeList as IncidentTypeControllerGetIncidentTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as IncidentTypeControllerGetIncidentTypeAssetTypesParams }
+export { ReferencedAssetTypeList as IncidentTypeControllerGetIncidentTypeAssetTypesRef200 }
+export { IncidentType as IncidentTypeControllerGetIncidentTypeById200 }
 export { AccountControllerGetCurrentAccountParams as IncidentTypeControllerGetIncidentTypeByIdParams }
+export { IncidentClassList as IncidentTypeControllerGetIncidentTypeClasses200 }
 export { UserControllerGetUserAccountRolesParams as IncidentTypeControllerGetIncidentTypeClassesParams }
+export { ReferencedIncidentClassList as IncidentTypeControllerGetIncidentTypeClassesRef200 }
+export { IncidentTypeList as IncidentTypeControllerGetIncidentTypeList200 }
 export { UserControllerGetUserAccountRolesParams as IncidentTypeControllerGetIncidentTypeListParams }
+export { PerilList as IncidentTypeControllerGetIncidentTypePerils200 }
 export { UserControllerGetUserAccountRolesParams as IncidentTypeControllerGetIncidentTypePerilsParams }
+export { ReferencedPerilList as IncidentTypeControllerGetIncidentTypePerilsRef200 }
+export { ChangeOrderAttributes as InvoiceAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerCreateInvoiceParams }
+export { ReferencedAssetList as InvoiceControllerDeleteInvoiceAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerDeleteInvoiceAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as InvoiceControllerDeleteInvoiceAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerDeleteInvoiceByIdParams }
+export { ReferencedProjectList as InvoiceControllerDeleteInvoiceProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerDeleteInvoiceProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as InvoiceControllerDeleteInvoiceProjectsRefRequest }
+export { ReferencedSpaceList as InvoiceControllerDeleteInvoiceSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerDeleteInvoiceSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as InvoiceControllerDeleteInvoiceSpacesRefRequest }
+export { Account as InvoiceControllerGetInvoiceAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceAccountParams }
+export { ReferencedAccount as InvoiceControllerGetInvoiceAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceAccountRefParams }
+export { AssetList as InvoiceControllerGetInvoiceAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as InvoiceControllerGetInvoiceAssetsParams }
+export { ReferencedAssetList as InvoiceControllerGetInvoiceAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceAssetsRefParams }
+export { Invoice as InvoiceControllerGetInvoiceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceByIdParams }
+export { Currency as InvoiceControllerGetInvoiceCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceCurrencyParams }
+export { ReferencedCurrency as InvoiceControllerGetInvoiceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceCurrencyRefParams }
+export { DocumentType as InvoiceControllerGetInvoiceDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceDocumentTypeParams }
+export { ReferencedDocumentType as InvoiceControllerGetInvoiceDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceDocumentTypeRefParams }
+export { NullableFile as InvoiceControllerGetInvoiceFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceFileParams }
+export { NullableReferencedFile as InvoiceControllerGetInvoiceFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceFileRefParams }
+export { InvoiceLineList as InvoiceControllerGetInvoiceLines200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as InvoiceControllerGetInvoiceLinesParams }
+export { ReferencedInvoiceLineList as InvoiceControllerGetInvoiceLinesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceLinesRefParams }
+export { EntrySourceList as InvoiceControllerGetInvoiceLineSubjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as InvoiceControllerGetInvoiceLineSubjectsParams }
+export { ReferencedEntrySourceList as InvoiceControllerGetInvoiceLineSubjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceLineSubjectsRefParams }
+export { InvoiceList as InvoiceControllerGetInvoiceList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as InvoiceControllerGetInvoiceListParams }
+export { ProjectList as InvoiceControllerGetInvoiceProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as InvoiceControllerGetInvoiceProjectsParams }
+export { ReferencedProjectList as InvoiceControllerGetInvoiceProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceProjectsRefParams }
+export { NullableService as InvoiceControllerGetInvoiceService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceServiceParams }
+export { NullableReferencedService as InvoiceControllerGetInvoiceServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceServiceRefParams }
+export { SpaceList as InvoiceControllerGetInvoiceSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as InvoiceControllerGetInvoiceSpacesParams }
+export { ReferencedSpaceList as InvoiceControllerGetInvoiceSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceSpacesRefParams }
+export { ItemizableFinancialDocumentStats as InvoiceControllerGetInvoiceStats200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceStatsParams }
+export { ReferencedItemizableFinancialDocumentStats as InvoiceControllerGetInvoiceStatsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceStatsRefParams }
+export { NullableAccountProvider as InvoiceControllerGetInvoiceVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerGetInvoiceVendorParams }
+export { NullableReferencedAccountProvider as InvoiceControllerGetInvoiceVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerGetInvoiceVendorRefParams }
+export { ReferencedAccount as InvoiceControllerPatchInvoiceAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceAccountRefParams }
+export { ReferencedUpdateAccount as InvoiceControllerPatchInvoiceAccountRefRequest }
+export { ReferencedAssetList as InvoiceControllerPatchInvoiceAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceAssetsRefParams }
+export { ReferencedUpdateAssetList as InvoiceControllerPatchInvoiceAssetsRefRequest }
+export { ReferencedCurrency as InvoiceControllerPatchInvoiceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceCurrencyRefParams }
+export { ReferencedUpdateCurrency as InvoiceControllerPatchInvoiceCurrencyRefRequest }
+export { NullableReferencedFile as InvoiceControllerPatchInvoiceFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceFileRefParams }
+export { NullableReferencedUpdateFile as InvoiceControllerPatchInvoiceFileRefRequest }
+export { ReferencedProjectList as InvoiceControllerPatchInvoiceProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceProjectsRefParams }
+export { ReferencedUpdateProjectList as InvoiceControllerPatchInvoiceProjectsRefRequest }
+export { NullableReferencedService as InvoiceControllerPatchInvoiceServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceServiceRefParams }
+export { NullableReferencedUpdateService as InvoiceControllerPatchInvoiceServiceRefRequest }
+export { ReferencedSpaceList as InvoiceControllerPatchInvoiceSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceSpacesRefParams }
+export { ReferencedUpdateSpaceList as InvoiceControllerPatchInvoiceSpacesRefRequest }
+export { NullableReferencedAccountProvider as InvoiceControllerPatchInvoiceVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPatchInvoiceVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as InvoiceControllerPatchInvoiceVendorRefRequest }
+export { ReferencedAssetList as InvoiceControllerPostInvoiceAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPostInvoiceAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as InvoiceControllerPostInvoiceAssetsRefRequest }
+export { ReferencedProjectList as InvoiceControllerPostInvoiceProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPostInvoiceProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as InvoiceControllerPostInvoiceProjectsRefRequest }
+export { ReferencedSpaceList as InvoiceControllerPostInvoiceSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceControllerPostInvoiceSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as InvoiceControllerPostInvoiceSpacesRefRequest }
+export { Invoice as InvoiceControllerUpdateInvoiceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceControllerUpdateInvoiceByIdParams }
+export { UpdateInvoice as InvoiceControllerUpdateInvoiceByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceLineControllerCreateInvoiceLineParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerDeleteInvoiceLineByIdParams }
+export { InvoiceLine as InvoiceLineControllerGetInvoiceLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceLineControllerGetInvoiceLineByIdParams }
+export { NullableInvoice as InvoiceLineControllerGetInvoiceLineInvoice200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceLineControllerGetInvoiceLineInvoiceParams }
+export { NullableReferencedInvoice as InvoiceLineControllerGetInvoiceLineInvoiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerGetInvoiceLineInvoiceRefParams }
+export { InvoiceLineList as InvoiceLineControllerGetInvoiceLineList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as InvoiceLineControllerGetInvoiceLineListParams }
+export { NullableService as InvoiceLineControllerGetInvoiceLineService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceLineControllerGetInvoiceLineServiceParams }
+export { NullableReferencedService as InvoiceLineControllerGetInvoiceLineServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerGetInvoiceLineServiceRefParams }
+export { EntrySource as InvoiceLineControllerGetInvoiceLineSubject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceLineControllerGetInvoiceLineSubjectParams }
+export { ReferencedEntrySource as InvoiceLineControllerGetInvoiceLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerGetInvoiceLineSubjectRefParams }
+export { NullableAccountProvider as InvoiceLineControllerGetInvoiceLineVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceLineControllerGetInvoiceLineVendorParams }
+export { NullableReferencedAccountProvider as InvoiceLineControllerGetInvoiceLineVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerGetInvoiceLineVendorRefParams }
+export { NullableReferencedInvoice as InvoiceLineControllerPatchInvoiceLineInvoiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerPatchInvoiceLineInvoiceRefParams }
+export { NullableReferencedUpdateInvoice as InvoiceLineControllerPatchInvoiceLineInvoiceRefRequest }
+export { NullableReferencedService as InvoiceLineControllerPatchInvoiceLineServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerPatchInvoiceLineServiceRefParams }
+export { NullableReferencedUpdateService as InvoiceLineControllerPatchInvoiceLineServiceRefRequest }
+export { ReferencedEntrySource as InvoiceLineControllerPatchInvoiceLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerPatchInvoiceLineSubjectRefParams }
+export { ReferencedUpdateEntrySource as InvoiceLineControllerPatchInvoiceLineSubjectRefRequest }
+export { NullableReferencedAccountProvider as InvoiceLineControllerPatchInvoiceLineVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as InvoiceLineControllerPatchInvoiceLineVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as InvoiceLineControllerPatchInvoiceLineVendorRefRequest }
+export { InvoiceLine as InvoiceLineControllerUpdateInvoiceLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as InvoiceLineControllerUpdateInvoiceLineByIdParams }
+export { UpdateInvoiceLine as InvoiceLineControllerUpdateInvoiceLineByIdRequest }
+export { AppraisalLineAttributes as ItemAppraisalAttributes }
+export { AssetTypeAttributes as ItemCategoryAttributes }
+export { AssetTypeList as ItemCategoryControllerGetItemCategoryAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as ItemCategoryControllerGetItemCategoryAssetTypesParams }
+export { ReferencedAssetTypeList as ItemCategoryControllerGetItemCategoryAssetTypesRef200 }
+export { ItemCategory as ItemCategoryControllerGetItemCategoryById200 }
 export { AccountControllerGetCurrentAccountParams as ItemCategoryControllerGetItemCategoryByIdParams }
+export { ItemClassList as ItemCategoryControllerGetItemCategoryClasses200 }
 export { UserControllerGetUserAccountRolesParams as ItemCategoryControllerGetItemCategoryClassesParams }
+export { ReferencedItemClassList as ItemCategoryControllerGetItemCategoryClassesRef200 }
+export { ItemCategoryList as ItemCategoryControllerGetItemCategoryList200 }
 export { UserControllerGetUserAccountRolesParams as ItemCategoryControllerGetItemCategoryListParams }
+export { AssetTypeAttributes as ItemClassAttributes }
+export { AssetTypeList as ItemClassControllerGetItemClassAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as ItemClassControllerGetItemClassAssetTypesParams }
+export { ReferencedAssetTypeList as ItemClassControllerGetItemClassAssetTypesRef200 }
+export { ItemClass as ItemClassControllerGetItemClassById200 }
 export { AccountControllerGetCurrentAccountParams as ItemClassControllerGetItemClassByIdParams }
+export { ItemCategoryList as ItemClassControllerGetItemClassCategories200 }
 export { UserControllerGetUserAccountRolesParams as ItemClassControllerGetItemClassCategoriesParams }
+export { ReferencedItemCategoryList as ItemClassControllerGetItemClassCategoriesRef200 }
+export { ItemClassList as ItemClassControllerGetItemClassList200 }
 export { UserControllerGetUserAccountRolesParams as ItemClassControllerGetItemClassListParams }
+export { ItemTypeList as ItemClassControllerGetItemClassTypes200 }
 export { UserControllerGetUserAccountRolesParams as ItemClassControllerGetItemClassTypesParams }
+export { ReferencedItemTypeList as ItemClassControllerGetItemClassTypesRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerCreateItemParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerDeleteItemByIdParams }
+export { Account as ItemControllerGetItemAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemAccountParams }
+export { ReferencedAccount as ItemControllerGetItemAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemAccountRefParams }
+export { ItemAppraisalList as ItemControllerGetItemAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemAppraisalsParams }
+export { ReferencedItemAppraisalList as ItemControllerGetItemAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemAppraisalsRefParams }
+export { NullableAsset as ItemControllerGetItemAsset200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemAssetParams }
+export { NullableReferencedAsset as ItemControllerGetItemAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemAssetRefParams }
+export { Item as ItemControllerGetItemById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemByIdParams }
+export { ChangeOrderList as ItemControllerGetItemChangeOrders200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemChangeOrdersParams }
+export { ReferencedChangeOrderList as ItemControllerGetItemChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemChangeOrdersRefParams }
+export { Currency as ItemControllerGetItemCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemCurrencyParams }
+export { ReferencedCurrency as ItemControllerGetItemCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemCurrencyRefParams }
+export { EntryList as ItemControllerGetItemEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemEntriesParams }
+export { ReferencedEntryList as ItemControllerGetItemEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemEntriesRefParams }
+export { EstimateList as ItemControllerGetItemEstimates200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemEstimatesParams }
+export { ReferencedEstimateList as ItemControllerGetItemEstimatesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemEstimatesRefParams }
+export { ItemImpactList as ItemControllerGetItemImpacts200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemImpactsParams }
+export { ReferencedItemImpactList as ItemControllerGetItemImpactsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemImpactsRefParams }
+export { InvoiceList as ItemControllerGetItemInvoices200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemInvoicesParams }
+export { ReferencedInvoiceList as ItemControllerGetItemInvoicesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemInvoicesRefParams }
+export { ItemList as ItemControllerGetItemList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemListParams }
+export { EntrySourceMetadata as ItemControllerGetItemMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemMetadataParams }
+export { ReferencedEntrySourceMetadata as ItemControllerGetItemMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemMetadataRefParams }
+export { PaymentList as ItemControllerGetItemPayments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemControllerGetItemPaymentsParams }
+export { ReferencedPaymentList as ItemControllerGetItemPaymentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemPaymentsRefParams }
+export { NullableProject as ItemControllerGetItemProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemProjectParams }
+export { NullableReferencedProject as ItemControllerGetItemProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemProjectRefParams }
+export { NullableItemAppraisal as ItemControllerGetItemRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemRelevantAppraisalParams }
+export { NullableReferencedItemAppraisal as ItemControllerGetItemRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemRelevantAppraisalRefParams }
+export { NullableItemImpact as ItemControllerGetItemReplaces200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemReplacesParams }
+export { NullableReferencedItemImpact as ItemControllerGetItemReplacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemReplacesRefParams }
+export { NullableItemAppraisal as ItemControllerGetItemSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemSelectedAppraisalParams }
+export { NullableReferencedItemAppraisal as ItemControllerGetItemSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemSelectedAppraisalRefParams }
+export { NullableSpace as ItemControllerGetItemSpace200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemSpaceParams }
+export { NullableReferencedSpace as ItemControllerGetItemSpaceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemSpaceRefParams }
+export { NullableItemType as ItemControllerGetItemType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerGetItemTypeParams }
+export { NullableReferencedItemType as ItemControllerGetItemTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerGetItemTypeRefParams }
+export { ReferencedAccount as ItemControllerPatchItemAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerPatchItemAccountRefParams }
+export { ReferencedUpdateAccount as ItemControllerPatchItemAccountRefRequest }
+export { NullableReferencedAsset as ItemControllerPatchItemAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerPatchItemAssetRefParams }
+export { NullableReferencedUpdateAsset as ItemControllerPatchItemAssetRefRequest }
+export { ReferencedCurrency as ItemControllerPatchItemCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerPatchItemCurrencyRefParams }
+export { ReferencedUpdateCurrency as ItemControllerPatchItemCurrencyRefRequest }
+export { NullableReferencedProject as ItemControllerPatchItemProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerPatchItemProjectRefParams }
+export { NullableReferencedUpdateProject as ItemControllerPatchItemProjectRefRequest }
+export { NullableReferencedItemAppraisal as ItemControllerPatchItemSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerPatchItemSelectedAppraisalRefParams }
+export { NullableReferencedUpdateItemAppraisal as ItemControllerPatchItemSelectedAppraisalRefRequest }
+export { NullableReferencedSpace as ItemControllerPatchItemSpaceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerPatchItemSpaceRefParams }
+export { NullableReferencedUpdateSpace as ItemControllerPatchItemSpaceRefRequest }
+export { NullableReferencedItemType as ItemControllerPatchItemTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemControllerPatchItemTypeRefParams }
+export { NullableReferencedUpdateItemType as ItemControllerPatchItemTypeRefRequest }
+export { Item as ItemControllerUpdateItemById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemControllerUpdateItemByIdParams }
+export { UpdateItem as ItemControllerUpdateItemByIdRequest }
+export { CreateItemImpactAttributes as ItemImpactAttributes }
+export { ChangeOrderLineAttributes as ItemImpactChangeOrderAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerCreateItemImpactParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerDeleteItemImpactByIdParams }
+export { Account as ItemImpactControllerGetItemImpactAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactAccountParams }
+export { ReferencedAccount as ItemImpactControllerGetItemImpactAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactAccountRefParams }
+export { ItemAppraisalList as ItemImpactControllerGetItemImpactAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemImpactControllerGetItemImpactAppraisalsParams }
+export { ReferencedItemAppraisalList as ItemImpactControllerGetItemImpactAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactAppraisalsRefParams }
+export { ItemImpact as ItemImpactControllerGetItemImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactByIdParams }
+export { ChangeOrderList as ItemImpactControllerGetItemImpactChangeOrders200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemImpactControllerGetItemImpactChangeOrdersParams }
+export { ReferencedChangeOrderList as ItemImpactControllerGetItemImpactChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactChangeOrdersRefParams }
+export { Currency as ItemImpactControllerGetItemImpactCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactCurrencyParams }
+export { ReferencedCurrency as ItemImpactControllerGetItemImpactCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactCurrencyRefParams }
+export { EntryList as ItemImpactControllerGetItemImpactEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemImpactControllerGetItemImpactEntriesParams }
+export { ReferencedEntryList as ItemImpactControllerGetItemImpactEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactEntriesRefParams }
+export { EstimateList as ItemImpactControllerGetItemImpactEstimates200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemImpactControllerGetItemImpactEstimatesParams }
+export { ReferencedEstimateList as ItemImpactControllerGetItemImpactEstimatesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactEstimatesRefParams }
+export { InvoiceList as ItemImpactControllerGetItemImpactInvoices200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemImpactControllerGetItemImpactInvoicesParams }
+export { ReferencedInvoiceList as ItemImpactControllerGetItemImpactInvoicesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactInvoicesRefParams }
+export { Item as ItemImpactControllerGetItemImpactItem200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactItemParams }
+export { ReferencedItem as ItemImpactControllerGetItemImpactItemRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactItemRefParams }
+export { NullableItemType as ItemImpactControllerGetItemImpactItemType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactItemTypeParams }
+export { NullableReferencedItemType as ItemImpactControllerGetItemImpactItemTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactItemTypeRefParams }
+export { ItemImpactList as ItemImpactControllerGetItemImpactList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemImpactControllerGetItemImpactListParams }
+export { EntrySourceMetadata as ItemImpactControllerGetItemImpactMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactMetadataParams }
+export { ReferencedEntrySourceMetadata as ItemImpactControllerGetItemImpactMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactMetadataRefParams }
+export { PaymentList as ItemImpactControllerGetItemImpactPayments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemImpactControllerGetItemImpactPaymentsParams }
+export { ReferencedPaymentList as ItemImpactControllerGetItemImpactPaymentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactPaymentsRefParams }
+export { NullableProject as ItemImpactControllerGetItemImpactProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactProjectParams }
+export { NullableReferencedProject as ItemImpactControllerGetItemImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactProjectRefParams }
+export { NullableItemAppraisal as ItemImpactControllerGetItemImpactRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactRelevantAppraisalParams }
+export { NullableReferencedItemAppraisal as ItemImpactControllerGetItemImpactRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactRelevantAppraisalRefParams }
+export { NullableItem as ItemImpactControllerGetItemImpactReplacement200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactReplacementParams }
+export { NullableReferencedItem as ItemImpactControllerGetItemImpactReplacementRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactReplacementRefParams }
+export { NullableItemAppraisal as ItemImpactControllerGetItemImpactSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerGetItemImpactSelectedAppraisalParams }
+export { NullableReferencedItemAppraisal as ItemImpactControllerGetItemImpactSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerGetItemImpactSelectedAppraisalRefParams }
+export { ReferencedAccount as ItemImpactControllerPatchItemImpactAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerPatchItemImpactAccountRefParams }
+export { ReferencedUpdateAccount as ItemImpactControllerPatchItemImpactAccountRefRequest }
+export { ReferencedCurrency as ItemImpactControllerPatchItemImpactCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerPatchItemImpactCurrencyRefParams }
+export { ReferencedUpdateCurrency as ItemImpactControllerPatchItemImpactCurrencyRefRequest }
+export { ReferencedItem as ItemImpactControllerPatchItemImpactItemRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerPatchItemImpactItemRefParams }
+export { ReferencedUpdateItem as ItemImpactControllerPatchItemImpactItemRefRequest }
+export { NullableReferencedProject as ItemImpactControllerPatchItemImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerPatchItemImpactProjectRefParams }
+export { NullableReferencedUpdateProject as ItemImpactControllerPatchItemImpactProjectRefRequest }
+export { NullableReferencedItem as ItemImpactControllerPatchItemImpactReplacementRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerPatchItemImpactReplacementRefParams }
+export { NullableReferencedUpdateItem as ItemImpactControllerPatchItemImpactReplacementRefRequest }
+export { NullableReferencedItemAppraisal as ItemImpactControllerPatchItemImpactSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemImpactControllerPatchItemImpactSelectedAppraisalRefParams }
+export { NullableReferencedUpdateItemAppraisal as ItemImpactControllerPatchItemImpactSelectedAppraisalRefRequest }
+export { ItemImpact as ItemImpactControllerUpdateItemImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemImpactControllerUpdateItemImpactByIdParams }
+export { UpdateItemImpact as ItemImpactControllerUpdateItemImpactByIdRequest }
+export { EstimateLineAttributes as ItemImpactEstimateAttributes }
+export { InvoiceLineAttributes as ItemImpactInvoiceAttributes }
+export { InvoiceLineAttributes as ItemImpactPaymentAttributes }
+export { ChangeOrderAttributes as ItemizableFinancialDocumentAttributes }
+export { CreateItemizableFinancialDocumentStatsAttributes as ItemizableFinancialDocumentStatsAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerCreateItemMediaSuggestionParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerDeleteItemMediaSuggestionByIdParams }
+export { ReferencedItemList as ItemMediaSuggestionControllerDeleteItemMediaSuggestionExistingItemsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerDeleteItemMediaSuggestionExistingItemsRefParams }
 export { ItemMediaSuggestionControllerPostItemMediaSuggestionExistingItemsRefRequest as ItemMediaSuggestionControllerDeleteItemMediaSuggestionExistingItemsRefRequest }
+export { NullableAsset as ItemMediaSuggestionControllerGetItemMediaSuggestionAsset200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerGetItemMediaSuggestionAssetParams }
+export { NullableReferencedAsset as ItemMediaSuggestionControllerGetItemMediaSuggestionAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerGetItemMediaSuggestionAssetRefParams }
+export { ItemMediaSuggestion as ItemMediaSuggestionControllerGetItemMediaSuggestionById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerGetItemMediaSuggestionByIdParams }
+export { ItemList as ItemMediaSuggestionControllerGetItemMediaSuggestionExistingItems200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemMediaSuggestionControllerGetItemMediaSuggestionExistingItemsParams }
+export { ReferencedItemList as ItemMediaSuggestionControllerGetItemMediaSuggestionExistingItemsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerGetItemMediaSuggestionExistingItemsRefParams }
+export { NullableItem as ItemMediaSuggestionControllerGetItemMediaSuggestionItem200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerGetItemMediaSuggestionItemParams }
+export { NullableReferencedItem as ItemMediaSuggestionControllerGetItemMediaSuggestionItemRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerGetItemMediaSuggestionItemRefParams }
+export { ItemMediaSuggestionList as ItemMediaSuggestionControllerGetItemMediaSuggestionList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemMediaSuggestionControllerGetItemMediaSuggestionListParams }
+export { Media as ItemMediaSuggestionControllerGetItemMediaSuggestionMedia200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerGetItemMediaSuggestionMediaParams }
+export { ReferencedMedia as ItemMediaSuggestionControllerGetItemMediaSuggestionMediaRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerGetItemMediaSuggestionMediaRefParams }
+export { NullableSpace as ItemMediaSuggestionControllerGetItemMediaSuggestionSpace200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerGetItemMediaSuggestionSpaceParams }
+export { NullableReferencedSpace as ItemMediaSuggestionControllerGetItemMediaSuggestionSpaceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerGetItemMediaSuggestionSpaceRefParams }
+export { NullableItemType as ItemMediaSuggestionControllerGetItemMediaSuggestionType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerGetItemMediaSuggestionTypeParams }
+export { NullableReferencedItemType as ItemMediaSuggestionControllerGetItemMediaSuggestionTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerGetItemMediaSuggestionTypeRefParams }
+export { NullableReferencedAsset as ItemMediaSuggestionControllerPatchItemMediaSuggestionAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerPatchItemMediaSuggestionAssetRefParams }
+export { NullableReferencedUpdateAsset as ItemMediaSuggestionControllerPatchItemMediaSuggestionAssetRefRequest }
+export { ReferencedItemList as ItemMediaSuggestionControllerPatchItemMediaSuggestionExistingItemsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerPatchItemMediaSuggestionExistingItemsRefParams }
+export { ReferencedUpdateItemList as ItemMediaSuggestionControllerPatchItemMediaSuggestionExistingItemsRefRequest }
+export { NullableReferencedItem as ItemMediaSuggestionControllerPatchItemMediaSuggestionItemRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerPatchItemMediaSuggestionItemRefParams }
+export { NullableReferencedUpdateItem as ItemMediaSuggestionControllerPatchItemMediaSuggestionItemRefRequest }
+export { ReferencedMedia as ItemMediaSuggestionControllerPatchItemMediaSuggestionMediaRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerPatchItemMediaSuggestionMediaRefParams }
+export { ReferencedUpdateMedia as ItemMediaSuggestionControllerPatchItemMediaSuggestionMediaRefRequest }
+export { NullableReferencedSpace as ItemMediaSuggestionControllerPatchItemMediaSuggestionSpaceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerPatchItemMediaSuggestionSpaceRefParams }
+export { NullableReferencedUpdateSpace as ItemMediaSuggestionControllerPatchItemMediaSuggestionSpaceRefRequest }
+export { NullableReferencedItemType as ItemMediaSuggestionControllerPatchItemMediaSuggestionTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerPatchItemMediaSuggestionTypeRefParams }
+export { NullableReferencedUpdateItemType as ItemMediaSuggestionControllerPatchItemMediaSuggestionTypeRefRequest }
+export { ReferencedItemList as ItemMediaSuggestionControllerPostItemMediaSuggestionExistingItemsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemMediaSuggestionControllerPostItemMediaSuggestionExistingItemsRefParams }
+export { ItemMediaSuggestion as ItemMediaSuggestionControllerUpdateItemMediaSuggestionById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemMediaSuggestionControllerUpdateItemMediaSuggestionByIdParams }
+export { UpdateItemMediaSuggestion as ItemMediaSuggestionControllerUpdateItemMediaSuggestionByIdRequest }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemProductSuggestionControllerCreateItemProductSuggestionParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemProductSuggestionControllerDeleteItemProductSuggestionByIdParams }
+export { ItemProductSuggestion as ItemProductSuggestionControllerGetItemProductSuggestionById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemProductSuggestionControllerGetItemProductSuggestionByIdParams }
+export { Item as ItemProductSuggestionControllerGetItemProductSuggestionItem200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemProductSuggestionControllerGetItemProductSuggestionItemParams }
+export { ReferencedItem as ItemProductSuggestionControllerGetItemProductSuggestionItemRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemProductSuggestionControllerGetItemProductSuggestionItemRefParams }
+export { ItemProductSuggestionList as ItemProductSuggestionControllerGetItemProductSuggestionList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ItemProductSuggestionControllerGetItemProductSuggestionListParams }
+export { ReferencedItem as ItemProductSuggestionControllerPatchItemProductSuggestionItemRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ItemProductSuggestionControllerPatchItemProductSuggestionItemRefParams }
+export { ReferencedUpdateItem as ItemProductSuggestionControllerPatchItemProductSuggestionItemRefRequest }
+export { ItemProductSuggestion as ItemProductSuggestionControllerUpdateItemProductSuggestionById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ItemProductSuggestionControllerUpdateItemProductSuggestionByIdParams }
+export { UpdateItemProductSuggestion as ItemProductSuggestionControllerUpdateItemProductSuggestionByIdRequest }
+export { AssetTypeAttributes as ItemTemplateAttributes }
+export { AssetTypeList as ItemTemplateControllerGetItemTemplateAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as ItemTemplateControllerGetItemTemplateAssetTypesParams }
+export { ReferencedAssetTypeList as ItemTemplateControllerGetItemTemplateAssetTypesRef200 }
+export { ItemTemplate as ItemTemplateControllerGetItemTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as ItemTemplateControllerGetItemTemplateByIdParams }
+export { ItemType as ItemTemplateControllerGetItemTemplateItemType200 }
 export { AccountControllerGetCurrentAccountParams as ItemTemplateControllerGetItemTemplateItemTypeParams }
+export { ReferencedItemType as ItemTemplateControllerGetItemTemplateItemTypeRef200 }
+export { ItemTemplateList as ItemTemplateControllerGetItemTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as ItemTemplateControllerGetItemTemplateListParams }
+export { CreateItemTypeAttributes as ItemTypeAttributes }
+export { AssetTypeList as ItemTypeControllerGetItemTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as ItemTypeControllerGetItemTypeAssetTypesParams }
+export { ReferencedAssetTypeList as ItemTypeControllerGetItemTypeAssetTypesRef200 }
+export { ItemType as ItemTypeControllerGetItemTypeById200 }
 export { AccountControllerGetCurrentAccountParams as ItemTypeControllerGetItemTypeByIdParams }
+export { ItemClassList as ItemTypeControllerGetItemTypeClasses200 }
 export { UserControllerGetUserAccountRolesParams as ItemTypeControllerGetItemTypeClassesParams }
+export { ReferencedItemClassList as ItemTypeControllerGetItemTypeClassesRef200 }
+export { DepreciationModifierList as ItemTypeControllerGetItemTypeDepreciationModifiers200 }
 export { UserControllerGetUserAccountRolesParams as ItemTypeControllerGetItemTypeDepreciationModifiersParams }
+export { ReferencedDepreciationModifierList as ItemTypeControllerGetItemTypeDepreciationModifiersRef200 }
+export { DepreciationOverrideList as ItemTypeControllerGetItemTypeDepreciationOverrides200 }
 export { UserControllerGetUserAccountRolesParams as ItemTypeControllerGetItemTypeDepreciationOverridesParams }
+export { ReferencedDepreciationOverrideList as ItemTypeControllerGetItemTypeDepreciationOverridesRef200 }
+export { ItemTypeList as ItemTypeControllerGetItemTypeList200 }
 export { UserControllerGetUserAccountRolesParams as ItemTypeControllerGetItemTypeListParams }
+export { CreateMediaAttributes as MediaAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as MediaControllerCreateMediaParams }
+export { ReferencedAssetList as MediaControllerDeleteMediaAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerDeleteMediaAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as MediaControllerDeleteMediaAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerDeleteMediaByIdParams }
+export { ReferencedProjectMediaList as MediaControllerDeleteMediaProjectAssignmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerDeleteMediaProjectAssignmentsRefParams }
 export { ProjectControllerPostProjectMediaAttachmentsRefRequest as MediaControllerDeleteMediaProjectAssignmentsRefRequest }
+export { ReferencedSpaceList as MediaControllerDeleteMediaSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerDeleteMediaSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as MediaControllerDeleteMediaSpacesRefRequest }
+export { Account as MediaControllerGetMediaAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as MediaControllerGetMediaAccountParams }
+export { ReferencedAccount as MediaControllerGetMediaAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerGetMediaAccountRefParams }
+export { AssetList as MediaControllerGetMediaAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as MediaControllerGetMediaAssetsParams }
+export { ReferencedAssetList as MediaControllerGetMediaAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerGetMediaAssetsRefParams }
+export { Media as MediaControllerGetMediaById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as MediaControllerGetMediaByIdParams }
+export { EntrySourceMediaList as MediaControllerGetMediaEntrySourceAnnotations200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as MediaControllerGetMediaEntrySourceAnnotationsParams }
+export { ReferencedEntrySourceMediaList as MediaControllerGetMediaEntrySourceAnnotationsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerGetMediaEntrySourceAnnotationsRefParams }
+export { File as MediaControllerGetMediaFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as MediaControllerGetMediaFileParams }
+export { ReferencedFile as MediaControllerGetMediaFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerGetMediaFileRefParams }
+export { MediaList as MediaControllerGetMediaList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as MediaControllerGetMediaListParams }
+export { ProjectMediaList as MediaControllerGetMediaProjectAssignments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as MediaControllerGetMediaProjectAssignmentsParams }
+export { ReferencedProjectMediaList as MediaControllerGetMediaProjectAssignmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerGetMediaProjectAssignmentsRefParams }
+export { SpaceList as MediaControllerGetMediaSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as MediaControllerGetMediaSpacesParams }
+export { ReferencedSpaceList as MediaControllerGetMediaSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerGetMediaSpacesRefParams }
+export { ReferencedAccount as MediaControllerPatchMediaAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPatchMediaAccountRefParams }
+export { ReferencedUpdateAccount as MediaControllerPatchMediaAccountRefRequest }
+export { ReferencedAssetList as MediaControllerPatchMediaAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPatchMediaAssetsRefParams }
+export { ReferencedUpdateAssetList as MediaControllerPatchMediaAssetsRefRequest }
+export { ReferencedFile as MediaControllerPatchMediaFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPatchMediaFileRefParams }
+export { ReferencedUpdateFile as MediaControllerPatchMediaFileRefRequest }
+export { ReferencedProjectMediaList as MediaControllerPatchMediaProjectAssignmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPatchMediaProjectAssignmentsRefParams }
+export { ReferencedUpdateProjectMediaList as MediaControllerPatchMediaProjectAssignmentsRefRequest }
+export { ReferencedSpaceList as MediaControllerPatchMediaSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPatchMediaSpacesRefParams }
+export { ReferencedUpdateSpaceList as MediaControllerPatchMediaSpacesRefRequest }
+export { ReferencedAssetList as MediaControllerPostMediaAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPostMediaAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as MediaControllerPostMediaAssetsRefRequest }
+export { ReferencedProjectMediaList as MediaControllerPostMediaProjectAssignmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPostMediaProjectAssignmentsRefParams }
 export { ProjectControllerPostProjectMediaAttachmentsRefRequest as MediaControllerPostMediaProjectAssignmentsRefRequest }
+export { ReferencedSpaceList as MediaControllerPostMediaSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as MediaControllerPostMediaSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as MediaControllerPostMediaSpacesRefRequest }
+export { Media as MediaControllerUpdateMediaById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as MediaControllerUpdateMediaByIdParams }
+export { UpdateMedia as MediaControllerUpdateMediaByIdRequest }
+export { BlueprintAttributes as ParamedicReportAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ParamedicReportControllerCreateParamedicReportParams }
+export { ReferencedAssetList as ParamedicReportControllerDeleteParamedicReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerDeleteParamedicReportAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ParamedicReportControllerDeleteParamedicReportAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerDeleteParamedicReportByIdParams }
+export { ReferencedProjectList as ParamedicReportControllerDeleteParamedicReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerDeleteParamedicReportProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ParamedicReportControllerDeleteParamedicReportProjectsRefRequest }
+export { ReferencedSpaceList as ParamedicReportControllerDeleteParamedicReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerDeleteParamedicReportSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ParamedicReportControllerDeleteParamedicReportSpacesRefRequest }
+export { Account as ParamedicReportControllerGetParamedicReportAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ParamedicReportControllerGetParamedicReportAccountParams }
+export { ReferencedAccount as ParamedicReportControllerGetParamedicReportAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerGetParamedicReportAccountRefParams }
+export { AssetList as ParamedicReportControllerGetParamedicReportAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ParamedicReportControllerGetParamedicReportAssetsParams }
+export { ReferencedAssetList as ParamedicReportControllerGetParamedicReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerGetParamedicReportAssetsRefParams }
+export { ParamedicReport as ParamedicReportControllerGetParamedicReportById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ParamedicReportControllerGetParamedicReportByIdParams }
+export { DocumentType as ParamedicReportControllerGetParamedicReportDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ParamedicReportControllerGetParamedicReportDocumentTypeParams }
+export { ReferencedDocumentType as ParamedicReportControllerGetParamedicReportDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerGetParamedicReportDocumentTypeRefParams }
+export { NullableFile as ParamedicReportControllerGetParamedicReportFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ParamedicReportControllerGetParamedicReportFileParams }
+export { NullableReferencedFile as ParamedicReportControllerGetParamedicReportFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerGetParamedicReportFileRefParams }
+export { ParamedicReportList as ParamedicReportControllerGetParamedicReportList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ParamedicReportControllerGetParamedicReportListParams }
+export { ProjectList as ParamedicReportControllerGetParamedicReportProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ParamedicReportControllerGetParamedicReportProjectsParams }
+export { ReferencedProjectList as ParamedicReportControllerGetParamedicReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerGetParamedicReportProjectsRefParams }
+export { SpaceList as ParamedicReportControllerGetParamedicReportSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ParamedicReportControllerGetParamedicReportSpacesParams }
+export { ReferencedSpaceList as ParamedicReportControllerGetParamedicReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerGetParamedicReportSpacesRefParams }
+export { ReferencedAccount as ParamedicReportControllerPatchParamedicReportAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPatchParamedicReportAccountRefParams }
+export { ReferencedUpdateAccount as ParamedicReportControllerPatchParamedicReportAccountRefRequest }
+export { ReferencedAssetList as ParamedicReportControllerPatchParamedicReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPatchParamedicReportAssetsRefParams }
+export { ReferencedUpdateAssetList as ParamedicReportControllerPatchParamedicReportAssetsRefRequest }
+export { NullableReferencedFile as ParamedicReportControllerPatchParamedicReportFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPatchParamedicReportFileRefParams }
+export { NullableReferencedUpdateFile as ParamedicReportControllerPatchParamedicReportFileRefRequest }
+export { ReferencedProjectList as ParamedicReportControllerPatchParamedicReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPatchParamedicReportProjectsRefParams }
+export { ReferencedUpdateProjectList as ParamedicReportControllerPatchParamedicReportProjectsRefRequest }
+export { ReferencedSpaceList as ParamedicReportControllerPatchParamedicReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPatchParamedicReportSpacesRefParams }
+export { ReferencedUpdateSpaceList as ParamedicReportControllerPatchParamedicReportSpacesRefRequest }
+export { ReferencedAssetList as ParamedicReportControllerPostParamedicReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPostParamedicReportAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ParamedicReportControllerPostParamedicReportAssetsRefRequest }
+export { ReferencedProjectList as ParamedicReportControllerPostParamedicReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPostParamedicReportProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ParamedicReportControllerPostParamedicReportProjectsRefRequest }
+export { ReferencedSpaceList as ParamedicReportControllerPostParamedicReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ParamedicReportControllerPostParamedicReportSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ParamedicReportControllerPostParamedicReportSpacesRefRequest }
+export { ParamedicReport as ParamedicReportControllerUpdateParamedicReportById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ParamedicReportControllerUpdateParamedicReportByIdParams }
+export { UpdateParamedicReport as ParamedicReportControllerUpdateParamedicReportByIdRequest }
+export { BlueprintRelationships as ParamedicReportRelationships }
+export { ChangeOrderAttributes as PaymentAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerCreatePaymentParams }
+export { ReferencedAssetList as PaymentControllerDeletePaymentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerDeletePaymentAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PaymentControllerDeletePaymentAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerDeletePaymentByIdParams }
+export { ReferencedProjectList as PaymentControllerDeletePaymentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerDeletePaymentProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PaymentControllerDeletePaymentProjectsRefRequest }
+export { ReferencedSpaceList as PaymentControllerDeletePaymentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerDeletePaymentSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PaymentControllerDeletePaymentSpacesRefRequest }
+export { Account as PaymentControllerGetPaymentAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentAccountParams }
+export { ReferencedAccount as PaymentControllerGetPaymentAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentAccountRefParams }
+export { AssetList as PaymentControllerGetPaymentAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PaymentControllerGetPaymentAssetsParams }
+export { ReferencedAssetList as PaymentControllerGetPaymentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentAssetsRefParams }
+export { Payment as PaymentControllerGetPaymentById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentByIdParams }
+export { Currency as PaymentControllerGetPaymentCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentCurrencyParams }
+export { ReferencedCurrency as PaymentControllerGetPaymentCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentCurrencyRefParams }
+export { DocumentType as PaymentControllerGetPaymentDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentDocumentTypeParams }
+export { ReferencedDocumentType as PaymentControllerGetPaymentDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentDocumentTypeRefParams }
+export { NullableFile as PaymentControllerGetPaymentFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentFileParams }
+export { NullableReferencedFile as PaymentControllerGetPaymentFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentFileRefParams }
+export { PaymentLineList as PaymentControllerGetPaymentLines200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PaymentControllerGetPaymentLinesParams }
+export { ReferencedPaymentLineList as PaymentControllerGetPaymentLinesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentLinesRefParams }
+export { EntrySourceList as PaymentControllerGetPaymentLineSubjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PaymentControllerGetPaymentLineSubjectsParams }
+export { ReferencedEntrySourceList as PaymentControllerGetPaymentLineSubjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentLineSubjectsRefParams }
+export { PaymentList as PaymentControllerGetPaymentList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PaymentControllerGetPaymentListParams }
+export { ProjectList as PaymentControllerGetPaymentProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PaymentControllerGetPaymentProjectsParams }
+export { ReferencedProjectList as PaymentControllerGetPaymentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentProjectsRefParams }
+export { NullableService as PaymentControllerGetPaymentService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentServiceParams }
+export { NullableReferencedService as PaymentControllerGetPaymentServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentServiceRefParams }
+export { SpaceList as PaymentControllerGetPaymentSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PaymentControllerGetPaymentSpacesParams }
+export { ReferencedSpaceList as PaymentControllerGetPaymentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentSpacesRefParams }
+export { ItemizableFinancialDocumentStats as PaymentControllerGetPaymentStats200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentStatsParams }
+export { ReferencedItemizableFinancialDocumentStats as PaymentControllerGetPaymentStatsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentStatsRefParams }
+export { NullableAccountProvider as PaymentControllerGetPaymentVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerGetPaymentVendorParams }
+export { NullableReferencedAccountProvider as PaymentControllerGetPaymentVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerGetPaymentVendorRefParams }
+export { ReferencedAccount as PaymentControllerPatchPaymentAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentAccountRefParams }
+export { ReferencedUpdateAccount as PaymentControllerPatchPaymentAccountRefRequest }
+export { ReferencedAssetList as PaymentControllerPatchPaymentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentAssetsRefParams }
+export { ReferencedUpdateAssetList as PaymentControllerPatchPaymentAssetsRefRequest }
+export { ReferencedCurrency as PaymentControllerPatchPaymentCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentCurrencyRefParams }
+export { ReferencedUpdateCurrency as PaymentControllerPatchPaymentCurrencyRefRequest }
+export { NullableReferencedFile as PaymentControllerPatchPaymentFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentFileRefParams }
+export { NullableReferencedUpdateFile as PaymentControllerPatchPaymentFileRefRequest }
+export { ReferencedProjectList as PaymentControllerPatchPaymentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentProjectsRefParams }
+export { ReferencedUpdateProjectList as PaymentControllerPatchPaymentProjectsRefRequest }
+export { NullableReferencedService as PaymentControllerPatchPaymentServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentServiceRefParams }
+export { NullableReferencedUpdateService as PaymentControllerPatchPaymentServiceRefRequest }
+export { ReferencedSpaceList as PaymentControllerPatchPaymentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentSpacesRefParams }
+export { ReferencedUpdateSpaceList as PaymentControllerPatchPaymentSpacesRefRequest }
+export { NullableReferencedAccountProvider as PaymentControllerPatchPaymentVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPatchPaymentVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as PaymentControllerPatchPaymentVendorRefRequest }
+export { ReferencedAssetList as PaymentControllerPostPaymentAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPostPaymentAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PaymentControllerPostPaymentAssetsRefRequest }
+export { ReferencedProjectList as PaymentControllerPostPaymentProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPostPaymentProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PaymentControllerPostPaymentProjectsRefRequest }
+export { ReferencedSpaceList as PaymentControllerPostPaymentSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentControllerPostPaymentSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PaymentControllerPostPaymentSpacesRefRequest }
+export { Payment as PaymentControllerUpdatePaymentById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentControllerUpdatePaymentByIdParams }
+export { UpdatePayment as PaymentControllerUpdatePaymentByIdRequest }
+export { InvoiceLineAttributes as PaymentLineAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentLineControllerCreatePaymentLineParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerDeletePaymentLineByIdParams }
+export { PaymentLine as PaymentLineControllerGetPaymentLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentLineControllerGetPaymentLineByIdParams }
+export { PaymentLineList as PaymentLineControllerGetPaymentLineList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PaymentLineControllerGetPaymentLineListParams }
+export { NullablePayment as PaymentLineControllerGetPaymentLinePayment200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentLineControllerGetPaymentLinePaymentParams }
+export { NullableReferencedPayment as PaymentLineControllerGetPaymentLinePaymentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerGetPaymentLinePaymentRefParams }
+export { NullableService as PaymentLineControllerGetPaymentLineService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentLineControllerGetPaymentLineServiceParams }
+export { NullableReferencedService as PaymentLineControllerGetPaymentLineServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerGetPaymentLineServiceRefParams }
+export { EntrySource as PaymentLineControllerGetPaymentLineSubject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentLineControllerGetPaymentLineSubjectParams }
+export { ReferencedEntrySource as PaymentLineControllerGetPaymentLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerGetPaymentLineSubjectRefParams }
+export { NullableAccountProvider as PaymentLineControllerGetPaymentLineVendor200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentLineControllerGetPaymentLineVendorParams }
+export { NullableReferencedAccountProvider as PaymentLineControllerGetPaymentLineVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerGetPaymentLineVendorRefParams }
+export { NullableReferencedPayment as PaymentLineControllerPatchPaymentLinePaymentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerPatchPaymentLinePaymentRefParams }
+export { NullableReferencedUpdatePayment as PaymentLineControllerPatchPaymentLinePaymentRefRequest }
+export { NullableReferencedService as PaymentLineControllerPatchPaymentLineServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerPatchPaymentLineServiceRefParams }
+export { NullableReferencedUpdateService as PaymentLineControllerPatchPaymentLineServiceRefRequest }
+export { ReferencedEntrySource as PaymentLineControllerPatchPaymentLineSubjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerPatchPaymentLineSubjectRefParams }
+export { ReferencedUpdateEntrySource as PaymentLineControllerPatchPaymentLineSubjectRefRequest }
+export { NullableReferencedAccountProvider as PaymentLineControllerPatchPaymentLineVendorRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PaymentLineControllerPatchPaymentLineVendorRefParams }
+export { NullableReferencedUpdateAccountProvider as PaymentLineControllerPatchPaymentLineVendorRefRequest }
+export { PaymentLine as PaymentLineControllerUpdatePaymentLineById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PaymentLineControllerUpdatePaymentLineByIdParams }
+export { UpdatePaymentLine as PaymentLineControllerUpdatePaymentLineByIdRequest }
+export { AssetTypeAttributes as PerilAttributes }
+export { AssetTypeList as PerilControllerGetPerilAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as PerilControllerGetPerilAssetTypesParams }
+export { ReferencedAssetTypeList as PerilControllerGetPerilAssetTypesRef200 }
+export { Peril as PerilControllerGetPerilById200 }
 export { AccountControllerGetCurrentAccountParams as PerilControllerGetPerilByIdParams }
+export { PerilList as PerilControllerGetPerilList200 }
 export { UserControllerGetUserAccountRolesParams as PerilControllerGetPerilListParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermissionsControllerCheckDeletePermissionsParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermissionsControllerCheckUpsertPermissionsParams }
+export { BlueprintAttributes as PermitAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PermitControllerCreatePermitParams }
+export { ReferencedAssetList as PermitControllerDeletePermitAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerDeletePermitAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PermitControllerDeletePermitAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerDeletePermitByIdParams }
+export { ReferencedProjectList as PermitControllerDeletePermitProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerDeletePermitProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PermitControllerDeletePermitProjectsRefRequest }
+export { ReferencedSpaceList as PermitControllerDeletePermitSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerDeletePermitSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PermitControllerDeletePermitSpacesRefRequest }
+export { Account as PermitControllerGetPermitAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PermitControllerGetPermitAccountParams }
+export { ReferencedAccount as PermitControllerGetPermitAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerGetPermitAccountRefParams }
+export { AssetList as PermitControllerGetPermitAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PermitControllerGetPermitAssetsParams }
+export { ReferencedAssetList as PermitControllerGetPermitAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerGetPermitAssetsRefParams }
+export { Permit as PermitControllerGetPermitById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PermitControllerGetPermitByIdParams }
+export { DocumentType as PermitControllerGetPermitDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PermitControllerGetPermitDocumentTypeParams }
+export { ReferencedDocumentType as PermitControllerGetPermitDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerGetPermitDocumentTypeRefParams }
+export { NullableFile as PermitControllerGetPermitFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PermitControllerGetPermitFileParams }
+export { NullableReferencedFile as PermitControllerGetPermitFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerGetPermitFileRefParams }
+export { PermitList as PermitControllerGetPermitList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PermitControllerGetPermitListParams }
+export { ProjectList as PermitControllerGetPermitProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PermitControllerGetPermitProjectsParams }
+export { ReferencedProjectList as PermitControllerGetPermitProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerGetPermitProjectsRefParams }
+export { SpaceList as PermitControllerGetPermitSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PermitControllerGetPermitSpacesParams }
+export { ReferencedSpaceList as PermitControllerGetPermitSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerGetPermitSpacesRefParams }
+export { ReferencedAccount as PermitControllerPatchPermitAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPatchPermitAccountRefParams }
+export { ReferencedUpdateAccount as PermitControllerPatchPermitAccountRefRequest }
+export { ReferencedAssetList as PermitControllerPatchPermitAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPatchPermitAssetsRefParams }
+export { ReferencedUpdateAssetList as PermitControllerPatchPermitAssetsRefRequest }
+export { NullableReferencedFile as PermitControllerPatchPermitFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPatchPermitFileRefParams }
+export { NullableReferencedUpdateFile as PermitControllerPatchPermitFileRefRequest }
+export { ReferencedProjectList as PermitControllerPatchPermitProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPatchPermitProjectsRefParams }
+export { ReferencedUpdateProjectList as PermitControllerPatchPermitProjectsRefRequest }
+export { ReferencedSpaceList as PermitControllerPatchPermitSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPatchPermitSpacesRefParams }
+export { ReferencedUpdateSpaceList as PermitControllerPatchPermitSpacesRefRequest }
+export { ReferencedAssetList as PermitControllerPostPermitAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPostPermitAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PermitControllerPostPermitAssetsRefRequest }
+export { ReferencedProjectList as PermitControllerPostPermitProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPostPermitProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PermitControllerPostPermitProjectsRefRequest }
+export { ReferencedSpaceList as PermitControllerPostPermitSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PermitControllerPostPermitSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PermitControllerPostPermitSpacesRefRequest }
+export { Permit as PermitControllerUpdatePermitById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PermitControllerUpdatePermitByIdParams }
+export { UpdatePermit as PermitControllerUpdatePermitByIdRequest }
+export { BlueprintRelationships as PermitRelationships }
 export { AccountControllerGetCurrentAccountParams as PhoneNumberControllerCreatePhoneNumberParams }
+export { PhoneNumber as PhoneNumberControllerGetPhoneNumberById200 }
 export { AccountControllerGetCurrentAccountParams as PhoneNumberControllerGetPhoneNumberByIdParams }
+export { Identity as PhoneNumberControllerGetPhoneNumberIdentity200 }
 export { AccountControllerGetCurrentAccountParams as PhoneNumberControllerGetPhoneNumberIdentityParams }
+export { ReferencedIdentity as PhoneNumberControllerGetPhoneNumberIdentityRef200 }
+export { PhoneNumberList as PhoneNumberControllerGetPhoneNumberList200 }
 export { UserControllerGetUserAccountRolesParams as PhoneNumberControllerGetPhoneNumberListParams }
+export { ReferencedIdentity as PhoneNumberControllerPatchPhoneNumberIdentityRef200 }
+export { ReferencedUpdateIdentity as PhoneNumberControllerPatchPhoneNumberIdentityRefRequest }
+export { PhoneNumber as PhoneNumberControllerUpdatePhoneNumberById200 }
 export { AccountControllerGetCurrentAccountParams as PhoneNumberControllerUpdatePhoneNumberByIdParams }
+export { UpdatePhoneNumber as PhoneNumberControllerUpdatePhoneNumberByIdRequest }
+export { EmailAddressRelationships as PhoneNumberRelationships }
+export { BlueprintAttributes as PoliceReportAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PoliceReportControllerCreatePoliceReportParams }
+export { ReferencedAssetList as PoliceReportControllerDeletePoliceReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerDeletePoliceReportAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PoliceReportControllerDeletePoliceReportAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerDeletePoliceReportByIdParams }
+export { ReferencedProjectList as PoliceReportControllerDeletePoliceReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerDeletePoliceReportProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PoliceReportControllerDeletePoliceReportProjectsRefRequest }
+export { ReferencedSpaceList as PoliceReportControllerDeletePoliceReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerDeletePoliceReportSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PoliceReportControllerDeletePoliceReportSpacesRefRequest }
+export { Account as PoliceReportControllerGetPoliceReportAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PoliceReportControllerGetPoliceReportAccountParams }
+export { ReferencedAccount as PoliceReportControllerGetPoliceReportAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerGetPoliceReportAccountRefParams }
+export { AssetList as PoliceReportControllerGetPoliceReportAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PoliceReportControllerGetPoliceReportAssetsParams }
+export { ReferencedAssetList as PoliceReportControllerGetPoliceReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerGetPoliceReportAssetsRefParams }
+export { PoliceReport as PoliceReportControllerGetPoliceReportById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PoliceReportControllerGetPoliceReportByIdParams }
+export { DocumentType as PoliceReportControllerGetPoliceReportDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PoliceReportControllerGetPoliceReportDocumentTypeParams }
+export { ReferencedDocumentType as PoliceReportControllerGetPoliceReportDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerGetPoliceReportDocumentTypeRefParams }
+export { NullableFile as PoliceReportControllerGetPoliceReportFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PoliceReportControllerGetPoliceReportFileParams }
+export { NullableReferencedFile as PoliceReportControllerGetPoliceReportFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerGetPoliceReportFileRefParams }
+export { PoliceReportList as PoliceReportControllerGetPoliceReportList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PoliceReportControllerGetPoliceReportListParams }
+export { ProjectList as PoliceReportControllerGetPoliceReportProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PoliceReportControllerGetPoliceReportProjectsParams }
+export { ReferencedProjectList as PoliceReportControllerGetPoliceReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerGetPoliceReportProjectsRefParams }
+export { SpaceList as PoliceReportControllerGetPoliceReportSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PoliceReportControllerGetPoliceReportSpacesParams }
+export { ReferencedSpaceList as PoliceReportControllerGetPoliceReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerGetPoliceReportSpacesRefParams }
+export { ReferencedAccount as PoliceReportControllerPatchPoliceReportAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPatchPoliceReportAccountRefParams }
+export { ReferencedUpdateAccount as PoliceReportControllerPatchPoliceReportAccountRefRequest }
+export { ReferencedAssetList as PoliceReportControllerPatchPoliceReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPatchPoliceReportAssetsRefParams }
+export { ReferencedUpdateAssetList as PoliceReportControllerPatchPoliceReportAssetsRefRequest }
+export { NullableReferencedFile as PoliceReportControllerPatchPoliceReportFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPatchPoliceReportFileRefParams }
+export { NullableReferencedUpdateFile as PoliceReportControllerPatchPoliceReportFileRefRequest }
+export { ReferencedProjectList as PoliceReportControllerPatchPoliceReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPatchPoliceReportProjectsRefParams }
+export { ReferencedUpdateProjectList as PoliceReportControllerPatchPoliceReportProjectsRefRequest }
+export { ReferencedSpaceList as PoliceReportControllerPatchPoliceReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPatchPoliceReportSpacesRefParams }
+export { ReferencedUpdateSpaceList as PoliceReportControllerPatchPoliceReportSpacesRefRequest }
+export { ReferencedAssetList as PoliceReportControllerPostPoliceReportAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPostPoliceReportAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PoliceReportControllerPostPoliceReportAssetsRefRequest }
+export { ReferencedProjectList as PoliceReportControllerPostPoliceReportProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPostPoliceReportProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PoliceReportControllerPostPoliceReportProjectsRefRequest }
+export { ReferencedSpaceList as PoliceReportControllerPostPoliceReportSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PoliceReportControllerPostPoliceReportSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PoliceReportControllerPostPoliceReportSpacesRefRequest }
+export { PoliceReport as PoliceReportControllerUpdatePoliceReportById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PoliceReportControllerUpdatePoliceReportByIdParams }
+export { UpdatePoliceReport as PoliceReportControllerUpdatePoliceReportByIdRequest }
+export { BlueprintRelationships as PoliceReportRelationships }
+export { CreatePolicyAttributes as PolicyAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyControllerCreatePolicyParams }
+export { ReferencedAssetList as PolicyControllerDeletePolicyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerDeletePolicyAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PolicyControllerDeletePolicyAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerDeletePolicyByIdParams }
+export { Account as PolicyControllerGetPolicyAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyControllerGetPolicyAccountParams }
+export { ReferencedAccount as PolicyControllerGetPolicyAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerGetPolicyAccountRefParams }
+export { AssetList as PolicyControllerGetPolicyAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyControllerGetPolicyAssetsParams }
+export { ReferencedAssetList as PolicyControllerGetPolicyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerGetPolicyAssetsRefParams }
+export { Policy as PolicyControllerGetPolicyById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyControllerGetPolicyByIdParams }
+export { Currency as PolicyControllerGetPolicyCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyControllerGetPolicyCurrencyParams }
+export { ReferencedCurrency as PolicyControllerGetPolicyCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerGetPolicyCurrencyRefParams }
+export { PolicyList as PolicyControllerGetPolicyList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyControllerGetPolicyListParams }
+export { Provider as PolicyControllerGetPolicyProvider200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyControllerGetPolicyProviderParams }
+export { ReferencedProvider as PolicyControllerGetPolicyProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerGetPolicyProviderRefParams }
+export { NullablePolicyTemplate as PolicyControllerGetPolicyTemplate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyControllerGetPolicyTemplateParams }
+export { NullableReferencedPolicyTemplate as PolicyControllerGetPolicyTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerGetPolicyTemplateRefParams }
+export { PolicyTermList as PolicyControllerGetPolicyTerms200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyControllerGetPolicyTermsParams }
+export { ReferencedPolicyTermList as PolicyControllerGetPolicyTermsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerGetPolicyTermsRefParams }
+export { ReferencedAccount as PolicyControllerPatchPolicyAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerPatchPolicyAccountRefParams }
+export { ReferencedUpdateAccount as PolicyControllerPatchPolicyAccountRefRequest }
+export { ReferencedAssetList as PolicyControllerPatchPolicyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerPatchPolicyAssetsRefParams }
+export { ReferencedUpdateAssetList as PolicyControllerPatchPolicyAssetsRefRequest }
+export { ReferencedCurrency as PolicyControllerPatchPolicyCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerPatchPolicyCurrencyRefParams }
+export { ReferencedUpdateCurrency as PolicyControllerPatchPolicyCurrencyRefRequest }
+export { ReferencedProvider as PolicyControllerPatchPolicyProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerPatchPolicyProviderRefParams }
+export { ReferencedUpdateProvider as PolicyControllerPatchPolicyProviderRefRequest }
+export { NullableReferencedPolicyTemplate as PolicyControllerPatchPolicyTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerPatchPolicyTemplateRefParams }
+export { NullableReferencedUpdatePolicyTemplate as PolicyControllerPatchPolicyTemplateRefRequest }
+export { ReferencedAssetList as PolicyControllerPostPolicyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyControllerPostPolicyAssetsRefParams }
+export { Policy as PolicyControllerUpdatePolicyById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyControllerUpdatePolicyByIdParams }
+export { UpdatePolicy as PolicyControllerUpdatePolicyByIdRequest }
+export { BlueprintAttributes as PolicyJacketAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyJacketControllerCreatePolicyJacketParams }
+export { ReferencedAssetList as PolicyJacketControllerDeletePolicyJacketAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerDeletePolicyJacketAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PolicyJacketControllerDeletePolicyJacketAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerDeletePolicyJacketByIdParams }
+export { ReferencedProjectList as PolicyJacketControllerDeletePolicyJacketProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerDeletePolicyJacketProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PolicyJacketControllerDeletePolicyJacketProjectsRefRequest }
+export { ReferencedSpaceList as PolicyJacketControllerDeletePolicyJacketSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerDeletePolicyJacketSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PolicyJacketControllerDeletePolicyJacketSpacesRefRequest }
+export { Account as PolicyJacketControllerGetPolicyJacketAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyJacketControllerGetPolicyJacketAccountParams }
+export { ReferencedAccount as PolicyJacketControllerGetPolicyJacketAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerGetPolicyJacketAccountRefParams }
+export { AssetList as PolicyJacketControllerGetPolicyJacketAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyJacketControllerGetPolicyJacketAssetsParams }
+export { ReferencedAssetList as PolicyJacketControllerGetPolicyJacketAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerGetPolicyJacketAssetsRefParams }
+export { PolicyJacket as PolicyJacketControllerGetPolicyJacketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyJacketControllerGetPolicyJacketByIdParams }
+export { DocumentType as PolicyJacketControllerGetPolicyJacketDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyJacketControllerGetPolicyJacketDocumentTypeParams }
+export { ReferencedDocumentType as PolicyJacketControllerGetPolicyJacketDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerGetPolicyJacketDocumentTypeRefParams }
+export { NullableFile as PolicyJacketControllerGetPolicyJacketFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyJacketControllerGetPolicyJacketFileParams }
+export { NullableReferencedFile as PolicyJacketControllerGetPolicyJacketFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerGetPolicyJacketFileRefParams }
+export { PolicyJacketList as PolicyJacketControllerGetPolicyJacketList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyJacketControllerGetPolicyJacketListParams }
+export { ProjectList as PolicyJacketControllerGetPolicyJacketProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyJacketControllerGetPolicyJacketProjectsParams }
+export { ReferencedProjectList as PolicyJacketControllerGetPolicyJacketProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerGetPolicyJacketProjectsRefParams }
+export { SpaceList as PolicyJacketControllerGetPolicyJacketSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyJacketControllerGetPolicyJacketSpacesParams }
+export { ReferencedSpaceList as PolicyJacketControllerGetPolicyJacketSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerGetPolicyJacketSpacesRefParams }
+export { ReferencedAccount as PolicyJacketControllerPatchPolicyJacketAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPatchPolicyJacketAccountRefParams }
+export { ReferencedUpdateAccount as PolicyJacketControllerPatchPolicyJacketAccountRefRequest }
+export { ReferencedAssetList as PolicyJacketControllerPatchPolicyJacketAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPatchPolicyJacketAssetsRefParams }
+export { ReferencedUpdateAssetList as PolicyJacketControllerPatchPolicyJacketAssetsRefRequest }
+export { NullableReferencedFile as PolicyJacketControllerPatchPolicyJacketFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPatchPolicyJacketFileRefParams }
+export { NullableReferencedUpdateFile as PolicyJacketControllerPatchPolicyJacketFileRefRequest }
+export { ReferencedProjectList as PolicyJacketControllerPatchPolicyJacketProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPatchPolicyJacketProjectsRefParams }
+export { ReferencedUpdateProjectList as PolicyJacketControllerPatchPolicyJacketProjectsRefRequest }
+export { ReferencedSpaceList as PolicyJacketControllerPatchPolicyJacketSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPatchPolicyJacketSpacesRefParams }
+export { ReferencedUpdateSpaceList as PolicyJacketControllerPatchPolicyJacketSpacesRefRequest }
+export { ReferencedAssetList as PolicyJacketControllerPostPolicyJacketAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPostPolicyJacketAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PolicyJacketControllerPostPolicyJacketAssetsRefRequest }
+export { ReferencedProjectList as PolicyJacketControllerPostPolicyJacketProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPostPolicyJacketProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as PolicyJacketControllerPostPolicyJacketProjectsRefRequest }
+export { ReferencedSpaceList as PolicyJacketControllerPostPolicyJacketSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyJacketControllerPostPolicyJacketSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as PolicyJacketControllerPostPolicyJacketSpacesRefRequest }
+export { PolicyJacket as PolicyJacketControllerUpdatePolicyJacketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyJacketControllerUpdatePolicyJacketByIdParams }
+export { UpdatePolicyJacket as PolicyJacketControllerUpdatePolicyJacketByIdRequest }
+export { BlueprintRelationships as PolicyJacketRelationships }
+export { AssetTypeAttributes as PolicyTemplateAttributes }
+export { AssetTypeList as PolicyTemplateControllerGetPolicyTemplateAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as PolicyTemplateControllerGetPolicyTemplateAssetTypesParams }
+export { ReferencedAssetTypeList as PolicyTemplateControllerGetPolicyTemplateAssetTypesRef200 }
+export { PolicyTemplate as PolicyTemplateControllerGetPolicyTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as PolicyTemplateControllerGetPolicyTemplateByIdParams }
+export { CoverageGroupTemplateList as PolicyTemplateControllerGetPolicyTemplateCoverageGroupTemplates200 }
 export { UserControllerGetUserAccountRolesParams as PolicyTemplateControllerGetPolicyTemplateCoverageGroupTemplatesParams }
+export { ReferencedCoverageGroupTemplateList as PolicyTemplateControllerGetPolicyTemplateCoverageGroupTemplatesRef200 }
+export { CoverageTemplateList as PolicyTemplateControllerGetPolicyTemplateCoverageTemplates200 }
 export { UserControllerGetUserAccountRolesParams as PolicyTemplateControllerGetPolicyTemplateCoverageTemplatesParams }
+export { ReferencedCoverageTemplateList as PolicyTemplateControllerGetPolicyTemplateCoverageTemplatesRef200 }
+export { EndorsementTemplateList as PolicyTemplateControllerGetPolicyTemplateEndorsementTemplates200 }
 export { UserControllerGetUserAccountRolesParams as PolicyTemplateControllerGetPolicyTemplateEndorsementTemplatesParams }
+export { ReferencedEndorsementTemplateList as PolicyTemplateControllerGetPolicyTemplateEndorsementTemplatesRef200 }
+export { PolicyTemplateList as PolicyTemplateControllerGetPolicyTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as PolicyTemplateControllerGetPolicyTemplateListParams }
+export { PerilList as PolicyTemplateControllerGetPolicyTemplatePerils200 }
 export { UserControllerGetUserAccountRolesParams as PolicyTemplateControllerGetPolicyTemplatePerilsParams }
+export { ReferencedPerilList as PolicyTemplateControllerGetPolicyTemplatePerilsRef200 }
+export { SubCoverageTemplateList as PolicyTemplateControllerGetPolicyTemplateSubCoverageTemplates200 }
 export { UserControllerGetUserAccountRolesParams as PolicyTemplateControllerGetPolicyTemplateSubCoverageTemplatesParams }
+export { ReferencedSubCoverageTemplateList as PolicyTemplateControllerGetPolicyTemplateSubCoverageTemplatesRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyTermControllerCreatePolicyTermParams }
+export { ReferencedAssetList as PolicyTermControllerDeletePolicyTermAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerDeletePolicyTermAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PolicyTermControllerDeletePolicyTermAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerDeletePolicyTermByIdParams }
+export { AssetList as PolicyTermControllerGetPolicyTermAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyTermControllerGetPolicyTermAssetsParams }
+export { ReferencedAssetList as PolicyTermControllerGetPolicyTermAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerGetPolicyTermAssetsRefParams }
+export { BucketDefinitionList as PolicyTermControllerGetPolicyTermBucketDefinitions200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyTermControllerGetPolicyTermBucketDefinitionsParams }
+export { ReferencedBucketDefinitionList as PolicyTermControllerGetPolicyTermBucketDefinitionsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerGetPolicyTermBucketDefinitionsRefParams }
+export { PolicyTerm as PolicyTermControllerGetPolicyTermById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyTermControllerGetPolicyTermByIdParams }
+export { Currency as PolicyTermControllerGetPolicyTermCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyTermControllerGetPolicyTermCurrencyParams }
+export { ReferencedCurrency as PolicyTermControllerGetPolicyTermCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerGetPolicyTermCurrencyRefParams }
+export { DeductibleList as PolicyTermControllerGetPolicyTermDeductibles200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyTermControllerGetPolicyTermDeductiblesParams }
+export { ReferencedDeductibleList as PolicyTermControllerGetPolicyTermDeductiblesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerGetPolicyTermDeductiblesRefParams }
+export { PolicyTermList as PolicyTermControllerGetPolicyTermList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as PolicyTermControllerGetPolicyTermListParams }
+export { Policy as PolicyTermControllerGetPolicyTermPolicy200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyTermControllerGetPolicyTermPolicyParams }
+export { ReferencedPolicy as PolicyTermControllerGetPolicyTermPolicyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerGetPolicyTermPolicyRefParams }
+export { Provider as PolicyTermControllerGetPolicyTermProvider200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyTermControllerGetPolicyTermProviderParams }
+export { ReferencedProvider as PolicyTermControllerGetPolicyTermProviderRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerGetPolicyTermProviderRefParams }
+export { NullablePolicyTemplate as PolicyTermControllerGetPolicyTermTemplate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyTermControllerGetPolicyTermTemplateParams }
+export { NullableReferencedPolicyTemplate as PolicyTermControllerGetPolicyTermTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerGetPolicyTermTemplateRefParams }
+export { ReferencedAssetList as PolicyTermControllerPatchPolicyTermAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerPatchPolicyTermAssetsRefParams }
+export { ReferencedUpdateAssetList as PolicyTermControllerPatchPolicyTermAssetsRefRequest }
+export { ReferencedCurrency as PolicyTermControllerPatchPolicyTermCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerPatchPolicyTermCurrencyRefParams }
+export { ReferencedUpdateCurrency as PolicyTermControllerPatchPolicyTermCurrencyRefRequest }
+export { ReferencedPolicy as PolicyTermControllerPatchPolicyTermPolicyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerPatchPolicyTermPolicyRefParams }
+export { ReferencedUpdatePolicy as PolicyTermControllerPatchPolicyTermPolicyRefRequest }
+export { NullableReferencedPolicyTemplate as PolicyTermControllerPatchPolicyTermTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerPatchPolicyTermTemplateRefParams }
+export { NullableReferencedUpdatePolicyTemplate as PolicyTermControllerPatchPolicyTermTemplateRefRequest }
+export { ReferencedAssetList as PolicyTermControllerPostPolicyTermAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as PolicyTermControllerPostPolicyTermAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as PolicyTermControllerPostPolicyTermAssetsRefRequest }
+export { PolicyTerm as PolicyTermControllerUpdatePolicyTermById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as PolicyTermControllerUpdatePolicyTermByIdParams }
+export { UpdatePolicyTerm as PolicyTermControllerUpdatePolicyTermByIdRequest }
+export { BlueprintAttributes as ProductSpecAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProductSpecControllerCreateProductSpecParams }
+export { ReferencedAssetList as ProductSpecControllerDeleteProductSpecAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerDeleteProductSpecAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ProductSpecControllerDeleteProductSpecAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerDeleteProductSpecByIdParams }
+export { ReferencedProjectList as ProductSpecControllerDeleteProductSpecProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerDeleteProductSpecProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ProductSpecControllerDeleteProductSpecProjectsRefRequest }
+export { ReferencedSpaceList as ProductSpecControllerDeleteProductSpecSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerDeleteProductSpecSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ProductSpecControllerDeleteProductSpecSpacesRefRequest }
+export { Account as ProductSpecControllerGetProductSpecAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProductSpecControllerGetProductSpecAccountParams }
+export { ReferencedAccount as ProductSpecControllerGetProductSpecAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerGetProductSpecAccountRefParams }
+export { AssetList as ProductSpecControllerGetProductSpecAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProductSpecControllerGetProductSpecAssetsParams }
+export { ReferencedAssetList as ProductSpecControllerGetProductSpecAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerGetProductSpecAssetsRefParams }
+export { ProductSpec as ProductSpecControllerGetProductSpecById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProductSpecControllerGetProductSpecByIdParams }
+export { DocumentType as ProductSpecControllerGetProductSpecDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProductSpecControllerGetProductSpecDocumentTypeParams }
+export { ReferencedDocumentType as ProductSpecControllerGetProductSpecDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerGetProductSpecDocumentTypeRefParams }
+export { NullableFile as ProductSpecControllerGetProductSpecFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProductSpecControllerGetProductSpecFileParams }
+export { NullableReferencedFile as ProductSpecControllerGetProductSpecFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerGetProductSpecFileRefParams }
+export { ProductSpecList as ProductSpecControllerGetProductSpecList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProductSpecControllerGetProductSpecListParams }
+export { ProjectList as ProductSpecControllerGetProductSpecProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProductSpecControllerGetProductSpecProjectsParams }
+export { ReferencedProjectList as ProductSpecControllerGetProductSpecProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerGetProductSpecProjectsRefParams }
+export { SpaceList as ProductSpecControllerGetProductSpecSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProductSpecControllerGetProductSpecSpacesParams }
+export { ReferencedSpaceList as ProductSpecControllerGetProductSpecSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerGetProductSpecSpacesRefParams }
+export { ReferencedAccount as ProductSpecControllerPatchProductSpecAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPatchProductSpecAccountRefParams }
+export { ReferencedUpdateAccount as ProductSpecControllerPatchProductSpecAccountRefRequest }
+export { ReferencedAssetList as ProductSpecControllerPatchProductSpecAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPatchProductSpecAssetsRefParams }
+export { ReferencedUpdateAssetList as ProductSpecControllerPatchProductSpecAssetsRefRequest }
+export { NullableReferencedFile as ProductSpecControllerPatchProductSpecFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPatchProductSpecFileRefParams }
+export { NullableReferencedUpdateFile as ProductSpecControllerPatchProductSpecFileRefRequest }
+export { ReferencedProjectList as ProductSpecControllerPatchProductSpecProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPatchProductSpecProjectsRefParams }
+export { ReferencedUpdateProjectList as ProductSpecControllerPatchProductSpecProjectsRefRequest }
+export { ReferencedSpaceList as ProductSpecControllerPatchProductSpecSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPatchProductSpecSpacesRefParams }
+export { ReferencedUpdateSpaceList as ProductSpecControllerPatchProductSpecSpacesRefRequest }
+export { ReferencedAssetList as ProductSpecControllerPostProductSpecAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPostProductSpecAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ProductSpecControllerPostProductSpecAssetsRefRequest }
+export { ReferencedProjectList as ProductSpecControllerPostProductSpecProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPostProductSpecProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ProductSpecControllerPostProductSpecProjectsRefRequest }
+export { ReferencedSpaceList as ProductSpecControllerPostProductSpecSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProductSpecControllerPostProductSpecSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ProductSpecControllerPostProductSpecSpacesRefRequest }
+export { ProductSpec as ProductSpecControllerUpdateProductSpecById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProductSpecControllerUpdateProductSpecByIdParams }
+export { UpdateProductSpec as ProductSpecControllerUpdateProductSpecByIdRequest }
+export { BlueprintRelationships as ProductSpecRelationships }
+export { User as ProfileControllerGetCurrentUser200 }
 export { AccountControllerGetCurrentAccountParams as ProfileControllerGetCurrentUserParams }
+export { AccountAttributes as ProjectAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectControllerCreateProjectParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectControllerDeleteProjectByIdParams }
+export { ReferencedProjectMediaList as ProjectControllerDeleteProjectMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectControllerDeleteProjectMediaAttachmentsRefParams }
 export { ProjectControllerPostProjectMediaAttachmentsRefRequest as ProjectControllerDeleteProjectMediaAttachmentsRefRequest }
+export { Account as ProjectControllerGetProjectAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectControllerGetProjectAccountParams }
+export { ReferencedAccount as ProjectControllerGetProjectAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectControllerGetProjectAccountRefParams }
+export { Project as ProjectControllerGetProjectById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectControllerGetProjectByIdParams }
+export { ProjectList as ProjectControllerGetProjectList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProjectControllerGetProjectListParams }
+export { ProjectMediaList as ProjectControllerGetProjectMediaAttachments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProjectControllerGetProjectMediaAttachmentsParams }
+export { ReferencedProjectMediaList as ProjectControllerGetProjectMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectControllerGetProjectMediaAttachmentsRefParams }
+export { ReferencedAccount as ProjectControllerPatchProjectAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectControllerPatchProjectAccountRefParams }
+export { ReferencedUpdateAccount as ProjectControllerPatchProjectAccountRefRequest }
+export { ReferencedProjectMediaList as ProjectControllerPatchProjectMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectControllerPatchProjectMediaAttachmentsRefParams }
+export { ReferencedUpdateProjectMediaList as ProjectControllerPatchProjectMediaAttachmentsRefRequest }
+export { ReferencedProjectMediaList as ProjectControllerPostProjectMediaAttachmentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectControllerPostProjectMediaAttachmentsRefParams }
+export { Project as ProjectControllerUpdateProjectById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectControllerUpdateProjectByIdParams }
+export { UpdateProject as ProjectControllerUpdateProjectByIdRequest }
+export { CreateIncidentImpactAttributes as ProjectImpactAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectImpactControllerCreateProjectImpactParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerDeleteProjectImpactByIdParams }
+export { ReferencedSpaceList as ProjectImpactControllerDeleteProjectImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerDeleteProjectImpactSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ProjectImpactControllerDeleteProjectImpactSpacesRefRequest }
+export { Asset as ProjectImpactControllerGetProjectImpactAsset200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectImpactControllerGetProjectImpactAssetParams }
+export { ReferencedAsset as ProjectImpactControllerGetProjectImpactAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerGetProjectImpactAssetRefParams }
+export { ProjectImpact as ProjectImpactControllerGetProjectImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectImpactControllerGetProjectImpactByIdParams }
+export { ProjectImpactList as ProjectImpactControllerGetProjectImpactList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProjectImpactControllerGetProjectImpactListParams }
+export { Project as ProjectImpactControllerGetProjectImpactProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectImpactControllerGetProjectImpactProjectParams }
+export { ReferencedProject as ProjectImpactControllerGetProjectImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerGetProjectImpactProjectRefParams }
+export { SpaceList as ProjectImpactControllerGetProjectImpactSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProjectImpactControllerGetProjectImpactSpacesParams }
+export { ReferencedSpaceList as ProjectImpactControllerGetProjectImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerGetProjectImpactSpacesRefParams }
+export { ReferencedAsset as ProjectImpactControllerPatchProjectImpactAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerPatchProjectImpactAssetRefParams }
+export { ReferencedUpdateAsset as ProjectImpactControllerPatchProjectImpactAssetRefRequest }
+export { ReferencedProject as ProjectImpactControllerPatchProjectImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerPatchProjectImpactProjectRefParams }
+export { ReferencedUpdateProject as ProjectImpactControllerPatchProjectImpactProjectRefRequest }
+export { ReferencedSpaceList as ProjectImpactControllerPatchProjectImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerPatchProjectImpactSpacesRefParams }
+export { ReferencedUpdateSpaceList as ProjectImpactControllerPatchProjectImpactSpacesRefRequest }
+export { ReferencedSpaceList as ProjectImpactControllerPostProjectImpactSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectImpactControllerPostProjectImpactSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ProjectImpactControllerPostProjectImpactSpacesRefRequest }
+export { ProjectImpact as ProjectImpactControllerUpdateProjectImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectImpactControllerUpdateProjectImpactByIdParams }
+export { UpdateProjectImpact as ProjectImpactControllerUpdateProjectImpactByIdRequest }
+export { CreateProjectMediaAttributes as ProjectMediaAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectMediaControllerCreateProjectMediaParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectMediaControllerDeleteProjectMediaByIdParams }
+export { ProjectMedia as ProjectMediaControllerGetProjectMediaById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectMediaControllerGetProjectMediaByIdParams }
+export { ProjectMediaList as ProjectMediaControllerGetProjectMediaList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ProjectMediaControllerGetProjectMediaListParams }
+export { Media as ProjectMediaControllerGetProjectMediaMedia200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectMediaControllerGetProjectMediaMediaParams }
+export { ReferencedMedia as ProjectMediaControllerGetProjectMediaMediaRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectMediaControllerGetProjectMediaMediaRefParams }
+export { Project as ProjectMediaControllerGetProjectMediaProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectMediaControllerGetProjectMediaProjectParams }
+export { ReferencedProject as ProjectMediaControllerGetProjectMediaProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectMediaControllerGetProjectMediaProjectRefParams }
+export { ReferencedMedia as ProjectMediaControllerPatchProjectMediaMediaRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectMediaControllerPatchProjectMediaMediaRefParams }
+export { ReferencedUpdateMedia as ProjectMediaControllerPatchProjectMediaMediaRefRequest }
+export { ReferencedProject as ProjectMediaControllerPatchProjectMediaProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ProjectMediaControllerPatchProjectMediaProjectRefParams }
+export { ReferencedUpdateProject as ProjectMediaControllerPatchProjectMediaProjectRefRequest }
+export { ProjectMedia as ProjectMediaControllerUpdateProjectMediaById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ProjectMediaControllerUpdateProjectMediaByIdParams }
+export { UpdateProjectMedia as ProjectMediaControllerUpdateProjectMediaByIdRequest }
+export { CreateProviderAttributes as ProviderAttributes }
+export { Provider as ProviderControllerGetProviderById200 }
 export { AccountControllerGetCurrentAccountParams as ProviderControllerGetProviderByIdParams }
+export { ProviderList as ProviderControllerGetProviderList200 }
 export { UserControllerGetUserAccountRolesParams as ProviderControllerGetProviderListParams }
+export { BlueprintAttributes as RentRollAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as RentRollControllerCreateRentRollParams }
+export { ReferencedAssetList as RentRollControllerDeleteRentRollAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerDeleteRentRollAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as RentRollControllerDeleteRentRollAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerDeleteRentRollByIdParams }
+export { ReferencedProjectList as RentRollControllerDeleteRentRollProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerDeleteRentRollProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as RentRollControllerDeleteRentRollProjectsRefRequest }
+export { ReferencedSpaceList as RentRollControllerDeleteRentRollSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerDeleteRentRollSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as RentRollControllerDeleteRentRollSpacesRefRequest }
+export { Account as RentRollControllerGetRentRollAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as RentRollControllerGetRentRollAccountParams }
+export { ReferencedAccount as RentRollControllerGetRentRollAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerGetRentRollAccountRefParams }
+export { AssetList as RentRollControllerGetRentRollAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as RentRollControllerGetRentRollAssetsParams }
+export { ReferencedAssetList as RentRollControllerGetRentRollAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerGetRentRollAssetsRefParams }
+export { RentRoll as RentRollControllerGetRentRollById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as RentRollControllerGetRentRollByIdParams }
+export { DocumentType as RentRollControllerGetRentRollDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as RentRollControllerGetRentRollDocumentTypeParams }
+export { ReferencedDocumentType as RentRollControllerGetRentRollDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerGetRentRollDocumentTypeRefParams }
+export { NullableFile as RentRollControllerGetRentRollFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as RentRollControllerGetRentRollFileParams }
+export { NullableReferencedFile as RentRollControllerGetRentRollFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerGetRentRollFileRefParams }
+export { RentRollList as RentRollControllerGetRentRollList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as RentRollControllerGetRentRollListParams }
+export { ProjectList as RentRollControllerGetRentRollProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as RentRollControllerGetRentRollProjectsParams }
+export { ReferencedProjectList as RentRollControllerGetRentRollProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerGetRentRollProjectsRefParams }
+export { SpaceList as RentRollControllerGetRentRollSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as RentRollControllerGetRentRollSpacesParams }
+export { ReferencedSpaceList as RentRollControllerGetRentRollSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerGetRentRollSpacesRefParams }
+export { ReferencedAccount as RentRollControllerPatchRentRollAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPatchRentRollAccountRefParams }
+export { ReferencedUpdateAccount as RentRollControllerPatchRentRollAccountRefRequest }
+export { ReferencedAssetList as RentRollControllerPatchRentRollAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPatchRentRollAssetsRefParams }
+export { ReferencedUpdateAssetList as RentRollControllerPatchRentRollAssetsRefRequest }
+export { NullableReferencedFile as RentRollControllerPatchRentRollFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPatchRentRollFileRefParams }
+export { NullableReferencedUpdateFile as RentRollControllerPatchRentRollFileRefRequest }
+export { ReferencedProjectList as RentRollControllerPatchRentRollProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPatchRentRollProjectsRefParams }
+export { ReferencedUpdateProjectList as RentRollControllerPatchRentRollProjectsRefRequest }
+export { ReferencedSpaceList as RentRollControllerPatchRentRollSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPatchRentRollSpacesRefParams }
+export { ReferencedUpdateSpaceList as RentRollControllerPatchRentRollSpacesRefRequest }
+export { ReferencedAssetList as RentRollControllerPostRentRollAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPostRentRollAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as RentRollControllerPostRentRollAssetsRefRequest }
+export { ReferencedProjectList as RentRollControllerPostRentRollProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPostRentRollProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as RentRollControllerPostRentRollProjectsRefRequest }
+export { ReferencedSpaceList as RentRollControllerPostRentRollSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as RentRollControllerPostRentRollSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as RentRollControllerPostRentRollSpacesRefRequest }
+export { RentRoll as RentRollControllerUpdateRentRollById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as RentRollControllerUpdateRentRollByIdParams }
+export { UpdateRentRoll as RentRollControllerUpdateRentRollByIdRequest }
+export { BlueprintRelationships as RentRollRelationships }
+export { BlueprintAttributes as ScopeOfLossAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ScopeOfLossControllerCreateScopeOfLossParams }
+export { ReferencedAssetList as ScopeOfLossControllerDeleteScopeOfLossAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerDeleteScopeOfLossAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ScopeOfLossControllerDeleteScopeOfLossAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerDeleteScopeOfLossByIdParams }
+export { ReferencedProjectList as ScopeOfLossControllerDeleteScopeOfLossProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerDeleteScopeOfLossProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ScopeOfLossControllerDeleteScopeOfLossProjectsRefRequest }
+export { ReferencedSpaceList as ScopeOfLossControllerDeleteScopeOfLossSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerDeleteScopeOfLossSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ScopeOfLossControllerDeleteScopeOfLossSpacesRefRequest }
+export { Account as ScopeOfLossControllerGetScopeOfLossAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ScopeOfLossControllerGetScopeOfLossAccountParams }
+export { ReferencedAccount as ScopeOfLossControllerGetScopeOfLossAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerGetScopeOfLossAccountRefParams }
+export { AssetList as ScopeOfLossControllerGetScopeOfLossAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ScopeOfLossControllerGetScopeOfLossAssetsParams }
+export { ReferencedAssetList as ScopeOfLossControllerGetScopeOfLossAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerGetScopeOfLossAssetsRefParams }
+export { ScopeOfLoss as ScopeOfLossControllerGetScopeOfLossById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ScopeOfLossControllerGetScopeOfLossByIdParams }
+export { DocumentType as ScopeOfLossControllerGetScopeOfLossDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ScopeOfLossControllerGetScopeOfLossDocumentTypeParams }
+export { ReferencedDocumentType as ScopeOfLossControllerGetScopeOfLossDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerGetScopeOfLossDocumentTypeRefParams }
+export { NullableFile as ScopeOfLossControllerGetScopeOfLossFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ScopeOfLossControllerGetScopeOfLossFileParams }
+export { NullableReferencedFile as ScopeOfLossControllerGetScopeOfLossFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerGetScopeOfLossFileRefParams }
+export { ScopeOfLossList as ScopeOfLossControllerGetScopeOfLossList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ScopeOfLossControllerGetScopeOfLossListParams }
+export { ProjectList as ScopeOfLossControllerGetScopeOfLossProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ScopeOfLossControllerGetScopeOfLossProjectsParams }
+export { ReferencedProjectList as ScopeOfLossControllerGetScopeOfLossProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerGetScopeOfLossProjectsRefParams }
+export { SpaceList as ScopeOfLossControllerGetScopeOfLossSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ScopeOfLossControllerGetScopeOfLossSpacesParams }
+export { ReferencedSpaceList as ScopeOfLossControllerGetScopeOfLossSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerGetScopeOfLossSpacesRefParams }
+export { ReferencedAccount as ScopeOfLossControllerPatchScopeOfLossAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPatchScopeOfLossAccountRefParams }
+export { ReferencedUpdateAccount as ScopeOfLossControllerPatchScopeOfLossAccountRefRequest }
+export { ReferencedAssetList as ScopeOfLossControllerPatchScopeOfLossAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPatchScopeOfLossAssetsRefParams }
+export { ReferencedUpdateAssetList as ScopeOfLossControllerPatchScopeOfLossAssetsRefRequest }
+export { NullableReferencedFile as ScopeOfLossControllerPatchScopeOfLossFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPatchScopeOfLossFileRefParams }
+export { NullableReferencedUpdateFile as ScopeOfLossControllerPatchScopeOfLossFileRefRequest }
+export { ReferencedProjectList as ScopeOfLossControllerPatchScopeOfLossProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPatchScopeOfLossProjectsRefParams }
+export { ReferencedUpdateProjectList as ScopeOfLossControllerPatchScopeOfLossProjectsRefRequest }
+export { ReferencedSpaceList as ScopeOfLossControllerPatchScopeOfLossSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPatchScopeOfLossSpacesRefParams }
+export { ReferencedUpdateSpaceList as ScopeOfLossControllerPatchScopeOfLossSpacesRefRequest }
+export { ReferencedAssetList as ScopeOfLossControllerPostScopeOfLossAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPostScopeOfLossAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as ScopeOfLossControllerPostScopeOfLossAssetsRefRequest }
+export { ReferencedProjectList as ScopeOfLossControllerPostScopeOfLossProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPostScopeOfLossProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as ScopeOfLossControllerPostScopeOfLossProjectsRefRequest }
+export { ReferencedSpaceList as ScopeOfLossControllerPostScopeOfLossSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ScopeOfLossControllerPostScopeOfLossSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as ScopeOfLossControllerPostScopeOfLossSpacesRefRequest }
+export { ScopeOfLoss as ScopeOfLossControllerUpdateScopeOfLossById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ScopeOfLossControllerUpdateScopeOfLossByIdParams }
+export { UpdateScopeOfLoss as ScopeOfLossControllerUpdateScopeOfLossByIdRequest }
+export { BlueprintRelationships as ScopeOfLossRelationships }
+export { AssetTypeAttributes as ServiceCategoryAttributes }
+export { AssetTypeList as ServiceCategoryControllerGetServiceCategoryAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as ServiceCategoryControllerGetServiceCategoryAssetTypesParams }
+export { ReferencedAssetTypeList as ServiceCategoryControllerGetServiceCategoryAssetTypesRef200 }
+export { ServiceCategory as ServiceCategoryControllerGetServiceCategoryById200 }
 export { AccountControllerGetCurrentAccountParams as ServiceCategoryControllerGetServiceCategoryByIdParams }
+export { ServiceClassList as ServiceCategoryControllerGetServiceCategoryClasses200 }
 export { UserControllerGetUserAccountRolesParams as ServiceCategoryControllerGetServiceCategoryClassesParams }
+export { ReferencedServiceClassList as ServiceCategoryControllerGetServiceCategoryClassesRef200 }
+export { ServiceCategoryList as ServiceCategoryControllerGetServiceCategoryList200 }
 export { UserControllerGetUserAccountRolesParams as ServiceCategoryControllerGetServiceCategoryListParams }
+export { AssetTypeAttributes as ServiceClassAttributes }
+export { AssetTypeList as ServiceClassControllerGetServiceClassAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as ServiceClassControllerGetServiceClassAssetTypesParams }
+export { ReferencedAssetTypeList as ServiceClassControllerGetServiceClassAssetTypesRef200 }
+export { ServiceClass as ServiceClassControllerGetServiceClassById200 }
 export { AccountControllerGetCurrentAccountParams as ServiceClassControllerGetServiceClassByIdParams }
+export { ServiceCategoryList as ServiceClassControllerGetServiceClassCategories200 }
 export { UserControllerGetUserAccountRolesParams as ServiceClassControllerGetServiceClassCategoriesParams }
+export { ReferencedServiceCategoryList as ServiceClassControllerGetServiceClassCategoriesRef200 }
+export { ServiceClassList as ServiceClassControllerGetServiceClassList200 }
 export { UserControllerGetUserAccountRolesParams as ServiceClassControllerGetServiceClassListParams }
+export { ServiceTypeList as ServiceClassControllerGetServiceClassTypes200 }
 export { UserControllerGetUserAccountRolesParams as ServiceClassControllerGetServiceClassTypesParams }
+export { ReferencedServiceTypeList as ServiceClassControllerGetServiceClassTypesRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerCreateServiceParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerDeleteServiceByIdParams }
+export { Account as ServiceControllerGetServiceAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceAccountParams }
+export { ReferencedAccount as ServiceControllerGetServiceAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceAccountRefParams }
+export { ItemAppraisalList as ServiceControllerGetServiceAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceAppraisalsParams }
+export { ReferencedItemAppraisalList as ServiceControllerGetServiceAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceAppraisalsRefParams }
+export { Service as ServiceControllerGetServiceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceByIdParams }
+export { ChangeOrderList as ServiceControllerGetServiceChangeOrders200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceChangeOrdersParams }
+export { ReferencedChangeOrderList as ServiceControllerGetServiceChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceChangeOrdersRefParams }
+export { Currency as ServiceControllerGetServiceCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceCurrencyParams }
+export { ReferencedCurrency as ServiceControllerGetServiceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceCurrencyRefParams }
+export { EntryList as ServiceControllerGetServiceEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceEntriesParams }
+export { ReferencedEntryList as ServiceControllerGetServiceEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceEntriesRefParams }
+export { EstimateLineList as ServiceControllerGetServiceEstimatedLineItems200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceEstimatedLineItemsParams }
+export { ReferencedEstimateLineList as ServiceControllerGetServiceEstimatedLineItemsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceEstimatedLineItemsRefParams }
+export { EstimateList as ServiceControllerGetServiceEstimates200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceEstimatesParams }
+export { ReferencedEstimateList as ServiceControllerGetServiceEstimatesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceEstimatesRefParams }
+export { InvoiceLineList as ServiceControllerGetServiceInvoicedLineItems200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceInvoicedLineItemsParams }
+export { ReferencedInvoiceLineList as ServiceControllerGetServiceInvoicedLineItemsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceInvoicedLineItemsRefParams }
+export { InvoiceList as ServiceControllerGetServiceInvoices200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceInvoicesParams }
+export { ReferencedInvoiceList as ServiceControllerGetServiceInvoicesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceInvoicesRefParams }
+export { ServiceList as ServiceControllerGetServiceList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServiceListParams }
+export { EntrySourceMetadata as ServiceControllerGetServiceMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceMetadataParams }
+export { ReferencedEntrySourceMetadata as ServiceControllerGetServiceMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceMetadataRefParams }
+export { PaymentLineList as ServiceControllerGetServicePaidLineItems200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServicePaidLineItemsParams }
+export { ReferencedPaymentLineList as ServiceControllerGetServicePaidLineItemsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServicePaidLineItemsRefParams }
+export { PaymentList as ServiceControllerGetServicePayments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceControllerGetServicePaymentsParams }
+export { ReferencedPaymentList as ServiceControllerGetServicePaymentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServicePaymentsRefParams }
+export { NullableProject as ServiceControllerGetServiceProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceProjectParams }
+export { NullableReferencedProject as ServiceControllerGetServiceProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceProjectRefParams }
+export { NullableItemAppraisal as ServiceControllerGetServiceRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceRelevantAppraisalParams }
+export { NullableReferencedItemAppraisal as ServiceControllerGetServiceRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceRelevantAppraisalRefParams }
+export { NullableItemAppraisal as ServiceControllerGetServiceSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceSelectedAppraisalParams }
+export { NullableReferencedItemAppraisal as ServiceControllerGetServiceSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceSelectedAppraisalRefParams }
+export { NullableServiceType as ServiceControllerGetServiceType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerGetServiceTypeParams }
+export { NullableReferencedServiceType as ServiceControllerGetServiceTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerGetServiceTypeRefParams }
+export { ReferencedAccount as ServiceControllerPatchServiceAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerPatchServiceAccountRefParams }
+export { ReferencedUpdateAccount as ServiceControllerPatchServiceAccountRefRequest }
+export { ReferencedCurrency as ServiceControllerPatchServiceCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerPatchServiceCurrencyRefParams }
+export { ReferencedUpdateCurrency as ServiceControllerPatchServiceCurrencyRefRequest }
+export { NullableReferencedProject as ServiceControllerPatchServiceProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerPatchServiceProjectRefParams }
+export { NullableReferencedUpdateProject as ServiceControllerPatchServiceProjectRefRequest }
+export { NullableReferencedItemAppraisal as ServiceControllerPatchServiceSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerPatchServiceSelectedAppraisalRefParams }
+export { NullableReferencedUpdateItemAppraisal as ServiceControllerPatchServiceSelectedAppraisalRefRequest }
+export { NullableReferencedServiceType as ServiceControllerPatchServiceTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceControllerPatchServiceTypeRefParams }
+export { NullableReferencedUpdateServiceType as ServiceControllerPatchServiceTypeRefRequest }
+export { Service as ServiceControllerUpdateServiceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceControllerUpdateServiceByIdParams }
+export { UpdateService as ServiceControllerUpdateServiceByIdRequest }
+export { ChangeOrderLineAttributes as ServiceTaskChangeOrderAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerCreateServiceTaskParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerDeleteServiceTaskByIdParams }
+export { Account as ServiceTaskControllerGetServiceTaskAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskAccountParams }
+export { ReferencedAccount as ServiceTaskControllerGetServiceTaskAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskAccountRefParams }
+export { ItemAppraisalList as ServiceTaskControllerGetServiceTaskAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceTaskControllerGetServiceTaskAppraisalsParams }
+export { ReferencedItemAppraisalList as ServiceTaskControllerGetServiceTaskAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskAppraisalsRefParams }
+export { ServiceTask as ServiceTaskControllerGetServiceTaskById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskByIdParams }
+export { ChangeOrderList as ServiceTaskControllerGetServiceTaskChangeOrders200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceTaskControllerGetServiceTaskChangeOrdersParams }
+export { ReferencedChangeOrderList as ServiceTaskControllerGetServiceTaskChangeOrdersRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskChangeOrdersRefParams }
+export { Currency as ServiceTaskControllerGetServiceTaskCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskCurrencyParams }
+export { ReferencedCurrency as ServiceTaskControllerGetServiceTaskCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskCurrencyRefParams }
+export { EntryList as ServiceTaskControllerGetServiceTaskEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceTaskControllerGetServiceTaskEntriesParams }
+export { ReferencedEntryList as ServiceTaskControllerGetServiceTaskEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskEntriesRefParams }
+export { EstimateList as ServiceTaskControllerGetServiceTaskEstimates200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceTaskControllerGetServiceTaskEstimatesParams }
+export { ReferencedEstimateList as ServiceTaskControllerGetServiceTaskEstimatesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskEstimatesRefParams }
+export { InvoiceList as ServiceTaskControllerGetServiceTaskInvoices200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceTaskControllerGetServiceTaskInvoicesParams }
+export { ReferencedInvoiceList as ServiceTaskControllerGetServiceTaskInvoicesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskInvoicesRefParams }
+export { ServiceTaskList as ServiceTaskControllerGetServiceTaskList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceTaskControllerGetServiceTaskListParams }
+export { EntrySourceMetadata as ServiceTaskControllerGetServiceTaskMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskMetadataParams }
+export { ReferencedEntrySourceMetadata as ServiceTaskControllerGetServiceTaskMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskMetadataRefParams }
+export { PaymentList as ServiceTaskControllerGetServiceTaskPayments200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ServiceTaskControllerGetServiceTaskPaymentsParams }
+export { ReferencedPaymentList as ServiceTaskControllerGetServiceTaskPaymentsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskPaymentsRefParams }
+export { NullableProject as ServiceTaskControllerGetServiceTaskProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskProjectParams }
+export { NullableReferencedProject as ServiceTaskControllerGetServiceTaskProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskProjectRefParams }
+export { NullableItemAppraisal as ServiceTaskControllerGetServiceTaskRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskRelevantAppraisalParams }
+export { NullableReferencedItemAppraisal as ServiceTaskControllerGetServiceTaskRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskRelevantAppraisalRefParams }
+export { NullableItemAppraisal as ServiceTaskControllerGetServiceTaskSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskSelectedAppraisalParams }
+export { NullableReferencedItemAppraisal as ServiceTaskControllerGetServiceTaskSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskSelectedAppraisalRefParams }
+export { Service as ServiceTaskControllerGetServiceTaskService200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerGetServiceTaskServiceParams }
+export { ReferencedService as ServiceTaskControllerGetServiceTaskServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerGetServiceTaskServiceRefParams }
+export { ReferencedAccount as ServiceTaskControllerPatchServiceTaskAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerPatchServiceTaskAccountRefParams }
+export { ReferencedUpdateAccount as ServiceTaskControllerPatchServiceTaskAccountRefRequest }
+export { ReferencedCurrency as ServiceTaskControllerPatchServiceTaskCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerPatchServiceTaskCurrencyRefParams }
+export { ReferencedUpdateCurrency as ServiceTaskControllerPatchServiceTaskCurrencyRefRequest }
+export { NullableReferencedProject as ServiceTaskControllerPatchServiceTaskProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerPatchServiceTaskProjectRefParams }
+export { NullableReferencedUpdateProject as ServiceTaskControllerPatchServiceTaskProjectRefRequest }
+export { NullableReferencedItemAppraisal as ServiceTaskControllerPatchServiceTaskSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerPatchServiceTaskSelectedAppraisalRefParams }
+export { NullableReferencedUpdateItemAppraisal as ServiceTaskControllerPatchServiceTaskSelectedAppraisalRefRequest }
+export { ReferencedService as ServiceTaskControllerPatchServiceTaskServiceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ServiceTaskControllerPatchServiceTaskServiceRefParams }
+export { ReferencedUpdateService as ServiceTaskControllerPatchServiceTaskServiceRefRequest }
+export { ServiceTask as ServiceTaskControllerUpdateServiceTaskById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ServiceTaskControllerUpdateServiceTaskByIdParams }
+export { UpdateServiceTask as ServiceTaskControllerUpdateServiceTaskByIdRequest }
+export { EstimateLineAttributes as ServiceTaskEstimateAttributes }
+export { InvoiceLineAttributes as ServiceTaskInvoiceAttributes }
+export { InvoiceLineAttributes as ServiceTaskPaymentAttributes }
+export { AssetTypeAttributes as ServiceTypeAttributes }
+export { AssetTypeList as ServiceTypeControllerGetServiceTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as ServiceTypeControllerGetServiceTypeAssetTypesParams }
+export { ReferencedAssetTypeList as ServiceTypeControllerGetServiceTypeAssetTypesRef200 }
+export { ServiceType as ServiceTypeControllerGetServiceTypeById200 }
 export { AccountControllerGetCurrentAccountParams as ServiceTypeControllerGetServiceTypeByIdParams }
+export { ServiceTypeList as ServiceTypeControllerGetServiceTypeList200 }
 export { UserControllerGetUserAccountRolesParams as ServiceTypeControllerGetServiceTypeListParams }
+export { PerilRelationships as ServiceTypeRelationships }
+export { CreateSpaceAttributes as SpaceAttributes }
+export { CreateSpaceCategoryAttributes as SpaceCategoryAttributes }
+export { AssetTypeList as SpaceCategoryControllerGetSpaceCategoryAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceCategoryControllerGetSpaceCategoryAssetTypesParams }
+export { ReferencedAssetTypeList as SpaceCategoryControllerGetSpaceCategoryAssetTypesRef200 }
+export { SpaceCategory as SpaceCategoryControllerGetSpaceCategoryById200 }
 export { AccountControllerGetCurrentAccountParams as SpaceCategoryControllerGetSpaceCategoryByIdParams }
+export { SpaceClassList as SpaceCategoryControllerGetSpaceCategoryClasses200 }
 export { UserControllerGetUserAccountRolesParams as SpaceCategoryControllerGetSpaceCategoryClassesParams }
+export { ReferencedSpaceClassList as SpaceCategoryControllerGetSpaceCategoryClassesRef200 }
+export { SpaceGroupTypeList as SpaceCategoryControllerGetSpaceCategoryGroupTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceCategoryControllerGetSpaceCategoryGroupTypesParams }
+export { ReferencedSpaceGroupTypeList as SpaceCategoryControllerGetSpaceCategoryGroupTypesRef200 }
+export { SpaceCategoryList as SpaceCategoryControllerGetSpaceCategoryList200 }
 export { UserControllerGetUserAccountRolesParams as SpaceCategoryControllerGetSpaceCategoryListParams }
+export { CreateSpaceCategoryAttributes as SpaceClassAttributes }
+export { AssetTypeList as SpaceClassControllerGetSpaceClassAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceClassControllerGetSpaceClassAssetTypesParams }
+export { ReferencedAssetTypeList as SpaceClassControllerGetSpaceClassAssetTypesRef200 }
+export { SpaceClass as SpaceClassControllerGetSpaceClassById200 }
 export { AccountControllerGetCurrentAccountParams as SpaceClassControllerGetSpaceClassByIdParams }
+export { SpaceCategoryList as SpaceClassControllerGetSpaceClassCategories200 }
 export { UserControllerGetUserAccountRolesParams as SpaceClassControllerGetSpaceClassCategoriesParams }
+export { ReferencedSpaceCategoryList as SpaceClassControllerGetSpaceClassCategoriesRef200 }
+export { SpaceGroupTypeList as SpaceClassControllerGetSpaceClassGroupTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceClassControllerGetSpaceClassGroupTypesParams }
+export { ReferencedSpaceGroupTypeList as SpaceClassControllerGetSpaceClassGroupTypesRef200 }
+export { SpaceClassList as SpaceClassControllerGetSpaceClassList200 }
 export { UserControllerGetUserAccountRolesParams as SpaceClassControllerGetSpaceClassListParams }
+export { SpaceTypeList as SpaceClassControllerGetSpaceClassTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceClassControllerGetSpaceClassTypesParams }
+export { ReferencedSpaceTypeList as SpaceClassControllerGetSpaceClassTypesRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceControllerCreateSpaceParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceControllerDeleteSpaceByIdParams }
+export { Asset as SpaceControllerGetSpaceAsset200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceControllerGetSpaceAssetParams }
+export { ReferencedAsset as SpaceControllerGetSpaceAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceControllerGetSpaceAssetRefParams }
+export { Space as SpaceControllerGetSpaceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceControllerGetSpaceByIdParams }
+export { SpaceGroup as SpaceControllerGetSpaceGroup200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceControllerGetSpaceGroupParams }
+export { ReferencedSpaceGroup as SpaceControllerGetSpaceGroupRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceControllerGetSpaceGroupRefParams }
+export { SpaceList as SpaceControllerGetSpaceList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SpaceControllerGetSpaceListParams }
+export { SpaceType as SpaceControllerGetSpaceType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceControllerGetSpaceTypeParams }
+export { ReferencedSpaceType as SpaceControllerGetSpaceTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceControllerGetSpaceTypeRefParams }
+export { ReferencedAsset as SpaceControllerPatchSpaceAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceControllerPatchSpaceAssetRefParams }
+export { ReferencedUpdateAsset as SpaceControllerPatchSpaceAssetRefRequest }
+export { ReferencedSpaceGroup as SpaceControllerPatchSpaceGroupRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceControllerPatchSpaceGroupRefParams }
+export { ReferencedUpdateSpaceGroup as SpaceControllerPatchSpaceGroupRefRequest }
+export { ReferencedSpaceType as SpaceControllerPatchSpaceTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceControllerPatchSpaceTypeRefParams }
+export { ReferencedUpdateSpaceType as SpaceControllerPatchSpaceTypeRefRequest }
+export { Space as SpaceControllerUpdateSpaceById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceControllerUpdateSpaceByIdParams }
+export { UpdateSpace as SpaceControllerUpdateSpaceByIdRequest }
+export { AccountAttributes as SpaceGroupAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceGroupControllerCreateSpaceGroupParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerDeleteSpaceGroupByIdParams }
+export { ReferencedSpaceList as SpaceGroupControllerDeleteSpaceGroupSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerDeleteSpaceGroupSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as SpaceGroupControllerDeleteSpaceGroupSpacesRefRequest }
+export { Asset as SpaceGroupControllerGetSpaceGroupAsset200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceGroupControllerGetSpaceGroupAssetParams }
+export { ReferencedAsset as SpaceGroupControllerGetSpaceGroupAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerGetSpaceGroupAssetRefParams }
+export { SpaceGroup as SpaceGroupControllerGetSpaceGroupById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceGroupControllerGetSpaceGroupByIdParams }
+export { SpaceGroupList as SpaceGroupControllerGetSpaceGroupList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SpaceGroupControllerGetSpaceGroupListParams }
+export { SpaceList as SpaceGroupControllerGetSpaceGroupSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SpaceGroupControllerGetSpaceGroupSpacesParams }
+export { ReferencedSpaceList as SpaceGroupControllerGetSpaceGroupSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerGetSpaceGroupSpacesRefParams }
+export { SpaceType as SpaceGroupControllerGetSpaceGroupType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceGroupControllerGetSpaceGroupTypeParams }
+export { ReferencedSpaceType as SpaceGroupControllerGetSpaceGroupTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerGetSpaceGroupTypeRefParams }
+export { ReferencedAsset as SpaceGroupControllerPatchSpaceGroupAssetRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerPatchSpaceGroupAssetRefParams }
+export { ReferencedUpdateAsset as SpaceGroupControllerPatchSpaceGroupAssetRefRequest }
+export { ReferencedSpaceList as SpaceGroupControllerPatchSpaceGroupSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerPatchSpaceGroupSpacesRefParams }
+export { ReferencedUpdateSpaceList as SpaceGroupControllerPatchSpaceGroupSpacesRefRequest }
+export { ReferencedSpaceType as SpaceGroupControllerPatchSpaceGroupTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerPatchSpaceGroupTypeRefParams }
+export { ReferencedUpdateSpaceType as SpaceGroupControllerPatchSpaceGroupTypeRefRequest }
+export { ReferencedSpaceList as SpaceGroupControllerPostSpaceGroupSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SpaceGroupControllerPostSpaceGroupSpacesRefParams }
+export { SpaceGroup as SpaceGroupControllerUpdateSpaceGroupById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SpaceGroupControllerUpdateSpaceGroupByIdParams }
+export { UpdateSpaceGroup as SpaceGroupControllerUpdateSpaceGroupByIdRequest }
+export { AssetTypeAttributes as SpaceGroupTypeAttributes }
+export { AssetTypeList as SpaceGroupTypeControllerGetSpaceGroupTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceGroupTypeControllerGetSpaceGroupTypeAssetTypesParams }
+export { ReferencedAssetTypeList as SpaceGroupTypeControllerGetSpaceGroupTypeAssetTypesRef200 }
+export { BucketTypeList as SpaceGroupTypeControllerGetSpaceGroupTypeBucketTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceGroupTypeControllerGetSpaceGroupTypeBucketTypesParams }
+export { ReferencedBucketTypeList as SpaceGroupTypeControllerGetSpaceGroupTypeBucketTypesRef200 }
+export { SpaceGroupType as SpaceGroupTypeControllerGetSpaceGroupTypeById200 }
 export { AccountControllerGetCurrentAccountParams as SpaceGroupTypeControllerGetSpaceGroupTypeByIdParams }
+export { SpaceGroupTypeList as SpaceGroupTypeControllerGetSpaceGroupTypeList200 }
 export { UserControllerGetUserAccountRolesParams as SpaceGroupTypeControllerGetSpaceGroupTypeListParams }
+export { CreateSpaceCategoryAttributes as SpaceTypeAttributes }
+export { AssetTypeList as SpaceTypeControllerGetSpaceTypeAssetTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceTypeControllerGetSpaceTypeAssetTypesParams }
+export { ReferencedAssetTypeList as SpaceTypeControllerGetSpaceTypeAssetTypesRef200 }
+export { SpaceType as SpaceTypeControllerGetSpaceTypeById200 }
 export { AccountControllerGetCurrentAccountParams as SpaceTypeControllerGetSpaceTypeByIdParams }
+export { SpaceClassList as SpaceTypeControllerGetSpaceTypeClasses200 }
 export { UserControllerGetUserAccountRolesParams as SpaceTypeControllerGetSpaceTypeClassesParams }
+export { ReferencedSpaceClassList as SpaceTypeControllerGetSpaceTypeClassesRef200 }
+export { SpaceGroupTypeList as SpaceTypeControllerGetSpaceTypeGroupTypes200 }
 export { UserControllerGetUserAccountRolesParams as SpaceTypeControllerGetSpaceTypeGroupTypesParams }
+export { ReferencedSpaceGroupTypeList as SpaceTypeControllerGetSpaceTypeGroupTypesRef200 }
+export { SpaceTypeList as SpaceTypeControllerGetSpaceTypeList200 }
 export { UserControllerGetUserAccountRolesParams as SpaceTypeControllerGetSpaceTypeListParams }
+export { AssetAttributeTypeItemTemplateAttributes as SpaceTypeItemTemplateAttributes }
+export { SpaceTypeItemTemplate as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateByIdParams }
+export { ItemTemplate as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateItemTemplate200 }
 export { AccountControllerGetCurrentAccountParams as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateItemTemplateParams }
+export { ReferencedItemTemplate as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateItemTemplateRef200 }
+export { SpaceTypeItemTemplateList as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateListParams }
+export { SpaceType as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateSpaceType200 }
 export { AccountControllerGetCurrentAccountParams as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateSpaceTypeParams }
+export { ReferencedSpaceType as SpaceTypeItemTemplateControllerGetSpaceTypeItemTemplateSpaceTypeRef200 }
+export { SpaceCategoryRelationships as SpaceTypeRelationships }
+export { CreateSubBucketAttributes as SubBucketAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerCreateSubBucketParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerDeleteSubBucketByIdParams }
+export { Account as SubBucketControllerGetSubBucketAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerGetSubBucketAccountParams }
+export { ReferencedAccount as SubBucketControllerGetSubBucketAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerGetSubBucketAccountRefParams }
+export { SubBucket as SubBucketControllerGetSubBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerGetSubBucketByIdParams }
+export { SubBucketDefinition as SubBucketControllerGetSubBucketDefinition200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerGetSubBucketDefinitionParams }
+export { ReferencedSubBucketDefinition as SubBucketControllerGetSubBucketDefinitionRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerGetSubBucketDefinitionRefParams }
+export { EntryList as SubBucketControllerGetSubBucketEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SubBucketControllerGetSubBucketEntriesParams }
+export { ReferencedEntryList as SubBucketControllerGetSubBucketEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerGetSubBucketEntriesRefParams }
+export { FundingSource as SubBucketControllerGetSubBucketFundingSource200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerGetSubBucketFundingSourceParams }
+export { ReferencedFundingSource as SubBucketControllerGetSubBucketFundingSourceRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerGetSubBucketFundingSourceRefParams }
+export { SubBucketList as SubBucketControllerGetSubBucketList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SubBucketControllerGetSubBucketListParams }
+export { BaseSubBucketMetadata as SubBucketControllerGetSubBucketMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerGetSubBucketMetadataParams }
+export { ReferencedBaseSubBucketMetadata as SubBucketControllerGetSubBucketMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerGetSubBucketMetadataRefParams }
+export { BaseBucket as SubBucketControllerGetSubBucketParent200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerGetSubBucketParentParams }
+export { ReferencedBaseBucket as SubBucketControllerGetSubBucketParentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerGetSubBucketParentRefParams }
+export { Project as SubBucketControllerGetSubBucketProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerGetSubBucketProjectParams }
+export { ReferencedProject as SubBucketControllerGetSubBucketProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerGetSubBucketProjectRefParams }
+export { ReferencedSubBucketDefinition as SubBucketControllerPatchSubBucketDefinitionRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerPatchSubBucketDefinitionRefParams }
+export { ReferencedUpdateSubBucketDefinition as SubBucketControllerPatchSubBucketDefinitionRefRequest }
+export { ReferencedBaseBucket as SubBucketControllerPatchSubBucketParentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubBucketControllerPatchSubBucketParentRefParams }
+export { ReferencedUpdateBaseBucket as SubBucketControllerPatchSubBucketParentRefRequest }
+export { SubBucket as SubBucketControllerUpdateSubBucketById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubBucketControllerUpdateSubBucketByIdParams }
+export { UpdateSubBucket as SubBucketControllerUpdateSubBucketByIdRequest }
 export { AccountControllerGetCurrentAccountParams as SubBucketDefinitionControllerCreateSubBucketDefinitionParams }
+export { SubBucketList as SubBucketDefinitionControllerGetSubBucketDefinitionBuckets200 }
 export { UserControllerGetUserAccountRolesParams as SubBucketDefinitionControllerGetSubBucketDefinitionBucketsParams }
+export { ReferencedSubBucketList as SubBucketDefinitionControllerGetSubBucketDefinitionBucketsRef200 }
+export { SubBucketDefinition as SubBucketDefinitionControllerGetSubBucketDefinitionById200 }
 export { AccountControllerGetCurrentAccountParams as SubBucketDefinitionControllerGetSubBucketDefinitionByIdParams }
+export { SubBucketDefinitionList as SubBucketDefinitionControllerGetSubBucketDefinitionList200 }
 export { UserControllerGetUserAccountRolesParams as SubBucketDefinitionControllerGetSubBucketDefinitionListParams }
+export { BucketDefinition as SubBucketDefinitionControllerGetSubBucketDefinitionParent200 }
 export { AccountControllerGetCurrentAccountParams as SubBucketDefinitionControllerGetSubBucketDefinitionParentParams }
+export { ReferencedBucketDefinition as SubBucketDefinitionControllerGetSubBucketDefinitionParentRef200 }
+export { ReferencedBucketDefinition as SubBucketDefinitionControllerPatchSubBucketDefinitionParentRef200 }
+export { ReferencedUpdateBucketDefinition as SubBucketDefinitionControllerPatchSubBucketDefinitionParentRefRequest }
+export { SubBucketDefinition as SubBucketDefinitionControllerUpdateSubBucketDefinitionById200 }
 export { AccountControllerGetCurrentAccountParams as SubBucketDefinitionControllerUpdateSubBucketDefinitionByIdParams }
+export { UpdateSubBucketDefinition as SubBucketDefinitionControllerUpdateSubBucketDefinitionByIdRequest }
+export { SubBucketDefinitionAttributes as SubCoverageAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubCoverageControllerCreateSubCoverageParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerDeleteSubCoverageByIdParams }
+export { ReferencedEndorsementList as SubCoverageControllerDeleteSubCoverageEndorsementsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerDeleteSubCoverageEndorsementsRefParams }
 export { SubCoverageControllerPostSubCoverageEndorsementsRefRequest as SubCoverageControllerDeleteSubCoverageEndorsementsRefRequest }
+export { SubBucketList as SubCoverageControllerGetSubCoverageBuckets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SubCoverageControllerGetSubCoverageBucketsParams }
+export { ReferencedSubBucketList as SubCoverageControllerGetSubCoverageBucketsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerGetSubCoverageBucketsRefParams }
+export { SubCoverage as SubCoverageControllerGetSubCoverageById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubCoverageControllerGetSubCoverageByIdParams }
+export { EndorsementList as SubCoverageControllerGetSubCoverageEndorsements200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SubCoverageControllerGetSubCoverageEndorsementsParams }
+export { ReferencedEndorsementList as SubCoverageControllerGetSubCoverageEndorsementsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerGetSubCoverageEndorsementsRefParams }
+export { SubCoverageList as SubCoverageControllerGetSubCoverageList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as SubCoverageControllerGetSubCoverageListParams }
+export { Coverage as SubCoverageControllerGetSubCoverageParent200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubCoverageControllerGetSubCoverageParentParams }
+export { ReferencedCoverage as SubCoverageControllerGetSubCoverageParentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerGetSubCoverageParentRefParams }
+export { NullableSubCoverageTemplate as SubCoverageControllerGetSubCoverageTemplate200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubCoverageControllerGetSubCoverageTemplateParams }
+export { NullableReferencedSubCoverageTemplate as SubCoverageControllerGetSubCoverageTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerGetSubCoverageTemplateRefParams }
+export { ReferencedEndorsementList as SubCoverageControllerPatchSubCoverageEndorsementsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerPatchSubCoverageEndorsementsRefParams }
+export { ReferencedUpdateEndorsementList as SubCoverageControllerPatchSubCoverageEndorsementsRefRequest }
+export { ReferencedCoverage as SubCoverageControllerPatchSubCoverageParentRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerPatchSubCoverageParentRefParams }
+export { ReferencedUpdateCoverage as SubCoverageControllerPatchSubCoverageParentRefRequest }
+export { NullableReferencedSubCoverageTemplate as SubCoverageControllerPatchSubCoverageTemplateRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerPatchSubCoverageTemplateRefParams }
+export { NullableReferencedUpdateSubCoverageTemplate as SubCoverageControllerPatchSubCoverageTemplateRefRequest }
+export { ReferencedEndorsementList as SubCoverageControllerPostSubCoverageEndorsementsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as SubCoverageControllerPostSubCoverageEndorsementsRefParams }
+export { SubCoverage as SubCoverageControllerUpdateSubCoverageById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as SubCoverageControllerUpdateSubCoverageByIdParams }
+export { UpdateSubCoverage as SubCoverageControllerUpdateSubCoverageByIdRequest }
+export { AssetTypeAttributes as SubCoverageTemplateAttributes }
+export { SubCoverageTemplate as SubCoverageTemplateControllerGetSubCoverageTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as SubCoverageTemplateControllerGetSubCoverageTemplateByIdParams }
+export { CoverageTemplate as SubCoverageTemplateControllerGetSubCoverageTemplateCoverageTemplate200 }
 export { AccountControllerGetCurrentAccountParams as SubCoverageTemplateControllerGetSubCoverageTemplateCoverageTemplateParams }
+export { ReferencedCoverageTemplate as SubCoverageTemplateControllerGetSubCoverageTemplateCoverageTemplateRef200 }
+export { EndorsementTemplateList as SubCoverageTemplateControllerGetSubCoverageTemplateEndorsementTemplates200 }
 export { UserControllerGetUserAccountRolesParams as SubCoverageTemplateControllerGetSubCoverageTemplateEndorsementTemplatesParams }
+export { ReferencedEndorsementTemplateList as SubCoverageTemplateControllerGetSubCoverageTemplateEndorsementTemplatesRef200 }
+export { SubCoverageTemplateList as SubCoverageTemplateControllerGetSubCoverageTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as SubCoverageTemplateControllerGetSubCoverageTemplateListParams }
+export { AssetTypeAttributes as SubmissionTrackTemplateAttributes }
+export { BucketTypeList as SubmissionTrackTemplateControllerGetSubmissionTrackTemplateBucketTypes200 }
 export { UserControllerGetUserAccountRolesParams as SubmissionTrackTemplateControllerGetSubmissionTrackTemplateBucketTypesParams }
+export { ReferencedBucketTypeList as SubmissionTrackTemplateControllerGetSubmissionTrackTemplateBucketTypesRef200 }
+export { SubmissionTrackTemplate as SubmissionTrackTemplateControllerGetSubmissionTrackTemplateById200 }
 export { AccountControllerGetCurrentAccountParams as SubmissionTrackTemplateControllerGetSubmissionTrackTemplateByIdParams }
+export { SubmissionTrackTemplateList as SubmissionTrackTemplateControllerGetSubmissionTrackTemplateList200 }
 export { UserControllerGetUserAccountRolesParams as SubmissionTrackTemplateControllerGetSubmissionTrackTemplateListParams }
+export { PolicyTemplate as SubmissionTrackTemplateControllerGetSubmissionTrackTemplatePolicyTemplate200 }
 export { AccountControllerGetCurrentAccountParams as SubmissionTrackTemplateControllerGetSubmissionTrackTemplatePolicyTemplateParams }
+export { ReferencedPolicyTemplate as SubmissionTrackTemplateControllerGetSubmissionTrackTemplatePolicyTemplateRef200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyControllerCreateThirdPartyParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyControllerDeleteThirdPartyByIdParams }
+export { ThirdParty as ThirdPartyControllerGetThirdPartyById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyControllerGetThirdPartyByIdParams }
+export { ThirdPartyList as ThirdPartyControllerGetThirdPartyList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ThirdPartyControllerGetThirdPartyListParams }
+export { Project as ThirdPartyControllerGetThirdPartyProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyControllerGetThirdPartyProjectParams }
+export { ReferencedProject as ThirdPartyControllerGetThirdPartyProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyControllerGetThirdPartyProjectRefParams }
+export { ReferencedProject as ThirdPartyControllerPatchThirdPartyProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyControllerPatchThirdPartyProjectRefParams }
+export { ReferencedUpdateProject as ThirdPartyControllerPatchThirdPartyProjectRefRequest }
+export { ThirdParty as ThirdPartyControllerUpdateThirdPartyById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyControllerUpdateThirdPartyByIdParams }
+export { UpdateThirdParty as ThirdPartyControllerUpdateThirdPartyByIdRequest }
+export { AddressAttributes as ThirdPartyDwellingAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyDwellingControllerCreateThirdPartyDwellingParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyDwellingControllerDeleteThirdPartyDwellingByIdParams }
+export { ThirdPartyDwelling as ThirdPartyDwellingControllerGetThirdPartyDwellingById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyDwellingControllerGetThirdPartyDwellingByIdParams }
+export { Country as ThirdPartyDwellingControllerGetThirdPartyDwellingCountry200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyDwellingControllerGetThirdPartyDwellingCountryParams }
+export { ReferencedCountry as ThirdPartyDwellingControllerGetThirdPartyDwellingCountryRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyDwellingControllerGetThirdPartyDwellingCountryRefParams }
+export { ThirdPartyDwellingList as ThirdPartyDwellingControllerGetThirdPartyDwellingList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ThirdPartyDwellingControllerGetThirdPartyDwellingListParams }
+export { Project as ThirdPartyDwellingControllerGetThirdPartyDwellingProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyDwellingControllerGetThirdPartyDwellingProjectParams }
+export { ReferencedProject as ThirdPartyDwellingControllerGetThirdPartyDwellingProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyDwellingControllerGetThirdPartyDwellingProjectRefParams }
+export { ReferencedCountry as ThirdPartyDwellingControllerPatchThirdPartyDwellingCountryRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyDwellingControllerPatchThirdPartyDwellingCountryRefParams }
+export { ReferencedUpdateCountry as ThirdPartyDwellingControllerPatchThirdPartyDwellingCountryRefRequest }
+export { ReferencedProject as ThirdPartyDwellingControllerPatchThirdPartyDwellingProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyDwellingControllerPatchThirdPartyDwellingProjectRefParams }
+export { ReferencedUpdateProject as ThirdPartyDwellingControllerPatchThirdPartyDwellingProjectRefRequest }
+export { ThirdPartyDwelling as ThirdPartyDwellingControllerUpdateThirdPartyDwellingById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyDwellingControllerUpdateThirdPartyDwellingByIdParams }
+export { UpdateThirdPartyDwelling as ThirdPartyDwellingControllerUpdateThirdPartyDwellingByIdRequest }
+export { EntrySourceAttributes as ThirdPartyImpactAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerCreateThirdPartyImpactParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerDeleteThirdPartyImpactByIdParams }
+export { Account as ThirdPartyImpactControllerGetThirdPartyImpactAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactAccountParams }
+export { ReferencedAccount as ThirdPartyImpactControllerGetThirdPartyImpactAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactAccountRefParams }
+export { ItemAppraisalList as ThirdPartyImpactControllerGetThirdPartyImpactAppraisals200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ThirdPartyImpactControllerGetThirdPartyImpactAppraisalsParams }
+export { ReferencedItemAppraisalList as ThirdPartyImpactControllerGetThirdPartyImpactAppraisalsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactAppraisalsRefParams }
+export { ThirdPartyImpact as ThirdPartyImpactControllerGetThirdPartyImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactByIdParams }
+export { Currency as ThirdPartyImpactControllerGetThirdPartyImpactCurrency200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactCurrencyParams }
+export { ReferencedCurrency as ThirdPartyImpactControllerGetThirdPartyImpactCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactCurrencyRefParams }
+export { EntryList as ThirdPartyImpactControllerGetThirdPartyImpactEntries200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ThirdPartyImpactControllerGetThirdPartyImpactEntriesParams }
+export { ReferencedEntryList as ThirdPartyImpactControllerGetThirdPartyImpactEntriesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactEntriesRefParams }
+export { ThirdPartyImpactList as ThirdPartyImpactControllerGetThirdPartyImpactList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ThirdPartyImpactControllerGetThirdPartyImpactListParams }
+export { EntrySourceMetadata as ThirdPartyImpactControllerGetThirdPartyImpactMetadata200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactMetadataParams }
+export { ReferencedEntrySourceMetadata as ThirdPartyImpactControllerGetThirdPartyImpactMetadataRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactMetadataRefParams }
+export { NullableProject as ThirdPartyImpactControllerGetThirdPartyImpactProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactProjectParams }
+export { NullableReferencedProject as ThirdPartyImpactControllerGetThirdPartyImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactProjectRefParams }
+export { NullableItemAppraisal as ThirdPartyImpactControllerGetThirdPartyImpactRelevantAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactRelevantAppraisalParams }
+export { NullableReferencedItemAppraisal as ThirdPartyImpactControllerGetThirdPartyImpactRelevantAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactRelevantAppraisalRefParams }
+export { NullableItemAppraisal as ThirdPartyImpactControllerGetThirdPartyImpactSelectedAppraisal200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactSelectedAppraisalParams }
+export { NullableReferencedItemAppraisal as ThirdPartyImpactControllerGetThirdPartyImpactSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactSelectedAppraisalRefParams }
+export { ThirdParty as ThirdPartyImpactControllerGetThirdPartyImpactThirdParty200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerGetThirdPartyImpactThirdPartyParams }
+export { ReferencedThirdParty as ThirdPartyImpactControllerGetThirdPartyImpactThirdPartyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerGetThirdPartyImpactThirdPartyRefParams }
+export { ReferencedAccount as ThirdPartyImpactControllerPatchThirdPartyImpactAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerPatchThirdPartyImpactAccountRefParams }
+export { ReferencedUpdateAccount as ThirdPartyImpactControllerPatchThirdPartyImpactAccountRefRequest }
+export { ReferencedCurrency as ThirdPartyImpactControllerPatchThirdPartyImpactCurrencyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerPatchThirdPartyImpactCurrencyRefParams }
+export { ReferencedUpdateCurrency as ThirdPartyImpactControllerPatchThirdPartyImpactCurrencyRefRequest }
+export { NullableReferencedProject as ThirdPartyImpactControllerPatchThirdPartyImpactProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerPatchThirdPartyImpactProjectRefParams }
+export { NullableReferencedUpdateProject as ThirdPartyImpactControllerPatchThirdPartyImpactProjectRefRequest }
+export { NullableReferencedItemAppraisal as ThirdPartyImpactControllerPatchThirdPartyImpactSelectedAppraisalRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerPatchThirdPartyImpactSelectedAppraisalRefParams }
+export { NullableReferencedUpdateItemAppraisal as ThirdPartyImpactControllerPatchThirdPartyImpactSelectedAppraisalRefRequest }
+export { ReferencedThirdParty as ThirdPartyImpactControllerPatchThirdPartyImpactThirdPartyRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyImpactControllerPatchThirdPartyImpactThirdPartyRefParams }
+export { ReferencedUpdateThirdParty as ThirdPartyImpactControllerPatchThirdPartyImpactThirdPartyRefRequest }
+export { ThirdPartyImpact as ThirdPartyImpactControllerUpdateThirdPartyImpactById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyImpactControllerUpdateThirdPartyImpactByIdParams }
+export { UpdateThirdPartyImpact as ThirdPartyImpactControllerUpdateThirdPartyImpactByIdRequest }
+export { AccountAttributes as ThirdPartyIndividualAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyIndividualControllerCreateThirdPartyIndividualParams }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyIndividualControllerDeleteThirdPartyIndividualByIdParams }
+export { ThirdPartyIndividual as ThirdPartyIndividualControllerGetThirdPartyIndividualById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyIndividualControllerGetThirdPartyIndividualByIdParams }
+export { ThirdPartyIndividualList as ThirdPartyIndividualControllerGetThirdPartyIndividualList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as ThirdPartyIndividualControllerGetThirdPartyIndividualListParams }
+export { Project as ThirdPartyIndividualControllerGetThirdPartyIndividualProject200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyIndividualControllerGetThirdPartyIndividualProjectParams }
+export { ReferencedProject as ThirdPartyIndividualControllerGetThirdPartyIndividualProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyIndividualControllerGetThirdPartyIndividualProjectRefParams }
+export { ReferencedProject as ThirdPartyIndividualControllerPatchThirdPartyIndividualProjectRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as ThirdPartyIndividualControllerPatchThirdPartyIndividualProjectRefParams }
+export { ReferencedUpdateProject as ThirdPartyIndividualControllerPatchThirdPartyIndividualProjectRefRequest }
+export { ThirdPartyIndividual as ThirdPartyIndividualControllerUpdateThirdPartyIndividualById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as ThirdPartyIndividualControllerUpdateThirdPartyIndividualByIdParams }
+export { UpdateThirdPartyIndividual as ThirdPartyIndividualControllerUpdateThirdPartyIndividualByIdRequest }
+export { ThirdPartyIndividualRelationships as ThirdPartyRelationships }
+export { AccountAttributes as UpdateAccountAttributes }
+export { AccountInviteAttributes as UpdateAccountInviteAttributes }
+export { AccountProviderAttributes as UpdateAccountProviderAttributes }
+export { AccountProviderContactAttributes as UpdateAccountProviderContactAttributes }
+export { AddressAttributes as UpdateAddressAttributes }
+export { AppraisalAttributes as UpdateAppraisalAttributes }
+export { AppraisalLineAttributes as UpdateAppraisalLineAttributes }
+export { AssetAppraisalAttributes as UpdateAssetAppraisalAttributes }
+export { AssetAttributeClassAttributes as UpdateAssetAttributeClassAttributes }
+export { CreateAssetAttributeClassRelationships as UpdateAssetAttributeClassRelationships }
+export { AssetAttributes as UpdateAssetAttributes }
+export { AssetAttributeTypeAttributes as UpdateAssetAttributeTypeAttributes }
+export { AssetAttributeTypeItemTemplateAttributes as UpdateAssetAttributeTypeItemTemplateAttributes }
+export { CreateAssetAttributeTypeItemTemplateRelationships as UpdateAssetAttributeTypeItemTemplateRelationships }
+export { CreateAssetAttributeTypeRelationships as UpdateAssetAttributeTypeRelationships }
+export { AssetTypeAttributes as UpdateAssetTypeAttributes }
+export { AuthProfileAttributes as UpdateAuthProfileAttributes }
+export { BaseBucketAttributes as UpdateBaseBucketAttributes }
+export { BaseBucketMetadataAttributes as UpdateBaseBucketMetadataAttributes }
+export { CreateBaseBucketMetadataRelationships as UpdateBaseBucketMetadataRelationships }
+export { BaseSubBucketAttributes as UpdateBaseSubBucketAttributes }
+export { BaseBucketMetadataAttributes as UpdateBaseSubBucketMetadataAttributes }
+export { CreateBaseBucketMetadataRelationships as UpdateBaseSubBucketMetadataRelationships }
+export { BlueprintAttributes as UpdateBlueprintAttributes }
+export { BucketAttributes as UpdateBucketAttributes }
+export { AssetTypeAttributes as UpdateBucketClassAttributes }
+export { CreateBucketClassRelationships as UpdateBucketClassRelationships }
+export { BucketDefinitionAttributes as UpdateBucketDefinitionAttributes }
+export { BucketFundingAttributes as UpdateBucketFundingAttributes }
+export { BucketTypeAttributes as UpdateBucketTypeAttributes }
+export { CreateBucketTypeRelationships as UpdateBucketTypeRelationships }
+export { ChangeOrderAttributes as UpdateChangeOrderAttributes }
+export { ChangeOrderLineAttributes as UpdateChangeOrderLineAttributes }
+export { ClaimAttributes as UpdateClaimAttributes }
+export { ClaimDeductibleAttributes as UpdateClaimDeductibleAttributes }
+export { ClaimTargetAttributes as UpdateClaimTargetAttributes }
+export { BlueprintAttributes as UpdateContractAttributes }
+export { UpdateBlueprintRelationships as UpdateContractRelationships }
+export { CountryAttributes as UpdateCountryAttributes }
+export { BucketDefinitionAttributes as UpdateCoverageAttributes }
+export { AssetTypeAttributes as UpdateCoverageGroupTemplateAttributes }
+export { CreateCoverageGroupTemplateRelationships as UpdateCoverageGroupTemplateRelationships }
+export { AssetTypeAttributes as UpdateCoverageTemplateAttributes }
+export { CreateCoverageTemplateRelationships as UpdateCoverageTemplateRelationships }
+export { CreateCurrencyAttributes as UpdateCurrencyAttributes }
+export { BlueprintAttributes as UpdateDeclarationsPageAttributes }
+export { UpdateBlueprintRelationships as UpdateDeclarationsPageRelationships }
+export { DeductibleAttributes as UpdateDeductibleAttributes }
+export { BlueprintAttributes as UpdateDeedAttributes }
+export { UpdateBlueprintRelationships as UpdateDeedRelationships }
+export { BlueprintAttributes as UpdateDeliveryPaperworkAttributes }
+export { UpdateBlueprintRelationships as UpdateDeliveryPaperworkRelationships }
+export { CreateDepreciationModifierAttributes as UpdateDepreciationModifierAttributes }
+export { CreateDepreciationModifierRelationships as UpdateDepreciationModifierRelationships }
+export { CreateDepreciationOverrideAttributes as UpdateDepreciationOverrideAttributes }
+export { CreateDepreciationModifierRelationships as UpdateDepreciationOverrideRelationships }
+export { CreateDepreciationScheduleAttributes as UpdateDepreciationScheduleAttributes }
+export { CreateDepreciationScheduleRelationships as UpdateDepreciationScheduleRelationships }
+export { AssetTypeAttributes as UpdateDisasterAttributes }
+export { CreateDisasterRelationships as UpdateDisasterRelationships }
+export { BlueprintAttributes as UpdateDocumentAttributes }
+export { AssetTypeAttributes as UpdateDocumentClassAttributes }
+export { CreateDocumentClassRelationships as UpdateDocumentClassRelationships }
+export { UpdateBlueprintRelationships as UpdateDocumentRelationships }
+export { CreateDocumentTypeAttributes as UpdateDocumentTypeAttributes }
+export { CreateDocumentTypeRelationships as UpdateDocumentTypeRelationships }
+export { AssetAttributes as UpdateDwellingAttributes }
+export { EmailAddressAttributes as UpdateEmailAddressAttributes }
+export { EndorsementAttributes as UpdateEndorsementAttributes }
+export { CreateEndorsementTemplateAttributes as UpdateEndorsementTemplateAttributes }
+export { CreateEndorsementTemplateRelationships as UpdateEndorsementTemplateRelationships }
+export { CreateEntryAttributes as UpdateEntryAttributes }
+export { EntrySourceAttributes as UpdateEntrySourceAttributes }
+export { CreateEntrySourceMediaAttributes as UpdateEntrySourceMediaAttributes }
+export { CreateEntrySourceMetadataAttributes as UpdateEntrySourceMetadataAttributes }
+export { CreateEntrySourceMetadataRelationships as UpdateEntrySourceMetadataRelationships }
+export { EstimateAttributes as UpdateEstimateAttributes }
+export { EstimateLineAttributes as UpdateEstimateLineAttributes }
+export { CreateFileProcessAttributes as UpdateFileProcessAttributes }
+export { CreateFileProcessRelationships as UpdateFileProcessRelationships }
+export { AssetAppraisalAttributes as UpdateFinancialDocumentAttributes }
+export { CreateFundingAttributes as UpdateFundingAttributes }
+export { FundingSourceAttributes as UpdateFundingSourceAttributes }
+export { AccountProviderContactAttributes as UpdateIdentityAttributes }
+export { IncidentAttributes as UpdateIncidentAttributes }
+export { AssetTypeAttributes as UpdateIncidentClassAttributes }
+export { CreateIncidentClassRelationships as UpdateIncidentClassRelationships }
+export { CreateIncidentImpactAttributes as UpdateIncidentImpactAttributes }
+export { BlueprintAttributes as UpdateIncidentReportAttributes }
+export { UpdateBlueprintRelationships as UpdateIncidentReportRelationships }
+export { BucketTypeAttributes as UpdateIncidentTypeAttributes }
+export { CreateIncidentTypeRelationships as UpdateIncidentTypeRelationships }
+export { ChangeOrderAttributes as UpdateInvoiceAttributes }
+export { InvoiceLineAttributes as UpdateInvoiceLineAttributes }
+export { AppraisalLineAttributes as UpdateItemAppraisalAttributes }
+export { ItemAttributes as UpdateItemAttributes }
+export { AssetTypeAttributes as UpdateItemCategoryAttributes }
+export { CreateItemCategoryRelationships as UpdateItemCategoryRelationships }
+export { ItemChangeOrderAttributes as UpdateItemChangeOrderAttributes }
+export { AssetTypeAttributes as UpdateItemClassAttributes }
+export { CreateItemClassRelationships as UpdateItemClassRelationships }
+export { ItemEstimateAttributes as UpdateItemEstimateAttributes }
+export { CreateItemImpactAttributes as UpdateItemImpactAttributes }
+export { ChangeOrderLineAttributes as UpdateItemImpactChangeOrderAttributes }
+export { EstimateLineAttributes as UpdateItemImpactEstimateAttributes }
+export { InvoiceLineAttributes as UpdateItemImpactInvoiceAttributes }
+export { InvoiceLineAttributes as UpdateItemImpactPaymentAttributes }
+export { ItemInvoiceAttributes as UpdateItemInvoiceAttributes }
+export { ChangeOrderAttributes as UpdateItemizableFinancialDocumentAttributes }
+export { CreateItemizableFinancialDocumentStatsAttributes as UpdateItemizableFinancialDocumentStatsAttributes }
+export { CreateItemizableFinancialDocumentStatsRelationships as UpdateItemizableFinancialDocumentStatsRelationships }
+export { ItemMediaSuggestionAttributes as UpdateItemMediaSuggestionAttributes }
+export { ItemPaymentAttributes as UpdateItemPaymentAttributes }
+export { ItemProductSuggestionAttributes as UpdateItemProductSuggestionAttributes }
+export { AssetTypeAttributes as UpdateItemTemplateAttributes }
+export { CreateItemTemplateRelationships as UpdateItemTemplateRelationships }
+export { CreateItemTypeAttributes as UpdateItemTypeAttributes }
+export { CreateItemTypeRelationships as UpdateItemTypeRelationships }
+export { CreateMediaAttributes as UpdateMediaAttributes }
+export { BlueprintAttributes as UpdateParamedicReportAttributes }
+export { UpdateBlueprintRelationships as UpdateParamedicReportRelationships }
+export { ChangeOrderAttributes as UpdatePaymentAttributes }
+export { InvoiceLineAttributes as UpdatePaymentLineAttributes }
+export { AssetTypeAttributes as UpdatePerilAttributes }
+export { CreatePerilRelationships as UpdatePerilRelationships }
+export { BlueprintAttributes as UpdatePermitAttributes }
+export { UpdateBlueprintRelationships as UpdatePermitRelationships }
+export { PhoneNumberAttributes as UpdatePhoneNumberAttributes }
+export { UpdateEmailAddressRelationships as UpdatePhoneNumberRelationships }
+export { BlueprintAttributes as UpdatePoliceReportAttributes }
+export { UpdateBlueprintRelationships as UpdatePoliceReportRelationships }
+export { CreatePolicyAttributes as UpdatePolicyAttributes }
+export { BlueprintAttributes as UpdatePolicyJacketAttributes }
+export { UpdateBlueprintRelationships as UpdatePolicyJacketRelationships }
+export { AssetTypeAttributes as UpdatePolicyTemplateAttributes }
+export { CreatePolicyTemplateRelationships as UpdatePolicyTemplateRelationships }
+export { PolicyTermAttributes as UpdatePolicyTermAttributes }
+export { BlueprintAttributes as UpdateProductSpecAttributes }
+export { UpdateBlueprintRelationships as UpdateProductSpecRelationships }
+export { AccountAttributes as UpdateProjectAttributes }
+export { CreateIncidentImpactAttributes as UpdateProjectImpactAttributes }
+export { CreateProjectMediaAttributes as UpdateProjectMediaAttributes }
+export { CreateProviderAttributes as UpdateProviderAttributes }
+export { BlueprintAttributes as UpdateRentRollAttributes }
+export { UpdateBlueprintRelationships as UpdateRentRollRelationships }
+export { BlueprintAttributes as UpdateScopeOfLossAttributes }
+export { UpdateBlueprintRelationships as UpdateScopeOfLossRelationships }
+export { ServiceAttributes as UpdateServiceAttributes }
+export { AssetTypeAttributes as UpdateServiceCategoryAttributes }
+export { CreateServiceCategoryRelationships as UpdateServiceCategoryRelationships }
+export { AssetTypeAttributes as UpdateServiceClassAttributes }
+export { CreateServiceClassRelationships as UpdateServiceClassRelationships }
+export { ServiceTaskAttributes as UpdateServiceTaskAttributes }
+export { ChangeOrderLineAttributes as UpdateServiceTaskChangeOrderAttributes }
+export { EstimateLineAttributes as UpdateServiceTaskEstimateAttributes }
+export { InvoiceLineAttributes as UpdateServiceTaskInvoiceAttributes }
+export { InvoiceLineAttributes as UpdateServiceTaskPaymentAttributes }
+export { AssetTypeAttributes as UpdateServiceTypeAttributes }
+export { CreatePerilRelationships as UpdateServiceTypeRelationships }
+export { CreateSpaceAttributes as UpdateSpaceAttributes }
+export { CreateSpaceCategoryAttributes as UpdateSpaceCategoryAttributes }
+export { CreateSpaceCategoryRelationships as UpdateSpaceCategoryRelationships }
+export { CreateSpaceCategoryAttributes as UpdateSpaceClassAttributes }
+export { CreateSpaceClassRelationships as UpdateSpaceClassRelationships }
+export { AccountAttributes as UpdateSpaceGroupAttributes }
+export { AssetTypeAttributes as UpdateSpaceGroupTypeAttributes }
+export { CreateSpaceGroupTypeRelationships as UpdateSpaceGroupTypeRelationships }
+export { CreateSpaceCategoryAttributes as UpdateSpaceTypeAttributes }
+export { AssetAttributeTypeItemTemplateAttributes as UpdateSpaceTypeItemTemplateAttributes }
+export { CreateSpaceTypeItemTemplateRelationships as UpdateSpaceTypeItemTemplateRelationships }
+export { CreateSpaceCategoryRelationships as UpdateSpaceTypeRelationships }
+export { CreateSubBucketAttributes as UpdateSubBucketAttributes }
+export { SubBucketDefinitionAttributes as UpdateSubBucketDefinitionAttributes }
+export { SubBucketDefinitionAttributes as UpdateSubCoverageAttributes }
+export { AssetTypeAttributes as UpdateSubCoverageTemplateAttributes }
+export { CreateSubCoverageTemplateRelationships as UpdateSubCoverageTemplateRelationships }
+export { AssetTypeAttributes as UpdateSubmissionTrackTemplateAttributes }
+export { CreateSubmissionTrackTemplateRelationships as UpdateSubmissionTrackTemplateRelationships }
+export { AddressAttributes as UpdateThirdPartyDwellingAttributes }
+export { EntrySourceAttributes as UpdateThirdPartyImpactAttributes }
+export { AccountAttributes as UpdateThirdPartyIndividualAttributes }
+export { UpdateThirdPartyIndividualRelationships as UpdateThirdPartyRelationships }
+export { CreateUserAttributes as UpdateUserAttributes }
+export { BlueprintAttributes as UpdateUserManualAttributes }
+export { UpdateBlueprintRelationships as UpdateUserManualRelationships }
+export { BlueprintAttributes as UpdateWarrantyAttributes }
+export { UpdateBlueprintRelationships as UpdateWarrantyRelationships }
+export { UploadFilesResponseDto as UploadsControllerInitializeFileIds200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UploadsControllerInitializeFileIdsParams }
+export { UploadFilesDto as UploadsControllerInitializeFileIdsRequest }
+export { TransloaditAssemblyOptionsResponseDto as UploadsControllerStartUpload200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UploadsControllerStartUploadParams }
+export { TransloaditAssemblyOptionsDto as UploadsControllerStartUploadRequest }
+export { UpdateUserAccountRoleAttributes as UserAccountRoleAttributes }
+export { Account as UserAccountRoleControllerGetUserAccountRoleAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserAccountRoleControllerGetUserAccountRoleAccountParams }
+export { ReferencedAccount as UserAccountRoleControllerGetUserAccountRoleAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserAccountRoleControllerGetUserAccountRoleAccountRefParams }
+export { UserAccountRole as UserAccountRoleControllerGetUserAccountRoleById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserAccountRoleControllerGetUserAccountRoleByIdParams }
+export { UserAccountRoleList as UserAccountRoleControllerGetUserAccountRoleList200 }
+export { User as UserAccountRoleControllerGetUserAccountRoleUser200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserAccountRoleControllerGetUserAccountRoleUserParams }
+export { ReferencedUser as UserAccountRoleControllerGetUserAccountRoleUserRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserAccountRoleControllerGetUserAccountRoleUserRefParams }
+export { ReferencedAccount as UserAccountRoleControllerPatchUserAccountRoleAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserAccountRoleControllerPatchUserAccountRoleAccountRefParams }
+export { ReferencedUpdateAccount as UserAccountRoleControllerPatchUserAccountRoleAccountRefRequest }
+export { ReferencedUser as UserAccountRoleControllerPatchUserAccountRoleUserRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserAccountRoleControllerPatchUserAccountRoleUserRefParams }
+export { ReferencedUpdateUser as UserAccountRoleControllerPatchUserAccountRoleUserRefRequest }
+export { UserAccountRole as UserAccountRoleControllerUpdateUserAccountRoleById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserAccountRoleControllerUpdateUserAccountRoleByIdParams }
+export { UpdateUserAccountRole as UserAccountRoleControllerUpdateUserAccountRoleByIdRequest }
+export { CreateUserAttributes as UserAttributes }
+export { UserAccountRoleList as UserControllerGetUserAccountRoles200 }
+export { ReferencedUserAccountRoleList as UserControllerGetUserAccountRolesRef200 }
+export { User as UserControllerGetUserById200 }
 export { AccountControllerGetCurrentAccountParams as UserControllerGetUserByIdParams }
+export { NullableAccount as UserControllerGetUserDefaultAccount200 }
 export { AccountControllerGetCurrentAccountParams as UserControllerGetUserDefaultAccountParams }
+export { NullableReferencedAccount as UserControllerGetUserDefaultAccountRef200 }
+export { NullableEmailAddress as UserControllerGetUserPrimaryEmailAddress200 }
 export { AccountControllerGetCurrentAccountParams as UserControllerGetUserPrimaryEmailAddressParams }
+export { NullableReferencedEmailAddress as UserControllerGetUserPrimaryEmailAddressRef200 }
+export { NullablePhoneNumber as UserControllerGetUserPrimaryPhoneNumber200 }
 export { AccountControllerGetCurrentAccountParams as UserControllerGetUserPrimaryPhoneNumberParams }
+export { NullableReferencedPhoneNumber as UserControllerGetUserPrimaryPhoneNumberRef200 }
+export { NullableReferencedAccount as UserControllerPatchUserDefaultAccountRef200 }
+export { NullableReferencedUpdateAccount as UserControllerPatchUserDefaultAccountRefRequest }
+export { NullableReferencedEmailAddress as UserControllerPatchUserPrimaryEmailAddressRef200 }
+export { NullableReferencedUpdateEmailAddress as UserControllerPatchUserPrimaryEmailAddressRefRequest }
+export { NullableReferencedPhoneNumber as UserControllerPatchUserPrimaryPhoneNumberRef200 }
+export { NullableReferencedUpdatePhoneNumber as UserControllerPatchUserPrimaryPhoneNumberRefRequest }
+export { User as UserControllerUpdateUserById200 }
 export { AccountControllerGetCurrentAccountParams as UserControllerUpdateUserByIdParams }
+export { UpdateUser as UserControllerUpdateUserByIdRequest }
+export { BlueprintAttributes as UserManualAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserManualControllerCreateUserManualParams }
+export { ReferencedAssetList as UserManualControllerDeleteUserManualAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerDeleteUserManualAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as UserManualControllerDeleteUserManualAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerDeleteUserManualByIdParams }
+export { ReferencedProjectList as UserManualControllerDeleteUserManualProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerDeleteUserManualProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as UserManualControllerDeleteUserManualProjectsRefRequest }
+export { ReferencedSpaceList as UserManualControllerDeleteUserManualSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerDeleteUserManualSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as UserManualControllerDeleteUserManualSpacesRefRequest }
+export { Account as UserManualControllerGetUserManualAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserManualControllerGetUserManualAccountParams }
+export { ReferencedAccount as UserManualControllerGetUserManualAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerGetUserManualAccountRefParams }
+export { AssetList as UserManualControllerGetUserManualAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as UserManualControllerGetUserManualAssetsParams }
+export { ReferencedAssetList as UserManualControllerGetUserManualAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerGetUserManualAssetsRefParams }
+export { UserManual as UserManualControllerGetUserManualById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserManualControllerGetUserManualByIdParams }
+export { DocumentType as UserManualControllerGetUserManualDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserManualControllerGetUserManualDocumentTypeParams }
+export { ReferencedDocumentType as UserManualControllerGetUserManualDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerGetUserManualDocumentTypeRefParams }
+export { NullableFile as UserManualControllerGetUserManualFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserManualControllerGetUserManualFileParams }
+export { NullableReferencedFile as UserManualControllerGetUserManualFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerGetUserManualFileRefParams }
+export { UserManualList as UserManualControllerGetUserManualList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as UserManualControllerGetUserManualListParams }
+export { ProjectList as UserManualControllerGetUserManualProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as UserManualControllerGetUserManualProjectsParams }
+export { ReferencedProjectList as UserManualControllerGetUserManualProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerGetUserManualProjectsRefParams }
+export { SpaceList as UserManualControllerGetUserManualSpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as UserManualControllerGetUserManualSpacesParams }
+export { ReferencedSpaceList as UserManualControllerGetUserManualSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerGetUserManualSpacesRefParams }
+export { ReferencedAccount as UserManualControllerPatchUserManualAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPatchUserManualAccountRefParams }
+export { ReferencedUpdateAccount as UserManualControllerPatchUserManualAccountRefRequest }
+export { ReferencedAssetList as UserManualControllerPatchUserManualAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPatchUserManualAssetsRefParams }
+export { ReferencedUpdateAssetList as UserManualControllerPatchUserManualAssetsRefRequest }
+export { NullableReferencedFile as UserManualControllerPatchUserManualFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPatchUserManualFileRefParams }
+export { NullableReferencedUpdateFile as UserManualControllerPatchUserManualFileRefRequest }
+export { ReferencedProjectList as UserManualControllerPatchUserManualProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPatchUserManualProjectsRefParams }
+export { ReferencedUpdateProjectList as UserManualControllerPatchUserManualProjectsRefRequest }
+export { ReferencedSpaceList as UserManualControllerPatchUserManualSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPatchUserManualSpacesRefParams }
+export { ReferencedUpdateSpaceList as UserManualControllerPatchUserManualSpacesRefRequest }
+export { ReferencedAssetList as UserManualControllerPostUserManualAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPostUserManualAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as UserManualControllerPostUserManualAssetsRefRequest }
+export { ReferencedProjectList as UserManualControllerPostUserManualProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPostUserManualProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as UserManualControllerPostUserManualProjectsRefRequest }
+export { ReferencedSpaceList as UserManualControllerPostUserManualSpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as UserManualControllerPostUserManualSpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as UserManualControllerPostUserManualSpacesRefRequest }
+export { UserManual as UserManualControllerUpdateUserManualById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as UserManualControllerUpdateUserManualByIdParams }
+export { UpdateUserManual as UserManualControllerUpdateUserManualByIdRequest }
+export { BlueprintRelationships as UserManualRelationships }
+export { BlueprintAttributes as WarrantyAttributes }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as WarrantyControllerCreateWarrantyParams }
+export { ReferencedAssetList as WarrantyControllerDeleteWarrantyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerDeleteWarrantyAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as WarrantyControllerDeleteWarrantyAssetsRefRequest }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerDeleteWarrantyByIdParams }
+export { ReferencedProjectList as WarrantyControllerDeleteWarrantyProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerDeleteWarrantyProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as WarrantyControllerDeleteWarrantyProjectsRefRequest }
+export { ReferencedSpaceList as WarrantyControllerDeleteWarrantySpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerDeleteWarrantySpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as WarrantyControllerDeleteWarrantySpacesRefRequest }
+export { Account as WarrantyControllerGetWarrantyAccount200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as WarrantyControllerGetWarrantyAccountParams }
+export { ReferencedAccount as WarrantyControllerGetWarrantyAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerGetWarrantyAccountRefParams }
+export { AssetList as WarrantyControllerGetWarrantyAssets200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as WarrantyControllerGetWarrantyAssetsParams }
+export { ReferencedAssetList as WarrantyControllerGetWarrantyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerGetWarrantyAssetsRefParams }
+export { Warranty as WarrantyControllerGetWarrantyById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as WarrantyControllerGetWarrantyByIdParams }
+export { DocumentType as WarrantyControllerGetWarrantyDocumentType200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as WarrantyControllerGetWarrantyDocumentTypeParams }
+export { ReferencedDocumentType as WarrantyControllerGetWarrantyDocumentTypeRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerGetWarrantyDocumentTypeRefParams }
+export { NullableFile as WarrantyControllerGetWarrantyFile200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as WarrantyControllerGetWarrantyFileParams }
+export { NullableReferencedFile as WarrantyControllerGetWarrantyFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerGetWarrantyFileRefParams }
+export { WarrantyList as WarrantyControllerGetWarrantyList200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as WarrantyControllerGetWarrantyListParams }
+export { ProjectList as WarrantyControllerGetWarrantyProjects200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as WarrantyControllerGetWarrantyProjectsParams }
+export { ReferencedProjectList as WarrantyControllerGetWarrantyProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerGetWarrantyProjectsRefParams }
+export { SpaceList as WarrantyControllerGetWarrantySpaces200 }
 export { UserAccountRoleControllerGetUserAccountRoleListParams as WarrantyControllerGetWarrantySpacesParams }
+export { ReferencedSpaceList as WarrantyControllerGetWarrantySpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerGetWarrantySpacesRefParams }
+export { ReferencedAccount as WarrantyControllerPatchWarrantyAccountRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPatchWarrantyAccountRefParams }
+export { ReferencedUpdateAccount as WarrantyControllerPatchWarrantyAccountRefRequest }
+export { ReferencedAssetList as WarrantyControllerPatchWarrantyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPatchWarrantyAssetsRefParams }
+export { ReferencedUpdateAssetList as WarrantyControllerPatchWarrantyAssetsRefRequest }
+export { NullableReferencedFile as WarrantyControllerPatchWarrantyFileRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPatchWarrantyFileRefParams }
+export { NullableReferencedUpdateFile as WarrantyControllerPatchWarrantyFileRefRequest }
+export { ReferencedProjectList as WarrantyControllerPatchWarrantyProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPatchWarrantyProjectsRefParams }
+export { ReferencedUpdateProjectList as WarrantyControllerPatchWarrantyProjectsRefRequest }
+export { ReferencedSpaceList as WarrantyControllerPatchWarrantySpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPatchWarrantySpacesRefParams }
+export { ReferencedUpdateSpaceList as WarrantyControllerPatchWarrantySpacesRefRequest }
+export { ReferencedAssetList as WarrantyControllerPostWarrantyAssetsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPostWarrantyAssetsRefParams }
 export { PolicyControllerPostPolicyAssetsRefRequest as WarrantyControllerPostWarrantyAssetsRefRequest }
+export { ReferencedProjectList as WarrantyControllerPostWarrantyProjectsRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPostWarrantyProjectsRefParams }
 export { FileControllerPostFileProjectsRefRequest as WarrantyControllerPostWarrantyProjectsRefRequest }
+export { ReferencedSpaceList as WarrantyControllerPostWarrantySpacesRef200 }
 export { UserAccountRoleControllerDeleteUserAccountRoleByIdParams as WarrantyControllerPostWarrantySpacesRefParams }
 export { SpaceGroupControllerPostSpaceGroupSpacesRefRequest as WarrantyControllerPostWarrantySpacesRefRequest }
+export { Warranty as WarrantyControllerUpdateWarrantyById200 }
 export { UserAccountRoleControllerCreateUserAccountRoleParams as WarrantyControllerUpdateWarrantyByIdParams }
+export { UpdateWarranty as WarrantyControllerUpdateWarrantyByIdRequest }
+export { BlueprintRelationships as WarrantyRelationships }
 
 export const make = (
   httpClient: HttpClient.HttpClient, 

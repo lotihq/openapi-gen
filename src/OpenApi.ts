@@ -35,6 +35,65 @@ const httpClientMethodNames: Record<OpenAPISpecMethodName, string> = {
   trace: `make("TRACE")`,
 }
 
+const structuralOmitKeys = new Set([
+  "description",
+  "title",
+  "summary",
+  "externalDocs",
+  "examples",
+  "example",
+])
+
+const canonicalizeSchema = (value: unknown): unknown => {
+  if (Array.isArray(value)) {
+    return value.map(canonicalizeSchema)
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .filter(
+        ([key, v]) =>
+          v !== undefined && !structuralOmitKeys.has(key) && !key.startsWith("x-"),
+      )
+      .map(([key, v]) => [key, canonicalizeSchema(v)] as const)
+      .sort(([a], [b]) => a.localeCompare(b))
+    const out: Record<string, unknown> = {}
+    for (const [key, v] of entries) {
+      out[key] = v
+    }
+    return out
+  }
+  return value
+}
+
+const schemaHash = (schema: JsonSchema.JsonSchema): string =>
+  JSON.stringify(canonicalizeSchema(schema))
+
+const dedupeComponentSchemas = (
+  schemas: Record<string, JsonSchema.JsonSchema | { readonly $ref: string }>,
+) => {
+  const seen = new Map<string, string>()
+  for (const [name, schema] of Object.entries(schemas)) {
+    if (!schema || typeof schema !== "object" || "$ref" in schema) {
+      continue
+    }
+    if (
+      !(
+        name.endsWith("Attributes") ||
+        name.endsWith("Relationships")
+      )
+    ) {
+      continue
+    }
+    const key = schemaHash(schema as JsonSchema.JsonSchema)
+    const canonical = seen.get(key)
+    if (canonical && canonical !== name) {
+      schemas[name] = { $ref: `#/components/schemas/${canonical}` }
+    } else {
+      seen.set(key, name)
+    }
+  }
+}
+
 interface ParsedOperation {
   readonly id: string
   readonly method: OpenAPISpecMethodName
@@ -82,6 +141,14 @@ export const make = Effect.gen(function* () {
     ) {
       if (isV2(spec)) {
         spec = yield* convert(spec)
+      }
+      if (spec.components?.schemas) {
+        dedupeComponentSchemas(
+          spec.components.schemas as Record<
+            string,
+            JsonSchema.JsonSchema | { readonly $ref: string }
+          >,
+        )
       }
       const gen = yield* JsonSchemaGen.JsonSchemaGen
       const components = spec.components

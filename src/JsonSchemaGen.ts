@@ -132,10 +132,15 @@ const make = Effect.gen(function* () {
           return
         }
         processingRefs.add(schema.$ref)
-        const resolved = resolveRef(schema, {
-          ...root,
-          ...context,
-        })
+        const resolved = resolveRef(
+          schema,
+          {
+            ...root,
+            ...context,
+          },
+          false,
+          aliasMap,
+        )
         if (!resolved) {
           processingRefs.delete(schema.$ref)
           return
@@ -167,10 +172,15 @@ const make = Effect.gen(function* () {
         return
       }
       if ("allOf" in schema) {
-        const resolved = resolveAllOf(schema, {
-          ...root,
-          ...context,
-        })
+        const resolved = resolveAllOf(
+          schema,
+          {
+            ...root,
+            ...context,
+          },
+          true,
+          aliasMap,
+        )
         if (childName !== undefined) {
           addRefs(resolved, childName + enumSuffix, asStruct)
           store.set(childName, resolved)
@@ -202,7 +212,12 @@ const make = Effect.gen(function* () {
 
     if ("$ref" in root) {
       addRefs(root, undefined, false)
-      return identifier(root.$ref.split("/").pop()!)
+      const target = identifier(root.$ref.split("/").pop()!)
+      if (target !== name) {
+        aliasMap.set(name, target)
+      }
+      schemaCache.set(cacheKey, target)
+      return target
     } else {
       addRefs(root, "properties" in root ? name : undefined)
       store.set(name, root)
@@ -420,7 +435,11 @@ const make = Effect.gen(function* () {
       if (!schema.$ref.startsWith("#")) {
         return Option.none()
       }
-      const name = identifier(schema.$ref.split("/").pop()!)
+      let name = identifier(schema.$ref.split("/").pop()!)
+      const canonical = aliasMap.get(name)
+      if (canonical) {
+        name = canonical
+      }
       recordDependency(name)
       return Option.some(transformer.onRef({ importName, name }))
     } else if ("properties" in schema) {
@@ -524,6 +543,12 @@ const make = Effect.gen(function* () {
       return { anyOf: schema }
     }
     return schema
+  }
+
+  const addAlias = (alias: string, target: string) => {
+    if (alias !== target) {
+      aliasMap.set(alias, target)
+    }
   }
 
   const generate = (importName: string) =>
@@ -667,7 +692,7 @@ const make = Effect.gen(function* () {
         : emitBody
     })
 
-  return { addSchema, generate } as const
+  return { addSchema, addAlias, generate } as const
 })
 
 export class JsonSchemaGen extends Context.Tag("JsonSchemaGen")<
@@ -996,9 +1021,10 @@ function resolveAllOf(
   schema: JsonSchema.JsonSchema,
   context: JsonSchema.JsonSchema,
   resolveRefs = true,
+  aliasMap?: Map<string, string>,
 ): JsonSchema.JsonSchema {
   if ("$ref" in schema) {
-    const resolved = resolveRef(schema, context, resolveRefs)
+    const resolved = resolveRef(schema, context, resolveRefs, aliasMap)
     if (!resolved) {
       return schema
     }
@@ -1011,11 +1037,14 @@ function resolveAllOf(
         return out
       }
       Object.assign(out, schema.allOf[0])
-      return resolveAllOf(out, context, resolveRefs)
+      return resolveAllOf(out, context, resolveRefs, aliasMap)
     }
     let out = {} as JsonSchema.JsonSchema
     for (const member of schema.allOf) {
-      out = mergeSchemas(out, resolveAllOf(member as any, context, resolveRefs))
+      out = mergeSchemas(
+        out,
+        resolveAllOf(member as any, context, resolveRefs, aliasMap),
+      )
     }
     return out
   }
@@ -1026,6 +1055,7 @@ function resolveRef(
   schema: JsonSchema.Ref,
   context: JsonSchema.JsonSchema,
   recursive = false,
+  aliasMap?: Map<string, string>,
 ):
   | {
       readonly name: string
@@ -1035,15 +1065,56 @@ function resolveRef(
   if (!schema.$ref.startsWith("#")) {
     return
   }
-  const path = schema.$ref.slice(2).split("/")
-  const name = identifier(path[path.length - 1])
-  let current = context
-  for (const key of path) {
-    if (!current) return
-    current = (current as any)[key] as JsonSchema.JsonSchema
+  const visited = new Set<string>()
+  let ref = schema.$ref
+  let current: any = context
+  let name = ""
+  while (true) {
+    const path = ref.slice(2).split("/")
+    name = identifier(path[path.length - 1]!)
+    current = context
+    for (const key of path) {
+      if (!current) {
+        return
+      }
+      current = (current as any)[key]
+    }
+    if (!current || typeof current !== "object") {
+      return
+    }
+    if (!("$ref" in current)) {
+      return {
+        name,
+        schema: resolveAllOf(
+          current as JsonSchema.JsonSchema,
+          context,
+          recursive,
+          aliasMap,
+        ),
+      } as const
+    }
+    const nextRef = (current as JsonSchema.Ref).$ref
+    if (typeof nextRef !== "string" || !nextRef.startsWith("#")) {
+      return
+    }
+    const targetName = identifier(nextRef.split("/").pop()!)
+    if (targetName !== name && aliasMap) {
+      aliasMap.set(name, targetName)
+    }
+    if (visited.has(nextRef)) {
+      return {
+        name: targetName,
+        schema: resolveAllOf(
+          current as JsonSchema.JsonSchema,
+          context,
+          recursive,
+          aliasMap,
+        ),
+      } as const
+    }
+    visited.add(nextRef)
+    ref = nextRef
   }
-
-  return { name, schema: resolveAllOf(current, context, recursive) } as const
 }
 
 function filterNullable(schema: JsonSchema.JsonSchema) {
