@@ -7,6 +7,7 @@
     "directory": "dist",
     "access": "public"
   },
+  "bin": "./dist/main.js",
   "scripts": {
     "version": "changeset version",
     "release": "pnpm run build && changeset publish",
