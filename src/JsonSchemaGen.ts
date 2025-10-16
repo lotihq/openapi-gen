@@ -139,7 +139,7 @@ const make = Effect.gen(function* () {
     } else {
       addRefs(root, "properties" in root ? name : undefined)
       store.set(name, root)
-      if (!asStruct) {
+      if (!asStruct && !("oneOf" in root || "anyOf" in root)) {
         classes.add(name)
       }
     }
@@ -280,30 +280,6 @@ const make = Effect.gen(function* () {
       }
       const name = identifier(schema.$ref.split("/").pop()!)
       return Option.some(transformer.onRef({ importName, name }))
-    } else if ("properties" in schema) {
-      return toSource(
-        importName,
-        { type: "object", ...schema } as any,
-        currentIdentifier,
-        topLevel,
-      )
-    } else if ("allOf" in schema) {
-      if (store.has(currentIdentifier)) {
-        return Option.some(
-          transformer.onRef({ importName, name: currentIdentifier }),
-        )
-      }
-      const sources = (schema as any).allOf as Array<JsonSchema.JsonSchema>
-      if (sources.length === 0) {
-        return Option.none()
-      }
-      const flattened = flattenAllOf(schema)
-      return toSource(
-        importName,
-        flattened,
-        currentIdentifier + "Enum",
-        topLevel,
-      )
     } else if ("anyOf" in schema || "oneOf" in schema) {
       let itemSchemas =
         "anyOf" in schema
@@ -346,6 +322,30 @@ const make = Effect.gen(function* () {
         return Option.some(items[0].source)
       }
       return Option.some(transformer.onUnion({ importName, items, topLevel }))
+    } else if ("properties" in schema) {
+      return toSource(
+        importName,
+        { type: "object", ...schema } as any,
+        currentIdentifier,
+        topLevel,
+      )
+    } else if ("allOf" in schema) {
+      if (store.has(currentIdentifier)) {
+        return Option.some(
+          transformer.onRef({ importName, name: currentIdentifier }),
+        )
+      }
+      const sources = (schema as any).allOf as Array<JsonSchema.JsonSchema>
+      if (sources.length === 0) {
+        return Option.none()
+      }
+      const flattened = flattenAllOf(schema)
+      return toSource(
+        importName,
+        flattened,
+        currentIdentifier + "Enum",
+        topLevel,
+      )
     } else if ("type" in schema && schema.type) {
       switch (schema.type) {
         case "string": {
@@ -567,10 +567,17 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
       return isClass || isEnum
     },
     onTopLevel({ importName, schema, name, source, isClass, description }) {
-      const isObject = "properties" in schema
+      const hasUnion = "oneOf" in schema || "anyOf" in schema
+      const isObject = "properties" in schema && Object.keys(schema.properties ?? {}).length > 0
+
+      if (hasUnion) {
+        return `${toComment(description)}export const ${name} = ${source}\nexport type ${name} = typeof ${name}["Type"]`
+      }
+
       if (!isObject || !isClass) {
         return `${toComment(description)}export class ${name} extends ${source} {}`
       }
+
       return `${toComment(description)}export class ${name} extends ${importName}.Class<${name}>("${name}")(${source}) {}`
     },
     propertySeparator: ",\n  ",
