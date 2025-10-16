@@ -13,6 +13,7 @@ const make = Effect.gen(function* () {
   const classes = new Set<string>()
   const enums = new Set<string>()
   const refStore = new Map<string, JsonSchema.JsonSchema>()
+  const dependencies = new Map<string, Set<string>>()
 
   function cleanupSchema(schema: JsonSchema.JsonSchema) {
     if (
@@ -60,7 +61,8 @@ const make = Effect.gen(function* () {
     return schema
   }
 
-  const seenRefs = new Set<string>()
+  const processingRefs = new Set<string>()
+  const processedRefs = new Set<string>()
   const addSchema = (
     name: string,
     root: JsonSchema.JsonSchema,
@@ -77,36 +79,45 @@ const make = Effect.gen(function* () {
       schema = cleanupSchema(schema)
       const enumSuffix = childName?.endsWith("Enum") ? "" : "Enum"
       if ("$ref" in schema) {
-        if (seenRefs.has(schema.$ref)) {
+        if (processingRefs.has(schema.$ref)) {
           return
         }
-        seenRefs.add(schema.$ref)
-
+        processingRefs.add(schema.$ref)
         const resolved = resolveRef(schema, {
           ...root,
           ...context,
         })
         if (!resolved) {
-          return
-        }
-        if (store.has(resolved.name)) {
+          processingRefs.delete(schema.$ref)
           return
         }
         refStore.set(schema.$ref, resolved.schema)
-        addRefs(resolved.schema, resolved.name)
-        store.set(resolved.name, resolved.schema)
+        let inserted = false
+        if (!store.has(resolved.name)) {
+          store.set(resolved.name, resolved.schema)
+          inserted = true
+        }
+        if (!processedRefs.has(resolved.name) || inserted) {
+          processedRefs.add(resolved.name)
+          addRefs(resolved.schema, resolved.name)
+        }
         classes.add(resolved.name)
-      } else if ("properties" in schema) {
+        processingRefs.delete(schema.$ref)
+      }
+      if ("properties" in schema) {
         Object.entries(schema.properties).forEach(([name, s]) =>
           addRefs(s, childName ? childName + identifier(name) : undefined),
         )
-      } else if ("type" in schema && schema.type === "array") {
+      }
+      if ("type" in schema && schema.type === "array") {
         if (Array.isArray(schema.items)) {
           schema.items.forEach((s) => addRefs(s, undefined))
         } else if (schema.items) {
           addRefs(schema.items, undefined)
         }
-      } else if ("allOf" in schema) {
+        return
+      }
+      if ("allOf" in schema) {
         const resolved = resolveAllOf(schema, {
           ...root,
           ...context,
@@ -117,15 +128,22 @@ const make = Effect.gen(function* () {
         } else {
           addRefs(resolved, undefined, asStruct)
         }
-      } else if ("anyOf" in schema) {
+        return
+      }
+      if ("anyOf" in schema) {
         schema.anyOf.forEach((s) =>
           addRefs(s as any, childName ? childName + enumSuffix : undefined),
         )
-      } else if ("oneOf" in schema) {
-        ;(schema as any).oneOf.forEach((s: any) =>
-          addRefs(s, childName ? childName + enumSuffix : undefined),
-        )
-      } else if ("enum" in schema) {
+        return
+      }
+      if ("oneOf" in schema) {
+        ;(schema as any).oneOf.forEach((s: any) => {
+          const nextChild = childName ? childName + enumSuffix : undefined
+          addRefs(s, nextChild)
+        })
+        return
+      }
+      if ("enum" in schema) {
         if (childName !== undefined && !("const" in schema)) {
           store.set(childName, schema)
           enums.add(childName)
@@ -160,16 +178,28 @@ const make = Effect.gen(function* () {
       isClass,
       isEnum,
     })
-    return toSource(importName, Object.keys(schema).length ? schema : {
-      properties: {},
-    } as JsonSchema.JsonSchema, name, topLevel).pipe(
-      Option.map((source) =>
+    const dependencySet = new Set<string>()
+    const normalizedSchema = Object.keys(schema).length
+      ? schema
+      : ({ properties: {} } as JsonSchema.JsonSchema)
+    const source = toSource(
+      importName,
+      normalizedSchema,
+      name,
+      topLevel,
+      name,
+      dependencySet,
+    )
+    dependencySet.delete(name)
+    dependencies.set(name, dependencySet)
+    return source.pipe(
+      Option.map((result) =>
         transformer.onTopLevel({
           importName,
           schema,
           description: nonEmptyString(schema.description),
           name,
-          source,
+          source: result,
           isClass,
           isEnum,
         }),
@@ -208,9 +238,66 @@ const make = Effect.gen(function* () {
     schema: JsonSchema.JsonSchema,
     currentIdentifier: string,
     topLevel = false,
+    rootIdentifier = currentIdentifier,
+    currentDependencies?: Set<string>,
   ): Option.Option<string> => {
+    const recordDependency = (name: string) => {
+      if (!currentDependencies || name === rootIdentifier) {
+        return
+      }
+      currentDependencies.add(name)
+    }
     schema = cleanupSchema(schema)
-    if ("properties" in schema) {
+    if ("anyOf" in schema || "oneOf" in schema) {
+      let itemSchemas =
+        "anyOf" in schema
+          ? (schema.anyOf as Array<JsonSchema.JsonSchema>)
+          : (schema.oneOf as Array<JsonSchema.JsonSchema>)
+      let typePrimitives = 0
+      const constItems = Arr.empty<JsonSchema.JsonSchema>()
+      for (const item of itemSchemas) {
+        if ("type" in item && (item as any).type !== "null") {
+          typePrimitives++
+        } else if ("const" in item) {
+          constItems.push(item)
+        }
+      }
+      if (
+        typePrimitives <= 1 &&
+        constItems.length > 0 &&
+        constItems.length + typePrimitives === itemSchemas.length
+      ) {
+        itemSchemas = constItems
+      }
+      const items = pipe(
+        itemSchemas,
+        Arr.filterMap((_) =>
+          toSource(
+            importName,
+            _,
+            currentIdentifier + "Enum",
+            false,
+            rootIdentifier,
+            currentDependencies,
+          ).pipe(
+            Option.map(
+              (source) =>
+                ({
+                  description: nonEmptyString(_.description),
+                  title: nonEmptyString(_.title),
+                  source,
+                }) as const,
+            ),
+          ),
+        ),
+      )
+      if (items.length === 0) {
+        return Option.none()
+      } else if (items.length === 1) {
+        return Option.some(items[0].source)
+      }
+      return Option.some(transformer.onUnion({ importName, items, topLevel }))
+    } else if ("properties" in schema) {
       const obj = schema as JsonSchema.Object
       const required = obj.required ?? []
       const properties = pipe(
@@ -224,6 +311,9 @@ const make = Effect.gen(function* () {
             importName,
             enumNullable ? filteredSchema : schema,
             currentIdentifier + identifier(key),
+            false,
+            rootIdentifier,
+            currentDependencies,
           ).pipe(
             Option.map((source) =>
               transformer.onProperty({
@@ -259,10 +349,12 @@ const make = Effect.gen(function* () {
       )
     } else if ("enum" in schema) {
       if (!topLevel && enums.has(currentIdentifier)) {
+        recordDependency(currentIdentifier)
         return Option.some(
           transformer.onRef({ importName, name: currentIdentifier }),
         )
       } else if (!topLevel && enums.has(currentIdentifier + "Enum")) {
+        recordDependency(currentIdentifier + "Enum")
         return Option.some(
           transformer.onRef({ importName, name: currentIdentifier + "Enum" }),
         )
@@ -279,58 +371,20 @@ const make = Effect.gen(function* () {
         return Option.none()
       }
       const name = identifier(schema.$ref.split("/").pop()!)
+      recordDependency(name)
       return Option.some(transformer.onRef({ importName, name }))
-    } else if ("anyOf" in schema || "oneOf" in schema) {
-      let itemSchemas =
-        "anyOf" in schema
-          ? (schema.anyOf as Array<JsonSchema.JsonSchema>)
-          : (schema.oneOf as Array<JsonSchema.JsonSchema>)
-      let typePrimitives = 0
-      const constItems = Arr.empty<JsonSchema.JsonSchema>()
-      for (const item of itemSchemas) {
-        if ("type" in item && (item as any).type !== "null") {
-          typePrimitives++
-        } else if ("const" in item) {
-          constItems.push(item)
-        }
-      }
-      if (
-        typePrimitives <= 1 &&
-        constItems.length > 0 &&
-        constItems.length + typePrimitives === itemSchemas.length
-      ) {
-        itemSchemas = constItems
-      }
-      const items = pipe(
-        itemSchemas,
-        Arr.filterMap((_) =>
-          toSource(importName, _, currentIdentifier + "Enum").pipe(
-            Option.map(
-              (source) =>
-                ({
-                  description: nonEmptyString(_.description),
-                  title: nonEmptyString(_.title),
-                  source,
-                }) as const,
-            ),
-          ),
-        ),
-      )
-      if (items.length === 0) {
-        return Option.none()
-      } else if (items.length === 1) {
-        return Option.some(items[0].source)
-      }
-      return Option.some(transformer.onUnion({ importName, items, topLevel }))
     } else if ("properties" in schema) {
       return toSource(
         importName,
         { type: "object", ...schema } as any,
         currentIdentifier,
         topLevel,
+        rootIdentifier,
+        currentDependencies,
       )
     } else if ("allOf" in schema) {
       if (store.has(currentIdentifier)) {
+        recordDependency(currentIdentifier)
         return Option.some(
           transformer.onRef({ importName, name: currentIdentifier }),
         )
@@ -345,6 +399,8 @@ const make = Effect.gen(function* () {
         flattened,
         currentIdentifier + "Enum",
         topLevel,
+        rootIdentifier,
+        currentDependencies,
       )
     } else if ("type" in schema && schema.type) {
       switch (schema.type) {
@@ -390,6 +446,9 @@ const make = Effect.gen(function* () {
             importName,
             itemsSchema(schema.items),
             currentIdentifier,
+            false,
+            rootIdentifier,
+            currentDependencies,
           ).pipe(
             Option.map((item) =>
               transformer.onArray({
@@ -418,15 +477,132 @@ const make = Effect.gen(function* () {
   }
 
   const generate = (importName: string) =>
-    Effect.sync(() =>
-      pipe(
-        store.entries(),
-        Arr.filterMap(([name, schema]) =>
-          topLevelSource(importName, name, schema),
-        ),
-        Arr.join("\n\n"),
-      ),
-    )
+    Effect.sync(() => {
+      const storeEntries = Array.from(store.entries())
+      const missingTopLevel: Array<string> = []
+      const sources: Array<{ readonly name: string; readonly source: string }> =
+        []
+      for (const [name, schema] of storeEntries) {
+        const maybeSource = topLevelSource(importName, name, schema)
+        Option.match(maybeSource, {
+          onNone: () => {
+            missingTopLevel.push(name)
+          },
+          onSome: (source) => {
+            sources.push({ name, source })
+          },
+        })
+      }
+      if (sources.length === 0) {
+        return ""
+      }
+      const topLevelNames = new Set(sources.map((_) => _.name))
+      const graph = new Map<string, Set<string>>()
+      const dependents = new Map<string, Set<string>>()
+      const missingDependencies: Array<{
+        readonly name: string
+        readonly missing: ReadonlyArray<string>
+      }> = []
+      for (const { name } of sources) {
+        const deps = dependencies.get(name)
+        if (deps) {
+          const filtered = new Set<string>()
+          const missing: Array<string> = []
+          for (const dep of deps) {
+            if (topLevelNames.has(dep)) {
+              filtered.add(dep)
+              const list = dependents.get(dep)
+              if (list) {
+                list.add(name)
+              } else {
+                dependents.set(dep, new Set([name]))
+              }
+            } else if (store.has(dep)) {
+              missing.push(dep)
+            }
+          }
+          if (missing.length > 0) {
+            missingDependencies.push({ name, missing })
+          }
+          graph.set(name, filtered)
+        } else {
+          graph.set(name, new Set())
+        }
+      }
+      const indegree = new Map<string, number>()
+      for (const { name } of sources) {
+        indegree.set(name, graph.get(name)?.size ?? 0)
+      }
+      const insertionOrder = sources.map((_) => _.name)
+      const queue: Array<string> = []
+      const enqueued = new Set<string>()
+      for (const name of insertionOrder) {
+        if ((indegree.get(name) ?? 0) === 0) {
+          queue.push(name)
+          enqueued.add(name)
+        }
+      }
+      const ordered: Array<string> = []
+      for (let index = 0; index < queue.length; index++) {
+        const name = queue[index]!
+        ordered.push(name)
+        const nextNodes = dependents.get(name)
+        if (!nextNodes) {
+          continue
+        }
+        for (const dependent of nextNodes) {
+          const next = (indegree.get(dependent) ?? 0) - 1
+          indegree.set(dependent, next)
+          if (next === 0 && !enqueued.has(dependent)) {
+            queue.push(dependent)
+            enqueued.add(dependent)
+          }
+        }
+      }
+      const hasCycle = ordered.length !== topLevelNames.size
+      const finalOrder = hasCycle ? insertionOrder : ordered
+      const sourceMap = new Map(
+        sources.map((_) => [_.name, _.source] as const),
+      )
+      const warningBlocks: Array<string> = []
+      if (missingDependencies.length > 0) {
+        const details = missingDependencies
+          .map(
+            ({ name, missing }) =>
+              `${name} -> ${missing.join(", ")}`,
+          )
+          .join("; ")
+        warningBlocks.push(
+          `/* JsonSchemaGen warning: missing definitions for ${details}. */`,
+        )
+      }
+      if (hasCycle) {
+        const cyclic = computeStronglyConnectedComponents(graph).filter(
+          (component) =>
+            component.length > 1 ||
+            (component.length === 1 &&
+              graph.get(component[0])?.has(component[0])),
+        )
+        if (cyclic.length > 0) {
+          warningBlocks.push(
+            `/* JsonSchemaGen warning: circular dependencies detected among ${cyclic
+              .map((component) => component.join(", "))
+              .join(" | ")}. Original emission order preserved. */`,
+          )
+        }
+      }
+      if (missingTopLevel.length > 0) {
+        warningBlocks.push(
+          `/* JsonSchemaGen warning: unsupported top-level schemas (${missingTopLevel.join(", ")}). */`,
+        )
+      }
+      const body = finalOrder
+        .map((name) => sourceMap.get(name)!)
+        .join("\n\n")
+      return warningBlocks.length > 0
+        ? `${warningBlocks.join("\n")}\n\n${body}`
+        : body
+    })
 
   return { addSchema, generate } as const
 })
@@ -571,7 +747,7 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
       const isObject = "properties" in schema && Object.keys(schema.properties ?? {}).length > 0
 
       if (hasUnion) {
-        return `${toComment(description)}export const ${name} = ${source}\nexport type ${name} = typeof ${name}["Type"]`
+        return `${toComment(description)}export const ${name} = eraseSchemaReq(${source})\nexport type ${name} = typeof ${name}`
       }
 
       if (!isObject || !isClass) {
@@ -798,7 +974,6 @@ function resolveRef(
   }
   const path = schema.$ref.slice(2).split("/")
   const name = identifier(path[path.length - 1])
-
   let current = context
   for (const key of path) {
     if (!current) return
@@ -830,4 +1005,63 @@ function filterNullable(schema: JsonSchema.JsonSchema) {
     ] as const
   }
   return [false, schema] as const
+}
+
+function computeStronglyConnectedComponents(graph: Map<string, Set<string>>) {
+  let index = 0
+  const indices = new Map<string, number>()
+  const lowlinks = new Map<string, number>()
+  const stack: Array<string> = []
+  const onStack = new Set<string>()
+  const components: Array<Array<string>> = []
+
+  const strongConnect = (node: string) => {
+    indices.set(node, index)
+    lowlinks.set(node, index)
+    index++
+    stack.push(node)
+    onStack.add(node)
+
+    for (const dep of graph.get(node) ?? new Set<string>()) {
+      if (!indices.has(dep)) {
+        strongConnect(dep)
+        lowlinks.set(
+          node,
+          Math.min(
+            lowlinks.get(node)!,
+            lowlinks.get(dep)!,
+          ),
+        )
+      } else if (onStack.has(dep)) {
+        lowlinks.set(
+          node,
+          Math.min(
+            lowlinks.get(node)!,
+            indices.get(dep)!,
+          ),
+        )
+      }
+    }
+
+    if (lowlinks.get(node) === indices.get(node)) {
+      const component: Array<string> = []
+      while (true) {
+        const item = stack.pop()!
+        onStack.delete(item)
+        component.push(item)
+        if (item === node) {
+          break
+        }
+      }
+      components.push(component)
+    }
+  }
+
+  for (const node of graph.keys()) {
+    if (!indices.has(node)) {
+      strongConnect(node)
+    }
+  }
+
+  return components
 }

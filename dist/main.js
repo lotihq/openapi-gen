@@ -51,10 +51,6 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __typeError = (msg) => {
-  throw TypeError(msg);
-};
-var __defNormalProp = (obj, key, value5) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value: value5 }) : obj[key] = value5;
 var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
   get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
 }) : x)(function(x) {
@@ -88,11 +84,6 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var __publicField = (obj, key, value5) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value5);
-var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
-var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
-var __privateAdd = (obj, member, value5) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value5);
-var __privateSet = (obj, member, value5, setter) => (__accessCheck(obj, member, "write to private field"), member.set(obj, value5), value5);
 
 // node_modules/.pnpm/ini@4.1.3/node_modules/ini/lib/ini.js
 var require_ini = __commonJS({
@@ -8657,9 +8648,9 @@ var isPromiseLike = (input) => hasProperty(input, "then") && isFunction2(input.t
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/errors.js
 var getBugErrorMessage = (message) => `BUG: ${message} - please report an issue at https://github.com/Effect-TS/effect/issues`;
 var SingleShotGen = class _SingleShotGen {
+  self;
+  called = false;
   constructor(self) {
-    __publicField(this, "self");
-    __publicField(this, "called", false);
     this.self = self;
   }
   /**
@@ -8703,8 +8694,8 @@ var MUL_LO = 1284865837 >>> 0;
 var BIT_53 = 9007199254740992;
 var BIT_27 = 134217728;
 var PCGRandom = class {
+  _state;
   constructor(seedHi, seedLo, incHi, incLo) {
-    __publicField(this, "_state");
     if (isNullable(seedLo) && isNullable(seedHi)) {
       seedLo = Math.random() * 4294967295 >>> 0;
       seedHi = 0;
@@ -8813,23 +8804,21 @@ function add64(out, aHi, aLo, bHi, bLo) {
   out[1] = lo;
 }
 var YieldWrapTypeId = /* @__PURE__ */ Symbol.for("effect/Utils/YieldWrap");
-var _value;
 var YieldWrap = class {
+  /**
+   * @since 3.0.6
+   */
+  #value;
   constructor(value5) {
-    /**
-     * @since 3.0.6
-     */
-    __privateAdd(this, _value);
-    __privateSet(this, _value, value5);
+    this.#value = value5;
   }
   /**
    * @since 3.0.6
    */
   [YieldWrapTypeId]() {
-    return __privateGet(this, _value);
+    return this.#value;
   }
 };
-_value = new WeakMap();
 function yieldWrapGet(self) {
   if (typeof self === "object" && self !== null && YieldWrapTypeId in self) {
     return self[YieldWrapTypeId]();
@@ -10670,9 +10659,7 @@ function arraySpliceIn(mutate3, at, v, arr) {
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/hashMap/node.js
 var EmptyNode = class _EmptyNode {
-  constructor() {
-    __publicField(this, "_tag", "EmptyNode");
-  }
+  _tag = "EmptyNode";
   modify(edit, _shift, f, hash2, key, size13) {
     const v = f(none2());
     if (isNone2(v)) return new _EmptyNode();
@@ -10690,12 +10677,12 @@ function canEditNode(node, edit) {
   return isEmptyNode(node) ? false : edit === node.edit;
 }
 var LeafNode = class _LeafNode {
+  edit;
+  hash;
+  key;
+  value;
+  _tag = "LeafNode";
   constructor(edit, hash2, key, value5) {
-    __publicField(this, "edit");
-    __publicField(this, "hash");
-    __publicField(this, "key");
-    __publicField(this, "value");
-    __publicField(this, "_tag", "LeafNode");
     this.edit = edit;
     this.hash = hash2;
     this.key = key;
@@ -10722,11 +10709,11 @@ var LeafNode = class _LeafNode {
   }
 };
 var CollisionNode = class _CollisionNode {
+  edit;
+  hash;
+  children;
+  _tag = "CollisionNode";
   constructor(edit, hash2, children2) {
-    __publicField(this, "edit");
-    __publicField(this, "hash");
-    __publicField(this, "children");
-    __publicField(this, "_tag", "CollisionNode");
     this.edit = edit;
     this.hash = hash2;
     this.children = children2;
@@ -10765,11 +10752,11 @@ var CollisionNode = class _CollisionNode {
   }
 };
 var IndexedNode = class _IndexedNode {
+  edit;
+  mask;
+  children;
+  _tag = "IndexedNode";
   constructor(edit, mask, children2) {
-    __publicField(this, "edit");
-    __publicField(this, "mask");
-    __publicField(this, "children");
-    __publicField(this, "_tag", "IndexedNode");
     this.edit = edit;
     this.mask = mask;
     this.children = children2;
@@ -10811,11 +10798,11 @@ var IndexedNode = class _IndexedNode {
   }
 };
 var ArrayNode = class _ArrayNode {
+  edit;
+  size;
+  children;
+  _tag = "ArrayNode";
   constructor(edit, size13, children2) {
-    __publicField(this, "edit");
-    __publicField(this, "size");
-    __publicField(this, "children");
-    __publicField(this, "_tag", "ArrayNode");
     this.edit = edit;
     this.size = size13;
     this.children = children2;
@@ -10964,10 +10951,10 @@ var makeImpl = (editable, edit, root2, size13) => {
   return map33;
 };
 var HashMapIterator = class _HashMapIterator {
+  map;
+  f;
+  v;
   constructor(map33, f) {
-    __publicField(this, "map");
-    __publicField(this, "f");
-    __publicField(this, "v");
     this.map = map33;
     this.f = f;
     this.v = visitLazy(this.map._root, this.f, void 0);
@@ -11484,15 +11471,12 @@ var OP_NONE = "None";
 var OP_RUNTIME = "Runtime";
 var OP_COMPOSITE = "Composite";
 var emptyHash = /* @__PURE__ */ string(`${FiberIdSymbolKey}-${OP_NONE}`);
-var _a2;
 var None = class {
-  constructor() {
-    __publicField(this, _a2, FiberIdTypeId);
-    __publicField(this, "_tag", OP_NONE);
-    __publicField(this, "id", -1);
-    __publicField(this, "startTimeMillis", -1);
-  }
-  [(_a2 = FiberIdTypeId, symbol)]() {
+  [FiberIdTypeId] = FiberIdTypeId;
+  _tag = OP_NONE;
+  id = -1;
+  startTimeMillis = -1;
+  [symbol]() {
     return emptyHash;
   }
   [symbol2](that) {
@@ -11511,17 +11495,16 @@ var None = class {
     return this.toJSON();
   }
 };
-var _a3;
 var Runtime = class {
+  id;
+  startTimeMillis;
+  [FiberIdTypeId] = FiberIdTypeId;
+  _tag = OP_RUNTIME;
   constructor(id2, startTimeMillis) {
-    __publicField(this, "id");
-    __publicField(this, "startTimeMillis");
-    __publicField(this, _a3, FiberIdTypeId);
-    __publicField(this, "_tag", OP_RUNTIME);
     this.id = id2;
     this.startTimeMillis = startTimeMillis;
   }
-  [(_a3 = FiberIdTypeId, symbol)]() {
+  [symbol]() {
     return cached(this, string(`${FiberIdSymbolKey}-${this._tag}-${this.id}-${this.startTimeMillis}`));
   }
   [symbol2](that) {
@@ -11542,18 +11525,17 @@ var Runtime = class {
     return this.toJSON();
   }
 };
-var _a4;
 var Composite = class {
+  left;
+  right;
+  [FiberIdTypeId] = FiberIdTypeId;
+  _tag = OP_COMPOSITE;
   constructor(left3, right3) {
-    __publicField(this, "left");
-    __publicField(this, "right");
-    __publicField(this, _a4, FiberIdTypeId);
-    __publicField(this, "_tag", OP_COMPOSITE);
-    __publicField(this, "_hash");
     this.left = left3;
     this.right = right3;
   }
-  [(_a4 = FiberIdTypeId, symbol)]() {
+  _hash;
+  [symbol]() {
     return pipe(string(`${FiberIdSymbolKey}-${this._tag}`), combine(hash(this.left)), combine(hash(this.right)), cached(this));
   }
   [symbol2](that) {
@@ -12344,12 +12326,10 @@ var parallelVariance = {
   /* c8 ignore next */
   _R: (_) => _
 };
-var _a6;
-_a6 = RequestBlockParallelTypeId;
 var ParallelImpl = class {
+  map;
+  [RequestBlockParallelTypeId] = parallelVariance;
   constructor(map33) {
-    __publicField(this, "map");
-    __publicField(this, _a6, parallelVariance);
     this.map = map33;
   }
 };
@@ -12367,12 +12347,10 @@ var sequentialVariance = {
   /* c8 ignore next */
   _R: (_) => _
 };
-var _a7;
-_a7 = SequentialCollectionTypeId;
 var SequentialImpl = class {
+  map;
+  [SequentialCollectionTypeId] = sequentialVariance;
   constructor(map33) {
-    __publicField(this, "map");
-    __publicField(this, _a7, sequentialVariance);
     this.map = map33;
   }
 };
@@ -12861,6 +12839,7 @@ ${prefix}}`;
   return stack;
 };
 var PrettyError = class _PrettyError extends globalThis.Error {
+  span = void 0;
   constructor(originalError) {
     const originalErrorIsObject = typeof originalError === "object" && originalError !== null;
     const prevLimit = Error.stackTraceLimit;
@@ -12868,7 +12847,6 @@ var PrettyError = class _PrettyError extends globalThis.Error {
     super(prettyErrorMessage(originalError), originalErrorIsObject && "cause" in originalError && typeof originalError.cause !== "undefined" ? {
       cause: new _PrettyError(originalError.cause)
     } : void 0);
-    __publicField(this, "span");
     if (this.message === "") {
       this.message = "An error has occurred";
     }
@@ -12991,9 +12969,9 @@ var done = (effect3) => {
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/singleShotGen.js
 var SingleShotGen2 = class _SingleShotGen {
+  self;
+  called = false;
   constructor(self) {
-    __publicField(this, "self");
-    __publicField(this, "called", false);
     this.self = self;
   }
   next(a) {
@@ -13033,26 +13011,25 @@ var runRequestBlock = (blockedRequests) => {
 };
 var EffectTypeId2 = /* @__PURE__ */ Symbol.for("effect/Effect");
 var RevertFlags = class {
+  patch;
+  op;
+  _op = OP_REVERT_FLAGS;
   constructor(patch9, op) {
-    __publicField(this, "patch");
-    __publicField(this, "op");
-    __publicField(this, "_op", OP_REVERT_FLAGS);
     this.patch = patch9;
     this.op = op;
   }
 };
-var _a8;
 var EffectPrimitive = class {
+  _op;
+  effect_instruction_i0 = void 0;
+  effect_instruction_i1 = void 0;
+  effect_instruction_i2 = void 0;
+  trace = void 0;
+  [EffectTypeId2] = effectVariance;
   constructor(_op) {
-    __publicField(this, "_op");
-    __publicField(this, "effect_instruction_i0");
-    __publicField(this, "effect_instruction_i1");
-    __publicField(this, "effect_instruction_i2");
-    __publicField(this, "trace");
-    __publicField(this, _a8, effectVariance);
     this._op = _op;
   }
-  [(_a8 = EffectTypeId2, symbol2)](that) {
+  [symbol2](that) {
     return this === that;
   }
   [symbol]() {
@@ -13080,19 +13057,18 @@ var EffectPrimitive = class {
     return new SingleShotGen2(new YieldWrap(this));
   }
 };
-var _a9;
 var EffectPrimitiveFailure = class {
+  _op;
+  effect_instruction_i0 = void 0;
+  effect_instruction_i1 = void 0;
+  effect_instruction_i2 = void 0;
+  trace = void 0;
+  [EffectTypeId2] = effectVariance;
   constructor(_op) {
-    __publicField(this, "_op");
-    __publicField(this, "effect_instruction_i0");
-    __publicField(this, "effect_instruction_i1");
-    __publicField(this, "effect_instruction_i2");
-    __publicField(this, "trace");
-    __publicField(this, _a9, effectVariance);
     this._op = _op;
     this._tag = _op;
   }
-  [(_a9 = EffectTypeId2, symbol2)](that) {
+  [symbol2](that) {
     return exitIsExit(that) && that._op === "Failure" && // @ts-expect-error
     equals(this.effect_instruction_i0, that.effect_instruction_i0);
   }
@@ -13128,19 +13104,18 @@ var EffectPrimitiveFailure = class {
     return new SingleShotGen2(new YieldWrap(this));
   }
 };
-var _a10;
 var EffectPrimitiveSuccess = class {
+  _op;
+  effect_instruction_i0 = void 0;
+  effect_instruction_i1 = void 0;
+  effect_instruction_i2 = void 0;
+  trace = void 0;
+  [EffectTypeId2] = effectVariance;
   constructor(_op) {
-    __publicField(this, "_op");
-    __publicField(this, "effect_instruction_i0");
-    __publicField(this, "effect_instruction_i1");
-    __publicField(this, "effect_instruction_i2");
-    __publicField(this, "trace");
-    __publicField(this, _a10, effectVariance);
     this._op = _op;
     this._tag = _op;
   }
-  [(_a10 = EffectTypeId2, symbol2)](that) {
+  [symbol2](that) {
     return exitIsExit(that) && that._op === "Success" && // @ts-expect-error
     equals(this.effect_instruction_i0, that.effect_instruction_i0);
   }
@@ -13784,10 +13759,7 @@ ${this.stack.split("\n").slice(1).join("\n")}` : this.toString();
 }();
 var makeException = (proto25, tag4) => {
   class Base3 extends YieldableError {
-    constructor() {
-      super(...arguments);
-      __publicField(this, "_tag", tag4);
-    }
+    _tag = tag4;
   }
   Object.assign(Base3.prototype, proto25);
   Base3.prototype.name = tag4;
@@ -13814,12 +13786,12 @@ var timeoutExceptionFromDuration = (duration3) => new TimeoutException(`Operatio
 var UnknownExceptionTypeId = /* @__PURE__ */ Symbol.for("effect/Cause/errors/UnknownException");
 var UnknownException = /* @__PURE__ */ function() {
   class UnknownException2 extends YieldableError {
+    _tag = "UnknownException";
+    error;
     constructor(cause2, message) {
       super(message ?? "An unknown error occurred", {
         cause: cause2
       });
-      __publicField(this, "_tag", "UnknownException");
-      __publicField(this, "error");
       this.error = cause2;
     }
   }
@@ -14086,20 +14058,16 @@ var processOrPerformanceNow = /* @__PURE__ */ function() {
   const origin = /* @__PURE__ */ performanceNowNanos() - /* @__PURE__ */ processHrtime.bigint();
   return () => origin + processHrtime.bigint();
 }();
-var _a12;
-_a12 = ClockTypeId;
 var ClockImpl = class {
-  constructor() {
-    __publicField(this, _a12, ClockTypeId);
-    __publicField(this, "currentTimeMillis", /* @__PURE__ */ sync(() => this.unsafeCurrentTimeMillis()));
-    __publicField(this, "currentTimeNanos", /* @__PURE__ */ sync(() => this.unsafeCurrentTimeNanos()));
-  }
+  [ClockTypeId] = ClockTypeId;
   unsafeCurrentTimeMillis() {
     return Date.now();
   }
   unsafeCurrentTimeNanos() {
     return processOrPerformanceNow();
   }
+  currentTimeMillis = /* @__PURE__ */ sync(() => this.unsafeCurrentTimeMillis());
+  currentTimeNanos = /* @__PURE__ */ sync(() => this.unsafeCurrentTimeNanos());
   scheduler() {
     return succeed(globalClockScheduler);
   }
@@ -14490,13 +14458,11 @@ var defaultConsole = {
 var RandomSymbolKey = "effect/Random";
 var RandomTypeId = /* @__PURE__ */ Symbol.for(RandomSymbolKey);
 var randomTag = /* @__PURE__ */ GenericTag("effect/Random");
-var _a13;
-_a13 = RandomTypeId;
 var RandomImpl = class {
+  seed;
+  [RandomTypeId] = RandomTypeId;
+  PRNG;
   constructor(seed) {
-    __publicField(this, "seed");
-    __publicField(this, _a13, RandomTypeId);
-    __publicField(this, "PRNG");
     this.seed = seed;
     this.PRNG = new PCGRandom(seed);
   }
@@ -14556,20 +14522,20 @@ var randomHexString = /* @__PURE__ */ function() {
   };
 }();
 var NativeSpan = class {
+  name;
+  parent;
+  context;
+  startTime;
+  kind;
+  _tag = "Span";
+  spanId;
+  traceId = "native";
+  sampled = true;
+  status;
+  attributes;
+  events = [];
+  links;
   constructor(name2, parent, context7, links, startTime, kind) {
-    __publicField(this, "name");
-    __publicField(this, "parent");
-    __publicField(this, "context");
-    __publicField(this, "startTime");
-    __publicField(this, "kind");
-    __publicField(this, "_tag", "Span");
-    __publicField(this, "spanId");
-    __publicField(this, "traceId", "native");
-    __publicField(this, "sampled", true);
-    __publicField(this, "status");
-    __publicField(this, "attributes");
-    __publicField(this, "events", []);
-    __publicField(this, "links");
     this.name = name2;
     this.parent = parent;
     this.context = context7;
@@ -14774,12 +14740,10 @@ function empty17() {
   return unsafeMake3(/* @__PURE__ */ new Map());
 }
 var FiberRefsSym = /* @__PURE__ */ Symbol.for("effect/FiberRefs");
-var _a14;
-_a14 = FiberRefsSym;
 var FiberRefsImpl = class {
+  locals;
+  [FiberRefsSym] = FiberRefsSym;
   constructor(locals) {
-    __publicField(this, "locals");
-    __publicField(this, _a14, FiberRefsSym);
     this.locals = locals;
   }
   pipe() {
@@ -15043,45 +15007,40 @@ var OP_DONE = "Done";
 var OP_RUNNING = "Running";
 var OP_SUSPENDED = "Suspended";
 var DoneHash = /* @__PURE__ */ string(`${FiberStatusSymbolKey}-${OP_DONE}`);
-var _a15;
 var Done = class {
-  constructor() {
-    __publicField(this, _a15, FiberStatusTypeId);
-    __publicField(this, "_tag", OP_DONE);
-  }
-  [(_a15 = FiberStatusTypeId, symbol)]() {
+  [FiberStatusTypeId] = FiberStatusTypeId;
+  _tag = OP_DONE;
+  [symbol]() {
     return DoneHash;
   }
   [symbol2](that) {
     return isFiberStatus(that) && that._tag === OP_DONE;
   }
 };
-var _a16;
 var Running = class {
+  runtimeFlags;
+  [FiberStatusTypeId] = FiberStatusTypeId;
+  _tag = OP_RUNNING;
   constructor(runtimeFlags2) {
-    __publicField(this, "runtimeFlags");
-    __publicField(this, _a16, FiberStatusTypeId);
-    __publicField(this, "_tag", OP_RUNNING);
     this.runtimeFlags = runtimeFlags2;
   }
-  [(_a16 = FiberStatusTypeId, symbol)]() {
+  [symbol]() {
     return pipe(hash(FiberStatusSymbolKey), combine(hash(this._tag)), combine(hash(this.runtimeFlags)), cached(this));
   }
   [symbol2](that) {
     return isFiberStatus(that) && that._tag === OP_RUNNING && this.runtimeFlags === that.runtimeFlags;
   }
 };
-var _a17;
 var Suspended = class {
+  runtimeFlags;
+  blockingOn;
+  [FiberStatusTypeId] = FiberStatusTypeId;
+  _tag = OP_SUSPENDED;
   constructor(runtimeFlags2, blockingOn) {
-    __publicField(this, "runtimeFlags");
-    __publicField(this, "blockingOn");
-    __publicField(this, _a17, FiberStatusTypeId);
-    __publicField(this, "_tag", OP_SUSPENDED);
     this.runtimeFlags = runtimeFlags2;
     this.blockingOn = blockingOn;
   }
-  [(_a17 = FiberStatusTypeId, symbol)]() {
+  [symbol]() {
     return pipe(hash(FiberStatusSymbolKey), combine(hash(this._tag)), combine(hash(this.runtimeFlags)), combine(hash(this.blockingOn)), cached(this));
   }
   [symbol2](that) {
@@ -15140,8 +15099,10 @@ var MicroCauseTypeId = /* @__PURE__ */ Symbol.for("effect/Micro/MicroCause");
 var microCauseVariance = {
   _E: identity
 };
-var _a18;
 var MicroCauseImpl = class extends globalThis.Error {
+  _tag;
+  traces;
+  [MicroCauseTypeId];
   constructor(_tag, originalError, traces) {
     const causeName = `MicroCause.${_tag}`;
     let name2;
@@ -15162,9 +15123,6 @@ var MicroCauseImpl = class extends globalThis.Error {
     ${traces.join("\n    ")}`;
     }
     super(message);
-    __publicField(this, "_tag");
-    __publicField(this, "traces");
-    __publicField(this, _a18);
     this._tag = _tag;
     this.traces = traces;
     this[MicroCauseTypeId] = microCauseVariance;
@@ -15177,14 +15135,14 @@ var MicroCauseImpl = class extends globalThis.Error {
   toString() {
     return this.stack;
   }
-  [(_a18 = MicroCauseTypeId, NodeInspectSymbol)]() {
+  [NodeInspectSymbol]() {
     return this.stack;
   }
 };
 var Die = class extends MicroCauseImpl {
+  defect;
   constructor(defect, traces = []) {
     super("Die", defect, traces);
-    __publicField(this, "defect");
     this.defect = defect;
   }
 };
@@ -15201,21 +15159,16 @@ var fiberVariance = {
   _A: identity,
   _E: identity
 };
-var _a19;
-_a19 = MicroFiberTypeId;
 var MicroFiberImpl = class {
+  context;
+  interruptible;
+  [MicroFiberTypeId];
+  _stack = [];
+  _observers = [];
+  _exit;
+  _children;
+  currentOpCount = 0;
   constructor(context7, interruptible5 = true) {
-    __publicField(this, "context");
-    __publicField(this, "interruptible");
-    __publicField(this, _a19);
-    __publicField(this, "_stack", []);
-    __publicField(this, "_observers", []);
-    __publicField(this, "_exit");
-    __publicField(this, "_children");
-    __publicField(this, "currentOpCount", 0);
-    __publicField(this, "_interrupted", false);
-    // cancel the yielded operation, or for the yielded exit value
-    __publicField(this, "_yielded");
     this.context = context7;
     this.interruptible = interruptible5;
     this[MicroFiberTypeId] = fiberVariance;
@@ -15236,6 +15189,7 @@ var MicroFiberImpl = class {
       }
     };
   }
+  _interrupted = false;
   unsafeInterrupt() {
     if (this._exit) {
       return;
@@ -15310,6 +15264,8 @@ var MicroFiberImpl = class {
       if (op[symbol3]) return op;
     }
   }
+  // cancel the yielded operation, or for the yielded exit value
+  _yielded = void 0;
   yieldWith(value5) {
     this._yielded = value5;
     return Yield;
@@ -15470,17 +15426,8 @@ var exitDie2 = (defect) => exitFailCause2(causeDie(defect));
 var exitVoid2 = /* @__PURE__ */ exitSucceed2(void 0);
 var setImmediate2 = "setImmediate" in globalThis ? globalThis.setImmediate : (f) => setTimeout(f, 0);
 var MicroSchedulerDefault = class {
-  constructor() {
-    __publicField(this, "tasks", []);
-    __publicField(this, "running", false);
-    /**
-     * @since 3.5.9
-     */
-    __publicField(this, "afterScheduled", () => {
-      this.running = false;
-      this.runTasks();
-    });
-  }
+  tasks = [];
+  running = false;
   /**
    * @since 3.5.9
    */
@@ -15491,6 +15438,13 @@ var MicroSchedulerDefault = class {
       setImmediate2(this.afterScheduled);
     }
   }
+  /**
+   * @since 3.5.9
+   */
+  afterScheduled = () => {
+    this.running = false;
+    this.runTasks();
+  };
   /**
    * @since 3.5.9
    */
@@ -15588,20 +15542,19 @@ var refVariance = {
   /* c8 ignore next */
   _A: (_) => _
 };
-var _a21, _b, _c;
-var RefImpl = class extends (_c = Class2, _b = RefTypeId, _a21 = TypeId10, _c) {
-  constructor(ref) {
-    super();
-    __publicField(this, "ref");
-    __publicField(this, _b, refVariance);
-    __publicField(this, _a21, TypeId10);
-    __publicField(this, "get");
-    this.ref = ref;
-    this.get = sync(() => get6(this.ref));
-  }
+var RefImpl = class extends Class2 {
+  ref;
   commit() {
     return this.get;
   }
+  [RefTypeId] = refVariance;
+  [TypeId10] = TypeId10;
+  constructor(ref) {
+    super();
+    this.ref = ref;
+    this.get = sync(() => get6(this.ref));
+  }
+  get;
   modify(f) {
     return sync(() => {
       const current = get6(this.ref);
@@ -15634,12 +15587,10 @@ var updateAndGet2 = updateAndGet;
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/Scheduler.js
 var PriorityBuckets = class {
-  constructor() {
-    /**
-     * @since 2.0.0
-     */
-    __publicField(this, "buckets", []);
-  }
+  /**
+   * @since 2.0.0
+   */
+  buckets = [];
   /**
    * @since 2.0.0
    */
@@ -15664,16 +15615,16 @@ var PriorityBuckets = class {
   }
 };
 var MixedScheduler = class {
+  maxNextTickBeforeTimer;
+  /**
+   * @since 2.0.0
+   */
+  running = false;
+  /**
+   * @since 2.0.0
+   */
+  tasks = /* @__PURE__ */ new PriorityBuckets();
   constructor(maxNextTickBeforeTimer) {
-    __publicField(this, "maxNextTickBeforeTimer");
-    /**
-     * @since 2.0.0
-     */
-    __publicField(this, "running", false);
-    /**
-     * @since 2.0.0
-     */
-    __publicField(this, "tasks", /* @__PURE__ */ new PriorityBuckets());
     this.maxNextTickBeforeTimer = maxNextTickBeforeTimer;
   }
   /**
@@ -15722,16 +15673,14 @@ var MixedScheduler = class {
 };
 var defaultScheduler = /* @__PURE__ */ globalValue(/* @__PURE__ */ Symbol.for("effect/Scheduler/defaultScheduler"), () => new MixedScheduler(2048));
 var SyncScheduler = class {
-  constructor() {
-    /**
-     * @since 2.0.0
-     */
-    __publicField(this, "tasks", /* @__PURE__ */ new PriorityBuckets());
-    /**
-     * @since 2.0.0
-     */
-    __publicField(this, "deferred", false);
-  }
+  /**
+   * @since 2.0.0
+   */
+  tasks = /* @__PURE__ */ new PriorityBuckets();
+  /**
+   * @since 2.0.0
+   */
+  deferred = false;
   /**
    * @since 2.0.0
    */
@@ -15813,18 +15762,17 @@ var ParentSpan = spanTag;
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/metric/label.js
 var MetricLabelSymbolKey = "effect/MetricLabel";
 var MetricLabelTypeId = /* @__PURE__ */ Symbol.for(MetricLabelSymbolKey);
-var _a22;
 var MetricLabelImpl = class {
+  key;
+  value;
+  [MetricLabelTypeId] = MetricLabelTypeId;
+  _hash;
   constructor(key, value5) {
-    __publicField(this, "key");
-    __publicField(this, "value");
-    __publicField(this, _a22, MetricLabelTypeId);
-    __publicField(this, "_hash");
     this.key = key;
     this.value = value5;
     this._hash = string(MetricLabelSymbolKey + this.key + this.value);
   }
-  [(_a22 = MetricLabelTypeId, symbol)]() {
+  [symbol]() {
     return this._hash;
   }
   [symbol2](that) {
@@ -16084,14 +16032,10 @@ var yieldNow3 = () => ({
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/fiberScope.js
 var FiberScopeSymbolKey = "effect/FiberScope";
 var FiberScopeTypeId = /* @__PURE__ */ Symbol.for(FiberScopeSymbolKey);
-var _a23;
-_a23 = FiberScopeTypeId;
 var Global = class {
-  constructor() {
-    __publicField(this, _a23, FiberScopeTypeId);
-    __publicField(this, "fiberId", none4);
-    __publicField(this, "roots", /* @__PURE__ */ new Set());
-  }
+  [FiberScopeTypeId] = FiberScopeTypeId;
+  fiberId = none4;
+  roots = /* @__PURE__ */ new Set();
   add(_runtimeFlags, child) {
     this.roots.add(child);
     child.addObserver(() => {
@@ -16099,13 +16043,11 @@ var Global = class {
     });
   }
 };
-var _a24;
-_a24 = FiberScopeTypeId;
 var Local = class {
+  fiberId;
+  parent;
+  [FiberScopeTypeId] = FiberScopeTypeId;
   constructor(fiberId2, parent) {
-    __publicField(this, "fiberId");
-    __publicField(this, "parent");
-    __publicField(this, _a24, FiberScopeTypeId);
     this.fiberId = fiberId2;
     this.parent = parent;
   }
@@ -16388,16 +16330,15 @@ var prettyLoggerDefault = /* @__PURE__ */ globalValue("effect/Logger/prettyLogge
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/metric/boundaries.js
 var MetricBoundariesSymbolKey = "effect/MetricBoundaries";
 var MetricBoundariesTypeId = /* @__PURE__ */ Symbol.for(MetricBoundariesSymbolKey);
-var _a25;
 var MetricBoundariesImpl = class {
+  values;
+  [MetricBoundariesTypeId] = MetricBoundariesTypeId;
   constructor(values3) {
-    __publicField(this, "values");
-    __publicField(this, _a25, MetricBoundariesTypeId);
-    __publicField(this, "_hash");
     this.values = values3;
     this._hash = pipe(string(MetricBoundariesSymbolKey), combine(array2(this.values)));
   }
-  [(_a25 = MetricBoundariesTypeId, symbol)]() {
+  _hash;
+  [symbol]() {
     return this._hash;
   }
   [symbol2](u) {
@@ -16433,19 +16374,18 @@ var metricKeyTypeVariance = {
   /* c8 ignore next */
   _Out: (_) => _
 };
-var _a26, _b2;
 var CounterKeyType = class {
+  incremental;
+  bigint;
+  [MetricKeyTypeTypeId] = metricKeyTypeVariance;
+  [CounterKeyTypeTypeId] = CounterKeyTypeTypeId;
   constructor(incremental, bigint) {
-    __publicField(this, "incremental");
-    __publicField(this, "bigint");
-    __publicField(this, _b2, metricKeyTypeVariance);
-    __publicField(this, _a26, CounterKeyTypeTypeId);
-    __publicField(this, "_hash");
     this.incremental = incremental;
     this.bigint = bigint;
     this._hash = string(CounterKeyTypeSymbolKey);
   }
-  [(_b2 = MetricKeyTypeTypeId, _a26 = CounterKeyTypeTypeId, symbol)]() {
+  _hash;
+  [symbol]() {
     return this._hash;
   }
   [symbol2](that) {
@@ -16455,17 +16395,16 @@ var CounterKeyType = class {
     return pipeArguments(this, arguments);
   }
 };
-var _a29, _b5;
 var HistogramKeyType = class {
+  boundaries;
+  [MetricKeyTypeTypeId] = metricKeyTypeVariance;
+  [HistogramKeyTypeTypeId] = HistogramKeyTypeTypeId;
   constructor(boundaries) {
-    __publicField(this, "boundaries");
-    __publicField(this, _b5, metricKeyTypeVariance);
-    __publicField(this, _a29, HistogramKeyTypeTypeId);
-    __publicField(this, "_hash");
     this.boundaries = boundaries;
     this._hash = pipe(string(HistogramKeyTypeSymbolKey), combine(hash(this.boundaries)));
   }
-  [(_b5 = MetricKeyTypeTypeId, _a29 = HistogramKeyTypeTypeId, symbol)]() {
+  _hash;
+  [symbol]() {
     return this._hash;
   }
   [symbol2](that) {
@@ -16493,22 +16432,21 @@ var metricKeyVariance = {
   _Type: (_) => _
 };
 var arrayEquivilence = /* @__PURE__ */ getEquivalence(equals);
-var _a31;
 var MetricKeyImpl = class {
+  name;
+  keyType;
+  description;
+  tags;
+  [MetricKeyTypeId] = metricKeyVariance;
   constructor(name2, keyType, description, tags2 = []) {
-    __publicField(this, "name");
-    __publicField(this, "keyType");
-    __publicField(this, "description");
-    __publicField(this, "tags");
-    __publicField(this, _a31, metricKeyVariance);
-    __publicField(this, "_hash");
     this.name = name2;
     this.keyType = keyType;
     this.description = description;
     this.tags = tags2;
     this._hash = pipe(string(this.name + this.description), combine(hash(this.keyType)), combine(array2(this.tags)));
   }
-  [(_a31 = MetricKeyTypeId, symbol)]() {
+  _hash;
+  [symbol]() {
     return this._hash;
   }
   [symbol2](u) {
@@ -16547,10 +16485,10 @@ var MutableHashMapProto = {
   }
 };
 var MutableHashMapIterator = class _MutableHashMapIterator {
+  self;
+  referentialIterator;
+  bucketIterator;
   constructor(self) {
-    __publicField(this, "self");
-    __publicField(this, "referentialIterator");
-    __publicField(this, "bucketIterator");
     this.self = self;
     this.referentialIterator = self.referential[Symbol.iterator]();
   }
@@ -16570,11 +16508,11 @@ var MutableHashMapIterator = class _MutableHashMapIterator {
   }
 };
 var BucketIterator = class {
+  backing;
   constructor(backing) {
-    __publicField(this, "backing");
-    __publicField(this, "currentBucket");
     this.backing = backing;
   }
+  currentBucket;
   next() {
     if (this.currentBucket === void 0) {
       const result2 = this.backing.next();
@@ -16667,15 +16605,14 @@ var metricStateVariance = {
   /* c8 ignore next */
   _A: (_) => _
 };
-var _a32, _b7;
 var CounterState = class {
+  count;
+  [MetricStateTypeId] = metricStateVariance;
+  [CounterStateTypeId] = CounterStateTypeId;
   constructor(count4) {
-    __publicField(this, "count");
-    __publicField(this, _b7, metricStateVariance);
-    __publicField(this, _a32, CounterStateTypeId);
     this.count = count4;
   }
-  [(_b7 = MetricStateTypeId, _a32 = CounterStateTypeId, symbol)]() {
+  [symbol]() {
     return pipe(hash(CounterStateSymbolKey), combine(hash(this.count)), cached(this));
   }
   [symbol2](that) {
@@ -16686,16 +16623,15 @@ var CounterState = class {
   }
 };
 var arrayEquals = /* @__PURE__ */ getEquivalence(equals);
-var _a33, _b8;
 var FrequencyState = class {
+  occurrences;
+  [MetricStateTypeId] = metricStateVariance;
+  [FrequencyStateTypeId] = FrequencyStateTypeId;
   constructor(occurrences) {
-    __publicField(this, "occurrences");
-    __publicField(this, _b8, metricStateVariance);
-    __publicField(this, _a33, FrequencyStateTypeId);
-    __publicField(this, "_hash");
     this.occurrences = occurrences;
   }
-  [(_b8 = MetricStateTypeId, _a33 = FrequencyStateTypeId, symbol)]() {
+  _hash;
+  [symbol]() {
     return pipe(string(FrequencyStateSymbolKey), combine(array2(fromIterable(this.occurrences.entries()))), cached(this));
   }
   [symbol2](that) {
@@ -16705,15 +16641,14 @@ var FrequencyState = class {
     return pipeArguments(this, arguments);
   }
 };
-var _a34, _b9;
 var GaugeState = class {
+  value;
+  [MetricStateTypeId] = metricStateVariance;
+  [GaugeStateTypeId] = GaugeStateTypeId;
   constructor(value5) {
-    __publicField(this, "value");
-    __publicField(this, _b9, metricStateVariance);
-    __publicField(this, _a34, GaugeStateTypeId);
     this.value = value5;
   }
-  [(_b9 = MetricStateTypeId, _a34 = GaugeStateTypeId, symbol)]() {
+  [symbol]() {
     return pipe(hash(GaugeStateSymbolKey), combine(hash(this.value)), cached(this));
   }
   [symbol2](u) {
@@ -16723,23 +16658,22 @@ var GaugeState = class {
     return pipeArguments(this, arguments);
   }
 };
-var _a35, _b10;
 var HistogramState = class {
+  buckets;
+  count;
+  min;
+  max;
+  sum;
+  [MetricStateTypeId] = metricStateVariance;
+  [HistogramStateTypeId] = HistogramStateTypeId;
   constructor(buckets, count4, min4, max6, sum3) {
-    __publicField(this, "buckets");
-    __publicField(this, "count");
-    __publicField(this, "min");
-    __publicField(this, "max");
-    __publicField(this, "sum");
-    __publicField(this, _b10, metricStateVariance);
-    __publicField(this, _a35, HistogramStateTypeId);
     this.buckets = buckets;
     this.count = count4;
     this.min = min4;
     this.max = max6;
     this.sum = sum3;
   }
-  [(_b10 = MetricStateTypeId, _a35 = HistogramStateTypeId, symbol)]() {
+  [symbol]() {
     return pipe(hash(HistogramStateSymbolKey), combine(hash(this.buckets)), combine(hash(this.count)), combine(hash(this.min)), combine(hash(this.max)), combine(hash(this.sum)), cached(this));
   }
   [symbol2](that) {
@@ -16749,17 +16683,16 @@ var HistogramState = class {
     return pipeArguments(this, arguments);
   }
 };
-var _a36, _b11;
 var SummaryState = class {
+  error;
+  quantiles;
+  count;
+  min;
+  max;
+  sum;
+  [MetricStateTypeId] = metricStateVariance;
+  [SummaryStateTypeId] = SummaryStateTypeId;
   constructor(error4, quantiles, count4, min4, max6, sum3) {
-    __publicField(this, "error");
-    __publicField(this, "quantiles");
-    __publicField(this, "count");
-    __publicField(this, "min");
-    __publicField(this, "max");
-    __publicField(this, "sum");
-    __publicField(this, _b11, metricStateVariance);
-    __publicField(this, _a36, SummaryStateTypeId);
     this.error = error4;
     this.quantiles = quantiles;
     this.count = count4;
@@ -16767,7 +16700,7 @@ var SummaryState = class {
     this.max = max6;
     this.sum = sum3;
   }
-  [(_b11 = MetricStateTypeId, _a36 = SummaryStateTypeId, symbol)]() {
+  [symbol]() {
     return pipe(hash(SummaryStateSymbolKey), combine(hash(this.error)), combine(hash(this.quantiles)), combine(hash(this.count)), combine(hash(this.min)), combine(hash(this.max)), combine(hash(this.sum)), cached(this));
   }
   [symbol2](that) {
@@ -16809,7 +16742,7 @@ var make30 = (options3) => ({
 var bigint03 = /* @__PURE__ */ BigInt(0);
 var counter4 = (key) => {
   let sum3 = key.keyType.bigint ? bigint03 : 0;
-  const canUpdate = key.keyType.incremental ? key.keyType.bigint ? (value5) => value5 >= bigint03 : (value5) => value5 >= 0 : (_value2) => true;
+  const canUpdate = key.keyType.incremental ? key.keyType.bigint ? (value5) => value5 >= bigint03 : (value5) => value5 >= 0 : (_value) => true;
   const update5 = (value5) => {
     if (canUpdate(value5)) {
       sum3 = sum3 + value5;
@@ -17110,13 +17043,9 @@ var unsafeMake6 = (metricKey, metricState) => {
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/metric/registry.js
 var MetricRegistrySymbolKey = "effect/MetricRegistry";
 var MetricRegistryTypeId = /* @__PURE__ */ Symbol.for(MetricRegistrySymbolKey);
-var _a37;
-_a37 = MetricRegistryTypeId;
 var MetricRegistryImpl = class {
-  constructor() {
-    __publicField(this, _a37, MetricRegistryTypeId);
-    __publicField(this, "map", /* @__PURE__ */ empty20());
-  }
+  [MetricRegistryTypeId] = MetricRegistryTypeId;
+  map = /* @__PURE__ */ empty20();
   snapshot() {
     const result = [];
     for (const [key, hook] of this.map) {
@@ -17281,13 +17210,11 @@ var supervisorVariance = {
   /* c8 ignore next */
   _T: (_) => _
 };
-var _a38;
-_a38 = SupervisorTypeId;
-var _ProxySupervisor = class _ProxySupervisor {
+var ProxySupervisor = class _ProxySupervisor {
+  underlying;
+  value0;
+  [SupervisorTypeId] = supervisorVariance;
   constructor(underlying, value0) {
-    __publicField(this, "underlying");
-    __publicField(this, "value0");
-    __publicField(this, _a38, supervisorVariance);
     this.underlying = underlying;
     this.value0 = value0;
   }
@@ -17316,15 +17243,12 @@ var _ProxySupervisor = class _ProxySupervisor {
     return new Zip(this, right3);
   }
 };
-var ProxySupervisor = _ProxySupervisor;
-var _a39;
-_a39 = SupervisorTypeId;
-var _Zip = class _Zip {
+var Zip = class _Zip {
+  left;
+  right;
+  _tag = "Zip";
+  [SupervisorTypeId] = supervisorVariance;
   constructor(left3, right3) {
-    __publicField(this, "left");
-    __publicField(this, "right");
-    __publicField(this, "_tag", "Zip");
-    __publicField(this, _a39, supervisorVariance);
     this.left = left3;
     this.right = right3;
   }
@@ -17358,14 +17282,11 @@ var _Zip = class _Zip {
     return new _Zip(this, right3);
   }
 };
-var Zip = _Zip;
 var isZip = (self) => hasProperty(self, SupervisorTypeId) && isTagged(self, "Zip");
-var _a41;
-_a41 = SupervisorTypeId;
 var Const = class {
+  effect;
+  [SupervisorTypeId] = supervisorVariance;
   constructor(effect3) {
-    __publicField(this, "effect");
-    __publicField(this, _a41, supervisorVariance);
     this.effect = effect3;
   }
   get value() {
@@ -17373,7 +17294,7 @@ var Const = class {
   }
   onStart(_context, _effect, _parent, _fiber) {
   }
-  onEnd(_value2, _fiber) {
+  onEnd(_value, _fiber) {
   }
   onEffect(_fiber, _effect) {
   }
@@ -17587,35 +17508,31 @@ var runBlockedRequests = (self) => forEachSequentialDiscard(flatten2(self), (req
   })), currentRequestMap, map33);
 }, false, false));
 var _version = /* @__PURE__ */ getCurrentVersion();
-var _a43, _b12;
 var FiberRuntime = class extends Class2 {
+  [FiberTypeId] = fiberVariance2;
+  [RuntimeFiberTypeId] = runtimeFiberVariance;
+  _fiberRefs;
+  _fiberId;
+  _queue = /* @__PURE__ */ new Array();
+  _children = null;
+  _observers = /* @__PURE__ */ new Array();
+  _running = false;
+  _stack = [];
+  _asyncInterruptor = null;
+  _asyncBlockingOn = null;
+  _exitValue = null;
+  _steps = [];
+  _isYielding = false;
+  currentRuntimeFlags;
+  currentOpCount = 0;
+  currentSupervisor;
+  currentScheduler;
+  currentTracer;
+  currentSpan;
+  currentContext;
+  currentDefaultServices;
   constructor(fiberId2, fiberRefs0, runtimeFlags0) {
     super();
-    __publicField(this, _b12, fiberVariance2);
-    __publicField(this, _a43, runtimeFiberVariance);
-    __publicField(this, "_fiberRefs");
-    __publicField(this, "_fiberId");
-    __publicField(this, "_queue", /* @__PURE__ */ new Array());
-    __publicField(this, "_children", null);
-    __publicField(this, "_observers", /* @__PURE__ */ new Array());
-    __publicField(this, "_running", false);
-    __publicField(this, "_stack", []);
-    __publicField(this, "_asyncInterruptor", null);
-    __publicField(this, "_asyncBlockingOn", null);
-    __publicField(this, "_exitValue", null);
-    __publicField(this, "_steps", []);
-    __publicField(this, "_isYielding", false);
-    __publicField(this, "currentRuntimeFlags");
-    __publicField(this, "currentOpCount", 0);
-    __publicField(this, "currentSupervisor");
-    __publicField(this, "currentScheduler");
-    __publicField(this, "currentTracer");
-    __publicField(this, "currentSpan");
-    __publicField(this, "currentContext");
-    __publicField(this, "currentDefaultServices");
-    __publicField(this, "run", () => {
-      this.drainQueueOnCurrentThread();
-    });
     this.currentRuntimeFlags = runtimeFlags0;
     this._fiberId = fiberId2;
     this._fiberRefs = fiberRefs0;
@@ -18293,7 +18210,7 @@ var FiberRuntime = class extends Class2 {
       frame = this.popStack();
     }
   }
-  [(_b12 = FiberTypeId, _a43 = RuntimeFiberTypeId, OP_TAG)](op) {
+  [OP_TAG](op) {
     return sync(() => unsafeGet4(this.currentContext, op));
   }
   ["Left"](op) {
@@ -18544,6 +18461,9 @@ var FiberRuntime = class extends Class2 {
       }
     }
   }
+  run = () => {
+    this.drainQueueOnCurrentThread();
+  };
 };
 var currentMinimumLogLevel = /* @__PURE__ */ globalValue("effect/FiberRef/currentMinimumLogLevel", () => fiberRefUnsafeMake(fromLiteral("Info")));
 var loggerWithConsoleLog = (self) => makeLogger((opts) => {
@@ -19340,10 +19260,7 @@ var Error3 = /* @__PURE__ */ function() {
 var TaggedError = (tag4) => {
   const O = {
     BaseEffectError: class extends Error3 {
-      constructor() {
-        super(...arguments);
-        __publicField(this, "_tag", tag4);
-      }
+      _tag = tag4;
     }
   };
   O.BaseEffectError.prototype.name = tag4;
@@ -19382,13 +19299,11 @@ var scheduleDriverVariance = {
   /* c8 ignore next */
   _R: (_) => _
 };
-var _a44;
-_a44 = ScheduleTypeId;
 var ScheduleImpl = class {
+  initial;
+  step;
+  [ScheduleTypeId] = scheduleVariance;
   constructor(initial, step3) {
-    __publicField(this, "initial");
-    __publicField(this, "step");
-    __publicField(this, _a44, scheduleVariance);
     this.initial = initial;
     this.step = step3;
   }
@@ -19396,13 +19311,11 @@ var ScheduleImpl = class {
     return pipeArguments(this, arguments);
   }
 };
-var _a45;
-_a45 = ScheduleDriverTypeId;
 var ScheduleDriverImpl = class {
+  schedule;
+  ref;
+  [ScheduleDriverTypeId] = scheduleDriverVariance;
   constructor(schedule2, ref) {
-    __publicField(this, "schedule");
-    __publicField(this, "ref");
-    __publicField(this, _a45, scheduleDriverVariance);
     this.schedule = schedule2;
     this.ref = ref;
   }
@@ -19502,12 +19415,10 @@ var untilInputEffect = /* @__PURE__ */ dual(2, (self, f) => checkEffect(self, (i
 var whileInputEffect = /* @__PURE__ */ dual(2, (self, f) => checkEffect(self, (input, _) => f(input)));
 var whileOutput = /* @__PURE__ */ dual(2, (self, f) => check(self, (_, out) => f(out)));
 var ScheduleDefectTypeId = /* @__PURE__ */ Symbol.for("effect/Schedule/ScheduleDefect");
-var _a46;
-_a46 = ScheduleDefectTypeId;
 var ScheduleDefect = class {
+  error;
+  [ScheduleDefectTypeId];
   constructor(error4) {
-    __publicField(this, "error");
-    __publicField(this, _a46);
     this.error = error4;
     this[ScheduleDefectTypeId] = ScheduleDefectTypeId;
   }
@@ -19588,57 +19499,57 @@ var forever2 = /* @__PURE__ */ unfold2(0, (n) => n + 1);
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/effect/circular.js
 var Semaphore = class {
+  permits;
+  waiters = /* @__PURE__ */ new Set();
+  taken = 0;
   constructor(permits) {
-    __publicField(this, "permits");
-    __publicField(this, "waiters", /* @__PURE__ */ new Set());
-    __publicField(this, "taken", 0);
-    __publicField(this, "take", (n) => asyncInterrupt((resume2) => {
-      if (this.free < n) {
-        const observer = () => {
-          if (this.free < n) {
-            return;
-          }
-          this.waiters.delete(observer);
-          this.taken += n;
-          resume2(succeed(n));
-        };
-        this.waiters.add(observer);
-        return sync(() => {
-          this.waiters.delete(observer);
-        });
-      }
-      this.taken += n;
-      return resume2(succeed(n));
-    }));
-    __publicField(this, "updateTaken", (f) => withFiberRuntime((fiber) => {
-      this.taken = f(this.taken);
-      if (this.waiters.size > 0) {
-        fiber.getFiberRef(currentScheduler).scheduleTask(() => {
-          const iter = this.waiters.values();
-          let item = iter.next();
-          while (item.done === false && this.free > 0) {
-            item.value();
-            item = iter.next();
-          }
-        }, fiber.getFiberRef(currentSchedulingPriority));
-      }
-      return succeed(this.free);
-    }));
-    __publicField(this, "release", (n) => this.updateTaken((taken) => taken - n));
-    __publicField(this, "releaseAll", /* @__PURE__ */ this.updateTaken((_) => 0));
-    __publicField(this, "withPermits", (n) => (self) => uninterruptibleMask((restore) => flatMap7(restore(this.take(n)), (permits) => ensuring(restore(self), this.release(permits)))));
-    __publicField(this, "withPermitsIfAvailable", (n) => (self) => uninterruptibleMask((restore) => suspend(() => {
-      if (this.free < n) {
-        return succeedNone;
-      }
-      this.taken += n;
-      return ensuring(restore(asSome(self)), this.release(n));
-    })));
     this.permits = permits;
   }
   get free() {
     return this.permits - this.taken;
   }
+  take = (n) => asyncInterrupt((resume2) => {
+    if (this.free < n) {
+      const observer = () => {
+        if (this.free < n) {
+          return;
+        }
+        this.waiters.delete(observer);
+        this.taken += n;
+        resume2(succeed(n));
+      };
+      this.waiters.add(observer);
+      return sync(() => {
+        this.waiters.delete(observer);
+      });
+    }
+    this.taken += n;
+    return resume2(succeed(n));
+  });
+  updateTaken = (f) => withFiberRuntime((fiber) => {
+    this.taken = f(this.taken);
+    if (this.waiters.size > 0) {
+      fiber.getFiberRef(currentScheduler).scheduleTask(() => {
+        const iter = this.waiters.values();
+        let item = iter.next();
+        while (item.done === false && this.free > 0) {
+          item.value();
+          item = iter.next();
+        }
+      }, fiber.getFiberRef(currentSchedulingPriority));
+    }
+    return succeed(this.free);
+  });
+  release = (n) => this.updateTaken((taken) => taken - n);
+  releaseAll = /* @__PURE__ */ this.updateTaken((_) => 0);
+  withPermits = (n) => (self) => uninterruptibleMask((restore) => flatMap7(restore(this.take(n)), (permits) => ensuring(restore(self), this.release(permits))));
+  withPermitsIfAvailable = (n) => (self) => uninterruptibleMask((restore) => suspend(() => {
+    if (this.free < n) {
+      return succeedNone;
+    }
+    this.taken += n;
+    return ensuring(restore(asSome(self)), this.release(n));
+  }));
 };
 var unsafeMakeSemaphore = (permits) => new Semaphore(permits);
 var makeSemaphore = (permits) => sync(() => unsafeMakeSemaphore(permits));
@@ -19698,20 +19609,19 @@ var synchronizedVariance = {
   /* c8 ignore next */
   _A: (_) => _
 };
-var _a48, _b13, _c2, _d;
-var SynchronizedImpl = class extends (_d = Class2, _c2 = SynchronizedTypeId, _b13 = RefTypeId, _a48 = TypeId10, _d) {
+var SynchronizedImpl = class extends Class2 {
+  ref;
+  withLock;
+  [SynchronizedTypeId] = synchronizedVariance;
+  [RefTypeId] = refVariance;
+  [TypeId10] = TypeId10;
   constructor(ref, withLock) {
     super();
-    __publicField(this, "ref");
-    __publicField(this, "withLock");
-    __publicField(this, _c2, synchronizedVariance);
-    __publicField(this, _b13, refVariance);
-    __publicField(this, _a48, TypeId10);
-    __publicField(this, "get");
     this.ref = ref;
     this.withLock = withLock;
     this.get = get10(this.ref);
   }
+  get;
   commit() {
     return this.get;
   }
@@ -19796,10 +19706,10 @@ var unsafeRunSync = /* @__PURE__ */ makeDual((runtime5, effect3) => {
   return result.effect_instruction_i0;
 });
 var AsyncFiberExceptionImpl = class extends Error {
+  fiber;
+  _tag = "AsyncFiberException";
   constructor(fiber) {
     super(`Fiber #${fiber.id().id} cannot be resolved synchronously. This is caused by using runSync on an effect that performs async work`);
-    __publicField(this, "fiber");
-    __publicField(this, "_tag", "AsyncFiberException");
     this.fiber = fiber;
     this.name = this._tag;
     this.stack = this.message;
@@ -19814,13 +19724,12 @@ var asyncFiberException = (fiber) => {
 };
 var FiberFailureId = /* @__PURE__ */ Symbol.for("effect/Runtime/FiberFailure");
 var FiberFailureCauseId = /* @__PURE__ */ Symbol.for("effect/Runtime/FiberFailure/Cause");
-var _a49, _b14;
 var FiberFailureImpl = class extends Error {
+  [FiberFailureId];
+  [FiberFailureCauseId];
   constructor(cause2) {
     const head5 = prettyErrors(cause2)[0];
     super(head5?.message || "An error has occurred");
-    __publicField(this, _b14);
-    __publicField(this, _a49);
     this[FiberFailureId] = FiberFailureId;
     this[FiberFailureCauseId] = cause2;
     this.name = head5 ? `(FiberFailure) ${head5.name}` : "FiberFailure";
@@ -19839,7 +19748,7 @@ var FiberFailureImpl = class extends Error {
       renderErrorCause: true
     });
   }
-  [(_b14 = FiberFailureId, _a49 = FiberFailureCauseId, NodeInspectSymbol)]() {
+  [NodeInspectSymbol]() {
     return this.toString();
   }
 };
@@ -19909,10 +19818,10 @@ var unsafeRunPromiseExit = /* @__PURE__ */ makeDual((runtime5, effect3, options3
   }
 }));
 var RuntimeImpl = class {
+  context;
+  runtimeFlags;
+  fiberRefs;
   constructor(context7, runtimeFlags2, fiberRefs3) {
-    __publicField(this, "context");
-    __publicField(this, "runtimeFlags");
-    __publicField(this, "fiberRefs");
     this.context = context7;
     this.runtimeFlags = runtimeFlags2;
     this.fiberRefs = fiberRefs3;
@@ -19967,12 +19876,10 @@ var isLayer = (u) => hasProperty(u, LayerTypeId);
 var isFresh = (self) => {
   return self._op_layer === OP_FRESH;
 };
-var _a50;
-_a50 = MemoMapTypeId;
 var MemoMapImpl = class {
+  ref;
+  [MemoMapTypeId];
   constructor(ref) {
-    __publicField(this, "ref");
-    __publicField(this, _a50);
     this.ref = ref;
     this[MemoMapTypeId] = MemoMapTypeId;
   }
@@ -20740,15 +20647,15 @@ var JSONIdentifierAnnotationId = /* @__PURE__ */ Symbol.for("effect/annotation/J
 var getJSONIdentifierAnnotation = /* @__PURE__ */ getAnnotation(JSONIdentifierAnnotationId);
 var getJSONIdentifier = (annotated) => orElse(getJSONIdentifierAnnotation(annotated), () => getIdentifierAnnotation(annotated));
 var Declaration = class {
+  typeParameters;
+  decodeUnknown;
+  encodeUnknown;
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Declaration";
   constructor(typeParameters, decodeUnknown3, encodeUnknown2, annotations2 = {}) {
-    __publicField(this, "typeParameters");
-    __publicField(this, "decodeUnknown");
-    __publicField(this, "encodeUnknown");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Declaration");
     this.typeParameters = typeParameters;
     this.decodeUnknown = decodeUnknown3;
     this.encodeUnknown = encodeUnknown2;
@@ -20773,13 +20680,13 @@ var Declaration = class {
 };
 var createASTGuard = (tag4) => (ast) => ast._tag === tag4;
 var Literal = class {
+  literal;
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Literal";
   constructor(literal2, annotations2 = {}) {
-    __publicField(this, "literal");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Literal");
     this.literal = literal2;
     this.annotations = annotations2;
   }
@@ -20802,13 +20709,13 @@ var Literal = class {
 };
 var isLiteral = /* @__PURE__ */ createASTGuard("Literal");
 var UniqueSymbol = class {
+  symbol;
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "UniqueSymbol";
   constructor(symbol3, annotations2 = {}) {
-    __publicField(this, "symbol");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "UniqueSymbol");
     this.symbol = symbol3;
     this.annotations = annotations2;
   }
@@ -20830,12 +20737,12 @@ var UniqueSymbol = class {
   }
 };
 var NeverKeyword = class {
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "NeverKeyword";
   constructor(annotations2 = {}) {
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "NeverKeyword");
     this.annotations = annotations2;
   }
   /**
@@ -20858,12 +20765,12 @@ var neverKeyword = /* @__PURE__ */ new NeverKeyword({
   [TitleAnnotationId]: "never"
 });
 var UnknownKeyword = class {
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "UnknownKeyword";
   constructor(annotations2 = {}) {
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "UnknownKeyword");
     this.annotations = annotations2;
   }
   /**
@@ -20886,12 +20793,12 @@ var unknownKeyword = /* @__PURE__ */ new UnknownKeyword({
   [TitleAnnotationId]: "unknown"
 });
 var AnyKeyword = class {
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "AnyKeyword";
   constructor(annotations2 = {}) {
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "AnyKeyword");
     this.annotations = annotations2;
   }
   /**
@@ -20914,12 +20821,12 @@ var anyKeyword = /* @__PURE__ */ new AnyKeyword({
   [TitleAnnotationId]: "any"
 });
 var StringKeyword = class {
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "StringKeyword";
   constructor(annotations2 = {}) {
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "StringKeyword");
     this.annotations = annotations2;
   }
   /**
@@ -20944,12 +20851,12 @@ var stringKeyword = /* @__PURE__ */ new StringKeyword({
 });
 var isStringKeyword = /* @__PURE__ */ createASTGuard("StringKeyword");
 var NumberKeyword = class {
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "NumberKeyword";
   constructor(annotations2 = {}) {
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "NumberKeyword");
     this.annotations = annotations2;
   }
   /**
@@ -20974,12 +20881,12 @@ var numberKeyword = /* @__PURE__ */ new NumberKeyword({
 });
 var isNumberKeyword = /* @__PURE__ */ createASTGuard("NumberKeyword");
 var BooleanKeyword = class {
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "BooleanKeyword";
   constructor(annotations2 = {}) {
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "BooleanKeyword");
     this.annotations = annotations2;
   }
   /**
@@ -21005,9 +20912,9 @@ var booleanKeyword = /* @__PURE__ */ new BooleanKeyword({
 var isBooleanKeyword = /* @__PURE__ */ createASTGuard("BooleanKeyword");
 var isSymbolKeyword = /* @__PURE__ */ createASTGuard("SymbolKeyword");
 var Type = class {
+  type;
+  annotations;
   constructor(type2, annotations2 = {}) {
-    __publicField(this, "type");
-    __publicField(this, "annotations");
     this.type = type2;
     this.annotations = annotations2;
   }
@@ -21028,9 +20935,9 @@ var Type = class {
   }
 };
 var OptionalType = class extends Type {
+  isOptional;
   constructor(type2, isOptional, annotations2 = {}) {
     super(type2, annotations2);
-    __publicField(this, "isOptional");
     this.isOptional = isOptional;
   }
   /**
@@ -21052,15 +20959,15 @@ var OptionalType = class extends Type {
 };
 var getRestASTs = (rest) => rest.map((annotatedAST) => annotatedAST.type);
 var TupleType = class {
+  elements;
+  rest;
+  isReadonly;
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "TupleType";
   constructor(elements, rest, isReadonly, annotations2 = {}) {
-    __publicField(this, "elements");
-    __publicField(this, "rest");
-    __publicField(this, "isReadonly");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "TupleType");
     this.elements = elements;
     this.rest = rest;
     this.isReadonly = isReadonly;
@@ -21123,10 +21030,10 @@ var formatTuple = (ast) => {
   });
 };
 var PropertySignature = class extends OptionalType {
+  name;
+  isReadonly;
   constructor(name2, type2, isOptional, isReadonly, annotations2) {
     super(type2, isOptional, annotations2);
-    __publicField(this, "name");
-    __publicField(this, "isReadonly");
     this.name = name2;
     this.isReadonly = isReadonly;
   }
@@ -21161,13 +21068,13 @@ var isParameter = (ast) => {
   return false;
 };
 var IndexSignature = class {
+  type;
+  isReadonly;
+  /**
+   * @since 3.10.0
+   */
+  parameter;
   constructor(parameter, type2, isReadonly) {
-    __publicField(this, "type");
-    __publicField(this, "isReadonly");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "parameter");
     this.type = type2;
     this.isReadonly = isReadonly;
     if (isParameter(parameter)) {
@@ -21194,20 +21101,20 @@ var IndexSignature = class {
   }
 };
 var TypeLiteral = class {
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "TypeLiteral";
+  /**
+   * @since 3.10.0
+   */
+  propertySignatures;
+  /**
+   * @since 3.10.0
+   */
+  indexSignatures;
   constructor(propertySignatures, indexSignatures, annotations2 = {}) {
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "TypeLiteral");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "propertySignatures");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "indexSignatures");
     this.annotations = annotations2;
     const keys5 = {};
     for (let i = 0; i < propertySignatures.length; i++) {
@@ -21381,14 +21288,21 @@ var unify = (candidates) => {
   }
   return out;
 };
-var _Union = class _Union {
+var Union = class _Union {
+  types;
+  annotations;
+  static make = (types, annotations2) => {
+    return isMembers(types) ? new _Union(types, annotations2) : types.length === 1 ? types[0] : neverKeyword;
+  };
+  /** @internal */
+  static unify = (candidates, annotations2) => {
+    return _Union.make(unify(flatten6(candidates)), annotations2);
+  };
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Union";
   constructor(types, annotations2 = {}) {
-    __publicField(this, "types");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Union");
     this.types = types;
     this.annotations = annotations2;
   }
@@ -21409,26 +21323,18 @@ var _Union = class _Union {
     };
   }
 };
-__publicField(_Union, "make", (types, annotations2) => {
-  return isMembers(types) ? new _Union(types, annotations2) : types.length === 1 ? types[0] : neverKeyword;
-});
-/** @internal */
-__publicField(_Union, "unify", (candidates, annotations2) => {
-  return _Union.make(unify(flatten6(candidates)), annotations2);
-});
-var Union = _Union;
 var mapMembers = (members, f) => members.map(f);
 var isMembers = (as9) => as9.length > 1;
 var isUnion = /* @__PURE__ */ createASTGuard("Union");
 var toJSONMemoMap = /* @__PURE__ */ globalValue(/* @__PURE__ */ Symbol.for("effect/Schema/AST/toJSONMemoMap"), () => /* @__PURE__ */ new WeakMap());
 var Suspend = class {
+  f;
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Suspend";
   constructor(f, annotations2 = {}) {
-    __publicField(this, "f");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Suspend");
     this.f = f;
     this.annotations = annotations2;
     this.f = memoizeThunk(f);
@@ -21461,14 +21367,14 @@ var Suspend = class {
   }
 };
 var Refinement = class {
+  from;
+  filter;
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Refinement";
   constructor(from, filter11, annotations2 = {}) {
-    __publicField(this, "from");
-    __publicField(this, "filter");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Refinement");
     this.from = from;
     this.filter = filter11;
     this.annotations = annotations2;
@@ -21496,15 +21402,15 @@ var Refinement = class {
 var isRefinement = /* @__PURE__ */ createASTGuard("Refinement");
 var defaultParseOption = {};
 var Transformation = class {
+  from;
+  to;
+  transformation;
+  annotations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Transformation";
   constructor(from, to, transformation, annotations2 = {}) {
-    __publicField(this, "from");
-    __publicField(this, "to");
-    __publicField(this, "transformation");
-    __publicField(this, "annotations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Transformation");
     this.from = from;
     this.to = to;
     this.transformation = transformation;
@@ -21530,33 +21436,31 @@ var Transformation = class {
 };
 var isTransformation = /* @__PURE__ */ createASTGuard("Transformation");
 var FinalTransformation = class {
+  decode;
+  encode;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "FinalTransformation";
   constructor(decode2, encode) {
-    __publicField(this, "decode");
-    __publicField(this, "encode");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "FinalTransformation");
     this.decode = decode2;
     this.encode = encode;
   }
 };
 var createTransformationGuard = (tag4) => (ast) => ast._tag === tag4;
 var ComposeTransformation = class {
-  constructor() {
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "ComposeTransformation");
-  }
+  /**
+   * @since 3.10.0
+   */
+  _tag = "ComposeTransformation";
 };
 var composeTransformation = /* @__PURE__ */ new ComposeTransformation();
 var PropertySignatureTransformation = class {
+  from;
+  to;
+  decode;
+  encode;
   constructor(from, to, decode2, encode) {
-    __publicField(this, "from");
-    __publicField(this, "to");
-    __publicField(this, "decode");
-    __publicField(this, "encode");
     this.from = from;
     this.to = to;
     this.decode = decode2;
@@ -21564,12 +21468,12 @@ var PropertySignatureTransformation = class {
   }
 };
 var TypeLiteralTransformation = class {
+  propertySignatureTransformations;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "TypeLiteralTransformation";
   constructor(propertySignatureTransformations) {
-    __publicField(this, "propertySignatureTransformations");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "TypeLiteralTransformation");
     this.propertySignatureTransformations = propertySignatureTransformations;
     const fromKeys = {};
     const toKeys = {};
@@ -21841,57 +21745,57 @@ var getExpected = (ast) => orElse(getIdentifierAnnotation(ast), () => getOrElseE
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/ParseResult.js
 var Pointer = class {
+  path;
+  actual;
+  issue;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Pointer";
   constructor(path2, actual, issue) {
-    __publicField(this, "path");
-    __publicField(this, "actual");
-    __publicField(this, "issue");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Pointer");
     this.path = path2;
     this.actual = actual;
     this.issue = issue;
   }
 };
 var Unexpected = class {
+  actual;
+  message;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Unexpected";
   constructor(actual, message) {
-    __publicField(this, "actual");
-    __publicField(this, "message");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Unexpected");
     this.actual = actual;
     this.message = message;
   }
 };
 var Missing = class {
+  ast;
+  message;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Missing";
+  /**
+   * @since 3.10.0
+   */
+  actual = void 0;
   constructor(ast, message) {
-    __publicField(this, "ast");
-    __publicField(this, "message");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Missing");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "actual");
     this.ast = ast;
     this.message = message;
   }
 };
 var Composite2 = class {
+  ast;
+  actual;
+  issues;
+  output;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Composite";
   constructor(ast, actual, issues, output) {
-    __publicField(this, "ast");
-    __publicField(this, "actual");
-    __publicField(this, "issues");
-    __publicField(this, "output");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Composite");
     this.ast = ast;
     this.actual = actual;
     this.issues = issues;
@@ -21899,15 +21803,15 @@ var Composite2 = class {
   }
 };
 var Refinement2 = class {
+  ast;
+  actual;
+  kind;
+  issue;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Refinement";
   constructor(ast, actual, kind, issue) {
-    __publicField(this, "ast");
-    __publicField(this, "actual");
-    __publicField(this, "kind");
-    __publicField(this, "issue");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Refinement");
     this.ast = ast;
     this.actual = actual;
     this.kind = kind;
@@ -21915,15 +21819,15 @@ var Refinement2 = class {
   }
 };
 var Transformation2 = class {
+  ast;
+  actual;
+  kind;
+  issue;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Transformation";
   constructor(ast, actual, kind, issue) {
-    __publicField(this, "ast");
-    __publicField(this, "actual");
-    __publicField(this, "kind");
-    __publicField(this, "issue");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Transformation");
     this.ast = ast;
     this.actual = actual;
     this.kind = kind;
@@ -21931,43 +21835,39 @@ var Transformation2 = class {
   }
 };
 var Type2 = class {
+  ast;
+  actual;
+  message;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Type";
   constructor(ast, actual, message) {
-    __publicField(this, "ast");
-    __publicField(this, "actual");
-    __publicField(this, "message");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Type");
     this.ast = ast;
     this.actual = actual;
     this.message = message;
   }
 };
 var Forbidden = class {
+  ast;
+  actual;
+  message;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "Forbidden";
   constructor(ast, actual, message) {
-    __publicField(this, "ast");
-    __publicField(this, "actual");
-    __publicField(this, "message");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "Forbidden");
     this.ast = ast;
     this.actual = actual;
     this.message = message;
   }
 };
 var ParseErrorTypeId = /* @__PURE__ */ Symbol.for("effect/Schema/ParseErrorTypeId");
-var _a51;
 var ParseError = class extends (/* @__PURE__ */ TaggedError("ParseError")) {
-  constructor() {
-    super(...arguments);
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, _a51, ParseErrorTypeId);
-  }
+  /**
+   * @since 3.10.0
+   */
+  [ParseErrorTypeId] = ParseErrorTypeId;
   get message() {
     return this.toString();
   }
@@ -21989,7 +21889,7 @@ var ParseError = class extends (/* @__PURE__ */ TaggedError("ParseError")) {
   /**
    * @since 3.10.0
    */
-  [(_a51 = ParseErrorTypeId, NodeInspectSymbol)]() {
+  [NodeInspectSymbol]() {
     return this.toJSON();
   }
 };
@@ -23044,17 +22944,16 @@ var dequeueVariance = {
   /* c8 ignore next */
   _Out: (_) => _
 };
-var _a52, _b15, _c3;
-var QueueImpl = class extends (_c3 = Class2, _b15 = EnqueueTypeId, _a52 = DequeueTypeId, _c3) {
+var QueueImpl = class extends Class2 {
+  queue;
+  takers;
+  shutdownHook;
+  shutdownFlag;
+  strategy;
+  [EnqueueTypeId] = enqueueVariance;
+  [DequeueTypeId] = dequeueVariance;
   constructor(queue, takers, shutdownHook, shutdownFlag, strategy) {
     super();
-    __publicField(this, "queue");
-    __publicField(this, "takers");
-    __publicField(this, "shutdownHook");
-    __publicField(this, "shutdownFlag");
-    __publicField(this, "strategy");
-    __publicField(this, _b15, enqueueVariance);
-    __publicField(this, _a52, dequeueVariance);
     this.queue = queue;
     this.takers = takers;
     this.shutdownHook = shutdownHook;
@@ -23233,12 +23132,10 @@ var unsafeMake7 = (queue, takers, shutdownHook, shutdownFlag, strategy) => {
   return new QueueImpl(queue, takers, shutdownHook, shutdownFlag, strategy);
 };
 var make43 = (queue, strategy) => pipe(deferredMake(), map10((deferred) => unsafeMake7(queue, unbounded(), deferred, make13(false), strategy)));
-var _a53;
-_a53 = BackingQueueTypeId;
 var BackingQueueFromMutableQueue = class {
+  mutable;
+  [BackingQueueTypeId] = backingQueueVariance;
   constructor(mutable2) {
-    __publicField(this, "mutable");
-    __publicField(this, _a53, backingQueueVariance);
     this.mutable = mutable2;
   }
   poll(def) {
@@ -23269,13 +23166,9 @@ var takeUpTo = /* @__PURE__ */ dual(2, (self, max6) => self.takeUpTo(max6));
 var backPressureStrategy = () => new BackPressureStrategy();
 var droppingStrategy = () => new DroppingStrategy();
 var slidingStrategy = () => new SlidingStrategy();
-var _a54;
-_a54 = QueueStrategyTypeId;
 var BackPressureStrategy = class {
-  constructor() {
-    __publicField(this, _a54, queueStrategyVariance);
-    __publicField(this, "putters", /* @__PURE__ */ unbounded());
-  }
+  [QueueStrategyTypeId] = queueStrategyVariance;
+  putters = /* @__PURE__ */ unbounded();
   surplusSize() {
     return length2(this.putters);
   }
@@ -23335,12 +23228,8 @@ var BackPressureStrategy = class {
     unsafeOfferAll(this.putters, pipe(unsafePollAll(this.putters), filter3(([, _]) => _ !== deferred)));
   }
 };
-var _a55;
-_a55 = QueueStrategyTypeId;
 var DroppingStrategy = class {
-  constructor() {
-    __publicField(this, _a55, queueStrategyVariance);
-  }
+  [QueueStrategyTypeId] = queueStrategyVariance;
   surplusSize() {
     return 0;
   }
@@ -23355,12 +23244,8 @@ var DroppingStrategy = class {
   unsafeOnQueueEmptySpace(_queue, _takers) {
   }
 };
-var _a56;
-_a56 = QueueStrategyTypeId;
 var SlidingStrategy = class {
-  constructor() {
-    __publicField(this, _a56, queueStrategyVariance);
-  }
+  [QueueStrategyTypeId] = queueStrategyVariance;
   surplusSize() {
     return 0;
   }
@@ -23481,14 +23366,12 @@ var continuationVariance = {
   /* c8 ignore next */
   _OutDone2: (_) => _
 };
-var _a57;
-_a57 = ContinuationTypeId;
 var ContinuationKImpl = class {
+  onSuccess;
+  onHalt;
+  _tag = OP_CONTINUATION_K;
+  [ContinuationTypeId] = continuationVariance;
   constructor(onSuccess, onHalt) {
-    __publicField(this, "onSuccess");
-    __publicField(this, "onHalt");
-    __publicField(this, "_tag", OP_CONTINUATION_K);
-    __publicField(this, _a57, continuationVariance);
     this.onSuccess = onSuccess;
     this.onHalt = onHalt;
   }
@@ -23496,13 +23379,11 @@ var ContinuationKImpl = class {
     return isFailure(exit4) ? this.onHalt(exit4.cause) : this.onSuccess(exit4.value);
   }
 };
-var _a58;
-_a58 = ContinuationTypeId;
 var ContinuationFinalizerImpl = class {
+  finalizer;
+  _tag = OP_CONTINUATION_FINALIZER;
+  [ContinuationTypeId] = continuationVariance;
   constructor(finalizer2) {
-    __publicField(this, "finalizer");
-    __publicField(this, "_tag", OP_CONTINUATION_FINALIZER);
-    __publicField(this, _a58, continuationVariance);
     this.finalizer = finalizer2;
   }
 };
@@ -23748,11 +23629,11 @@ var OP_PULL_FROM_UPSTREAM = "PullFromUpstream";
 var OP_DRAIN_CHILD_EXECUTORS = "DrainChildExecutors";
 var OP_EMIT3 = "Emit";
 var PullFromChild = class {
+  childExecutor;
+  parentSubexecutor;
+  onEmit;
+  _tag = OP_PULL_FROM_CHILD;
   constructor(childExecutor, parentSubexecutor, onEmit) {
-    __publicField(this, "childExecutor");
-    __publicField(this, "parentSubexecutor");
-    __publicField(this, "onEmit");
-    __publicField(this, "_tag", OP_PULL_FROM_CHILD);
     this.childExecutor = childExecutor;
     this.parentSubexecutor = parentSubexecutor;
     this.onEmit = onEmit;
@@ -23775,16 +23656,16 @@ var PullFromChild = class {
   }
 };
 var PullFromUpstream = class _PullFromUpstream {
+  upstreamExecutor;
+  createChild;
+  lastDone;
+  activeChildExecutors;
+  combineChildResults;
+  combineWithChildResult;
+  onPull;
+  onEmit;
+  _tag = OP_PULL_FROM_UPSTREAM;
   constructor(upstreamExecutor, createChild, lastDone, activeChildExecutors, combineChildResults, combineWithChildResult, onPull, onEmit) {
-    __publicField(this, "upstreamExecutor");
-    __publicField(this, "createChild");
-    __publicField(this, "lastDone");
-    __publicField(this, "activeChildExecutors");
-    __publicField(this, "combineChildResults");
-    __publicField(this, "combineWithChildResult");
-    __publicField(this, "onPull");
-    __publicField(this, "onEmit");
-    __publicField(this, "_tag", OP_PULL_FROM_UPSTREAM);
     this.upstreamExecutor = upstreamExecutor;
     this.createChild = createChild;
     this.lastDone = lastDone;
@@ -23815,15 +23696,15 @@ var PullFromUpstream = class _PullFromUpstream {
   }
 };
 var DrainChildExecutors = class _DrainChildExecutors {
+  upstreamExecutor;
+  lastDone;
+  activeChildExecutors;
+  upstreamDone;
+  combineChildResults;
+  combineWithChildResult;
+  onPull;
+  _tag = OP_DRAIN_CHILD_EXECUTORS;
   constructor(upstreamExecutor, lastDone, activeChildExecutors, upstreamDone, combineChildResults, combineWithChildResult, onPull) {
-    __publicField(this, "upstreamExecutor");
-    __publicField(this, "lastDone");
-    __publicField(this, "activeChildExecutors");
-    __publicField(this, "upstreamDone");
-    __publicField(this, "combineChildResults");
-    __publicField(this, "combineWithChildResult");
-    __publicField(this, "onPull");
-    __publicField(this, "_tag", OP_DRAIN_CHILD_EXECUTORS);
     this.upstreamExecutor = upstreamExecutor;
     this.lastDone = lastDone;
     this.activeChildExecutors = activeChildExecutors;
@@ -23853,10 +23734,10 @@ var DrainChildExecutors = class _DrainChildExecutors {
   }
 };
 var Emit2 = class {
+  value;
+  next;
+  _tag = OP_EMIT3;
   constructor(value5, next) {
-    __publicField(this, "value");
-    __publicField(this, "next");
-    __publicField(this, "_tag", OP_EMIT3);
     this.value = value5;
     this.next = next;
   }
@@ -23898,18 +23779,18 @@ var NoUpstream = (activeDownstreamCount) => {
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/channel/channelExecutor.js
 var ChannelExecutor = class _ChannelExecutor {
+  _activeSubexecutor = void 0;
+  _cancelled = void 0;
+  _closeLastSubstream = void 0;
+  _currentChannel;
+  _done = void 0;
+  _doneStack = [];
+  _emitted = void 0;
+  _executeCloseLastSubstream;
+  _input = void 0;
+  _inProgressFinalizer = void 0;
+  _providedEnv;
   constructor(initialChannel, providedEnv, executeCloseLastSubstream) {
-    __publicField(this, "_activeSubexecutor");
-    __publicField(this, "_cancelled");
-    __publicField(this, "_closeLastSubstream");
-    __publicField(this, "_currentChannel");
-    __publicField(this, "_done");
-    __publicField(this, "_doneStack", []);
-    __publicField(this, "_emitted");
-    __publicField(this, "_executeCloseLastSubstream");
-    __publicField(this, "_input");
-    __publicField(this, "_inProgressFinalizer");
-    __publicField(this, "_providedEnv");
     this._currentChannel = initialChannel;
     this._executeCloseLastSubstream = executeCloseLastSubstream;
     this._providedEnv = providedEnv;
@@ -24630,8 +24511,8 @@ var stateDone = (done8) => ({
   done: done8
 });
 var SingleProducerAsyncInputImpl = class {
+  ref;
   constructor(ref) {
-    __publicField(this, "ref");
     this.ref = ref;
   }
   awaitRead() {
@@ -25080,12 +24961,10 @@ var sinkVariance2 = {
   /* c8 ignore next */
   _R: (_) => _
 };
-var _a59;
-_a59 = SinkTypeId2;
 var SinkImpl = class {
+  channel;
+  [SinkTypeId2] = sinkVariance2;
   constructor(channel) {
-    __publicField(this, "channel");
-    __publicField(this, _a59, sinkVariance2);
     this.channel = channel;
   }
   pipe() {
@@ -25187,12 +25066,10 @@ var takeVariance = {
   /* c8 ignore next */
   _E: (_) => _
 };
-var _a60;
-_a60 = TakeTypeId;
 var TakeImpl = class {
+  exit;
+  [TakeTypeId] = takeVariance;
   constructor(exit4) {
-    __publicField(this, "exit");
-    __publicField(this, _a60, takeVariance);
     this.exit = exit4;
   }
   pipe() {
@@ -25233,12 +25110,10 @@ var streamVariance = {
   _E: (_) => _,
   _A: (_) => _
 };
-var _a61;
-_a61 = StreamTypeId2;
 var StreamImpl = class {
+  channel;
+  [StreamTypeId2] = streamVariance;
   constructor(channel) {
-    __publicField(this, "channel");
-    __publicField(this, _a61, streamVariance);
     this.channel = channel;
   }
   pipe() {
@@ -27112,11 +26987,9 @@ var omit3 = /* @__PURE__ */ dual((args2) => isObject(args2[0]), (s, ...keys5) =>
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/Schema.js
 var TypeId16 = /* @__PURE__ */ Symbol.for("effect/Schema");
 function make53(ast) {
-  var _a66, _b19, _c4;
-  return _b19 = TypeId16, _a66 = TypeId16, _c4 = class {
-    constructor() {
-      __publicField(this, _b19, variance5);
-    }
+  return class SchemaClass {
+    [TypeId16] = variance5;
+    static ast = ast;
     static annotations(annotations2) {
       return make53(mergeSchemaAnnotations(this.ast, annotations2));
     }
@@ -27126,7 +26999,11 @@ function make53(ast) {
     static toString() {
       return String(ast);
     }
-  }, __publicField(_c4, "ast", ast), __publicField(_c4, "Type"), __publicField(_c4, "Encoded"), __publicField(_c4, "Context"), __publicField(_c4, _a66, variance5), _c4;
+    static Type;
+    static Encoded;
+    static Context;
+    static [TypeId16] = variance5;
+  };
 }
 var variance5 = {
   /* c8 ignore next */
@@ -27188,12 +27065,12 @@ function getDefaultLiteralAST(literals) {
   return isMembers(literals) ? Union.make(mapMembers(literals, (literal2) => new Literal(literal2))) : new Literal(literals[0]);
 }
 function makeLiteralClass(literals, ast = getDefaultLiteralAST(literals)) {
-  var _a66;
-  return _a66 = class extends make53(ast) {
+  return class LiteralClass extends make53(ast) {
     static annotations(annotations2) {
       return makeLiteralClass(this.literals, mergeSchemaAnnotations(this.ast, annotations2));
     }
-  }, __publicField(_a66, "literals", [...literals]), _a66;
+    static literals = [...literals];
+  };
 }
 function Literal2(...literals) {
   return isNonEmptyReadonlyArray(literals) ? makeLiteralClass(literals) : Never;
@@ -27205,12 +27082,12 @@ var declarePrimitive = (is3, annotations2) => {
   return makeDeclareClass([], new Declaration([], decodeUnknown3, encodeUnknown2, toASTAnnotations(annotations2)));
 };
 function makeDeclareClass(typeParameters, ast) {
-  var _a66;
-  return _a66 = class extends make53(ast) {
+  return class DeclareClass extends make53(ast) {
     static annotations(annotations2) {
       return makeDeclareClass(this.typeParameters, mergeSchemaAnnotations(this.ast, annotations2));
     }
-  }, __publicField(_a66, "typeParameters", [...typeParameters]), _a66;
+    static typeParameters = [...typeParameters];
+  };
 }
 var declare = function() {
   if (Array.isArray(arguments[0])) {
@@ -27233,26 +27110,26 @@ var Number$ = class extends (/* @__PURE__ */ make53(numberKeyword)) {
 };
 var getDefaultUnionAST = (members) => Union.make(members.map((m) => m.ast));
 function makeUnionClass(members, ast = getDefaultUnionAST(members)) {
-  var _a66;
-  return _a66 = class extends make53(ast) {
+  return class UnionClass extends make53(ast) {
     static annotations(annotations2) {
       return makeUnionClass(this.members, mergeSchemaAnnotations(this.ast, annotations2));
     }
-  }, __publicField(_a66, "members", [...members]), _a66;
+    static members = [...members];
+  };
 }
 function Union2(...members) {
   return isMembers(members) ? makeUnionClass(members) : isNonEmptyReadonlyArray(members) ? members[0] : Never;
 }
 var formatPropertySignatureToken = (isOptional) => isOptional ? '"?:"' : '":"';
 var PropertySignatureDeclaration = class extends OptionalType {
+  isReadonly;
+  defaultValue;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "PropertySignatureDeclaration";
   constructor(type2, isOptional, isReadonly, annotations2, defaultValue) {
     super(type2, isOptional, annotations2);
-    __publicField(this, "isReadonly");
-    __publicField(this, "defaultValue");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "PropertySignatureDeclaration");
     this.isReadonly = isReadonly;
     this.defaultValue = defaultValue;
   }
@@ -27266,10 +27143,10 @@ var PropertySignatureDeclaration = class extends OptionalType {
   }
 };
 var ToPropertySignature = class extends OptionalType {
+  isReadonly;
+  defaultValue;
   constructor(type2, isOptional, isReadonly, annotations2, defaultValue) {
     super(type2, isOptional, annotations2);
-    __publicField(this, "isReadonly");
-    __publicField(this, "defaultValue");
     this.isReadonly = isReadonly;
     this.defaultValue = defaultValue;
   }
@@ -27284,15 +27161,15 @@ var formatPropertyKey2 = (p2) => {
   return String(p2);
 };
 var PropertySignatureTransformation2 = class {
+  from;
+  to;
+  decode;
+  encode;
+  /**
+   * @since 3.10.0
+   */
+  _tag = "PropertySignatureTransformation";
   constructor(from, to, decode2, encode) {
-    __publicField(this, "from");
-    __publicField(this, "to");
-    __publicField(this, "decode");
-    __publicField(this, "encode");
-    /**
-     * @since 3.10.0
-     */
-    __publicField(this, "_tag", "PropertySignatureTransformation");
     this.from = from;
     this.to = to;
     this.decode = decode2;
@@ -27323,17 +27200,15 @@ var mergeSignatureAnnotations = (ast, annotations2) => {
 };
 var PropertySignatureTypeId = /* @__PURE__ */ Symbol.for("effect/PropertySignature");
 var isPropertySignature = (u) => hasProperty(u, PropertySignatureTypeId);
-var _a63, _b16;
-_b16 = TypeId16, _a63 = PropertySignatureTypeId;
-var _PropertySignatureImpl = class _PropertySignatureImpl {
+var PropertySignatureImpl = class _PropertySignatureImpl {
+  ast;
+  [TypeId16];
+  [PropertySignatureTypeId] = null;
+  _TypeToken;
+  _Key;
+  _EncodedToken;
+  _HasDefault;
   constructor(ast) {
-    __publicField(this, "ast");
-    __publicField(this, _b16);
-    __publicField(this, _a63, null);
-    __publicField(this, "_TypeToken");
-    __publicField(this, "_Key");
-    __publicField(this, "_EncodedToken");
-    __publicField(this, "_HasDefault");
     this.ast = ast;
   }
   pipe() {
@@ -27346,12 +27221,11 @@ var _PropertySignatureImpl = class _PropertySignatureImpl {
     return String(this.ast);
   }
 };
-var PropertySignatureImpl = _PropertySignatureImpl;
 var makePropertySignature = (ast) => new PropertySignatureImpl(ast);
 var PropertySignatureWithFromImpl = class _PropertySignatureWithFromImpl extends PropertySignatureImpl {
+  from;
   constructor(ast, from) {
     super(ast);
-    __publicField(this, "from");
     this.from = from;
   }
   annotations(annotations2) {
@@ -27455,25 +27329,27 @@ var lazilyMergeDefaults = (fields, out) => {
   return out;
 };
 function makeTypeLiteralClass(fields, records, ast = getDefaultTypeLiteralAST(fields, records)) {
-  var _a66;
-  return _a66 = class extends make53(ast) {
+  return class TypeLiteralClass extends make53(ast) {
     static annotations(annotations2) {
       return makeTypeLiteralClass(this.fields, this.records, mergeSchemaAnnotations(this.ast, annotations2));
     }
+    static fields = {
+      ...fields
+    };
+    static records = [...records];
+    static make = (props, options3) => {
+      const propsWithDefaults = lazilyMergeDefaults(fields, {
+        ...props
+      });
+      return getDisableValidationMakeOption(options3) ? propsWithDefaults : validateSync(this)(propsWithDefaults);
+    };
     static pick(...keys5) {
       return Struct(pick2(fields, ...keys5));
     }
     static omit(...keys5) {
       return Struct(omit3(fields, ...keys5));
     }
-  }, __publicField(_a66, "fields", {
-    ...fields
-  }), __publicField(_a66, "records", [...records]), __publicField(_a66, "make", (props, options3) => {
-    const propsWithDefaults = lazilyMergeDefaults(fields, {
-      ...props
-    });
-    return getDisableValidationMakeOption(options3) ? propsWithDefaults : validateSync(_a66)(propsWithDefaults);
-  }), _a66;
+  };
 }
 function Struct(fields, ...records) {
   return makeTypeLiteralClass(fields, records);
@@ -27602,14 +27478,17 @@ var compose3 = /* @__PURE__ */ dual((args2) => isSchema(args2[1]), (from, to) =>
 var suspend10 = (f) => make53(new Suspend(() => f().ast));
 var RefineSchemaId = /* @__PURE__ */ Symbol.for("effect/SchemaId/Refine");
 function makeRefineClass(from, filter11, ast) {
-  var _a66, _b19, _c4;
-  return _c4 = class extends (_b19 = make53(ast), _a66 = RefineSchemaId, _b19) {
+  return class RefineClass extends make53(ast) {
     static annotations(annotations2) {
       return makeRefineClass(this.from, this.filter, mergeSchemaAnnotations(this.ast, annotations2));
     }
-  }, __publicField(_c4, _a66, from), __publicField(_c4, "from", from), __publicField(_c4, "filter", filter11), __publicField(_c4, "make", (a, options3) => {
-    return getDisableValidationMakeOption(options3) ? a : validateSync(_c4)(a);
-  }), _c4;
+    static [RefineSchemaId] = from;
+    static from = from;
+    static filter = filter11;
+    static make = (a, options3) => {
+      return getDisableValidationMakeOption(options3) ? a : validateSync(this)(a);
+    };
+  };
 }
 var fromFilterPredicateReturnTypeItem = (item, ast, input) => {
   if (isBoolean(item)) {
@@ -27649,12 +27528,13 @@ function filter10(predicate, annotations2) {
   };
 }
 function makeTransformationClass(from, to, ast) {
-  var _a66;
-  return _a66 = class extends make53(ast) {
+  return class TransformationClass extends make53(ast) {
     static annotations(annotations2) {
       return makeTransformationClass(this.from, this.to, mergeSchemaAnnotations(this.ast, annotations2));
     }
-  }, __publicField(_a66, "from", from), __publicField(_a66, "to", to), _a66;
+    static from = from;
+    static to = to;
+  };
 }
 var transformOrFail = /* @__PURE__ */ dual((args2) => isSchema(args2[0]) && isSchema(args2[1]), (from, to, options3) => makeTransformationClass(from, to, new Transformation(from.ast, to.ast, new FinalTransformation(options3.decode, options3.encode))));
 var transform2 = /* @__PURE__ */ dual((args2) => isSchema(args2[0]) && isSchema(args2[1]), (from, to, options3) => transformOrFail(from, to, {
@@ -27758,8 +27638,8 @@ var TaggedError2 = (identifier3) => (tag4, fieldsOr, annotations2) => {
     annotations: annotations2,
     disableToString: true
   }) {
+    static _tag = tag4;
   }
-  __publicField(TaggedErrorClass, "_tag", tag4);
   if (!hasMessageField) {
     Object.defineProperty(TaggedErrorClass.prototype, "message", {
       get() {
@@ -27806,7 +27686,6 @@ var makeClass = ({
   kind,
   schema
 }) => {
-  var _a66, _b19;
   const classSymbol = Symbol.for(`effect/Schema/${kind}/${identifier3}`);
   const [typeAnnotations, transformationAnnotations, encodedAnnotations] = getClassAnnotations(annotations2);
   const typeSchema_ = typeSchema(schema);
@@ -27833,7 +27712,7 @@ var makeClass = ({
     ...transformationAnnotations
   });
   const fallbackInstanceOf = (u) => hasProperty(u, classSymbol) && is(typeSide)(u);
-  const klass = (_b19 = class extends Base3 {
+  const klass = class extends Base3 {
     constructor(props = {}, options3 = false) {
       props = {
         ...props
@@ -27847,6 +27726,10 @@ var makeClass = ({
       }
       super(props, true);
     }
+    // ----------------
+    // Schema interface
+    // ----------------
+    static [TypeId16] = variance5;
     static get ast() {
       let out = astCache.get(this);
       if (out) {
@@ -27890,6 +27773,10 @@ var makeClass = ({
     static make(...args2) {
       return new this(...args2);
     }
+    static fields = {
+      ...fields
+    };
+    static identifier = identifier3;
     static extend(identifier4) {
       return (newFieldsOr, annotations3) => {
         const newFields = getFieldsFromFieldsOr(newFieldsOr);
@@ -27934,15 +27821,10 @@ var makeClass = ({
     // ----------------
     // other
     // ----------------
-    get [(_a66 = TypeId16, classSymbol)]() {
+    get [classSymbol]() {
       return classSymbol;
     }
-  }, // ----------------
-  // Schema interface
-  // ----------------
-  __publicField(_b19, _a66, variance5), __publicField(_b19, "fields", {
-    ...fields
-  }), __publicField(_b19, "identifier", identifier3), _b19);
+  };
   if (disableToString !== true) {
     Object.defineProperty(klass.prototype, "toString", {
       value() {
@@ -28768,11 +28650,11 @@ var makeDateParts = (dateMask, date5, locales) => {
   return parts2;
 };
 var DatePart = class {
+  token;
+  date;
+  parts;
+  locales;
   constructor(params) {
-    __publicField(this, "token");
-    __publicField(this, "date");
-    __publicField(this, "parts");
-    __publicField(this, "locales");
     this.token = params.token;
     this.locales = params.locales;
     this.date = params.date || /* @__PURE__ */ new Date();
@@ -28932,7 +28814,7 @@ var Meridiem = class extends DatePart {
   decrement() {
     this.increment();
   }
-  setValue(_value2) {
+  setValue(_value) {
   }
   toString() {
     const meridiem = this.date.getHours() > 12 ? "pm" : "am";
@@ -31973,98 +31855,22 @@ var exitEmpty = /* @__PURE__ */ exitSucceed(empty38);
 var exitFalse = /* @__PURE__ */ exitSucceed(false);
 var exitTrue = /* @__PURE__ */ exitSucceed(true);
 var constDone = [empty38, true];
-var _a64, _b17;
 var MailboxImpl = class extends Class2 {
+  scheduler;
+  capacity;
+  strategy;
+  [TypeId21] = TypeId21;
+  [ReadonlyTypeId] = ReadonlyTypeId;
+  state = {
+    _tag: "Open",
+    takers: /* @__PURE__ */ new Set(),
+    offers: /* @__PURE__ */ new Set(),
+    awaiters: /* @__PURE__ */ new Set()
+  };
+  messages = [];
+  messagesChunk = /* @__PURE__ */ empty3();
   constructor(scheduler, capacity3, strategy) {
     super();
-    __publicField(this, "scheduler");
-    __publicField(this, "capacity");
-    __publicField(this, "strategy");
-    __publicField(this, _b17, TypeId21);
-    __publicField(this, _a64, ReadonlyTypeId);
-    __publicField(this, "state", {
-      _tag: "Open",
-      takers: /* @__PURE__ */ new Set(),
-      offers: /* @__PURE__ */ new Set(),
-      awaiters: /* @__PURE__ */ new Set()
-    });
-    __publicField(this, "messages", []);
-    __publicField(this, "messagesChunk", /* @__PURE__ */ empty3());
-    __publicField(this, "shutdown", /* @__PURE__ */ sync(() => {
-      if (this.state._tag === "Done") {
-        return true;
-      }
-      this.messages = [];
-      this.messagesChunk = empty38;
-      const offers = this.state.offers;
-      this.finalize(this.state._tag === "Open" ? exitVoid : this.state.exit);
-      if (offers.size > 0) {
-        for (const entry of offers) {
-          if (entry._tag === "Single") {
-            entry.resume(exitFalse);
-          } else {
-            entry.resume(exitSucceed(unsafeFromArray(entry.remaining.slice(entry.offset))));
-          }
-        }
-        offers.clear();
-      }
-      return true;
-    }));
-    __publicField(this, "end", /* @__PURE__ */ this.done(exitVoid));
-    __publicField(this, "clear", /* @__PURE__ */ suspend(() => {
-      if (this.state._tag === "Done") {
-        return exitAs(this.state.exit, empty38);
-      }
-      const messages = this.unsafeTakeAll();
-      this.releaseCapacity();
-      return succeed(messages);
-    }));
-    __publicField(this, "takeAll", /* @__PURE__ */ suspend(() => {
-      if (this.state._tag === "Done") {
-        return exitAs(this.state.exit, constDone);
-      }
-      const messages = this.unsafeTakeAll();
-      if (messages.length === 0) {
-        return zipRight(this.awaitTake, this.takeAll);
-      }
-      return succeed([messages, this.releaseCapacity()]);
-    }));
-    __publicField(this, "take", /* @__PURE__ */ suspend(() => this.unsafeTake() ?? zipRight(this.awaitTake, this.take)));
-    __publicField(this, "await", /* @__PURE__ */ asyncInterrupt((resume2) => {
-      if (this.state._tag === "Done") {
-        return resume2(this.state.exit);
-      }
-      this.state.awaiters.add(resume2);
-      return sync(() => {
-        if (this.state._tag !== "Done") {
-          this.state.awaiters.delete(resume2);
-        }
-      });
-    }));
-    __publicField(this, "size", /* @__PURE__ */ sync(() => this.unsafeSize()));
-    __publicField(this, "awaitTake", /* @__PURE__ */ asyncInterrupt((resume2) => {
-      if (this.state._tag === "Done") {
-        return resume2(this.state.exit);
-      }
-      this.state.takers.add(resume2);
-      return sync(() => {
-        if (this.state._tag !== "Done") {
-          this.state.takers.delete(resume2);
-        }
-      });
-    }));
-    __publicField(this, "scheduleRunning", false);
-    __publicField(this, "releaseTaker", () => {
-      this.scheduleRunning = false;
-      if (this.state._tag === "Done") {
-        return;
-      } else if (this.state.takers.size === 0) {
-        return;
-      }
-      const taker = unsafeHead(this.state.takers);
-      this.state.takers.delete(taker);
-      taker(exitVoid);
-    });
     this.scheduler = scheduler;
     this.capacity = capacity3;
     this.strategy = strategy;
@@ -32185,9 +31991,48 @@ var MailboxImpl = class extends Class2 {
     };
     return true;
   }
+  shutdown = /* @__PURE__ */ sync(() => {
+    if (this.state._tag === "Done") {
+      return true;
+    }
+    this.messages = [];
+    this.messagesChunk = empty38;
+    const offers = this.state.offers;
+    this.finalize(this.state._tag === "Open" ? exitVoid : this.state.exit);
+    if (offers.size > 0) {
+      for (const entry of offers) {
+        if (entry._tag === "Single") {
+          entry.resume(exitFalse);
+        } else {
+          entry.resume(exitSucceed(unsafeFromArray(entry.remaining.slice(entry.offset))));
+        }
+      }
+      offers.clear();
+    }
+    return true;
+  });
   done(exit4) {
     return sync(() => this.unsafeDone(exit4));
   }
+  end = /* @__PURE__ */ this.done(exitVoid);
+  clear = /* @__PURE__ */ suspend(() => {
+    if (this.state._tag === "Done") {
+      return exitAs(this.state.exit, empty38);
+    }
+    const messages = this.unsafeTakeAll();
+    this.releaseCapacity();
+    return succeed(messages);
+  });
+  takeAll = /* @__PURE__ */ suspend(() => {
+    if (this.state._tag === "Done") {
+      return exitAs(this.state.exit, constDone);
+    }
+    const messages = this.unsafeTakeAll();
+    if (messages.length === 0) {
+      return zipRight(this.awaitTake, this.takeAll);
+    }
+    return succeed([messages, this.releaseCapacity()]);
+  });
   takeN(n) {
     return suspend(() => {
       if (this.state._tag === "Done") {
@@ -32234,10 +32079,23 @@ var MailboxImpl = class extends Class2 {
     this.releaseCapacity();
     return exitSucceed(message);
   }
+  take = /* @__PURE__ */ suspend(() => this.unsafeTake() ?? zipRight(this.awaitTake, this.take));
+  await = /* @__PURE__ */ asyncInterrupt((resume2) => {
+    if (this.state._tag === "Done") {
+      return resume2(this.state.exit);
+    }
+    this.state.awaiters.add(resume2);
+    return sync(() => {
+      if (this.state._tag !== "Done") {
+        this.state.awaiters.delete(resume2);
+      }
+    });
+  });
   unsafeSize() {
     const size13 = this.messages.length + this.messagesChunk.length;
     return this.state._tag === "Done" ? none2() : some2(size13);
   }
+  size = /* @__PURE__ */ sync(() => this.unsafeSize());
   commit() {
     return this.takeAll;
   }
@@ -32254,7 +32112,7 @@ var MailboxImpl = class extends Class2 {
   toString() {
     return format(this);
   }
-  [(_b17 = TypeId21, _a64 = ReadonlyTypeId, NodeInspectSymbol)]() {
+  [NodeInspectSymbol]() {
     return format(this);
   }
   offerRemainingSingle(message) {
@@ -32324,6 +32182,18 @@ var MailboxImpl = class extends Class2 {
     }
     return false;
   }
+  awaitTake = /* @__PURE__ */ asyncInterrupt((resume2) => {
+    if (this.state._tag === "Done") {
+      return resume2(this.state.exit);
+    }
+    this.state.takers.add(resume2);
+    return sync(() => {
+      if (this.state._tag !== "Done") {
+        this.state.takers.delete(resume2);
+      }
+    });
+  });
+  scheduleRunning = false;
   scheduleReleaseTaker() {
     if (this.scheduleRunning) {
       return;
@@ -32331,6 +32201,17 @@ var MailboxImpl = class extends Class2 {
     this.scheduleRunning = true;
     this.scheduler.scheduleTask(this.releaseTaker, 0);
   }
+  releaseTaker = () => {
+    this.scheduleRunning = false;
+    if (this.state._tag === "Done") {
+      return;
+    } else if (this.state.takers.size === 0) {
+      return;
+    }
+    const taker = unsafeHead(this.state.takers);
+    this.state.takers.delete(taker);
+    taker(exitVoid);
+  };
   unsafeTakeAll() {
     if (this.messagesChunk.length > 0) {
       const messages = this.messages.length > 0 ? appendAll2(this.messagesChunk, unsafeFromArray(this.messages)) : this.messagesChunk;
@@ -32676,7 +32557,6 @@ var openFactory = (method) => {
 };
 var open2 = /* @__PURE__ */ openFactory("open");
 var makeFile = /* @__PURE__ */ (() => {
-  var _a66;
   const nodeReadFactory = (method) => effectify2(NFS__namespace.read, handleErrnoException("FileSystem", method), handleBadArgument(method));
   const nodeRead = /* @__PURE__ */ nodeReadFactory("read");
   const nodeReadAlloc = /* @__PURE__ */ nodeReadFactory("readAlloc");
@@ -32686,14 +32566,13 @@ var makeFile = /* @__PURE__ */ (() => {
   const nodeWriteFactory = (method) => effectify2(NFS__namespace.write, handleErrnoException("FileSystem", method), handleBadArgument(method));
   const nodeWrite = /* @__PURE__ */ nodeWriteFactory("write");
   const nodeWriteAll = /* @__PURE__ */ nodeWriteFactory("writeAll");
-  _a66 = FileTypeId;
   class FileImpl {
+    fd;
+    append;
+    [FileTypeId];
+    semaphore = /* @__PURE__ */ unsafeMakeSemaphore2(1);
+    position = 0n;
     constructor(fd, append4) {
-      __publicField(this, "fd");
-      __publicField(this, "append");
-      __publicField(this, _a66);
-      __publicField(this, "semaphore", /* @__PURE__ */ unsafeMakeSemaphore2(1));
-      __publicField(this, "position", 0n);
       this.fd = fd;
       this.append = append4;
       this[FileTypeId] = FileTypeId;
@@ -33159,18 +33038,29 @@ var WorkerErrorTypeId = /* @__PURE__ */ Symbol.for("@effect/platform/WorkerError
 
 // node_modules/.pnpm/@effect+platform@0.82.3_effect@3.15.2/node_modules/@effect/platform/dist/esm/WorkerError.js
 var WorkerErrorTypeId2 = WorkerErrorTypeId;
-var _a65, _b18;
-var _WorkerError = class _WorkerError extends (_b18 = /* @__PURE__ */ TaggedError2()("WorkerError", {
+var WorkerError = class extends (/* @__PURE__ */ TaggedError2()("WorkerError", {
   reason: /* @__PURE__ */ Literal2("spawn", "decode", "send", "unknown", "encode"),
   cause: Defect
-}), _a65 = WorkerErrorTypeId2, _b18) {
-  constructor() {
-    super(...arguments);
-    /**
-     * @since 1.0.0
-     */
-    __publicField(this, _a65, WorkerErrorTypeId2);
-  }
+})) {
+  /**
+   * @since 1.0.0
+   */
+  [WorkerErrorTypeId2] = WorkerErrorTypeId2;
+  /**
+   * @since 1.0.0
+   */
+  static Cause = /* @__PURE__ */ Cause({
+    error: this,
+    defect: Defect
+  });
+  /**
+   * @since 1.0.0
+   */
+  static encodeCause = /* @__PURE__ */ encodeSync(this.Cause);
+  /**
+   * @since 1.0.0
+   */
+  static decodeCause = /* @__PURE__ */ decodeSync(this.Cause);
   /**
    * @since 1.0.0
    */
@@ -33189,22 +33079,6 @@ var _WorkerError = class _WorkerError extends (_b18 = /* @__PURE__ */ TaggedErro
     }
   }
 };
-/**
- * @since 1.0.0
- */
-__publicField(_WorkerError, "Cause", /* @__PURE__ */ Cause({
-  error: _WorkerError,
-  defect: Defect
-}));
-/**
- * @since 1.0.0
- */
-__publicField(_WorkerError, "encodeCause", /* @__PURE__ */ encodeSync(_WorkerError.Cause));
-/**
- * @since 1.0.0
- */
-__publicField(_WorkerError, "decodeCause", /* @__PURE__ */ decodeSync(_WorkerError.Cause));
-var WorkerError = _WorkerError;
 
 // node_modules/.pnpm/@effect+platform@0.82.3_effect@3.15.2/node_modules/@effect/platform/dist/esm/internal/worker.js
 var PlatformWorkerTypeId = /* @__PURE__ */ Symbol.for("@effect/platform/Worker/PlatformWorker");
@@ -34823,6 +34697,7 @@ var make64 = gen2(function* () {
   const classes = /* @__PURE__ */ new Set();
   const enums = /* @__PURE__ */ new Set();
   const refStore = /* @__PURE__ */ new Map();
+  const dependencies = /* @__PURE__ */ new Map();
   function cleanupSchema(schema) {
     if ("type" in schema && Array.isArray(schema.type) && schema.type.includes("null")) {
       const type2 = schema.type.filter((_) => _ !== "null");
@@ -34852,42 +34727,53 @@ var make64 = gen2(function* () {
     }
     return schema;
   }
-  const seenRefs = /* @__PURE__ */ new Set();
+  const processingRefs = /* @__PURE__ */ new Set();
+  const processedRefs = /* @__PURE__ */ new Set();
   const addSchema = (name2, root2, context7, asStruct = false) => {
     root2 = cleanupSchema(root2);
     function addRefs(schema, childName, asStruct2 = true) {
       schema = cleanupSchema(schema);
       const enumSuffix = childName?.endsWith("Enum") ? "" : "Enum";
       if ("$ref" in schema) {
-        if (seenRefs.has(schema.$ref)) {
+        if (processingRefs.has(schema.$ref)) {
           return;
         }
-        seenRefs.add(schema.$ref);
+        processingRefs.add(schema.$ref);
         const resolved = resolveRef(schema, {
           ...root2,
           ...context7
         });
         if (!resolved) {
-          return;
-        }
-        if (store.has(resolved.name)) {
+          processingRefs.delete(schema.$ref);
           return;
         }
         refStore.set(schema.$ref, resolved.schema);
-        addRefs(resolved.schema, resolved.name);
-        store.set(resolved.name, resolved.schema);
+        let inserted = false;
+        if (!store.has(resolved.name)) {
+          store.set(resolved.name, resolved.schema);
+          inserted = true;
+        }
+        if (!processedRefs.has(resolved.name) || inserted) {
+          processedRefs.add(resolved.name);
+          addRefs(resolved.schema, resolved.name);
+        }
         classes.add(resolved.name);
-      } else if ("properties" in schema) {
+        processingRefs.delete(schema.$ref);
+      }
+      if ("properties" in schema) {
         Object.entries(schema.properties).forEach(
           ([name3, s]) => addRefs(s, childName ? childName + identifier2(name3) : void 0)
         );
-      } else if ("type" in schema && schema.type === "array") {
+      }
+      if ("type" in schema && schema.type === "array") {
         if (Array.isArray(schema.items)) {
           schema.items.forEach((s) => addRefs(s, void 0));
         } else if (schema.items) {
           addRefs(schema.items, void 0);
         }
-      } else if ("allOf" in schema) {
+        return;
+      }
+      if ("allOf" in schema) {
         const resolved = resolveAllOf(schema, {
           ...root2,
           ...context7
@@ -34898,15 +34784,22 @@ var make64 = gen2(function* () {
         } else {
           addRefs(resolved, void 0, asStruct2);
         }
-      } else if ("anyOf" in schema) {
+        return;
+      }
+      if ("anyOf" in schema) {
         schema.anyOf.forEach(
           (s) => addRefs(s, childName ? childName + enumSuffix : void 0)
         );
-      } else if ("oneOf" in schema) {
-        schema.oneOf.forEach(
-          (s) => addRefs(s, childName ? childName + enumSuffix : void 0)
-        );
-      } else if ("enum" in schema) {
+        return;
+      }
+      if ("oneOf" in schema) {
+        schema.oneOf.forEach((s) => {
+          const nextChild = childName ? childName + enumSuffix : void 0;
+          addRefs(s, nextChild);
+        });
+        return;
+      }
+      if ("enum" in schema) {
         if (childName !== void 0 && !("const" in schema)) {
           store.set(childName, schema);
           enums.add(childName);
@@ -34935,16 +34828,26 @@ var make64 = gen2(function* () {
       isClass,
       isEnum
     });
-    return toSource(importName, Object.keys(schema).length ? schema : {
-      properties: {}
-    }, name2, topLevel).pipe(
+    const dependencySet = /* @__PURE__ */ new Set();
+    const normalizedSchema = Object.keys(schema).length ? schema : { properties: {} };
+    const source = toSource(
+      importName,
+      normalizedSchema,
+      name2,
+      topLevel,
+      name2,
+      dependencySet
+    );
+    dependencySet.delete(name2);
+    dependencies.set(name2, dependencySet);
+    return source.pipe(
       map2(
-        (source) => transformer.onTopLevel({
+        (result) => transformer.onTopLevel({
           importName,
           schema,
           description: nonEmptyString3(schema.description),
           name: name2,
-          source,
+          source: result,
           isClass,
           isEnum
         })
@@ -34972,9 +34875,56 @@ var make64 = gen2(function* () {
     return getSchema(schema);
   };
   const transformer = yield* JsonSchemaTransformer;
-  const toSource = (importName, schema, currentIdentifier, topLevel = false) => {
+  const toSource = (importName, schema, currentIdentifier, topLevel = false, rootIdentifier = currentIdentifier, currentDependencies) => {
+    const recordDependency = (name2) => {
+      if (!currentDependencies || name2 === rootIdentifier) {
+        return;
+      }
+      currentDependencies.add(name2);
+    };
     schema = cleanupSchema(schema);
-    if ("properties" in schema) {
+    if ("anyOf" in schema || "oneOf" in schema) {
+      let itemSchemas = "anyOf" in schema ? schema.anyOf : schema.oneOf;
+      let typePrimitives = 0;
+      const constItems = empty2();
+      for (const item of itemSchemas) {
+        if ("type" in item && item.type !== "null") {
+          typePrimitives++;
+        } else if ("const" in item) {
+          constItems.push(item);
+        }
+      }
+      if (typePrimitives <= 1 && constItems.length > 0 && constItems.length + typePrimitives === itemSchemas.length) {
+        itemSchemas = constItems;
+      }
+      const items = pipe(
+        itemSchemas,
+        filterMap2(
+          (_) => toSource(
+            importName,
+            _,
+            currentIdentifier + "Enum",
+            false,
+            rootIdentifier,
+            currentDependencies
+          ).pipe(
+            map2(
+              (source) => ({
+                description: nonEmptyString3(_.description),
+                title: nonEmptyString3(_.title),
+                source
+              })
+            )
+          )
+        )
+      );
+      if (items.length === 0) {
+        return none2();
+      } else if (items.length === 1) {
+        return some2(items[0].source);
+      }
+      return some2(transformer.onUnion({ importName, items, topLevel }));
+    } else if ("properties" in schema) {
       const obj = schema;
       const required2 = obj.required ?? [];
       const properties = pipe(
@@ -34987,7 +34937,10 @@ var make64 = gen2(function* () {
           return toSource(
             importName,
             enumNullable ? filteredSchema : schema2,
-            currentIdentifier + identifier2(key)
+            currentIdentifier + identifier2(key),
+            false,
+            rootIdentifier,
+            currentDependencies
           ).pipe(
             map2(
               (source) => transformer.onProperty({
@@ -35020,10 +34973,12 @@ var make64 = gen2(function* () {
       );
     } else if ("enum" in schema) {
       if (!topLevel && enums.has(currentIdentifier)) {
+        recordDependency(currentIdentifier);
         return some2(
           transformer.onRef({ importName, name: currentIdentifier })
         );
       } else if (!topLevel && enums.has(currentIdentifier + "Enum")) {
+        recordDependency(currentIdentifier + "Enum");
         return some2(
           transformer.onRef({ importName, name: currentIdentifier + "Enum" })
         );
@@ -35040,50 +34995,20 @@ var make64 = gen2(function* () {
         return none2();
       }
       const name2 = identifier2(schema.$ref.split("/").pop());
+      recordDependency(name2);
       return some2(transformer.onRef({ importName, name: name2 }));
-    } else if ("anyOf" in schema || "oneOf" in schema) {
-      let itemSchemas = "anyOf" in schema ? schema.anyOf : schema.oneOf;
-      let typePrimitives = 0;
-      const constItems = empty2();
-      for (const item of itemSchemas) {
-        if ("type" in item && item.type !== "null") {
-          typePrimitives++;
-        } else if ("const" in item) {
-          constItems.push(item);
-        }
-      }
-      if (typePrimitives <= 1 && constItems.length > 0 && constItems.length + typePrimitives === itemSchemas.length) {
-        itemSchemas = constItems;
-      }
-      const items = pipe(
-        itemSchemas,
-        filterMap2(
-          (_) => toSource(importName, _, currentIdentifier + "Enum").pipe(
-            map2(
-              (source) => ({
-                description: nonEmptyString3(_.description),
-                title: nonEmptyString3(_.title),
-                source
-              })
-            )
-          )
-        )
-      );
-      if (items.length === 0) {
-        return none2();
-      } else if (items.length === 1) {
-        return some2(items[0].source);
-      }
-      return some2(transformer.onUnion({ importName, items, topLevel }));
     } else if ("properties" in schema) {
       return toSource(
         importName,
         { type: "object", ...schema },
         currentIdentifier,
-        topLevel
+        topLevel,
+        rootIdentifier,
+        currentDependencies
       );
     } else if ("allOf" in schema) {
       if (store.has(currentIdentifier)) {
+        recordDependency(currentIdentifier);
         return some2(
           transformer.onRef({ importName, name: currentIdentifier })
         );
@@ -35097,7 +35022,9 @@ var make64 = gen2(function* () {
         importName,
         flattened2,
         currentIdentifier + "Enum",
-        topLevel
+        topLevel,
+        rootIdentifier,
+        currentDependencies
       );
     } else if ("type" in schema && schema.type) {
       switch (schema.type) {
@@ -35129,7 +35056,10 @@ var make64 = gen2(function* () {
           return toSource(
             importName,
             itemsSchema(schema.items),
-            currentIdentifier
+            currentIdentifier,
+            false,
+            rootIdentifier,
+            currentDependencies
           ).pipe(
             map2(
               (item) => transformer.onArray({
@@ -35153,15 +35083,118 @@ var make64 = gen2(function* () {
     }
     return schema;
   };
-  const generate = (importName) => sync5(
-    () => pipe(
-      store.entries(),
-      filterMap2(
-        ([name2, schema]) => topLevelSource(importName, name2, schema)
-      ),
-      join("\n\n")
-    )
-  );
+  const generate = (importName) => sync5(() => {
+    const storeEntries = Array.from(store.entries());
+    const missingTopLevel = [];
+    const sources = [];
+    for (const [name2, schema] of storeEntries) {
+      const maybeSource = topLevelSource(importName, name2, schema);
+      match2(maybeSource, {
+        onNone: () => {
+          missingTopLevel.push(name2);
+        },
+        onSome: (source) => {
+          sources.push({ name: name2, source });
+        }
+      });
+    }
+    if (sources.length === 0) {
+      return "";
+    }
+    const topLevelNames = new Set(sources.map((_) => _.name));
+    const graph = /* @__PURE__ */ new Map();
+    const dependents = /* @__PURE__ */ new Map();
+    const missingDependencies = [];
+    for (const { name: name2 } of sources) {
+      const deps = dependencies.get(name2);
+      if (deps) {
+        const filtered = /* @__PURE__ */ new Set();
+        const missing = [];
+        for (const dep of deps) {
+          if (topLevelNames.has(dep)) {
+            filtered.add(dep);
+            const list4 = dependents.get(dep);
+            if (list4) {
+              list4.add(name2);
+            } else {
+              dependents.set(dep, /* @__PURE__ */ new Set([name2]));
+            }
+          } else if (store.has(dep)) {
+            missing.push(dep);
+          }
+        }
+        if (missing.length > 0) {
+          missingDependencies.push({ name: name2, missing });
+        }
+        graph.set(name2, filtered);
+      } else {
+        graph.set(name2, /* @__PURE__ */ new Set());
+      }
+    }
+    const indegree = /* @__PURE__ */ new Map();
+    for (const { name: name2 } of sources) {
+      indegree.set(name2, graph.get(name2)?.size ?? 0);
+    }
+    const insertionOrder = sources.map((_) => _.name);
+    const queue = [];
+    const enqueued = /* @__PURE__ */ new Set();
+    for (const name2 of insertionOrder) {
+      if ((indegree.get(name2) ?? 0) === 0) {
+        queue.push(name2);
+        enqueued.add(name2);
+      }
+    }
+    const ordered = [];
+    for (let index = 0; index < queue.length; index++) {
+      const name2 = queue[index];
+      ordered.push(name2);
+      const nextNodes = dependents.get(name2);
+      if (!nextNodes) {
+        continue;
+      }
+      for (const dependent of nextNodes) {
+        const next = (indegree.get(dependent) ?? 0) - 1;
+        indegree.set(dependent, next);
+        if (next === 0 && !enqueued.has(dependent)) {
+          queue.push(dependent);
+          enqueued.add(dependent);
+        }
+      }
+    }
+    const hasCycle = ordered.length !== topLevelNames.size;
+    const finalOrder = hasCycle ? insertionOrder : ordered;
+    const sourceMap = new Map(
+      sources.map((_) => [_.name, _.source])
+    );
+    const warningBlocks = [];
+    if (missingDependencies.length > 0) {
+      const details = missingDependencies.map(
+        ({ name: name2, missing }) => `${name2} -> ${missing.join(", ")}`
+      ).join("; ");
+      warningBlocks.push(
+        `/* JsonSchemaGen warning: missing definitions for ${details}. */`
+      );
+    }
+    if (hasCycle) {
+      const cyclic = computeStronglyConnectedComponents(graph).filter(
+        (component) => component.length > 1 || component.length === 1 && graph.get(component[0])?.has(component[0])
+      );
+      if (cyclic.length > 0) {
+        warningBlocks.push(
+          `/* JsonSchemaGen warning: circular dependencies detected among ${cyclic.map((component) => component.join(", ")).join(" | ")}. Original emission order preserved. */`
+        );
+      }
+    }
+    if (missingTopLevel.length > 0) {
+      warningBlocks.push(
+        `/* JsonSchemaGen warning: unsupported top-level schemas (${missingTopLevel.join(", ")}). */`
+      );
+    }
+    const body = finalOrder.map((name2) => sourceMap.get(name2)).join("\n\n");
+    return warningBlocks.length > 0 ? `${warningBlocks.join("\n")}
+
+${body}` : body;
+  });
   return { addSchema, generate };
 });
 var JsonSchemaGen = class extends Tag2("JsonSchemaGen")() {
@@ -35193,8 +35226,8 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
       const hasUnion = "oneOf" in schema || "anyOf" in schema;
       const isObject2 = "properties" in schema && Object.keys(schema.properties ?? {}).length > 0;
       if (hasUnion) {
-        return `${toComment(description)}export const ${name2} = ${source}
-export type ${name2} = typeof ${name2}["Type"]`;
+        return `${toComment(description)}export const ${name2} = eraseSchemaReq(${source})
+export type ${name2} = typeof ${name2}`;
       }
       if (!isObject2 || !isClass) {
         return `${toComment(description)}export class ${name2} extends ${source} {}`;
@@ -35423,6 +35456,59 @@ function filterNullable(schema) {
   }
   return [false, schema];
 }
+function computeStronglyConnectedComponents(graph) {
+  let index = 0;
+  const indices = /* @__PURE__ */ new Map();
+  const lowlinks = /* @__PURE__ */ new Map();
+  const stack = [];
+  const onStack = /* @__PURE__ */ new Set();
+  const components = [];
+  const strongConnect = (node) => {
+    indices.set(node, index);
+    lowlinks.set(node, index);
+    index++;
+    stack.push(node);
+    onStack.add(node);
+    for (const dep of graph.get(node) ?? /* @__PURE__ */ new Set()) {
+      if (!indices.has(dep)) {
+        strongConnect(dep);
+        lowlinks.set(
+          node,
+          Math.min(
+            lowlinks.get(node),
+            lowlinks.get(dep)
+          )
+        );
+      } else if (onStack.has(dep)) {
+        lowlinks.set(
+          node,
+          Math.min(
+            lowlinks.get(node),
+            indices.get(dep)
+          )
+        );
+      }
+    }
+    if (lowlinks.get(node) === indices.get(node)) {
+      const component = [];
+      while (true) {
+        const item = stack.pop();
+        onStack.delete(item);
+        component.push(item);
+        if (item === node) {
+          break;
+        }
+      }
+      components.push(component);
+    }
+  };
+  for (const node of graph.keys()) {
+    if (!indices.has(node)) {
+      strongConnect(node);
+    }
+  }
+  return components;
+}
 
 // src/OpenApi.ts
 var import_swagger2openapi = __toESM(require_swagger2openapi());
@@ -35625,10 +35711,9 @@ ${transformer.toTypes(options3.name, operations)}`;
   );
   return { generate };
 });
-var _OpenApi = class _OpenApi extends Tag3("OpenApi")() {
+var OpenApi = class _OpenApi extends Tag3("OpenApi")() {
+  static Live = effect(_OpenApi, make65);
 };
-_OpenApi.Live = effect(_OpenApi, make65);
-var OpenApi = _OpenApi;
 var OpenApiTransformer = class extends Tag2("OpenApiTransformer")() {
 };
 var layerTransformerSchema2 = sync6(OpenApiTransformer, () => {
@@ -35761,7 +35846,8 @@ ${clientErrorSource(name2)}`;
       'import * as Data from "effect/Data"',
       'import * as Effect from "effect/Effect"',
       'import type { ParseError } from "effect/ParseResult"',
-      'import * as S from "effect/Schema"'
+      'import * as S from "effect/Schema"',
+      "\n\nconst eraseSchemaReq = <I, A, R>(schema: S.Schema<A, I, R>): S.Schema<A, I, never> => schema as any"
     ].join("\n"),
     toTypes: operationsToInterface,
     toImplementation: operationsToImpl

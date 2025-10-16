@@ -428,6 +428,7 @@ ${clientErrorSource(name)}`
       'import * as Effect from "effect/Effect"',
       'import type { ParseError } from "effect/ParseResult"',
       'import * as S from "effect/Schema"',
+      '\n\nconst eraseSchemaReq = <I, A, R>(schema: S.Schema<A, I, R>): S.Schema<A, I, never> => schema as any',
     ].join("\n"),
     toTypes: operationsToInterface,
     toImplementation: operationsToImpl,

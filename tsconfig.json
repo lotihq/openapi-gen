@@ -2,7 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
-    "target": "ES2021",
+    "target": "esnext",
     "noEmit": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
