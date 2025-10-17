@@ -36237,6 +36237,35 @@ var make65 = gen2(function* () {
       for (const file3 of filesByKey.values()) {
         file3.definitions.sort((a, b) => a.index - b.index);
       }
+      const chunkSize = 200;
+      const dataFile = filesByKey.get("data");
+      if (dataFile && dataFile.definitions.length > chunkSize) {
+        filesByKey.delete("data");
+        const chunks2 = Math.ceil(dataFile.definitions.length / chunkSize);
+        for (let chunkIndex = 0; chunkIndex < chunks2; chunkIndex++) {
+          const start4 = chunkIndex * chunkSize;
+          const chunkDefinitions = dataFile.definitions.slice(
+            start4,
+            start4 + chunkSize
+          );
+          if (chunkDefinitions.length === 0) {
+            continue;
+          }
+          const suffix = String(chunkIndex + 1).padStart(2, "0");
+          const chunkKey = `data-${suffix}`;
+          const chunkFilename = `${dataFile.filename}-${suffix}`;
+          const chunkFile = {
+            key: chunkKey,
+            filename: chunkFilename,
+            definitions: chunkDefinitions,
+            earliestIndex: chunkDefinitions[0]?.index ?? dataFile.earliestIndex
+          };
+          filesByKey.set(chunkKey, chunkFile);
+          for (const definition of chunkDefinitions) {
+            definitionToFile.set(definition.name, chunkKey);
+          }
+        }
+      }
       const orderedFiles = Array.from(filesByKey.values()).sort((a, b) => {
         if (a.earliestIndex !== b.earliestIndex) {
           return a.earliestIndex - b.earliestIndex;

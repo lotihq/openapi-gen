@@ -551,6 +551,36 @@ export const make = Effect.gen(function* () {
         file.definitions.sort((a, b) => a.index - b.index)
       }
 
+      const chunkSize = 200
+      const dataFile = filesByKey.get("data")
+      if (dataFile && dataFile.definitions.length > chunkSize) {
+        filesByKey.delete("data")
+        const chunks = Math.ceil(dataFile.definitions.length / chunkSize)
+        for (let chunkIndex = 0; chunkIndex < chunks; chunkIndex++) {
+          const start = chunkIndex * chunkSize
+          const chunkDefinitions = dataFile.definitions.slice(
+            start,
+            start + chunkSize,
+          )
+          if (chunkDefinitions.length === 0) {
+            continue
+          }
+          const suffix = String(chunkIndex + 1).padStart(2, "0")
+          const chunkKey = `data-${suffix}`
+          const chunkFilename = `${dataFile.filename}-${suffix}`
+          const chunkFile: FileInfo = {
+            key: chunkKey,
+            filename: chunkFilename,
+            definitions: chunkDefinitions,
+            earliestIndex: chunkDefinitions[0]?.index ?? dataFile.earliestIndex,
+          }
+          filesByKey.set(chunkKey, chunkFile)
+          for (const definition of chunkDefinitions) {
+            definitionToFile.set(definition.name, chunkKey)
+          }
+        }
+      }
+
       const orderedFiles = Array.from(filesByKey.values()).sort((a, b) => {
         if (a.earliestIndex !== b.earliestIndex) {
           return a.earliestIndex - b.earliestIndex
