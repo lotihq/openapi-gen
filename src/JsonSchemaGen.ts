@@ -573,6 +573,7 @@ const make = Effect.gen(function* () {
 
   const generate = (importName: string) =>
     Effect.sync(() => {
+      transformer.resetHoists?.()
       const storeEntries = Array.from(store.entries())
       const missingTopLevel: Array<string> = []
       const sources: Array<{ readonly name: string; readonly source: string }> =
@@ -691,9 +692,17 @@ const make = Effect.gen(function* () {
           `/* JsonSchemaGen warning: unsupported top-level schemas (${missingTopLevel.join(", ")}). */`,
         )
       }
-      const body = finalOrder
+      const joinedBody = finalOrder
         .map((name) => sourceMap.get(name)!)
         .join("\n\n")
+      const hoistResult = transformer.finalizeHoists
+        ? transformer.finalizeHoists({ source: joinedBody })
+        : { declarations: [] as ReadonlyArray<string>, source: joinedBody }
+      const hoistDeclarations = Array.from(hoistResult.declarations)
+      const body =
+        hoistDeclarations.length > 0
+          ? `${hoistDeclarations.join("\n")}\n\n${hoistResult.source}`
+          : hoistResult.source
       const aliasEntries = Array.from(aliasMap.entries()).filter(
         ([alias, target]) => alias !== target,
       )
@@ -808,10 +817,180 @@ export class JsonSchemaTransformer extends Context.Tag("JsonSchemaTransformer")<
         readonly source: string
       }>
     }): string
+
+    resetHoists?(): void
+
+    finalizeHoists?(options: {
+      readonly source: string
+    }): {
+      readonly source: string
+      readonly declarations: ReadonlyArray<string>
+    }
   }
 >() {}
 
 export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
+  type OptionalWithHoistHint = {
+    readonly kind: "optionalWith"
+    readonly baseSource: string
+    readonly defaultSource?: string
+  }
+
+  type HoistHint = OptionalWithHoistHint
+
+  type HoistEntry = {
+    readonly placeholder: string
+    readonly expression: string
+    readonly hint: HoistHint
+    count: number
+  }
+
+  let hoistCounter = 0
+  const hoistEntries: Array<HoistEntry> = []
+  const hoistMap = new Map<string, HoistEntry>()
+
+  const isSimpleIdentifier = (value: string) =>
+    /^[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*$/.test(value)
+
+  const resetHoists = () => {
+    hoistEntries.length = 0
+    hoistMap.clear()
+    hoistCounter = 0
+  }
+
+  const shouldHoist = (hint: HoistHint) => {
+    switch (hint.kind) {
+      case "optionalWith": {
+        return (
+          isSimpleIdentifier(hint.baseSource) &&
+          hint.baseSource.includes(".")
+        )
+      }
+    }
+    return false
+  }
+
+  const registerHoist = (expression: string, hint: HoistHint): string => {
+    if (!shouldHoist(hint)) {
+      return expression
+    }
+    let entry = hoistMap.get(expression)
+    if (!entry) {
+      entry = {
+        expression,
+        hint,
+        placeholder: `__JSON_SCHEMA_HOIST_${hoistCounter++}__`,
+        count: 0,
+      }
+      hoistMap.set(expression, entry)
+      hoistEntries.push(entry)
+    }
+    entry.count++
+    return entry.placeholder
+  }
+
+  const toPascalCase = (input: string) => {
+    const words = input
+      .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+      .replace(/[^A-Za-z0-9]+/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter((_) => _.length > 0)
+      .map((word) => word[0]!.toUpperCase() + word.slice(1))
+    return words.join("")
+  }
+
+  const normalizeDefaultValue = (value: string) => {
+    const trimmed = value.trim()
+    if (trimmed.startsWith("-")) {
+      return `Minus ${trimmed.slice(1)}`
+    }
+    if (trimmed.startsWith("+")) {
+      return `Plus ${trimmed.slice(1)}`
+    }
+    if (
+      (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+      (trimmed.startsWith("'") && trimmed.endsWith("'"))
+    ) {
+      return trimmed.slice(1, -1)
+    }
+    return trimmed
+  }
+
+  const buildDefaultSuffix = (defaultSource: string | undefined) => {
+    if (!defaultSource) {
+      return ""
+    }
+    const match = defaultSource.match(/^\(\)\s*=>\s*(.+)\s+as const$/)
+    const value = normalizeDefaultValue(match ? match[1] ?? "" : defaultSource)
+    const normalized = toPascalCase(value)
+    return normalized.length > 0 ? `WithDefault${normalized}` : "WithDefault"
+  }
+
+  const makeHoistName = (entry: HoistEntry) => {
+    switch (entry.hint.kind) {
+      case "optionalWith": {
+        const baseSegment =
+          entry.hint.baseSource.split(".").pop() ?? entry.hint.baseSource
+        const normalizedBase = toPascalCase(baseSegment)
+        const suffix = buildDefaultSuffix(entry.hint.defaultSource)
+        const base =
+          normalizedBase.length > 0 ? normalizedBase : "Value"
+        return `optionalNullable${base}${suffix}`
+      }
+    }
+  }
+
+  const resolveHoists = (source: string) => {
+    if (hoistEntries.length === 0) {
+      return {
+        declarations: [] as ReadonlyArray<string>,
+        source,
+      }
+    }
+    const replacements = new Map<string, string>()
+    const declarations: Array<string> = []
+    const usedNames = new Set<string>()
+    for (const entry of hoistEntries) {
+      if (entry.count <= 1) {
+        replacements.set(entry.placeholder, entry.expression)
+        continue
+      }
+      let name = makeHoistName(entry)
+      if (!name || name.length === 0) {
+        name = `hoistedExpression${declarations.length + 1}`
+      }
+      let uniqueName = name
+      let index = 1
+      while (usedNames.has(uniqueName)) {
+        uniqueName = `${name}${++index}`
+      }
+      usedNames.add(uniqueName)
+      declarations.push(`const ${uniqueName} = ${entry.expression}`)
+      replacements.set(entry.placeholder, uniqueName)
+    }
+    let resolved = source
+    for (const [placeholder, replacement] of replacements) {
+      resolved = resolved.split(placeholder).join(replacement)
+    }
+    resetHoists()
+    return {
+      declarations,
+      source: resolved,
+    }
+  }
+
+  const hoistOptional = (
+    expression: string,
+    baseSource: string,
+    defaultSource: string | undefined,
+  ) =>
+    registerHoist(expression, {
+      kind: "optionalWith",
+      baseSource,
+      defaultSource,
+    })
+
   const applyAnnotations =
     (
       S: string,
@@ -832,9 +1011,11 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
           ? `() => ${JSON.stringify(options.default)} as const`
           : undefined
       if (options.isOptional) {
-        return defaultSource
-          ? `${S}.optionalWith(${source}, { nullable: true, default: ${defaultSource} })`
-          : `${S}.optionalWith(${source}, { nullable: true })`
+        const expression =
+          defaultSource !== undefined
+            ? `${S}.optionalWith(${source}, { nullable: true, default: ${defaultSource} })`
+            : `${S}.optionalWith(${source}, { nullable: true })`
+        return hoistOptional(expression, source, defaultSource)
       }
       const newSource = options.isNullable ? `${S}.NullOr(${source})` : source
       if (defaultSource) {
@@ -946,6 +1127,10 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
     onUnion({ importName, items }) {
       return `${importName}.Union(${items.map((_) => `${toComment(_.description)}${_.source}`).join(",\n")})`
     },
+    resetHoists,
+    finalizeHoists({ source }) {
+      return resolveHoists(source)
+    },
   })
 })
 
@@ -1006,6 +1191,13 @@ export type ${name} = (typeof ${name})[keyof typeof ${name}];`
         return items.map((_) => _.source).join(" | ")
       }
       return `{\n  ${items.map(({ description, title, source }) => `${toComment(description)}${JSON.stringify(Option.getOrNull(title))}: ${source}`).join(",\n  ")}} as const\n`
+    },
+    resetHoists() {},
+    finalizeHoists({ source }) {
+      return {
+        declarations: [],
+        source,
+      }
     },
   }),
 )

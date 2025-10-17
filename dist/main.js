@@ -35163,6 +35163,7 @@ var make64 = gen2(function* () {
     }
   };
   const generate = (importName) => sync5(() => {
+    transformer.resetHoists?.();
     const storeEntries = Array.from(store.entries());
     const missingTopLevel = [];
     const sources = [];
@@ -35269,7 +35270,12 @@ var make64 = gen2(function* () {
         `/* JsonSchemaGen warning: unsupported top-level schemas (${missingTopLevel.join(", ")}). */`
       );
     }
-    const body = finalOrder.map((name2) => sourceMap.get(name2)).join("\n\n");
+    const joinedBody = finalOrder.map((name2) => sourceMap.get(name2)).join("\n\n");
+    const hoistResult = transformer.finalizeHoists ? transformer.finalizeHoists({ source: joinedBody }) : { declarations: [], source: joinedBody };
+    const hoistDeclarations = Array.from(hoistResult.declarations);
+    const body = hoistDeclarations.length > 0 ? `${hoistDeclarations.join("\n")}
+
+${hoistResult.source}` : hoistResult.source;
     const aliasEntries = Array.from(aliasMap.entries()).filter(
       ([alias, target]) => alias !== target
     );
@@ -35290,13 +35296,129 @@ var with_ = provideServiceEffect2(JsonSchemaGen, make64);
 var JsonSchemaTransformer = class extends Tag2("JsonSchemaTransformer")() {
 };
 var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
+  let hoistCounter = 0;
+  const hoistEntries = [];
+  const hoistMap = /* @__PURE__ */ new Map();
+  const isSimpleIdentifier = (value5) => /^[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*$/.test(value5);
+  const resetHoists = () => {
+    hoistEntries.length = 0;
+    hoistMap.clear();
+    hoistCounter = 0;
+  };
+  const shouldHoist = (hint) => {
+    switch (hint.kind) {
+      case "optionalWith": {
+        return isSimpleIdentifier(hint.baseSource) && hint.baseSource.includes(".");
+      }
+    }
+    return false;
+  };
+  const registerHoist = (expression, hint) => {
+    if (!shouldHoist(hint)) {
+      return expression;
+    }
+    let entry = hoistMap.get(expression);
+    if (!entry) {
+      entry = {
+        expression,
+        hint,
+        placeholder: `__JSON_SCHEMA_HOIST_${hoistCounter++}__`,
+        count: 0
+      };
+      hoistMap.set(expression, entry);
+      hoistEntries.push(entry);
+    }
+    entry.count++;
+    return entry.placeholder;
+  };
+  const toPascalCase = (input) => {
+    const words3 = input.replace(/([a-z0-9])([A-Z])/g, "$1 $2").replace(/[^A-Za-z0-9]+/g, " ").trim().split(/\s+/).filter((_) => _.length > 0).map((word) => word[0].toUpperCase() + word.slice(1));
+    return words3.join("");
+  };
+  const normalizeDefaultValue = (value5) => {
+    const trimmed = value5.trim();
+    if (trimmed.startsWith("-")) {
+      return `Minus ${trimmed.slice(1)}`;
+    }
+    if (trimmed.startsWith("+")) {
+      return `Plus ${trimmed.slice(1)}`;
+    }
+    if (trimmed.startsWith('"') && trimmed.endsWith('"') || trimmed.startsWith("'") && trimmed.endsWith("'")) {
+      return trimmed.slice(1, -1);
+    }
+    return trimmed;
+  };
+  const buildDefaultSuffix = (defaultSource) => {
+    if (!defaultSource) {
+      return "";
+    }
+    const match17 = defaultSource.match(/^\(\)\s*=>\s*(.+)\s+as const$/);
+    const value5 = normalizeDefaultValue(match17 ? match17[1] ?? "" : defaultSource);
+    const normalized = toPascalCase(value5);
+    return normalized.length > 0 ? `WithDefault${normalized}` : "WithDefault";
+  };
+  const makeHoistName = (entry) => {
+    switch (entry.hint.kind) {
+      case "optionalWith": {
+        const baseSegment = entry.hint.baseSource.split(".").pop() ?? entry.hint.baseSource;
+        const normalizedBase = toPascalCase(baseSegment);
+        const suffix = buildDefaultSuffix(entry.hint.defaultSource);
+        const base = normalizedBase.length > 0 ? normalizedBase : "Value";
+        return `optionalNullable${base}${suffix}`;
+      }
+    }
+  };
+  const resolveHoists = (source) => {
+    if (hoistEntries.length === 0) {
+      return {
+        declarations: [],
+        source
+      };
+    }
+    const replacements = /* @__PURE__ */ new Map();
+    const declarations = [];
+    const usedNames = /* @__PURE__ */ new Set();
+    for (const entry of hoistEntries) {
+      if (entry.count <= 1) {
+        replacements.set(entry.placeholder, entry.expression);
+        continue;
+      }
+      let name2 = makeHoistName(entry);
+      if (!name2 || name2.length === 0) {
+        name2 = `hoistedExpression${declarations.length + 1}`;
+      }
+      let uniqueName = name2;
+      let index = 1;
+      while (usedNames.has(uniqueName)) {
+        uniqueName = `${name2}${++index}`;
+      }
+      usedNames.add(uniqueName);
+      declarations.push(`const ${uniqueName} = ${entry.expression}`);
+      replacements.set(entry.placeholder, uniqueName);
+    }
+    let resolved = source;
+    for (const [placeholder, replacement] of replacements) {
+      resolved = resolved.split(placeholder).join(replacement);
+    }
+    resetHoists();
+    return {
+      declarations,
+      source: resolved
+    };
+  };
+  const hoistOptional = (expression, baseSource, defaultSource) => registerHoist(expression, {
+    kind: "optionalWith",
+    baseSource,
+    defaultSource
+  });
   const applyAnnotations = (S, options3) => (source) => {
     if (options3.isNullable && options3.default === null) {
       return `${S}.optionalWith(${S}.NullOr(${source}), { default: () => null })`;
     }
     const defaultSource = options3.default !== void 0 && options3.default !== null ? `() => ${JSON.stringify(options3.default)} as const` : void 0;
     if (options3.isOptional) {
-      return defaultSource ? `${S}.optionalWith(${source}, { nullable: true, default: ${defaultSource} })` : `${S}.optionalWith(${source}, { nullable: true })`;
+      const expression = defaultSource !== void 0 ? `${S}.optionalWith(${source}, { nullable: true, default: ${defaultSource} })` : `${S}.optionalWith(${source}, { nullable: true })`;
+      return hoistOptional(expression, source, defaultSource);
     }
     const newSource = options3.isNullable ? `${S}.NullOr(${source})` : source;
     if (defaultSource) {
@@ -35399,6 +35521,10 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
     },
     onUnion({ importName, items }) {
       return `${importName}.Union(${items.map((_) => `${toComment(_.description)}${_.source}`).join(",\n")})`;
+    },
+    resetHoists,
+    finalizeHoists({ source }) {
+      return resolveHoists(source);
     }
   });
 });
@@ -35456,6 +35582,14 @@ export type ${name2} = (typeof ${name2})[keyof typeof ${name2}];` : `${toComment
       return `{
   ${items.map(({ description, title, source }) => `${toComment(description)}${JSON.stringify(getOrNull(title))}: ${source}`).join(",\n  ")}} as const
 `;
+    },
+    resetHoists() {
+    },
+    finalizeHoists({ source }) {
+      return {
+        declarations: [],
+        source
+      };
     }
   })
 );

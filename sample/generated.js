@@ -4,9 +4,15 @@ import * as HttpClientResponse from "@effect/platform/HttpClientResponse";
 import * as Data from "effect/Data";
 import * as Effect from "effect/Effect";
 import * as S from "effect/Schema";
+const optionalNullableString = S.optionalWith(S.String, { nullable: true });
+const optionalNullableNumberWithDefault1 = S.optionalWith(S.Number, { nullable: true, default: () => 1 });
+const optionalNullableBoolean = S.optionalWith(S.Boolean, { nullable: true });
+const optionalNullableBooleanWithDefaultTrue = S.optionalWith(S.Boolean, { nullable: true, default: () => true });
+const optionalNullableNumber = S.optionalWith(S.Number, { nullable: true });
+const optionalNullableNumberWithDefaultMinus1 = S.optionalWith(S.Number, { nullable: true, default: () => -1 });
 export class AccountControllerGetCurrentAccountParams extends S.Struct({
-    "include": S.optionalWith(S.String, { nullable: true }),
-    "typeDepthLimit": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "include": optionalNullableString,
+    "typeDepthLimit": optionalNullableNumberWithDefault1,
     "fields": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true })
 }) {
 }
@@ -25,14 +31,14 @@ export class LinkObject extends S.Class("LinkObject")({
     /**
   * Link to the current entity.
   */
-    "self": S.optionalWith(S.String, { nullable: true })
+    "self": optionalNullableString
 }) {
 }
 export class AccountAttributes extends S.Class("AccountAttributes")({
     /**
   * The name for the account
   */
-    "name": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString
 }) {
 }
 export class UserRef extends S.Class("UserRef")({
@@ -50,11 +56,11 @@ export class ReferencedLinkObject extends S.Class("ReferencedLinkObject")({
     /**
   * Link to the current entity ref(s).
   */
-    "self": S.optionalWith(S.String, { nullable: true }),
+    "self": optionalNullableString,
     /**
   * Link to full object(s).
   */
-    "related": S.optionalWith(S.String, { nullable: true })
+    "related": optionalNullableString
 }) {
 }
 export class IncidentRef extends S.Class("IncidentRef")({
@@ -105,17 +111,17 @@ export class CreateUserAttributes extends S.Class("CreateUserAttributes")({
     /**
   * The user's full legal name
   */
-    "legalName": S.optionalWith(S.String, { nullable: true }),
+    "legalName": optionalNullableString,
     /**
   * The user's preferred name (e.g., first name)
   */
-    "preferredName": S.optionalWith(S.String, { nullable: true }),
-    "avatarKey": S.optionalWith(S.String, { nullable: true }),
-    "avatarUrl": S.optionalWith(S.String, { nullable: true }),
+    "preferredName": optionalNullableString,
+    "avatarKey": optionalNullableString,
+    "avatarUrl": optionalNullableString,
     /**
   * Whether or not the user is an admin
   */
-    "isAdmin": S.optionalWith(S.Boolean, { nullable: true })
+    "isAdmin": optionalNullableBoolean
 }) {
 }
 export class EmailAddressRef extends S.Class("EmailAddressRef")({
@@ -152,12 +158,12 @@ export class AccountRef extends S.Class("AccountRef")({
 }) {
 }
 export class EmailAddressAttributes extends S.Class("EmailAddressAttributes")({
-    "address": S.optionalWith(S.String, { nullable: true }),
+    "address": optionalNullableString,
     /**
   * Whether email address is verified.
   */
-    "isVerified": S.optionalWith(S.Boolean, { nullable: true }),
-    "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
+    "isVerified": optionalNullableBoolean,
+    "isPrimary": optionalNullableBoolean
 }) {
 }
 export class AccountProviderContactRef extends S.Class("AccountProviderContactRef")({
@@ -175,13 +181,13 @@ export class AccountProviderContactAttributes extends S.Class("AccountProviderCo
     /**
   * The user's full legal name
   */
-    "legalName": S.optionalWith(S.String, { nullable: true }),
+    "legalName": optionalNullableString,
     /**
   * The user's preferred name (e.g., first name)
   */
-    "preferredName": S.optionalWith(S.String, { nullable: true }),
-    "avatarKey": S.optionalWith(S.String, { nullable: true }),
-    "avatarUrl": S.optionalWith(S.String, { nullable: true })
+    "preferredName": optionalNullableString,
+    "avatarKey": optionalNullableString,
+    "avatarUrl": optionalNullableString
 }) {
 }
 export class AccountProviderRef extends S.Class("AccountProviderRef")({
@@ -196,16 +202,16 @@ export class AccountProviderRef extends S.Class("AccountProviderRef")({
 }) {
 }
 export class PhoneNumberAttributes extends S.Class("PhoneNumberAttributes")({
-    "number": S.optionalWith(S.String, { nullable: true }),
-    "isVerified": S.optionalWith(S.Boolean, { nullable: true }),
-    "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
+    "number": optionalNullableString,
+    "isVerified": optionalNullableBoolean,
+    "isPrimary": optionalNullableBoolean
 }) {
 }
 export class AccountProviderAttributes extends S.Class("AccountProviderAttributes")({
     /**
   * Required if provider not set.
   */
-    "name": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
     "offerings": S.optionalWith(S.Array(S.Literal("AID", "COVERAGE", "ITEM", "SERVICE")), { nullable: true })
 }) {
 }
@@ -232,12 +238,12 @@ export class ProjectMediaRef extends S.Class("ProjectMediaRef")({
 }) {
 }
 export class IncidentAttributes extends S.Class("IncidentAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "occurredDate": S.optionalWith(S.String, { nullable: true }),
-    "isFemaDisaster": S.optionalWith(S.Boolean, { nullable: true }),
-    "wasSomeoneInjured": S.optionalWith(S.Boolean, { nullable: true }),
-    "isThereLiability": S.optionalWith(S.Boolean, { nullable: true })
+    "name": optionalNullableString,
+    "description": optionalNullableString,
+    "occurredDate": optionalNullableString,
+    "isFemaDisaster": optionalNullableBoolean,
+    "wasSomeoneInjured": optionalNullableBoolean,
+    "isThereLiability": optionalNullableBoolean
 }) {
 }
 export class IncidentTypeRef extends S.Class("IncidentTypeRef")({
@@ -566,8 +572,8 @@ export class DeedRef extends S.Class("DeedRef")({
 }) {
 }
 export class AssetAttributes extends S.Class("AssetAttributes")({
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true })
+    "appraisalCount": optionalNullableNumber,
+    "appraisedAmount": optionalNullableNumber
 }) {
 }
 export class AssetTypeRef extends S.Class("AssetTypeRef")({
@@ -593,18 +599,18 @@ export class AddressRef extends S.Class("AddressRef")({
 }) {
 }
 export class AssetTypeAttributes extends S.Class("AssetTypeAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
+    "description": optionalNullableString
 }) {
 }
 export class AssetAppraisalAttributes extends S.Class("AssetAppraisalAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "amount": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "amount": optionalNullableString
 }) {
 }
 export class DocumentTypeRef extends S.Class("DocumentTypeRef")({
@@ -619,10 +625,10 @@ export class DocumentTypeRef extends S.Class("DocumentTypeRef")({
 }) {
 }
 export class CreateDocumentTypeAttributes extends S.Class("CreateDocumentTypeAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "articleUrl": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
+    "description": optionalNullableString,
+    "articleUrl": optionalNullableString
 }) {
 }
 export class DocumentClassRef extends S.Class("DocumentClassRef")({
@@ -661,8 +667,8 @@ export class SpaceGroupRef extends S.Class("SpaceGroupRef")({
 }) {
 }
 export class CreateSpaceCategoryAttributes extends S.Class("CreateSpaceCategoryAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
     "tags": S.optionalWith(S.Array(S.String), { nullable: true })
 }) {
 }
@@ -711,10 +717,10 @@ export class BucketTypeRef extends S.Class("BucketTypeRef")({
 }) {
 }
 export class BucketTypeAttributes extends S.Class("BucketTypeAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "articleUrl": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
+    "description": optionalNullableString,
+    "articleUrl": optionalNullableString
 }) {
 }
 export class BucketClassRef extends S.Class("BucketClassRef")({
@@ -729,16 +735,16 @@ export class BucketClassRef extends S.Class("BucketClassRef")({
 }) {
 }
 export class CreateCurrencyAttributes extends S.Class("CreateCurrencyAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "iso": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString,
+    "iso": optionalNullableString
 }) {
 }
 export class AddressAttributes extends S.Class("AddressAttributes")({
-    "streetAddress": S.optionalWith(S.String, { nullable: true }),
-    "streetAddress2": S.optionalWith(S.String, { nullable: true }),
-    "city": S.optionalWith(S.String, { nullable: true }),
-    "state": S.optionalWith(S.String, { nullable: true }),
-    "postal": S.optionalWith(S.String, { nullable: true })
+    "streetAddress": optionalNullableString,
+    "streetAddress2": optionalNullableString,
+    "city": optionalNullableString,
+    "state": optionalNullableString,
+    "postal": optionalNullableString
 }) {
 }
 export class CountryRef extends S.Class("CountryRef")({
@@ -753,9 +759,9 @@ export class CountryRef extends S.Class("CountryRef")({
 }) {
 }
 export class CountryAttributes extends S.Class("CountryAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "callingCode": S.optionalWith(S.String, { nullable: true }),
-    "iso2": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString,
+    "callingCode": optionalNullableString,
+    "iso2": optionalNullableString
 }) {
 }
 export class CreateFileProcessAttributesType extends S.Literal("CONVERSION", "DATA_EXTRACTION") {
@@ -763,24 +769,24 @@ export class CreateFileProcessAttributesType extends S.Literal("CONVERSION", "DA
 export class CreateFileProcessAttributesStatus extends S.Literal("COMPLETED", "FAILED", "PAUSED", "PROCESSING", "QUEUED") {
 }
 export class BlueprintAttributes extends S.Class("BlueprintAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true })
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue
 }) {
 }
 export class ChangeOrderAttributes extends S.Class("ChangeOrderAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "amount": optionalNullableNumber,
+    "isUserDoneItemizing": optionalNullableBoolean,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class ItemizableFinancialDocumentStatsRef extends S.Class("ItemizableFinancialDocumentStatsRef")({
@@ -883,45 +889,45 @@ export class ThirdPartyImpactRef extends S.Class("ThirdPartyImpactRef")({
 }) {
 }
 export class CreateItemizableFinancialDocumentStatsAttributes extends S.Class("CreateItemizableFinancialDocumentStatsAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemizedCount": S.optionalWith(S.Number, { nullable: true }),
-    "itemizedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemizedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemizedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemizedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyItemized": S.optionalWith(S.Boolean, { nullable: true }),
-    "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-    "isItemizationComplete": S.optionalWith(S.Boolean, { nullable: true })
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
+    "itemizedCount": optionalNullableNumber,
+    "itemizedAmount": optionalNullableNumber,
+    "itemizedSubtotalAmount": optionalNullableNumber,
+    "itemizedTaxAmount": optionalNullableNumber,
+    "itemizedFeeAmount": optionalNullableNumber,
+    "isFullyItemized": optionalNullableBoolean,
+    "isUserDoneItemizing": optionalNullableBoolean,
+    "isItemizationComplete": optionalNullableBoolean
 }) {
 }
 export class EstimateAttributes extends S.Class("EstimateAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.Number, { nullable: true })
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "amount": optionalNullableNumber,
+    "isUserDoneItemizing": optionalNullableBoolean,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
+    "isAccepted": optionalNullableBoolean,
+    "changeOrderCount": optionalNullableNumber,
+    "changeOrderAmount": optionalNullableNumber,
+    "changeOrderSubtotalAmount": optionalNullableNumber,
+    "changeOrderTaxAmount": optionalNullableNumber,
+    "changeOrderFeeAmount": optionalNullableNumber,
+    "currentAmount": optionalNullableNumber,
+    "currentSubtotalAmount": optionalNullableNumber,
+    "currentTaxAmount": optionalNullableNumber,
+    "currentFeeAmount": optionalNullableNumber
 }) {
 }
 export class ItemEstimateRef extends S.Class("ItemEstimateRef")({
@@ -958,34 +964,34 @@ export class ServiceTaskEstimateRef extends S.Class("ServiceTaskEstimateRef")({
 }) {
 }
 export class ServiceAttributes extends S.Class("ServiceAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "name": optionalNullableString,
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimatedLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber,
+    "paymentCount": optionalNullableNumber,
+    "paidAmount": optionalNullableNumber,
+    "paidSubtotalAmount": optionalNullableNumber,
+    "paidTaxAmount": optionalNullableNumber,
+    "paidFeeAmount": optionalNullableNumber,
+    "invoiceCount": optionalNullableNumber,
+    "invoicedAmount": optionalNullableNumber,
+    "invoicedSubtotalAmount": optionalNullableNumber,
+    "invoicedTaxAmount": optionalNullableNumber,
+    "invoicedFeeAmount": optionalNullableNumber,
+    "estimateCount": optionalNullableNumber,
+    "acceptedEstimateCount": optionalNullableNumber,
+    "acceptedEstimatedAmount": optionalNullableNumber,
+    "acceptedEstimatedSubtotalAmount": optionalNullableNumber,
+    "acceptedEstimatedTaxAmount": optionalNullableNumber,
+    "acceptedEstimatedFeeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableNumber,
+    "paidLineItemsAmount": optionalNullableNumber,
+    "invoicedLineItemsAmount": optionalNullableNumber,
+    "estimatedLineItemsAmount": optionalNullableNumber,
+    "submittableProjectedAmount": optionalNullableNumber,
+    "submittableIncurredAmount": optionalNullableNumber
 }) {
 }
 export class EntrySourceMetadataRef extends S.Class("EntrySourceMetadataRef")({
@@ -1101,12 +1107,12 @@ export class ServiceTaskInvoiceRef extends S.Class("ServiceTaskInvoiceRef")({
 export class CreateEntrySourceMetadataAttributesEntrySourceType extends S.Literal("ITEM", "ITEM_IMPACT", "SERVICE", "SERVICE_TASK", "THIRD_PARTY_IMPACT") {
 }
 export class EntrySourceAttributes extends S.Class("EntrySourceAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "name": optionalNullableString,
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true })
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber
 }) {
 }
 export class CreateItemImpactAttributesConditionAtImpact extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
@@ -1221,8 +1227,8 @@ export class ClaimDeductibleRef extends S.Class("ClaimDeductibleRef")({
 }) {
 }
 export class FundingSourceAttributes extends S.Class("FundingSourceAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true })
+    "name": optionalNullableString,
+    "entryAmount": optionalNullableNumber
 }) {
 }
 export class ClaimAttributesStatus extends S.Literal("CLOSED", "OPEN") {
@@ -1239,21 +1245,21 @@ export class PolicyTermRef extends S.Class("PolicyTermRef")({
 }) {
 }
 export class CreateFundingAttributes extends S.Class("CreateFundingAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "isAllocated": S.optionalWith(S.Boolean, { nullable: true }),
-    "allocatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "allocatedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAllocated": S.optionalWith(S.Boolean, { nullable: true })
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "isAllocated": optionalNullableBoolean,
+    "allocatedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "allocatedPercentage": optionalNullableNumber,
+    "isFullyAllocated": optionalNullableBoolean
 }) {
 }
 export class BucketFundingAttributes extends S.Class("BucketFundingAttributes")({
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true })
+    "amount": optionalNullableNumber,
+    "date": optionalNullableString
 }) {
 }
 export class ClaimTargetAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
@@ -1283,20 +1289,20 @@ export class PolicyTemplateRef extends S.Class("PolicyTemplateRef")({
 }) {
 }
 export class CreateProviderAttributes extends S.Class("CreateProviderAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
     "offerings": S.optionalWith(S.Array(S.Literal("AID", "COVERAGE", "ITEM", "SERVICE")), { nullable: true })
 }) {
 }
 export class DeductibleAttributes extends S.Class("DeductibleAttributes")({
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "isDeductiblePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "accruedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "accruedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAccrued": S.optionalWith(S.Number, { nullable: true })
+    "amount": optionalNullableNumber,
+    "isDeductiblePerClaim": optionalNullableBooleanWithDefaultTrue,
+    "effectiveStartDate": optionalNullableString,
+    "effectiveEndDate": optionalNullableString,
+    "accruedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "accruedPercentage": optionalNullableNumber,
+    "isFullyAccrued": optionalNullableNumber
 }) {
 }
 /**
@@ -1373,15 +1379,15 @@ export class SubCoverageTemplateRef extends S.Class("SubCoverageTemplateRef")({
 }) {
 }
 export class CreateSubBucketAttributes extends S.Class("CreateSubBucketAttributes")({
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true })
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
+    "entryCount": optionalNullableNumber,
+    "entryAmount": optionalNullableNumber,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber,
+    "name": optionalNullableString
 }) {
 }
 export class BaseSubBucketMetadataRef extends S.Class("BaseSubBucketMetadataRef")({
@@ -1396,10 +1402,10 @@ export class BaseSubBucketMetadataRef extends S.Class("BaseSubBucketMetadataRef"
 }) {
 }
 export class BaseBucketMetadataAttributes extends S.Class("BaseBucketMetadataAttributes")({
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
+    "entryCount": optionalNullableNumber,
+    "entryAmount": optionalNullableNumber,
+    "entryIncurredAmount": optionalNullableNumber,
+    "entryProjectedAmount": optionalNullableNumber
 }) {
 }
 export class EndorsementTemplateRef extends S.Class("EndorsementTemplateRef")({
@@ -1433,39 +1439,39 @@ export class EndorsementAttributesEffect extends S.Literal("ADJUSTMENT", "COVERA
 export class EndorsementAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
 }
 export class ClaimDeductibleAttributes extends S.Class("ClaimDeductibleAttributes")({
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "isDeductiblePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-    "accruedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "accruedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAccrued": S.optionalWith(S.Number, { nullable: true })
+    "amount": optionalNullableNumber,
+    "isDeductiblePerClaim": optionalNullableBoolean,
+    "accruedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "accruedPercentage": optionalNullableNumber,
+    "isFullyAccrued": optionalNullableNumber
 }) {
 }
 export class CreatePolicyAttributesStatus extends S.Literal("ACTIVE", "CANCELED", "EXPIRED", "PENDING_ACTIVATION", "PENDING_CANCELLATION", "RESCINDED", "UNVERIFIED") {
 }
 export class BaseSubBucketAttributes extends S.Class("BaseSubBucketAttributes")({
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
+    "entryCount": optionalNullableNumber,
+    "entryAmount": optionalNullableNumber,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber
 }) {
 }
 export class AppraisalLineAttributes extends S.Class("AppraisalLineAttributes")({
-    "amount": S.optionalWith(S.Number, { nullable: true })
+    "amount": optionalNullableNumber
 }) {
 }
 export class AppraisalAttributes extends S.Class("AppraisalAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "amount": S.optionalWith(S.String, { nullable: true }),
-    "lineCount": S.optionalWith(S.Number, { nullable: true })
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "amount": optionalNullableString,
+    "lineCount": optionalNullableNumber
 }) {
 }
 export class DepreciationModifierRef extends S.Class("DepreciationModifierRef")({
@@ -1700,11 +1706,11 @@ export class ThirdPartyIndividualRef extends S.Class("ThirdPartyIndividualRef")(
 }) {
 }
 export class InvoiceLineAttributes extends S.Class("InvoiceLineAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class ItemInvoiceAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
@@ -1714,11 +1720,11 @@ export class ItemAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENER
 export class ItemAttributesCondition extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
 }
 export class CreateItemTypeAttributes extends S.Class("CreateItemTypeAttributes")({
-    "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true })
+    "lifespanInMonths": optionalNullableNumber,
+    "monthlyDepreciationPercentage": optionalNullableNumber,
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
+    "description": optionalNullableString
 }) {
 }
 export class CreateDepreciationModifierAttributesCondition extends S.Literal("AVERAGE", "EXCELLENT", "FAIR", "NEW", "POOR") {
@@ -1726,44 +1732,44 @@ export class CreateDepreciationModifierAttributesCondition extends S.Literal("AV
 export class CreateDepreciationModifierAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
 }
 export class CreateDepreciationScheduleAttributes extends S.Class("CreateDepreciationScheduleAttributes")({
-    "lifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "monthlyDepreciationPercentage": S.optionalWith(S.Number, { nullable: true })
+    "lifespanInMonths": optionalNullableNumber,
+    "monthlyDepreciationPercentage": optionalNullableNumber
 }) {
 }
 export class CreateDepreciationOverrideAttributes extends S.Class("CreateDepreciationOverrideAttributes")({
-    "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "valuePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true })
+    "ageInMonths": optionalNullableNumber,
+    "valuePercentage": optionalNullableNumber,
+    "description": optionalNullableString
 }) {
 }
 export class ItemPaymentAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
 export class ServiceTaskAttributes extends S.Class("ServiceTaskAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "name": optionalNullableString,
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber,
+    "paymentCount": optionalNullableNumber,
+    "paidAmount": optionalNullableNumber,
+    "paidSubtotalAmount": optionalNullableNumber,
+    "paidTaxAmount": optionalNullableNumber,
+    "paidFeeAmount": optionalNullableNumber,
+    "invoiceCount": optionalNullableNumber,
+    "invoicedAmount": optionalNullableNumber,
+    "invoicedSubtotalAmount": optionalNullableNumber,
+    "invoicedTaxAmount": optionalNullableNumber,
+    "invoicedFeeAmount": optionalNullableNumber,
+    "estimateCount": optionalNullableNumber,
+    "acceptedEstimateCount": optionalNullableNumber,
+    "acceptedEstimatedAmount": optionalNullableNumber,
+    "acceptedEstimatedSubtotalAmount": optionalNullableNumber,
+    "acceptedEstimatedTaxAmount": optionalNullableNumber,
+    "acceptedEstimatedFeeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableNumber,
+    "submittableProjectedAmount": optionalNullableNumber,
+    "submittableIncurredAmount": optionalNullableNumber
 }) {
 }
 export class ItemChangeOrderAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
@@ -1771,47 +1777,47 @@ export class ItemChangeOrderAttributesPurpose extends S.Literal("APPRAISAL", "BU
 export class ItemEstimateAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
 export class ChangeOrderLineAttributes extends S.Class("ChangeOrderLineAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class EstimateLineAttributes extends S.Class("EstimateLineAttributes")({
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
+    "isAccepted": optionalNullableBoolean,
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableString,
+    "changeOrderAmount": optionalNullableString,
+    "changeOrderSubtotalAmount": optionalNullableString,
+    "changeOrderTaxAmount": optionalNullableString,
+    "changeOrderFeeAmount": optionalNullableString,
+    "currentAmount": optionalNullableString,
+    "currentSubtotalAmount": optionalNullableString,
+    "currentTaxAmount": optionalNullableString,
+    "currentFeeAmount": optionalNullableString
 }) {
 }
 export class AssetAttributeTypeItemTemplateAttributes extends S.Class("AssetAttributeTypeItemTemplateAttributes")({
-    "quantity": S.optionalWith(S.Number, { nullable: true }),
-    "likelihood": S.optionalWith(S.Number, { nullable: true })
+    "quantity": optionalNullableNumber,
+    "likelihood": optionalNullableNumber
 }) {
 }
 export class AssetAttributeTypeAttributes extends S.Class("AssetAttributeTypeAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "question": S.optionalWith(S.String, { nullable: true }),
-    "maxMagnitude": S.optionalWith(S.Number, { nullable: true })
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
+    "question": optionalNullableString,
+    "maxMagnitude": optionalNullableNumber
 }) {
 }
 export class AssetAttributeClassAttributes extends S.Class("AssetAttributeClassAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "question": S.optionalWith(S.String, { nullable: true })
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
+    "question": optionalNullableString
 }) {
 }
 /**
@@ -1822,11 +1828,11 @@ export class AccountInviteAttributesRole extends S.Literal("COLLABORATOR", "MANA
 export class AuthProfileAttributesProvider extends S.Literal("CLERK", "LOGTO", "TEST") {
 }
 export class CreateEntrySourceMediaAttributes extends S.Class("CreateEntrySourceMediaAttributes")({
-    "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "timestamp": S.optionalWith(S.Number, { nullable: true })
+    "coordsXPercentage": optionalNullableNumber,
+    "coordsYPercentage": optionalNullableNumber,
+    "coordsWPercentage": optionalNullableNumber,
+    "coordsHPercentage": optionalNullableNumber,
+    "timestamp": optionalNullableNumber
 }) {
 }
 export class CreateIncidentImpactAttributesExtent extends S.Literal("PARTIAL", "TOTAL") {
@@ -1843,7 +1849,7 @@ export class ItemProductSuggestionAttributesSource extends S.Literal("AMAZON", "
 export class UpdateUserAccountRoleAttributesRole extends S.Literal("COLLABORATOR", "MANAGER", "OWNER") {
 }
 export class HealthControllerInternalHealthCheck200 extends S.Struct({
-    "status": S.optionalWith(S.String, { nullable: true }),
+    "status": optionalNullableString,
     "info": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
     "error": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
     "details": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true })
@@ -1853,7 +1859,7 @@ export class CreateEmailAddressRef extends S.Class("CreateEmailAddressRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1864,7 +1870,7 @@ export class CreatePhoneNumberRef extends S.Class("CreatePhoneNumberRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1875,7 +1881,7 @@ export class CreateAccountRef extends S.Class("CreateAccountRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1886,7 +1892,7 @@ export class CreateUserAccountRoleRef extends S.Class("CreateUserAccountRoleRef"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1898,15 +1904,15 @@ export class CreateEmailAddressAttributes extends S.Class("CreateEmailAddressAtt
     /**
   * Whether email address is verified.
   */
-    "isVerified": S.optionalWith(S.Boolean, { nullable: true }),
-    "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
+    "isVerified": optionalNullableBoolean,
+    "isPrimary": optionalNullableBoolean
 }) {
 }
 export class CreateAccountProviderContactRef extends S.Class("CreateAccountProviderContactRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1917,7 +1923,7 @@ export class CreateUserRef extends S.Class("CreateUserRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1928,7 +1934,7 @@ export class CreateAccountProviderRef extends S.Class("CreateAccountProviderRef"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1937,15 +1943,15 @@ export class CreateAccountProviderRef extends S.Class("CreateAccountProviderRef"
 }
 export class CreatePhoneNumberAttributes extends S.Class("CreatePhoneNumberAttributes")({
     "number": S.String,
-    "isVerified": S.optionalWith(S.Boolean, { nullable: true }),
-    "isPrimary": S.optionalWith(S.Boolean, { nullable: true })
+    "isVerified": optionalNullableBoolean,
+    "isPrimary": optionalNullableBoolean
 }) {
 }
 export class CreateProviderRef extends S.Class("CreateProviderRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1963,7 +1969,7 @@ export class CreateIncidentRef extends S.Class("CreateIncidentRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1974,7 +1980,7 @@ export class CreateDwellingRef extends S.Class("CreateDwellingRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1985,7 +1991,7 @@ export class CreateCurrencyRef extends S.Class("CreateCurrencyRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -1996,7 +2002,7 @@ export class CreateProjectMediaRef extends S.Class("CreateProjectMediaRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2005,18 +2011,18 @@ export class CreateProjectMediaRef extends S.Class("CreateProjectMediaRef")({
 }
 export class CreateIncidentAttributes extends S.Class("CreateIncidentAttributes")({
     "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
+    "description": optionalNullableString,
     "occurredDate": S.String,
-    "isFemaDisaster": S.optionalWith(S.Boolean, { nullable: true }),
-    "wasSomeoneInjured": S.optionalWith(S.Boolean, { nullable: true }),
-    "isThereLiability": S.optionalWith(S.Boolean, { nullable: true })
+    "isFemaDisaster": optionalNullableBoolean,
+    "wasSomeoneInjured": optionalNullableBoolean,
+    "isThereLiability": optionalNullableBoolean
 }) {
 }
 export class CreateIncidentTypeRef extends S.Class("CreateIncidentTypeRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2027,7 +2033,7 @@ export class CreateDisasterRef extends S.Class("CreateDisasterRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2038,7 +2044,7 @@ export class CreateMediaRef extends S.Class("CreateMediaRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2049,7 +2055,7 @@ export class CreateFileRef extends S.Class("CreateFileRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2060,7 +2066,7 @@ export class CreateSpaceRef extends S.Class("CreateSpaceRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2071,7 +2077,7 @@ export class CreateEntrySourceMediaRef extends S.Class("CreateEntrySourceMediaRe
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2084,7 +2090,7 @@ export class CreateFileProcessRef extends S.Class("CreateFileProcessRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2095,7 +2101,7 @@ export class CreateChangeOrderRef extends S.Class("CreateChangeOrderRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2106,7 +2112,7 @@ export class CreateEstimateRef extends S.Class("CreateEstimateRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2117,7 +2123,7 @@ export class CreateInvoiceRef extends S.Class("CreateInvoiceRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2128,7 +2134,7 @@ export class CreatePaymentRef extends S.Class("CreatePaymentRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2139,7 +2145,7 @@ export class CreateAssetAppraisalRef extends S.Class("CreateAssetAppraisalRef")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2150,7 +2156,7 @@ export class CreateAppraisalRef extends S.Class("CreateAppraisalRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2161,7 +2167,7 @@ export class CreateFundingRef extends S.Class("CreateFundingRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2172,7 +2178,7 @@ export class CreateIncidentReportRef extends S.Class("CreateIncidentReportRef")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2183,7 +2189,7 @@ export class CreatePoliceReportRef extends S.Class("CreatePoliceReportRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2194,7 +2200,7 @@ export class CreateParamedicReportRef extends S.Class("CreateParamedicReportRef"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2205,7 +2211,7 @@ export class CreateContractRef extends S.Class("CreateContractRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2216,7 +2222,7 @@ export class CreateRentRollRef extends S.Class("CreateRentRollRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2227,7 +2233,7 @@ export class CreatePermitRef extends S.Class("CreatePermitRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2238,7 +2244,7 @@ export class CreateBlueprintRef extends S.Class("CreateBlueprintRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2249,7 +2255,7 @@ export class CreateDeclarationsPageRef extends S.Class("CreateDeclarationsPageRe
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2260,7 +2266,7 @@ export class CreatePolicyJacketRef extends S.Class("CreatePolicyJacketRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2271,7 +2277,7 @@ export class CreateScopeOfLossRef extends S.Class("CreateScopeOfLossRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2282,7 +2288,7 @@ export class CreateDeliveryPaperworkRef extends S.Class("CreateDeliveryPaperwork
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2293,7 +2299,7 @@ export class CreateProductSpecRef extends S.Class("CreateProductSpecRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2304,7 +2310,7 @@ export class CreateUserManualRef extends S.Class("CreateUserManualRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2315,7 +2321,7 @@ export class CreateWarrantyRef extends S.Class("CreateWarrantyRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2326,7 +2332,7 @@ export class CreateDeedRef extends S.Class("CreateDeedRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2339,7 +2345,7 @@ export class CreateAssetTypeRef extends S.Class("CreateAssetTypeRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2350,7 +2356,7 @@ export class CreateAddressRef extends S.Class("CreateAddressRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2358,11 +2364,11 @@ export class CreateAddressRef extends S.Class("CreateAddressRef")({
 }) {
 }
 export class CreateAssetAppraisalAttributes extends S.Class("CreateAssetAppraisalAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
     "amount": S.String
 }) {
 }
@@ -2370,7 +2376,7 @@ export class CreateDocumentTypeRef extends S.Class("CreateDocumentTypeRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2381,7 +2387,7 @@ export class CreateDocumentClassRef extends S.Class("CreateDocumentClassRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2392,7 +2398,7 @@ export class CreateSpaceTypeRef extends S.Class("CreateSpaceTypeRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2403,7 +2409,7 @@ export class CreateSpaceGroupRef extends S.Class("CreateSpaceGroupRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2414,7 +2420,7 @@ export class CreateSpaceClassRef extends S.Class("CreateSpaceClassRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2425,7 +2431,7 @@ export class CreateSpaceGroupTypeRef extends S.Class("CreateSpaceGroupTypeRef")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2436,7 +2442,7 @@ export class CreateSpaceCategoryRef extends S.Class("CreateSpaceCategoryRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2447,7 +2453,7 @@ export class CreateBucketTypeRef extends S.Class("CreateBucketTypeRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2458,7 +2464,7 @@ export class CreateBucketClassRef extends S.Class("CreateBucketClassRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2467,7 +2473,7 @@ export class CreateBucketClassRef extends S.Class("CreateBucketClassRef")({
 }
 export class CreateAddressAttributes extends S.Class("CreateAddressAttributes")({
     "streetAddress": S.String,
-    "streetAddress2": S.optionalWith(S.String, { nullable: true }),
+    "streetAddress2": optionalNullableString,
     "city": S.String,
     "state": S.String,
     "postal": S.String
@@ -2477,7 +2483,7 @@ export class CreateCountryRef extends S.Class("CreateCountryRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2485,23 +2491,23 @@ export class CreateCountryRef extends S.Class("CreateCountryRef")({
 }) {
 }
 export class CreateChangeOrderAttributes extends S.Class("CreateChangeOrderAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "amount": optionalNullableNumber,
+    "isUserDoneItemizing": optionalNullableBoolean,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemizableFinancialDocumentStatsRef extends S.Class("CreateItemizableFinancialDocumentStatsRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2512,7 +2518,7 @@ export class CreateServiceRef extends S.Class("CreateServiceRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2523,7 +2529,7 @@ export class CreateItemChangeOrderRef extends S.Class("CreateItemChangeOrderRef"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2534,7 +2540,7 @@ export class CreateItemImpactChangeOrderRef extends S.Class("CreateItemImpactCha
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2545,7 +2551,7 @@ export class CreateServiceTaskChangeOrderRef extends S.Class("CreateServiceTaskC
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2556,7 +2562,7 @@ export class CreateItemImpactRef extends S.Class("CreateItemImpactRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2567,7 +2573,7 @@ export class CreateItemRef extends S.Class("CreateItemRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2578,7 +2584,7 @@ export class CreateServiceTaskRef extends S.Class("CreateServiceTaskRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2589,7 +2595,7 @@ export class CreateThirdPartyImpactRef extends S.Class("CreateThirdPartyImpactRe
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2597,33 +2603,33 @@ export class CreateThirdPartyImpactRef extends S.Class("CreateThirdPartyImpactRe
 }) {
 }
 export class CreateEstimateAttributes extends S.Class("CreateEstimateAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "isUserDoneItemizing": S.optionalWith(S.Boolean, { nullable: true }),
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
+    "amount": optionalNullableNumber,
+    "isUserDoneItemizing": optionalNullableBoolean,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.Number, { nullable: true })
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
+    "isAccepted": optionalNullableBoolean,
+    "changeOrderCount": optionalNullableNumber,
+    "changeOrderAmount": optionalNullableNumber,
+    "changeOrderSubtotalAmount": optionalNullableNumber,
+    "changeOrderTaxAmount": optionalNullableNumber,
+    "changeOrderFeeAmount": optionalNullableNumber,
+    "currentAmount": optionalNullableNumber,
+    "currentSubtotalAmount": optionalNullableNumber,
+    "currentTaxAmount": optionalNullableNumber,
+    "currentFeeAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemEstimateRef extends S.Class("CreateItemEstimateRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2634,7 +2640,7 @@ export class CreateItemImpactEstimateRef extends S.Class("CreateItemImpactEstima
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2645,7 +2651,7 @@ export class CreateServiceTaskEstimateRef extends S.Class("CreateServiceTaskEsti
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2654,40 +2660,40 @@ export class CreateServiceTaskEstimateRef extends S.Class("CreateServiceTaskEsti
 }
 export class CreateServiceAttributes extends S.Class("CreateServiceAttributes")({
     "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimatedLineItemsAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber,
+    "paymentCount": optionalNullableNumber,
+    "paidAmount": optionalNullableNumber,
+    "paidSubtotalAmount": optionalNullableNumber,
+    "paidTaxAmount": optionalNullableNumber,
+    "paidFeeAmount": optionalNullableNumber,
+    "invoiceCount": optionalNullableNumber,
+    "invoicedAmount": optionalNullableNumber,
+    "invoicedSubtotalAmount": optionalNullableNumber,
+    "invoicedTaxAmount": optionalNullableNumber,
+    "invoicedFeeAmount": optionalNullableNumber,
+    "estimateCount": optionalNullableNumber,
+    "acceptedEstimateCount": optionalNullableNumber,
+    "acceptedEstimatedAmount": optionalNullableNumber,
+    "acceptedEstimatedSubtotalAmount": optionalNullableNumber,
+    "acceptedEstimatedTaxAmount": optionalNullableNumber,
+    "acceptedEstimatedFeeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableNumber,
+    "paidLineItemsAmount": optionalNullableNumber,
+    "invoicedLineItemsAmount": optionalNullableNumber,
+    "estimatedLineItemsAmount": optionalNullableNumber,
+    "submittableProjectedAmount": optionalNullableNumber,
+    "submittableIncurredAmount": optionalNullableNumber
 }) {
 }
 export class CreateEntrySourceMetadataRef extends S.Class("CreateEntrySourceMetadataRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2698,7 +2704,7 @@ export class CreateEntryRef extends S.Class("CreateEntryRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2709,7 +2715,7 @@ export class CreateItemAppraisalRef extends S.Class("CreateItemAppraisalRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2720,7 +2726,7 @@ export class CreateServiceTypeRef extends S.Class("CreateServiceTypeRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2731,7 +2737,7 @@ export class CreateItemPaymentRef extends S.Class("CreateItemPaymentRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2742,7 +2748,7 @@ export class CreateItemImpactPaymentRef extends S.Class("CreateItemImpactPayment
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2753,7 +2759,7 @@ export class CreateServiceTaskPaymentRef extends S.Class("CreateServiceTaskPayme
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2764,7 +2770,7 @@ export class CreateItemInvoiceRef extends S.Class("CreateItemInvoiceRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2775,7 +2781,7 @@ export class CreateItemImpactInvoiceRef extends S.Class("CreateItemImpactInvoice
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2786,7 +2792,7 @@ export class CreateServiceTaskInvoiceRef extends S.Class("CreateServiceTaskInvoi
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2795,18 +2801,18 @@ export class CreateServiceTaskInvoiceRef extends S.Class("CreateServiceTaskInvoi
 }
 export class CreateEntrySourceAttributes extends S.Class("CreateEntrySourceAttributes")({
     "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true })
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber
 }) {
 }
 export class CreateItemTypeRef extends S.Class("CreateItemTypeRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2817,7 +2823,7 @@ export class CreateBucketRef extends S.Class("CreateBucketRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2828,7 +2834,7 @@ export class CreateSubBucketRef extends S.Class("CreateSubBucketRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2839,7 +2845,7 @@ export class CreateClaimRef extends S.Class("CreateClaimRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2852,7 +2858,7 @@ export class CreateBaseBucketMetadataRef extends S.Class("CreateBaseBucketMetada
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2863,7 +2869,7 @@ export class CreateBucketFundingRef extends S.Class("CreateBucketFundingRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2874,7 +2880,7 @@ export class CreateCoverageRef extends S.Class("CreateCoverageRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2885,7 +2891,7 @@ export class CreateDeductibleRef extends S.Class("CreateDeductibleRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2896,7 +2902,7 @@ export class CreateClaimDeductibleRef extends S.Class("CreateClaimDeductibleRef"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2905,14 +2911,14 @@ export class CreateClaimDeductibleRef extends S.Class("CreateClaimDeductibleRef"
 }
 export class CreateFundingSourceAttributes extends S.Class("CreateFundingSourceAttributes")({
     "name": S.String,
-    "entryAmount": S.optionalWith(S.Number, { nullable: true })
+    "entryAmount": optionalNullableNumber
 }) {
 }
 export class CreatePolicyTermRef extends S.Class("CreatePolicyTermRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2921,7 +2927,7 @@ export class CreatePolicyTermRef extends S.Class("CreatePolicyTermRef")({
 }
 export class CreateBucketFundingAttributes extends S.Class("CreateBucketFundingAttributes")({
     "amount": S.Number,
-    "date": S.optionalWith(S.String, { nullable: true })
+    "date": optionalNullableString
 }) {
 }
 export class CreateClaimTargetAttributesLossSettlementType extends S.Literal("ACTUAL_CASH_VALUE", "AGREED_VALUE", "EXTENDED_REPLACEMENT_COST", "FUNCTIONAL_REPLACEMENT_COST", "GUARANTEED_REPLACEMENT_COST", "MARKET_VALUE", "REPLACEMENT_COST_VALUE", "STATED_AMOUNT") {
@@ -2932,7 +2938,7 @@ export class CreatePolicyRef extends S.Class("CreatePolicyRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2943,7 +2949,7 @@ export class CreatePolicyTemplateRef extends S.Class("CreatePolicyTemplateRef")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2952,13 +2958,13 @@ export class CreatePolicyTemplateRef extends S.Class("CreatePolicyTemplateRef")(
 }
 export class CreateDeductibleAttributes extends S.Class("CreateDeductibleAttributes")({
     "amount": S.Number,
-    "isDeductiblePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "accruedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "accruedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAccrued": S.optionalWith(S.Number, { nullable: true })
+    "isDeductiblePerClaim": optionalNullableBooleanWithDefaultTrue,
+    "effectiveStartDate": optionalNullableString,
+    "effectiveEndDate": optionalNullableString,
+    "accruedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "accruedPercentage": optionalNullableNumber,
+    "isFullyAccrued": optionalNullableNumber
 }) {
 }
 /**
@@ -2970,7 +2976,7 @@ export class CreateSubCoverageRef extends S.Class("CreateSubCoverageRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2981,7 +2987,7 @@ export class CreateCoverageTemplateRef extends S.Class("CreateCoverageTemplateRe
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -2992,7 +2998,7 @@ export class CreateCoverageGroupRef extends S.Class("CreateCoverageGroupRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3003,7 +3009,7 @@ export class CreatePerilRef extends S.Class("CreatePerilRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3014,7 +3020,7 @@ export class CreateEndorsementRef extends S.Class("CreateEndorsementRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3027,7 +3033,7 @@ export class CreateSubCoverageTemplateRef extends S.Class("CreateSubCoverageTemp
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3038,7 +3044,7 @@ export class CreateBaseSubBucketMetadataRef extends S.Class("CreateBaseSubBucket
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3049,7 +3055,7 @@ export class CreateEndorsementTemplateRef extends S.Class("CreateEndorsementTemp
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3060,7 +3066,7 @@ export class CreateCoverageGroupTemplateRef extends S.Class("CreateCoverageGroup
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3073,30 +3079,30 @@ export class CreateEndorsementAttributesLossSettlementType extends S.Literal("AC
 }
 export class CreateBaseSubBucketAttributes extends S.Class("CreateBaseSubBucketAttributes")({
     "limitAmount": S.Number,
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+    "limitAmountPerEntry": optionalNullableNumber,
+    "entryCount": optionalNullableNumber,
+    "entryAmount": optionalNullableNumber,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber
 }) {
 }
 export class CreateAppraisalAttributes extends S.Class("CreateAppraisalAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
+    "name": optionalNullableString,
+    "note": optionalNullableString,
+    "date": optionalNullableString,
+    "externalId": optionalNullableString,
+    "isCurrent": optionalNullableBooleanWithDefaultTrue,
     "amount": S.String,
-    "lineCount": S.optionalWith(S.Number, { nullable: true })
+    "lineCount": optionalNullableNumber
 }) {
 }
 export class CreateDepreciationModifierRef extends S.Class("CreateDepreciationModifierRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3107,7 +3113,7 @@ export class CreateDepreciationOverrideRef extends S.Class("CreateDepreciationOv
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3118,7 +3124,7 @@ export class CreateAssetAttributeTypeItemTemplateRef extends S.Class("CreateAsse
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3129,7 +3135,7 @@ export class CreateItemTemplateRef extends S.Class("CreateItemTemplateRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3140,7 +3146,7 @@ export class CreateSpaceTypeItemTemplateRef extends S.Class("CreateSpaceTypeItem
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3151,7 +3157,7 @@ export class CreateSubmissionTrackTemplateRef extends S.Class("CreateSubmissionT
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3162,7 +3168,7 @@ export class CreateAssetAttributeClassRef extends S.Class("CreateAssetAttributeC
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3173,7 +3179,7 @@ export class CreateAssetAttributeTypeRef extends S.Class("CreateAssetAttributeTy
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3184,7 +3190,7 @@ export class CreateIncidentClassRef extends S.Class("CreateIncidentClassRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3195,7 +3201,7 @@ export class CreateItemCategoryRef extends S.Class("CreateItemCategoryRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3206,7 +3212,7 @@ export class CreateItemClassRef extends S.Class("CreateItemClassRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3217,7 +3223,7 @@ export class CreateServiceCategoryRef extends S.Class("CreateServiceCategoryRef"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3228,7 +3234,7 @@ export class CreateServiceClassRef extends S.Class("CreateServiceClassRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3239,7 +3245,7 @@ export class CreateAccountInviteRef extends S.Class("CreateAccountInviteRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3250,7 +3256,7 @@ export class CreateAuthProfileRef extends S.Class("CreateAuthProfileRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3261,7 +3267,7 @@ export class CreateProjectImpactRef extends S.Class("CreateProjectImpactRef")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3272,7 +3278,7 @@ export class CreateIncidentImpactRef extends S.Class("CreateIncidentImpactRef")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3283,7 +3289,7 @@ export class CreateItemMediaSuggestionRef extends S.Class("CreateItemMediaSugges
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3294,7 +3300,7 @@ export class CreateItemProductSuggestionRef extends S.Class("CreateItemProductSu
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3305,7 +3311,7 @@ export class CreateThirdPartyDwellingRef extends S.Class("CreateThirdPartyDwelli
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3316,7 +3322,7 @@ export class CreateThirdPartyIndividualRef extends S.Class("CreateThirdPartyIndi
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3327,7 +3333,7 @@ export class CreateBaseEntityData extends S.Class("CreateBaseEntityData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -3335,11 +3341,11 @@ export class CreateBaseEntityData extends S.Class("CreateBaseEntityData")({
 }) {
 }
 export class CreateInvoiceLineAttributes extends S.Class("CreateInvoiceLineAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemInvoiceAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
@@ -3352,30 +3358,30 @@ export class CreateItemPaymentAttributesPurpose extends S.Literal("APPRAISAL", "
 }
 export class CreateServiceTaskAttributes extends S.Class("CreateServiceTaskAttributes")({
     "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber,
+    "paymentCount": optionalNullableNumber,
+    "paidAmount": optionalNullableNumber,
+    "paidSubtotalAmount": optionalNullableNumber,
+    "paidTaxAmount": optionalNullableNumber,
+    "paidFeeAmount": optionalNullableNumber,
+    "invoiceCount": optionalNullableNumber,
+    "invoicedAmount": optionalNullableNumber,
+    "invoicedSubtotalAmount": optionalNullableNumber,
+    "invoicedTaxAmount": optionalNullableNumber,
+    "invoicedFeeAmount": optionalNullableNumber,
+    "estimateCount": optionalNullableNumber,
+    "acceptedEstimateCount": optionalNullableNumber,
+    "acceptedEstimatedAmount": optionalNullableNumber,
+    "acceptedEstimatedSubtotalAmount": optionalNullableNumber,
+    "acceptedEstimatedTaxAmount": optionalNullableNumber,
+    "acceptedEstimatedFeeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableNumber,
+    "submittableProjectedAmount": optionalNullableNumber,
+    "submittableIncurredAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemChangeOrderAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
@@ -3383,29 +3389,29 @@ export class CreateItemChangeOrderAttributesPurpose extends S.Literal("APPRAISAL
 export class CreateItemEstimateAttributesPurpose extends S.Literal("APPRAISAL", "BUILD", "INSPECTION", "MAINTENANCE", "MODIFICATION", "PURCHASE", "RELOCATION", "REMOVAL", "REPAIR", "SOURCING") {
 }
 export class CreateChangeOrderLineAttributes extends S.Class("CreateChangeOrderLineAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class CreateEstimateLineAttributes extends S.Class("CreateEstimateLineAttributes")({
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "isAccepted": optionalNullableBoolean,
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.String, { nullable: true })
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableString,
+    "changeOrderAmount": optionalNullableString,
+    "changeOrderSubtotalAmount": optionalNullableString,
+    "changeOrderTaxAmount": optionalNullableString,
+    "changeOrderFeeAmount": optionalNullableString,
+    "currentAmount": optionalNullableString,
+    "currentSubtotalAmount": optionalNullableString,
+    "currentTaxAmount": optionalNullableString,
+    "currentFeeAmount": optionalNullableString
 }) {
 }
 /**
@@ -3418,10 +3424,10 @@ export class CreateAuthProfileAttributesProvider extends S.Literal("CLERK", "LOG
 export class CreateThirdPartyImpactAttributes extends S.Class("CreateThirdPartyImpactAttributes")({
     "name": S.String,
     "description": S.String,
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true })
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber
 }) {
 }
 export class CreateItemMediaSuggestionAttributesQuality extends S.Literal("BESPOKE", "BUDGET", "GENERIC", "LUXURY", "MAINSTREAM") {
@@ -3436,44 +3442,44 @@ export class CreateItemProductSuggestionAttributesSource extends S.Literal("AMAZ
 export class CreateUserAccountRoleAttributesRole extends S.Literal("COLLABORATOR", "MANAGER", "OWNER") {
 }
 export class UserControllerGetUserAccountRolesParams extends S.Struct({
-    "include": S.optionalWith(S.String, { nullable: true }),
-    "typeDepthLimit": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "include": optionalNullableString,
+    "typeDepthLimit": optionalNullableNumberWithDefault1,
     "fields": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "filter": S.optionalWith(S.String, { nullable: true }),
-    "sort": S.optionalWith(S.String, { nullable: true }),
-    "page[offset]": S.optionalWith(S.Number, { nullable: true }),
-    "page[limit]": S.optionalWith(S.Number, { nullable: true })
+    "filter": optionalNullableString,
+    "sort": optionalNullableString,
+    "page[offset]": optionalNullableNumber,
+    "page[limit]": optionalNullableNumber
 }) {
 }
 export class ListLinkObject extends S.Class("ListLinkObject")({
     /**
   * Link to the current entity set.
   */
-    "self": S.optionalWith(S.String, { nullable: true }),
+    "self": optionalNullableString,
     /**
   * Link to the next entity set, if available.
   */
-    "next": S.optionalWith(S.String, { nullable: true }),
+    "next": optionalNullableString,
     /**
   * Link to the previous entity set, if available.
   */
-    "prev": S.optionalWith(S.String, { nullable: true })
+    "prev": optionalNullableString
 }) {
 }
 export class UserAccountRoleControllerGetUserAccountRoleListParams extends S.Struct({
-    "include": S.optionalWith(S.String, { nullable: true }),
-    "typeDepthLimit": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "include": optionalNullableString,
+    "typeDepthLimit": optionalNullableNumberWithDefault1,
     "fields": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
-    "filter": S.optionalWith(S.String, { nullable: true }),
-    "sort": S.optionalWith(S.String, { nullable: true }),
-    "page[offset]": S.optionalWith(S.Number, { nullable: true }),
-    "page[limit]": S.optionalWith(S.Number, { nullable: true }),
+    "filter": optionalNullableString,
+    "sort": optionalNullableString,
+    "page[offset]": optionalNullableNumber,
+    "page[limit]": optionalNullableNumber,
     "X-Account-Id": S.String
 }) {
 }
 export class UserAccountRoleControllerCreateUserAccountRoleParams extends S.Struct({
-    "include": S.optionalWith(S.String, { nullable: true }),
-    "typeDepthLimit": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "include": optionalNullableString,
+    "typeDepthLimit": optionalNullableNumberWithDefault1,
     "fields": S.optionalWith(S.Record({ key: S.String, value: S.Unknown }), { nullable: true }),
     "X-Account-Id": S.String
 }) {
@@ -3549,7 +3555,7 @@ export class FilesCdnAccessDto extends S.Class("FilesCdnAccessDto")({
     /**
   * How long the ttl should be.
   */
-    "ttlSeconds": S.optionalWith(S.Number, { nullable: true })
+    "ttlSeconds": optionalNullableNumber
 }) {
 }
 export class CdnResourceDto extends S.Class("CdnResourceDto")({
@@ -4047,10 +4053,10 @@ export class ReferencedUpdateMedia extends S.Class("ReferencedUpdateMedia")({
 }) {
 }
 export class CreateMediaAttributes extends S.Class("CreateMediaAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "note": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
+    "note": optionalNullableString,
     "subjectState": S.optionalWith(CreateMediaAttributesSubjectState, { nullable: true }),
-    "isCurrent": S.optionalWith(S.Boolean, { nullable: true, default: () => true })
+    "isCurrent": optionalNullableBooleanWithDefaultTrue
 }) {
 }
 export class ReferencedFile extends S.Class("ReferencedFile")({
@@ -4141,26 +4147,26 @@ export class FileAttributes extends S.Class("FileAttributes")({
   * The storage provider for this file.
   */
     "storageProvider": S.optionalWith(S.Literal("LOTI_S3"), { nullable: true }),
-    "originalKey": S.optionalWith(S.String, { nullable: true }),
-    "originalUrl": S.optionalWith(S.String, { nullable: true }),
-    "presentationKey": S.optionalWith(S.String, { nullable: true }),
-    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
+    "originalKey": optionalNullableString,
+    "originalUrl": optionalNullableString,
+    "presentationKey": optionalNullableString,
+    "presentationUrl": optionalNullableString,
+    "thumbnailKey": optionalNullableString,
+    "thumbnailUrl": optionalNullableString,
     "type": S.optionalWith(FileAttributesType, { nullable: true }),
-    "filename": S.optionalWith(S.String, { nullable: true }),
-    "extension": S.optionalWith(S.String, { nullable: true }),
-    "width": S.optionalWith(S.Number, { nullable: true }),
-    "height": S.optionalWith(S.Number, { nullable: true }),
-    "size": S.optionalWith(S.Number, { nullable: true }),
-    "blurhash": S.optionalWith(S.String, { nullable: true }),
-    "durationMs": S.optionalWith(S.Number, { nullable: true }),
-    "pageCount": S.optionalWith(S.Number, { nullable: true }),
-    "createdAt": S.optionalWith(S.String, { nullable: true }),
-    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
-    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
-    "documentCount": S.optionalWith(S.Number, { nullable: true }),
-    "addedAt": S.optionalWith(S.String, { nullable: true })
+    "filename": optionalNullableString,
+    "extension": optionalNullableString,
+    "width": optionalNullableNumber,
+    "height": optionalNullableNumber,
+    "size": optionalNullableNumber,
+    "blurhash": optionalNullableString,
+    "durationMs": optionalNullableNumber,
+    "pageCount": optionalNullableNumber,
+    "createdAt": optionalNullableString,
+    "modifiedAt": optionalNullableString,
+    "mediaCount": optionalNullableNumber,
+    "documentCount": optionalNullableNumber,
+    "addedAt": optionalNullableString
 }) {
 }
 export class ReferencedFileProcessList extends S.Class("ReferencedFileProcessList")({
@@ -4457,7 +4463,7 @@ export class CreateAssetTypeData extends S.Class("CreateAssetTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -4499,7 +4505,7 @@ export class ReferencedDocumentClassList extends S.Class("ReferencedDocumentClas
 }) {
 }
 export class CreateSpaceAttributes extends S.Class("CreateSpaceAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
     "use": S.optionalWith(CreateSpaceAttributesUse, { nullable: true })
 }) {
 }
@@ -4638,7 +4644,7 @@ export class CreateCurrencyData extends S.Class("CreateCurrencyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -4668,7 +4674,7 @@ export class CreateCountryData extends S.Class("CreateCountryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -4677,12 +4683,12 @@ export class CreateCountryData extends S.Class("CreateCountryData")({
 }) {
 }
 export class CreateFileProcessAttributes extends S.Class("CreateFileProcessAttributes")({
-    "processId": S.optionalWith(S.String, { nullable: true }),
+    "processId": optionalNullableString,
     "provider": S.optionalWith(S.Literal("TRANSLOADIT"), { nullable: true }),
     "type": S.optionalWith(CreateFileProcessAttributesType, { nullable: true }),
     "status": S.optionalWith(CreateFileProcessAttributesStatus, { nullable: true }),
-    "startedAt": S.optionalWith(S.String, { nullable: true }),
-    "endedAt": S.optionalWith(S.String, { nullable: true })
+    "startedAt": optionalNullableString,
+    "endedAt": optionalNullableString
 }) {
 }
 export class ReferencedItemizableFinancialDocumentStats extends S.Class("ReferencedItemizableFinancialDocumentStats")({
@@ -5054,77 +5060,77 @@ export class ReferencedInvoiceLineList extends S.Class("ReferencedInvoiceLineLis
 }
 export class CreateEntrySourceMetadataAttributes extends S.Class("CreateEntrySourceMetadataAttributes")({
     "entrySourceType": S.optionalWith(CreateEntrySourceMetadataAttributesEntrySourceType, { nullable: true }),
-    "assignedEntryCount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedEntryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedEntryProjectedAmount": S.optionalWith(S.Number, { nullable: true })
+    "assignedEntryCount": optionalNullableNumber,
+    "assignedEntryIncurredAmount": optionalNullableNumber,
+    "assignedEntryProjectedAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemImpactAttributes extends S.Class("CreateItemImpactAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "name": optionalNullableString,
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Struct({
-        "item.type": S.optionalWith(S.Boolean, { nullable: true }),
-        "impactDate": S.optionalWith(S.Boolean, { nullable: true }),
-        "item.quality": S.optionalWith(S.Boolean, { nullable: true }),
-        "item.acquiredDate": S.optionalWith(S.Boolean, { nullable: true }),
-        "conditionAtImpact": S.optionalWith(S.Boolean, { nullable: true })
+        "item.type": optionalNullableBoolean,
+        "impactDate": optionalNullableBoolean,
+        "item.quality": optionalNullableBoolean,
+        "item.acquiredDate": optionalNullableBoolean,
+        "conditionAtImpact": optionalNullableBoolean
     }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
-    "isExactReplacement": S.optionalWith(S.Boolean, { nullable: true }),
-    "impactDate": S.optionalWith(S.String, { nullable: true }),
-    "isLost": S.optionalWith(S.Boolean, { nullable: true }),
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber,
+    "isExactReplacement": optionalNullableBoolean,
+    "impactDate": optionalNullableString,
+    "isLost": optionalNullableBoolean,
     "conditionAtImpact": S.optionalWith(CreateItemImpactAttributesConditionAtImpact, { nullable: true }),
-    "quantity": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "replacementPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "replacementInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "replacementEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemDepreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemAppraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "itemRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "customDepreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true, default: () => -1 }),
-    "customDepreciationOverrideDescription": S.optionalWith(S.String, { nullable: true }),
-    "isDepreciationCustom": S.optionalWith(S.Boolean, { nullable: true }),
+    "quantity": optionalNullableNumber,
+    "paymentCount": optionalNullableNumber,
+    "paidAmount": optionalNullableNumber,
+    "paidSubtotalAmount": optionalNullableNumber,
+    "paidTaxAmount": optionalNullableNumber,
+    "paidFeeAmount": optionalNullableNumber,
+    "invoiceCount": optionalNullableNumber,
+    "invoicedAmount": optionalNullableNumber,
+    "invoicedSubtotalAmount": optionalNullableNumber,
+    "invoicedTaxAmount": optionalNullableNumber,
+    "invoicedFeeAmount": optionalNullableNumber,
+    "estimateCount": optionalNullableNumber,
+    "acceptedEstimateCount": optionalNullableNumber,
+    "acceptedEstimatedAmount": optionalNullableNumber,
+    "acceptedEstimatedSubtotalAmount": optionalNullableNumber,
+    "acceptedEstimatedTaxAmount": optionalNullableNumber,
+    "acceptedEstimatedFeeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableNumber,
+    "replacementPaidAmount": optionalNullableNumber,
+    "replacementInvoicedAmount": optionalNullableNumber,
+    "replacementEstimatedAmount": optionalNullableNumber,
+    "itemDepreciableAmount": optionalNullableNumber,
+    "itemAppraisedAmount": optionalNullableNumber,
+    "itemRcvAmount": optionalNullableNumber,
+    "customDepreciationLifespanInMonths": optionalNullableNumberWithDefaultMinus1,
+    "customDepreciationAccelerationFactor": optionalNullableNumberWithDefaultMinus1,
+    "customDepreciationMinimumValuePercentage": optionalNullableNumberWithDefaultMinus1,
+    "customDepreciationOverrideAgeInMonths": optionalNullableNumberWithDefaultMinus1,
+    "customDepreciationOverrideValuePercentage": optionalNullableNumberWithDefaultMinus1,
+    "customDepreciationOverrideDescription": optionalNullableString,
+    "isDepreciationCustom": optionalNullableBoolean,
     "customDepreciationFieldsSetBySystem": S.optionalWith(S.Array(S.String), { nullable: true }),
     "itemQuality": S.optionalWith(CreateItemImpactAttributesItemQuality, { nullable: true }),
-    "itemAcquiredDate": S.optionalWith(S.String, { nullable: true }),
-    "itemAcquiredQuantity": S.optionalWith(S.Number, { nullable: true }),
-    "itemIsDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-    "depreciationLifespanInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationMinimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationAccelerationFactor": S.optionalWith(S.Number, { nullable: true }),
-    "monthlyDepreciationRate": S.optionalWith(S.Number, { nullable: true }),
-    "ageInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationOverrideAgeInMonths": S.optionalWith(S.Number, { nullable: true }),
-    "depreciationOverrideValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "rcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredRcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAcvAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAcvAmount": S.optionalWith(S.Number, { nullable: true })
+    "itemAcquiredDate": optionalNullableString,
+    "itemAcquiredQuantity": optionalNullableNumber,
+    "itemIsDepreciationExempt": optionalNullableBoolean,
+    "depreciationLifespanInMonths": optionalNullableNumber,
+    "depreciationMinimumValuePercentage": optionalNullableNumber,
+    "depreciationAccelerationFactor": optionalNullableNumber,
+    "monthlyDepreciationRate": optionalNullableNumber,
+    "ageInMonths": optionalNullableNumber,
+    "depreciationOverrideAgeInMonths": optionalNullableNumber,
+    "depreciationOverrideValuePercentage": optionalNullableNumber,
+    "rcvAmount": optionalNullableNumber,
+    "acvAmount": optionalNullableNumber,
+    "submittableProjectedRcvAmount": optionalNullableNumber,
+    "submittableIncurredRcvAmount": optionalNullableNumber,
+    "submittableProjectedAcvAmount": optionalNullableNumber,
+    "submittableIncurredAcvAmount": optionalNullableNumber
 }) {
 }
 export class NullableReferencedItemType extends S.Class("NullableReferencedItemType")({
@@ -5180,24 +5186,24 @@ export class NullableReferencedUpdateItemType extends S.Class("NullableReference
 }
 export class CreateEntryAttributes extends S.Class("CreateEntryAttributes")({
     "lossSettlementType": S.optionalWith(CreateEntryAttributesLossSettlementType, { nullable: true }),
-    "incurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "projectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "overriddenIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "overriddenProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "approvedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "isResolved": S.optionalWith(S.Boolean, { nullable: true }),
-    "number": S.optionalWith(S.Number, { nullable: true }),
-    "targetAssignmentPercentage": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
+    "incurredAmount": optionalNullableNumber,
+    "projectedAmount": optionalNullableNumber,
+    "overriddenIncurredAmount": optionalNullableNumber,
+    "overriddenProjectedAmount": optionalNullableNumber,
+    "approvedAmount": optionalNullableNumber,
+    "isResolved": optionalNullableBoolean,
+    "number": optionalNullableNumber,
+    "targetAssignmentPercentage": optionalNullableNumberWithDefault1,
     "submissionStatus": S.optionalWith(CreateEntryAttributesSubmissionStatus, { nullable: true, default: () => "NOT_SUBMITTED" }),
-    "lastSubmittedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "lastSubmittedIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "lastSubmittedProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submissionAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-    "submissionIncurredAmountDelta": S.optionalWith(S.Number, { nullable: true }),
-    "submissionProjectedAmountDelta": S.optionalWith(S.Number, { nullable: true })
+    "lastSubmittedAmount": optionalNullableNumber,
+    "lastSubmittedIncurredAmount": optionalNullableNumber,
+    "lastSubmittedProjectedAmount": optionalNullableNumber,
+    "submissionAmount": optionalNullableNumber,
+    "submissionIncurredAmount": optionalNullableNumber,
+    "submissionProjectedAmount": optionalNullableNumber,
+    "submissionAmountDelta": optionalNullableNumber,
+    "submissionIncurredAmountDelta": optionalNullableNumber,
+    "submissionProjectedAmountDelta": optionalNullableNumber
 }) {
 }
 export class ReferencedBaseBucket extends S.Class("ReferencedBaseBucket")({
@@ -5317,21 +5323,21 @@ export class ReferencedUpdateFundingSource extends S.Class("ReferencedUpdateFund
 }) {
 }
 export class BaseBucketAttributes extends S.Class("BaseBucketAttributes")({
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
     "lossSettlementType": S.optionalWith(BaseBucketAttributesLossSettlementType, { nullable: true, default: () => "REPLACEMENT_COST_VALUE" }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyFunded": S.optionalWith(S.Number, { nullable: true })
+    "entryCount": optionalNullableNumber,
+    "entryAmount": optionalNullableNumber,
+    "entryIncurredAmount": optionalNullableNumber,
+    "entryProjectedAmount": optionalNullableNumber,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber,
+    "fundingCount": optionalNullableNumber,
+    "fundingAmount": optionalNullableNumber,
+    "fundingPercentage": optionalNullableNumber,
+    "isFullyFunded": optionalNullableNumber
 }) {
 }
 export class ReferencedBaseBucketMetadata extends S.Class("ReferencedBaseBucketMetadata")({
@@ -5357,22 +5363,22 @@ export class ReferencedBucketFundingList extends S.Class("ReferencedBucketFundin
 }) {
 }
 export class BucketAttributes extends S.Class("BucketAttributes")({
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
     "lossSettlementType": S.optionalWith(BucketAttributesLossSettlementType, { nullable: true }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyFunded": S.optionalWith(S.Number, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true })
+    "entryCount": optionalNullableNumber,
+    "entryAmount": optionalNullableNumber,
+    "entryIncurredAmount": optionalNullableNumber,
+    "entryProjectedAmount": optionalNullableNumber,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber,
+    "fundingCount": optionalNullableNumber,
+    "fundingAmount": optionalNullableNumber,
+    "fundingPercentage": optionalNullableNumber,
+    "isFullyFunded": optionalNullableNumber,
+    "name": optionalNullableString
 }) {
 }
 export class ReferencedBucketDefinition extends S.Class("ReferencedBucketDefinition")({
@@ -5510,12 +5516,12 @@ export class ReferencedClaimDeductibleList extends S.Class("ReferencedClaimDeduc
 }) {
 }
 export class ClaimAttributes extends S.Class("ClaimAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "claimId": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
+    "entryAmount": optionalNullableNumber,
+    "claimId": optionalNullableString,
     "status": S.optionalWith(ClaimAttributesStatus, { nullable: true, default: () => "OPEN" }),
-    "openedDate": S.optionalWith(S.String, { nullable: true }),
-    "closedDate": S.optionalWith(S.String, { nullable: true })
+    "openedDate": optionalNullableString,
+    "closedDate": optionalNullableString
 }) {
 }
 export class ReferencedClaimTarget extends S.Class("ReferencedClaimTarget")({
@@ -5566,24 +5572,24 @@ export class ReferencedUpdateClaimTarget extends S.Class("ReferencedUpdateClaimT
 }) {
 }
 export class ClaimTargetAttributes extends S.Class("ClaimTargetAttributes")({
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
+    "effectiveStartDate": optionalNullableString,
+    "effectiveEndDate": optionalNullableString,
+    "name": optionalNullableString,
+    "description": optionalNullableString,
     "lossSettlementType": S.optionalWith(ClaimTargetAttributesLossSettlementType, { nullable: true })
 }) {
 }
 export class PolicyTermAttributes extends S.Class("PolicyTermAttributes")({
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
+    "effectiveStartDate": optionalNullableString,
+    "effectiveEndDate": optionalNullableString,
+    "name": optionalNullableString,
+    "description": optionalNullableString,
     "lossSettlementType": S.optionalWith(PolicyTermAttributesLossSettlementType, { nullable: true }),
-    "premiumAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentDueDate": S.optionalWith(S.String, { nullable: true }),
-    "isFullyPaid": S.optionalWith(S.Boolean, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "dueAmount": S.optionalWith(S.Number, { nullable: true })
+    "premiumAmount": optionalNullableNumber,
+    "paymentDueDate": optionalNullableString,
+    "isFullyPaid": optionalNullableBoolean,
+    "paidAmount": optionalNullableNumber,
+    "dueAmount": optionalNullableNumber
 }) {
 }
 export class ReferencedPolicy extends S.Class("ReferencedPolicy")({
@@ -5637,7 +5643,7 @@ export class CreateProviderData extends S.Class("CreateProviderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -5646,20 +5652,20 @@ export class CreateProviderData extends S.Class("CreateProviderData")({
 }) {
 }
 export class BucketDefinitionAttributes extends S.Class("BucketDefinitionAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "name": optionalNullableString,
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
     /**
   * Is required if not set in .basis
   */
     "lossSettlementType": S.optionalWith(BucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+    "effectiveStartDate": optionalNullableString,
+    "effectiveEndDate": optionalNullableString,
+    "isCoveragePerClaim": optionalNullableBooleanWithDefaultTrue,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber
 }) {
 }
 export class ReferencedSubBucketDefinitionList extends S.Class("ReferencedSubBucketDefinitionList")({
@@ -5804,15 +5810,15 @@ export class ReferencedUpdateEndorsementList extends S.Class("ReferencedUpdateEn
 }) {
 }
 export class SubBucketDefinitionAttributes extends S.Class("SubBucketDefinitionAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "name": optionalNullableString,
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
     "lossSettlementType": S.optionalWith(SubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+    "isCoveragePerClaim": optionalNullableBoolean,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber
 }) {
 }
 export class NullableReferencedSubCoverageTemplate extends S.Class("NullableReferencedSubCoverageTemplate")({
@@ -5914,36 +5920,36 @@ export class NullableReferencedUpdateCoverageGroupTemplate extends S.Class("Null
 }) {
 }
 export class CreateEndorsementTemplateAttributes extends S.Class("CreateEndorsementTemplateAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "slug": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "articleUrl": S.optionalWith(S.String, { nullable: true }),
-    "canopyApiTerm": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
+    "slug": optionalNullableString,
+    "description": optionalNullableString,
+    "articleUrl": optionalNullableString,
+    "canopyApiTerm": optionalNullableString,
     "effect": S.optionalWith(CreateEndorsementTemplateAttributesEffect, { nullable: true }),
     "lossSettlementType": S.optionalWith(CreateEndorsementTemplateAttributesLossSettlementType, { nullable: true }),
     "tags": S.optionalWith(S.Array(S.String), { nullable: true })
 }) {
 }
 export class EndorsementAttributes extends S.Class("EndorsementAttributes")({
-    "formNumber": S.optionalWith(S.String, { nullable: true }),
+    "formNumber": optionalNullableString,
     "effect": S.optionalWith(EndorsementAttributesEffect, { nullable: true }),
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
+    "limitAmountUpdateFixed": optionalNullableNumber,
+    "limitAmountUpdatePercentage": optionalNullableNumber,
+    "limitAmountPerEntryUpdateFixed": optionalNullableNumber,
+    "limitAmountPerEntryUpdatePercentage": optionalNullableNumber,
     "lossSettlementType": S.optionalWith(EndorsementAttributesLossSettlementType, { nullable: true })
 }) {
 }
 export class CreatePolicyAttributes extends S.Class("CreatePolicyAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
     "status": S.optionalWith(CreatePolicyAttributesStatus, { nullable: true, default: () => "ACTIVE" }),
-    "policyId": S.optionalWith(S.String, { nullable: true }),
-    "isActive": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "startDate": S.optionalWith(S.String, { nullable: true }),
-    "renewalDate": S.optionalWith(S.String, { nullable: true }),
-    "canceledDate": S.optionalWith(S.String, { nullable: true })
+    "policyId": optionalNullableString,
+    "isActive": optionalNullableBooleanWithDefaultTrue,
+    "startDate": optionalNullableString,
+    "renewalDate": optionalNullableString,
+    "canceledDate": optionalNullableString
 }) {
 }
 export class ReferencedDepreciationModifierList extends S.Class("ReferencedDepreciationModifierList")({
@@ -6097,102 +6103,102 @@ export class ReferencedUpdateThirdParty extends S.Class("ReferencedUpdateThirdPa
 }) {
 }
 export class ItemInvoiceAttributes extends S.Class("ItemInvoiceAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
     "purpose": S.optionalWith(ItemInvoiceAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+    "acquisitionAmount": optionalNullableNumber
 }) {
 }
 export class ItemAttributes extends S.Class("ItemAttributes")({
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "name": optionalNullableString,
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Struct({
-        "type": S.optionalWith(S.Boolean, { nullable: true }),
-        "quality": S.optionalWith(S.Boolean, { nullable: true }),
-        "acquiredDate": S.optionalWith(S.Boolean, { nullable: true })
+        "type": optionalNullableBoolean,
+        "quality": optionalNullableBoolean,
+        "acquiredDate": optionalNullableBoolean
     }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber,
     "quality": S.optionalWith(ItemAttributesQuality, { nullable: true }),
     "condition": S.optionalWith(ItemAttributesCondition, { nullable: true }),
-    "isDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-    "acquiredDate": S.optionalWith(S.String, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "currentQuantity": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
+    "isDepreciationExempt": optionalNullableBoolean,
+    "acquiredDate": optionalNullableString,
+    "acquiredQuantity": optionalNullableNumberWithDefault1,
+    "currentQuantity": optionalNullableNumber,
+    "paymentCount": optionalNullableNumber,
+    "paidAmount": optionalNullableNumber,
+    "paidSubtotalAmount": optionalNullableNumber,
+    "paidTaxAmount": optionalNullableNumber,
+    "paidFeeAmount": optionalNullableNumber,
+    "invoiceCount": optionalNullableNumber,
+    "invoicedAmount": optionalNullableNumber,
+    "invoicedSubtotalAmount": optionalNullableNumber,
+    "invoicedTaxAmount": optionalNullableNumber,
+    "invoicedFeeAmount": optionalNullableNumber,
+    "estimateCount": optionalNullableNumber,
+    "acceptedEstimateCount": optionalNullableNumber,
+    "acceptedEstimatedAmount": optionalNullableNumber,
+    "acceptedEstimatedSubtotalAmount": optionalNullableNumber,
+    "acceptedEstimatedTaxAmount": optionalNullableNumber,
+    "acceptedEstimatedFeeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableNumber,
+    "depreciableAmount": optionalNullableNumber,
+    "acquisitionPaidAmount": optionalNullableNumber,
+    "acquisitionInvoicedAmount": optionalNullableNumber,
+    "acquisitionEstimatedAmount": optionalNullableNumber,
+    "submittableProjectedAmount": optionalNullableNumber,
+    "submittableIncurredAmount": optionalNullableNumber
 }) {
 }
 export class CreateDepreciationModifierAttributes extends S.Class("CreateDepreciationModifierAttributes")({
     "condition": S.optionalWith(CreateDepreciationModifierAttributesCondition, { nullable: true }),
     "quality": S.optionalWith(CreateDepreciationModifierAttributesQuality, { nullable: true }),
-    "minimumValuePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "accelerationFactor": S.optionalWith(S.Number, { nullable: true })
+    "minimumValuePercentage": optionalNullableNumber,
+    "accelerationFactor": optionalNullableNumber
 }) {
 }
 export class ItemPaymentAttributes extends S.Class("ItemPaymentAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
     "purpose": S.optionalWith(ItemPaymentAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+    "depreciableAmount": optionalNullableNumber,
+    "acquisitionAmount": optionalNullableNumber
 }) {
 }
 export class ItemChangeOrderAttributes extends S.Class("ItemChangeOrderAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
     "purpose": S.optionalWith(ItemChangeOrderAttributesPurpose, { nullable: true })
 }) {
 }
 export class ItemEstimateAttributes extends S.Class("ItemEstimateAttributes")({
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.String, { nullable: true }),
+    "isAccepted": optionalNullableBoolean,
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableString,
+    "changeOrderAmount": optionalNullableString,
+    "changeOrderSubtotalAmount": optionalNullableString,
+    "changeOrderTaxAmount": optionalNullableString,
+    "changeOrderFeeAmount": optionalNullableString,
+    "currentAmount": optionalNullableString,
+    "currentSubtotalAmount": optionalNullableString,
+    "currentTaxAmount": optionalNullableString,
+    "currentFeeAmount": optionalNullableString,
     "purpose": S.optionalWith(ItemEstimateAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+    "acquisitionAmount": optionalNullableNumber
 }) {
 }
 export class AccountInviteAttributes extends S.Class("AccountInviteAttributes")({
@@ -6203,15 +6209,15 @@ export class AccountInviteAttributes extends S.Class("AccountInviteAttributes")(
     /**
   * The user's email
   */
-    "email": S.optionalWith(S.String, { nullable: true }),
-    "phone": S.optionalWith(S.String, { nullable: true }),
-    "invitedAt": S.optionalWith(S.String, { nullable: true }),
-    "acceptedAt": S.optionalWith(S.String, { nullable: true })
+    "email": optionalNullableString,
+    "phone": optionalNullableString,
+    "invitedAt": optionalNullableString,
+    "acceptedAt": optionalNullableString
 }) {
 }
 export class AuthProfileAttributes extends S.Class("AuthProfileAttributes")({
     "provider": S.optionalWith(AuthProfileAttributesProvider, { nullable: true }),
-    "externalId": S.optionalWith(S.String, { nullable: true })
+    "externalId": optionalNullableString
 }) {
 }
 export class CreateIncidentImpactAttributes extends S.Class("CreateIncidentImpactAttributes")({
@@ -6219,29 +6225,29 @@ export class CreateIncidentImpactAttributes extends S.Class("CreateIncidentImpac
 }) {
 }
 export class ItemMediaSuggestionAttributes extends S.Class("ItemMediaSuggestionAttributes")({
-    "data_key": S.optionalWith(S.String, { nullable: true }),
-    "name": S.optionalWith(S.String, { nullable: true }),
+    "data_key": optionalNullableString,
+    "name": optionalNullableString,
     "quality": S.optionalWith(ItemMediaSuggestionAttributesQuality, { nullable: true }),
     "condition": S.optionalWith(ItemMediaSuggestionAttributesCondition, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "timestamp": S.optionalWith(S.Number, { nullable: true })
+    "acquiredQuantity": optionalNullableNumberWithDefault1,
+    "coordsXPercentage": optionalNullableNumber,
+    "coordsYPercentage": optionalNullableNumber,
+    "coordsWPercentage": optionalNullableNumber,
+    "coordsHPercentage": optionalNullableNumber,
+    "timestamp": optionalNullableNumber
 }) {
 }
 export class ItemProductSuggestionAttributes extends S.Class("ItemProductSuggestionAttributes")({
     "source": S.optionalWith(ItemProductSuggestionAttributesSource, { nullable: true }),
-    "source_id": S.optionalWith(S.String, { nullable: true }),
-    "data_key": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "sellerName": S.optionalWith(S.String, { nullable: true }),
-    "sellerLink": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
-    "subtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "source_id": optionalNullableString,
+    "data_key": optionalNullableString,
+    "description": optionalNullableString,
+    "sellerName": optionalNullableString,
+    "sellerLink": optionalNullableString,
+    "amount": optionalNullableNumber,
+    "subtotalAmount": optionalNullableNumber,
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class UpdateUserAccountRoleAttributes extends S.Class("UpdateUserAccountRoleAttributes")({
@@ -6494,26 +6500,26 @@ export class CreateFileAttributes extends S.Class("CreateFileAttributes")({
   * The storage provider for this file.
   */
     "storageProvider": S.Literal("LOTI_S3"),
-    "originalKey": S.optionalWith(S.String, { nullable: true }),
-    "originalUrl": S.optionalWith(S.String, { nullable: true }),
-    "presentationKey": S.optionalWith(S.String, { nullable: true }),
-    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
+    "originalKey": optionalNullableString,
+    "originalUrl": optionalNullableString,
+    "presentationKey": optionalNullableString,
+    "presentationUrl": optionalNullableString,
+    "thumbnailKey": optionalNullableString,
+    "thumbnailUrl": optionalNullableString,
     "type": S.optionalWith(CreateFileAttributesType, { nullable: true }),
-    "filename": S.optionalWith(S.String, { nullable: true }),
-    "extension": S.optionalWith(S.String, { nullable: true }),
-    "width": S.optionalWith(S.Number, { nullable: true }),
-    "height": S.optionalWith(S.Number, { nullable: true }),
-    "size": S.optionalWith(S.Number, { nullable: true }),
-    "blurhash": S.optionalWith(S.String, { nullable: true }),
-    "durationMs": S.optionalWith(S.Number, { nullable: true }),
-    "pageCount": S.optionalWith(S.Number, { nullable: true }),
-    "createdAt": S.optionalWith(S.String, { nullable: true }),
-    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
-    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
-    "documentCount": S.optionalWith(S.Number, { nullable: true }),
-    "addedAt": S.optionalWith(S.String, { nullable: true })
+    "filename": optionalNullableString,
+    "extension": optionalNullableString,
+    "width": optionalNullableNumber,
+    "height": optionalNullableNumber,
+    "size": optionalNullableNumber,
+    "blurhash": optionalNullableString,
+    "durationMs": optionalNullableNumber,
+    "pageCount": optionalNullableNumber,
+    "createdAt": optionalNullableString,
+    "modifiedAt": optionalNullableString,
+    "mediaCount": optionalNullableNumber,
+    "documentCount": optionalNullableNumber,
+    "addedAt": optionalNullableString
 }) {
 }
 export class ReferencedUpsertFileProcessList extends S.Class("ReferencedUpsertFileProcessList")({
@@ -6640,26 +6646,26 @@ export class UpdateFileAttributes extends S.Class("UpdateFileAttributes")({
   * The storage provider for this file.
   */
     "storageProvider": S.optionalWith(S.Literal("LOTI_S3"), { nullable: true }),
-    "originalKey": S.optionalWith(S.String, { nullable: true }),
-    "originalUrl": S.optionalWith(S.String, { nullable: true }),
-    "presentationKey": S.optionalWith(S.String, { nullable: true }),
-    "presentationUrl": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailKey": S.optionalWith(S.String, { nullable: true }),
-    "thumbnailUrl": S.optionalWith(S.String, { nullable: true }),
+    "originalKey": optionalNullableString,
+    "originalUrl": optionalNullableString,
+    "presentationKey": optionalNullableString,
+    "presentationUrl": optionalNullableString,
+    "thumbnailKey": optionalNullableString,
+    "thumbnailUrl": optionalNullableString,
     "type": S.optionalWith(UpdateFileAttributesType, { nullable: true }),
-    "filename": S.optionalWith(S.String, { nullable: true }),
-    "extension": S.optionalWith(S.String, { nullable: true }),
-    "width": S.optionalWith(S.Number, { nullable: true }),
-    "height": S.optionalWith(S.Number, { nullable: true }),
-    "size": S.optionalWith(S.Number, { nullable: true }),
-    "blurhash": S.optionalWith(S.String, { nullable: true }),
-    "durationMs": S.optionalWith(S.Number, { nullable: true }),
-    "pageCount": S.optionalWith(S.Number, { nullable: true }),
-    "createdAt": S.optionalWith(S.String, { nullable: true }),
-    "modifiedAt": S.optionalWith(S.String, { nullable: true }),
-    "mediaCount": S.optionalWith(S.Number, { nullable: true }),
-    "documentCount": S.optionalWith(S.Number, { nullable: true }),
-    "addedAt": S.optionalWith(S.String, { nullable: true })
+    "filename": optionalNullableString,
+    "extension": optionalNullableString,
+    "width": optionalNullableNumber,
+    "height": optionalNullableNumber,
+    "size": optionalNullableNumber,
+    "blurhash": optionalNullableString,
+    "durationMs": optionalNullableNumber,
+    "pageCount": optionalNullableNumber,
+    "createdAt": optionalNullableString,
+    "modifiedAt": optionalNullableString,
+    "mediaCount": optionalNullableNumber,
+    "documentCount": optionalNullableNumber,
+    "addedAt": optionalNullableString
 }) {
 }
 export class ReferencedUpsertAssetType extends S.Class("ReferencedUpsertAssetType")({
@@ -7063,20 +7069,20 @@ export class ReferencedUpsertClaim extends S.Class("ReferencedUpsertClaim")({
 }
 export class CreateBaseBucketAttributes extends S.Class("CreateBaseBucketAttributes")({
     "limitAmount": S.Number,
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": optionalNullableNumber,
     "lossSettlementType": S.optionalWith(CreateBaseBucketAttributesLossSettlementType, { nullable: true, default: () => "REPLACEMENT_COST_VALUE" }),
-    "entryCount": S.optionalWith(S.Number, { nullable: true }),
-    "entryAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryIncurredAmount": S.optionalWith(S.Number, { nullable: true }),
-    "entryProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true }),
-    "fundingCount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "fundingPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyFunded": S.optionalWith(S.Number, { nullable: true })
+    "entryCount": optionalNullableNumber,
+    "entryAmount": optionalNullableNumber,
+    "entryIncurredAmount": optionalNullableNumber,
+    "entryProjectedAmount": optionalNullableNumber,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber,
+    "fundingCount": optionalNullableNumber,
+    "fundingAmount": optionalNullableNumber,
+    "fundingPercentage": optionalNullableNumber,
+    "isFullyFunded": optionalNullableNumber
 }) {
 }
 export class ReferencedUpsertBaseBucketMetadata extends S.Class("ReferencedUpsertBaseBucketMetadata")({
@@ -7181,21 +7187,21 @@ export class CreateClaimTargetAttributes extends S.Class("CreateClaimTargetAttri
     "effectiveStartDate": S.String,
     "effectiveEndDate": S.String,
     "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
+    "description": optionalNullableString,
     "lossSettlementType": S.optionalWith(CreateClaimTargetAttributesLossSettlementType, { nullable: true })
 }) {
 }
 export class CreatePolicyTermAttributes extends S.Class("CreatePolicyTermAttributes")({
     "effectiveStartDate": S.String,
     "effectiveEndDate": S.String,
-    "name": S.optionalWith(S.String, { nullable: true }),
-    "description": S.optionalWith(S.String, { nullable: true }),
+    "name": optionalNullableString,
+    "description": optionalNullableString,
     "lossSettlementType": S.optionalWith(CreatePolicyTermAttributesLossSettlementType, { nullable: true }),
-    "premiumAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paymentDueDate": S.optionalWith(S.String, { nullable: true }),
-    "isFullyPaid": S.optionalWith(S.Boolean, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "dueAmount": S.optionalWith(S.Number, { nullable: true })
+    "premiumAmount": optionalNullableNumber,
+    "paymentDueDate": optionalNullableString,
+    "isFullyPaid": optionalNullableBoolean,
+    "paidAmount": optionalNullableNumber,
+    "dueAmount": optionalNullableNumber
 }) {
 }
 export class ReferencedUpsertPolicy extends S.Class("ReferencedUpsertPolicy")({
@@ -7222,18 +7228,18 @@ export class ReferencedUpsertPolicyTemplate extends S.Class("ReferencedUpsertPol
 export class CreateBucketDefinitionAttributes extends S.Class("CreateBucketDefinitionAttributes")({
     "name": S.String,
     "limitAmount": S.Number,
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": optionalNullableNumber,
     /**
   * Is required if not set in .basis
   */
     "lossSettlementType": S.optionalWith(CreateBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "effectiveStartDate": S.optionalWith(S.String, { nullable: true }),
-    "effectiveEndDate": S.optionalWith(S.String, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true, default: () => true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+    "effectiveStartDate": optionalNullableString,
+    "effectiveEndDate": optionalNullableString,
+    "isCoveragePerClaim": optionalNullableBooleanWithDefaultTrue,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber
 }) {
 }
 export class ReferencedUpsertSubBucketDefinitionList extends S.Class("ReferencedUpsertSubBucketDefinitionList")({
@@ -7323,13 +7329,13 @@ export class ReferencedUpsertEndorsement extends S.Class("ReferencedUpsertEndors
 export class CreateSubBucketDefinitionAttributes extends S.Class("CreateSubBucketDefinitionAttributes")({
     "name": S.String,
     "limitAmount": S.Number,
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmountPerEntry": optionalNullableNumber,
     "lossSettlementType": S.optionalWith(CreateSubBucketDefinitionAttributesLossSettlementType, { nullable: true }),
-    "isCoveragePerClaim": S.optionalWith(S.Boolean, { nullable: true }),
-    "assignedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "remainingAmount": S.optionalWith(S.Number, { nullable: true }),
-    "assignedPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "isFullyAssigned": S.optionalWith(S.Number, { nullable: true })
+    "isCoveragePerClaim": optionalNullableBoolean,
+    "assignedAmount": optionalNullableNumber,
+    "remainingAmount": optionalNullableNumber,
+    "assignedPercentage": optionalNullableNumber,
+    "isFullyAssigned": optionalNullableNumber
 }) {
 }
 export class NullableReferencedUpsertSubCoverageTemplate extends S.Class("NullableReferencedUpsertSubCoverageTemplate")({
@@ -7382,14 +7388,14 @@ export class ReferencedUpsertCoverageGroupTemplateList extends S.Class("Referenc
 }) {
 }
 export class CreateEndorsementAttributes extends S.Class("CreateEndorsementAttributes")({
-    "formNumber": S.optionalWith(S.String, { nullable: true }),
+    "formNumber": optionalNullableString,
     "effect": CreateEndorsementAttributesEffect,
-    "limitAmount": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntry": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdateFixed": S.optionalWith(S.Number, { nullable: true }),
-    "limitAmountPerEntryUpdatePercentage": S.optionalWith(S.Number, { nullable: true }),
+    "limitAmount": optionalNullableNumber,
+    "limitAmountPerEntry": optionalNullableNumber,
+    "limitAmountUpdateFixed": optionalNullableNumber,
+    "limitAmountUpdatePercentage": optionalNullableNumber,
+    "limitAmountPerEntryUpdateFixed": optionalNullableNumber,
+    "limitAmountPerEntryUpdatePercentage": optionalNullableNumber,
     "lossSettlementType": S.optionalWith(CreateEndorsementAttributesLossSettlementType, { nullable: true })
 }) {
 }
@@ -7485,95 +7491,95 @@ export class ReferencedUpsertThirdParty extends S.Class("ReferencedUpsertThirdPa
 }) {
 }
 export class CreateItemInvoiceAttributes extends S.Class("CreateItemInvoiceAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
     "purpose": S.optionalWith(CreateItemInvoiceAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+    "acquisitionAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemAttributes extends S.Class("CreateItemAttributes")({
     "name": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "requiresAttention": S.optionalWith(S.Boolean, { nullable: true }),
+    "description": optionalNullableString,
+    "requiresAttention": optionalNullableBoolean,
     "fieldsNeedingAttention": S.optionalWith(S.Struct({
-        "type": S.optionalWith(S.Boolean, { nullable: true }),
-        "quality": S.optionalWith(S.Boolean, { nullable: true }),
-        "acquiredDate": S.optionalWith(S.Boolean, { nullable: true })
+        "type": optionalNullableBoolean,
+        "quality": optionalNullableBoolean,
+        "acquiredDate": optionalNullableBoolean
     }), { nullable: true }),
-    "appraisedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "appraisalCount": S.optionalWith(S.Number, { nullable: true }),
+    "appraisedAmount": optionalNullableNumber,
+    "appraisalCount": optionalNullableNumber,
     "quality": S.optionalWith(CreateItemAttributesQuality, { nullable: true }),
     "condition": S.optionalWith(CreateItemAttributesCondition, { nullable: true }),
-    "isDepreciationExempt": S.optionalWith(S.Boolean, { nullable: true }),
-    "acquiredDate": S.optionalWith(S.String, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "currentQuantity": S.optionalWith(S.Number, { nullable: true }),
-    "paymentCount": S.optionalWith(S.Number, { nullable: true }),
-    "paidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "paidFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoiceCount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "invoicedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "estimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimateCount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedSubtotalAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedTaxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acceptedEstimatedFeeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.Number, { nullable: true }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionPaidAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionInvoicedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionEstimatedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableProjectedAmount": S.optionalWith(S.Number, { nullable: true }),
-    "submittableIncurredAmount": S.optionalWith(S.Number, { nullable: true })
+    "isDepreciationExempt": optionalNullableBoolean,
+    "acquiredDate": optionalNullableString,
+    "acquiredQuantity": optionalNullableNumberWithDefault1,
+    "currentQuantity": optionalNullableNumber,
+    "paymentCount": optionalNullableNumber,
+    "paidAmount": optionalNullableNumber,
+    "paidSubtotalAmount": optionalNullableNumber,
+    "paidTaxAmount": optionalNullableNumber,
+    "paidFeeAmount": optionalNullableNumber,
+    "invoiceCount": optionalNullableNumber,
+    "invoicedAmount": optionalNullableNumber,
+    "invoicedSubtotalAmount": optionalNullableNumber,
+    "invoicedTaxAmount": optionalNullableNumber,
+    "invoicedFeeAmount": optionalNullableNumber,
+    "estimateCount": optionalNullableNumber,
+    "acceptedEstimateCount": optionalNullableNumber,
+    "acceptedEstimatedAmount": optionalNullableNumber,
+    "acceptedEstimatedSubtotalAmount": optionalNullableNumber,
+    "acceptedEstimatedTaxAmount": optionalNullableNumber,
+    "acceptedEstimatedFeeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableNumber,
+    "depreciableAmount": optionalNullableNumber,
+    "acquisitionPaidAmount": optionalNullableNumber,
+    "acquisitionInvoicedAmount": optionalNullableNumber,
+    "acquisitionEstimatedAmount": optionalNullableNumber,
+    "submittableProjectedAmount": optionalNullableNumber,
+    "submittableIncurredAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemPaymentAttributes extends S.Class("CreateItemPaymentAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
     "purpose": S.optionalWith(CreateItemPaymentAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "depreciableAmount": S.optionalWith(S.Number, { nullable: true }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+    "depreciableAmount": optionalNullableNumber,
+    "acquisitionAmount": optionalNullableNumber
 }) {
 }
 export class CreateItemChangeOrderAttributes extends S.Class("CreateItemChangeOrderAttributes")({
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
     "purpose": S.optionalWith(CreateItemChangeOrderAttributesPurpose, { nullable: true })
 }) {
 }
 export class CreateItemEstimateAttributes extends S.Class("CreateItemEstimateAttributes")({
-    "isAccepted": S.optionalWith(S.Boolean, { nullable: true }),
-    "date": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "isAccepted": optionalNullableBoolean,
+    "date": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true }),
-    "changeOrderCount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "changeOrderFeeAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentSubtotalAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentTaxAmount": S.optionalWith(S.String, { nullable: true }),
-    "currentFeeAmount": S.optionalWith(S.String, { nullable: true }),
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber,
+    "changeOrderCount": optionalNullableString,
+    "changeOrderAmount": optionalNullableString,
+    "changeOrderSubtotalAmount": optionalNullableString,
+    "changeOrderTaxAmount": optionalNullableString,
+    "changeOrderFeeAmount": optionalNullableString,
+    "currentAmount": optionalNullableString,
+    "currentSubtotalAmount": optionalNullableString,
+    "currentTaxAmount": optionalNullableString,
+    "currentFeeAmount": optionalNullableString,
     "purpose": S.optionalWith(CreateItemEstimateAttributesPurpose, { nullable: true, default: () => "PURCHASE" }),
-    "acquisitionAmount": S.optionalWith(S.Number, { nullable: true })
+    "acquisitionAmount": optionalNullableNumber
 }) {
 }
 export class CreateAccountInviteAttributes extends S.Class("CreateAccountInviteAttributes")({
@@ -7585,9 +7591,9 @@ export class CreateAccountInviteAttributes extends S.Class("CreateAccountInviteA
   * The user's email
   */
     "email": S.String,
-    "phone": S.optionalWith(S.String, { nullable: true }),
-    "invitedAt": S.optionalWith(S.String, { nullable: true }),
-    "acceptedAt": S.optionalWith(S.String, { nullable: true })
+    "phone": optionalNullableString,
+    "invitedAt": optionalNullableString,
+    "acceptedAt": optionalNullableString
 }) {
 }
 export class CreateAuthProfileAttributes extends S.Class("CreateAuthProfileAttributes")({
@@ -7600,25 +7606,25 @@ export class CreateItemMediaSuggestionAttributes extends S.Class("CreateItemMedi
     "name": S.String,
     "quality": S.optionalWith(CreateItemMediaSuggestionAttributesQuality, { nullable: true }),
     "condition": S.optionalWith(CreateItemMediaSuggestionAttributesCondition, { nullable: true }),
-    "acquiredQuantity": S.optionalWith(S.Number, { nullable: true, default: () => 1 }),
-    "coordsXPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsYPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsWPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "coordsHPercentage": S.optionalWith(S.Number, { nullable: true }),
-    "timestamp": S.optionalWith(S.Number, { nullable: true })
+    "acquiredQuantity": optionalNullableNumberWithDefault1,
+    "coordsXPercentage": optionalNullableNumber,
+    "coordsYPercentage": optionalNullableNumber,
+    "coordsWPercentage": optionalNullableNumber,
+    "coordsHPercentage": optionalNullableNumber,
+    "timestamp": optionalNullableNumber
 }) {
 }
 export class CreateItemProductSuggestionAttributes extends S.Class("CreateItemProductSuggestionAttributes")({
     "source": CreateItemProductSuggestionAttributesSource,
     "source_id": S.String,
     "data_key": S.String,
-    "description": S.optionalWith(S.String, { nullable: true }),
-    "sellerName": S.optionalWith(S.String, { nullable: true }),
-    "sellerLink": S.optionalWith(S.String, { nullable: true }),
-    "amount": S.optionalWith(S.Number, { nullable: true }),
+    "description": optionalNullableString,
+    "sellerName": optionalNullableString,
+    "sellerLink": optionalNullableString,
+    "amount": optionalNullableNumber,
     "subtotalAmount": S.Number,
-    "taxAmount": S.optionalWith(S.Number, { nullable: true }),
-    "feeAmount": S.optionalWith(S.Number, { nullable: true })
+    "taxAmount": optionalNullableNumber,
+    "feeAmount": optionalNullableNumber
 }) {
 }
 export class CreateUserAccountRoleAttributes extends S.Class("CreateUserAccountRoleAttributes")({
@@ -7706,15 +7712,15 @@ export class SignedUrlItemDto extends S.Class("SignedUrlItemDto")({
     /**
   * Content-Type header to enforce. For PUT uploads, sets the required Content-Type. For GET, sets the response Content-Type.
   */
-    "contentType": S.optionalWith(S.String, { nullable: true }),
+    "contentType": optionalNullableString,
     /**
   * Response content disposition. Useful for forcing downloads or naming files in GET requests.
   */
-    "contentDisposition": S.optionalWith(S.String, { nullable: true }),
+    "contentDisposition": optionalNullableString,
     /**
   * Optional client-provided correlation ID to map requests to results.
   */
-    "clientToken": S.optionalWith(S.String, { nullable: true })
+    "clientToken": optionalNullableString
 }) {
 }
 export class SignedUrlResultDto extends S.Class("SignedUrlResultDto")({
@@ -7725,15 +7731,15 @@ export class SignedUrlResultDto extends S.Class("SignedUrlResultDto")({
     /**
   * Signed URL for accessing the file (present on success)
   */
-    "url": S.optionalWith(S.String, { nullable: true }),
+    "url": optionalNullableString,
     /**
   * Expiration timestamp in ISO 8601 format
   */
-    "expiresAt": S.optionalWith(S.String, { nullable: true }),
+    "expiresAt": optionalNullableString,
     /**
   * Effective TTL (time to live) in seconds
   */
-    "ttlSeconds": S.optionalWith(S.Number, { nullable: true }),
+    "ttlSeconds": optionalNullableNumber,
     /**
   * Action for which this URL was issued
   */
@@ -7745,7 +7751,7 @@ export class SignedUrlResultDto extends S.Class("SignedUrlResultDto")({
     /**
   * Optional client-provided token to correlate requests
   */
-    "clientToken": S.optionalWith(S.String, { nullable: true })
+    "clientToken": optionalNullableString
 }) {
 }
 export class AssetTypeData extends S.Class("AssetTypeData")({
@@ -7760,7 +7766,7 @@ export class AssetTypeData extends S.Class("AssetTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7784,7 +7790,7 @@ export class CurrencyData extends S.Class("CurrencyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7808,7 +7814,7 @@ export class CountryData extends S.Class("CountryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7832,7 +7838,7 @@ export class ProviderData extends S.Class("ProviderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7856,7 +7862,7 @@ export class BaseEntityData extends S.Class("BaseEntityData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7879,7 +7885,7 @@ export class UpdateAssetTypeData extends S.Class("UpdateAssetTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7899,7 +7905,7 @@ export class UpdateCurrencyData extends S.Class("UpdateCurrencyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7919,7 +7925,7 @@ export class UpdateCountryData extends S.Class("UpdateCountryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7939,7 +7945,7 @@ export class UpdateProviderData extends S.Class("UpdateProviderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -7959,7 +7965,7 @@ export class UpdateBaseEntityData extends S.Class("UpdateBaseEntityData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10763,7 +10769,7 @@ export class AuthProfileData extends S.Class("AuthProfileData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10788,7 +10794,7 @@ export class ThirdPartyData extends S.Class("ThirdPartyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10812,7 +10818,7 @@ export class ThirdPartyIndividualData extends S.Class("ThirdPartyIndividualData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10837,7 +10843,7 @@ export class AccountData extends S.Class("AccountData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10862,7 +10868,7 @@ export class IdentityData extends S.Class("IdentityData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10887,7 +10893,7 @@ export class UserData extends S.Class("UserData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10912,7 +10918,7 @@ export class AccountInviteData extends S.Class("AccountInviteData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10937,7 +10943,7 @@ export class UserAccountRoleData extends S.Class("UserAccountRoleData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10962,7 +10968,7 @@ export class EmailAddressData extends S.Class("EmailAddressData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -10987,7 +10993,7 @@ export class PhoneNumberData extends S.Class("PhoneNumberData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11012,7 +11018,7 @@ export class AccountProviderContactData extends S.Class("AccountProviderContactD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11037,7 +11043,7 @@ export class AccountProviderData extends S.Class("AccountProviderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11062,7 +11068,7 @@ export class ProjectData extends S.Class("ProjectData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11087,7 +11093,7 @@ export class DisasterData extends S.Class("DisasterData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11112,7 +11118,7 @@ export class IncidentData extends S.Class("IncidentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11137,7 +11143,7 @@ export class ProjectMediaData extends S.Class("ProjectMediaData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11162,7 +11168,7 @@ export class FileProcessData extends S.Class("FileProcessData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11187,7 +11193,7 @@ export class ProjectImpactData extends S.Class("ProjectImpactData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11212,7 +11218,7 @@ export class MediaData extends S.Class("MediaData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11237,7 +11243,7 @@ export class ItemizableFinancialDocumentStatsData extends S.Class("ItemizableFin
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11262,7 +11268,7 @@ export class FileData extends S.Class("FileData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11287,7 +11293,7 @@ export class AssetData extends S.Class("AssetData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11312,7 +11318,7 @@ export class PerilData extends S.Class("PerilData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11337,7 +11343,7 @@ export class ServiceTypeData extends S.Class("ServiceTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11362,7 +11368,7 @@ export class IncidentClassData extends S.Class("IncidentClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11387,7 +11393,7 @@ export class DwellingData extends S.Class("DwellingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11412,7 +11418,7 @@ export class AssetAppraisalData extends S.Class("AssetAppraisalData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11437,7 +11443,7 @@ export class DocumentData extends S.Class("DocumentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11462,7 +11468,7 @@ export class IncidentReportData extends S.Class("IncidentReportData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11487,7 +11493,7 @@ export class PoliceReportData extends S.Class("PoliceReportData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11512,7 +11518,7 @@ export class ParamedicReportData extends S.Class("ParamedicReportData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11537,7 +11543,7 @@ export class ContractData extends S.Class("ContractData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11562,7 +11568,7 @@ export class RentRollData extends S.Class("RentRollData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11587,7 +11593,7 @@ export class PermitData extends S.Class("PermitData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11612,7 +11618,7 @@ export class BlueprintData extends S.Class("BlueprintData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11637,7 +11643,7 @@ export class DeclarationsPageData extends S.Class("DeclarationsPageData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11662,7 +11668,7 @@ export class PolicyJacketData extends S.Class("PolicyJacketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11687,7 +11693,7 @@ export class ScopeOfLossData extends S.Class("ScopeOfLossData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11712,7 +11718,7 @@ export class DeliveryPaperworkData extends S.Class("DeliveryPaperworkData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11737,7 +11743,7 @@ export class ProductSpecData extends S.Class("ProductSpecData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11762,7 +11768,7 @@ export class UserManualData extends S.Class("UserManualData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11787,7 +11793,7 @@ export class WarrantyData extends S.Class("WarrantyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11812,7 +11818,7 @@ export class DeedData extends S.Class("DeedData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11837,7 +11843,7 @@ export class FinancialDocumentData extends S.Class("FinancialDocumentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11862,7 +11868,7 @@ export class DocumentClassData extends S.Class("DocumentClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11887,7 +11893,7 @@ export class DocumentTypeData extends S.Class("DocumentTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11912,7 +11918,7 @@ export class SpaceGroupData extends S.Class("SpaceGroupData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11937,7 +11943,7 @@ export class SpaceData extends S.Class("SpaceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11962,7 +11968,7 @@ export class SpaceTypeData extends S.Class("SpaceTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -11987,7 +11993,7 @@ export class SpaceCategoryData extends S.Class("SpaceCategoryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12012,7 +12018,7 @@ export class SpaceClassData extends S.Class("SpaceClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12037,7 +12043,7 @@ export class SpaceGroupTypeData extends S.Class("SpaceGroupTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12062,7 +12068,7 @@ export class BucketClassData extends S.Class("BucketClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12087,7 +12093,7 @@ export class BucketTypeData extends S.Class("BucketTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12112,7 +12118,7 @@ export class AddressData extends S.Class("AddressData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12137,7 +12143,7 @@ export class ThirdPartyDwellingData extends S.Class("ThirdPartyDwellingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12162,7 +12168,7 @@ export class ItemizableFinancialDocumentData extends S.Class("ItemizableFinancia
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12187,7 +12193,7 @@ export class ItemImpactPaymentData extends S.Class("ItemImpactPaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12212,7 +12218,7 @@ export class ItemImpactInvoiceData extends S.Class("ItemImpactInvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12237,7 +12243,7 @@ export class ItemImpactEstimateData extends S.Class("ItemImpactEstimateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12262,7 +12268,7 @@ export class ItemAppraisalData extends S.Class("ItemAppraisalData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12287,7 +12293,7 @@ export class ItemInvoiceData extends S.Class("ItemInvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12312,7 +12318,7 @@ export class ItemPaymentData extends S.Class("ItemPaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12337,7 +12343,7 @@ export class ItemEstimateData extends S.Class("ItemEstimateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12362,7 +12368,7 @@ export class ItemProductSuggestionData extends S.Class("ItemProductSuggestionDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12387,7 +12393,7 @@ export class ServiceTaskPaymentData extends S.Class("ServiceTaskPaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12412,7 +12418,7 @@ export class ServiceTaskInvoiceData extends S.Class("ServiceTaskInvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12437,7 +12443,7 @@ export class ServiceTaskEstimateData extends S.Class("ServiceTaskEstimateData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12462,7 +12468,7 @@ export class ChangeOrderData extends S.Class("ChangeOrderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12487,7 +12493,7 @@ export class EntrySourceMetadataData extends S.Class("EntrySourceMetadataData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12512,7 +12518,7 @@ export class AppraisalLineData extends S.Class("AppraisalLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12537,7 +12543,7 @@ export class InvoiceLineData extends S.Class("InvoiceLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12562,7 +12568,7 @@ export class PaymentLineData extends S.Class("PaymentLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12587,7 +12593,7 @@ export class EstimateLineData extends S.Class("EstimateLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12612,7 +12618,7 @@ export class EntrySourceMediaData extends S.Class("EntrySourceMediaData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12637,7 +12643,7 @@ export class ItemChangeOrderData extends S.Class("ItemChangeOrderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12662,7 +12668,7 @@ export class ItemImpactChangeOrderData extends S.Class("ItemImpactChangeOrderDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12687,7 +12693,7 @@ export class EstimateData extends S.Class("EstimateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12712,7 +12718,7 @@ export class ChangeOrderLineData extends S.Class("ChangeOrderLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12737,7 +12743,7 @@ export class ServiceTaskChangeOrderData extends S.Class("ServiceTaskChangeOrderD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12762,7 +12768,7 @@ export class EntrySourceData extends S.Class("EntrySourceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12787,7 +12793,7 @@ export class ServiceTaskData extends S.Class("ServiceTaskData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12812,7 +12818,7 @@ export class PaymentData extends S.Class("PaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12837,7 +12843,7 @@ export class ServiceData extends S.Class("ServiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12862,7 +12868,7 @@ export class InvoiceData extends S.Class("InvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12887,7 +12893,7 @@ export class ItemImpactData extends S.Class("ItemImpactData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12912,7 +12918,7 @@ export class ItemData extends S.Class("ItemData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12937,7 +12943,7 @@ export class ItemMediaSuggestionData extends S.Class("ItemMediaSuggestionData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12962,7 +12968,7 @@ export class DepreciationModifierData extends S.Class("DepreciationModifierData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -12987,7 +12993,7 @@ export class DepreciationOverrideData extends S.Class("DepreciationOverrideData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13012,7 +13018,7 @@ export class ItemTemplateData extends S.Class("ItemTemplateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13037,7 +13043,7 @@ export class BaseSubBucketMetadataData extends S.Class("BaseSubBucketMetadataDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13062,7 +13068,7 @@ export class BaseBucketMetadataData extends S.Class("BaseBucketMetadataData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13087,7 +13093,7 @@ export class FundingSourceData extends S.Class("FundingSourceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13112,7 +13118,7 @@ export class EntryData extends S.Class("EntryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13137,7 +13143,7 @@ export class BucketFundingData extends S.Class("BucketFundingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13162,7 +13168,7 @@ export class BaseBucketData extends S.Class("BaseBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13187,7 +13193,7 @@ export class FundingData extends S.Class("FundingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13212,7 +13218,7 @@ export class SubBucketDefinitionData extends S.Class("SubBucketDefinitionData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13237,7 +13243,7 @@ export class ClaimTargetData extends S.Class("ClaimTargetData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13262,7 +13268,7 @@ export class BucketData extends S.Class("BucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13287,7 +13293,7 @@ export class ClaimData extends S.Class("ClaimData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13312,7 +13318,7 @@ export class DeductibleData extends S.Class("DeductibleData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13337,7 +13343,7 @@ export class ClaimDeductibleData extends S.Class("ClaimDeductibleData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13362,7 +13368,7 @@ export class PolicyTermData extends S.Class("PolicyTermData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13387,7 +13393,7 @@ export class PolicyData extends S.Class("PolicyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13412,7 +13418,7 @@ export class SubmissionTrackTemplateData extends S.Class("SubmissionTrackTemplat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13437,7 +13443,7 @@ export class BucketDefinitionData extends S.Class("BucketDefinitionData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13462,7 +13468,7 @@ export class CoverageGroupTemplateData extends S.Class("CoverageGroupTemplateDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13487,7 +13493,7 @@ export class IncidentImpactData extends S.Class("IncidentImpactData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13512,7 +13518,7 @@ export class CoverageData extends S.Class("CoverageData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13537,7 +13543,7 @@ export class SubCoverageData extends S.Class("SubCoverageData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13562,7 +13568,7 @@ export class EndorsementTemplateData extends S.Class("EndorsementTemplateData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13587,7 +13593,7 @@ export class SubBucketData extends S.Class("SubBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13612,7 +13618,7 @@ export class BaseSubBucketData extends S.Class("BaseSubBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13637,7 +13643,7 @@ export class SubCoverageTemplateData extends S.Class("SubCoverageTemplateData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13662,7 +13668,7 @@ export class EndorsementData extends S.Class("EndorsementData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13687,7 +13693,7 @@ export class CoverageTemplateData extends S.Class("CoverageTemplateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13712,7 +13718,7 @@ export class CoverageGroupData extends S.Class("CoverageGroupData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13736,7 +13742,7 @@ export class PolicyTemplateData extends S.Class("PolicyTemplateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13761,7 +13767,7 @@ export class DepreciationScheduleData extends S.Class("DepreciationScheduleData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13786,7 +13792,7 @@ export class SpaceTypeItemTemplateData extends S.Class("SpaceTypeItemTemplateDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13811,7 +13817,7 @@ export class AssetAttributeTypeData extends S.Class("AssetAttributeTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13836,7 +13842,7 @@ export class AssetAttributeTypeItemTemplateData extends S.Class("AssetAttributeT
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13861,7 +13867,7 @@ export class AssetAttributeClassData extends S.Class("AssetAttributeClassData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13886,7 +13892,7 @@ export class IncidentTypeData extends S.Class("IncidentTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13911,7 +13917,7 @@ export class ItemClassData extends S.Class("ItemClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13936,7 +13942,7 @@ export class ItemTypeData extends S.Class("ItemTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13961,7 +13967,7 @@ export class ItemCategoryData extends S.Class("ItemCategoryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -13986,7 +13992,7 @@ export class ServiceClassData extends S.Class("ServiceClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14011,7 +14017,7 @@ export class ServiceCategoryData extends S.Class("ServiceCategoryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14036,7 +14042,7 @@ export class AppraisalData extends S.Class("AppraisalData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14061,7 +14067,7 @@ export class ThirdPartyImpactData extends S.Class("ThirdPartyImpactData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14078,7 +14084,7 @@ export class CreateIdentityData extends S.Class("CreateIdentityData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14099,7 +14105,7 @@ export class UpdateIdentityData extends S.Class("UpdateIdentityData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14120,7 +14126,7 @@ export class UpdateUserData extends S.Class("UpdateUserData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14133,7 +14139,7 @@ export class CreateUserData extends S.Class("CreateUserData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14146,7 +14152,7 @@ export class CreateEmailAddressData extends S.Class("CreateEmailAddressData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14159,7 +14165,7 @@ export class CreatePhoneNumberData extends S.Class("CreatePhoneNumberData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14180,7 +14186,7 @@ export class UpdateEmailAddressData extends S.Class("UpdateEmailAddressData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14201,7 +14207,7 @@ export class UpdatePhoneNumberData extends S.Class("UpdatePhoneNumberData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14214,7 +14220,7 @@ export class CreateAccountInviteData extends S.Class("CreateAccountInviteData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14235,7 +14241,7 @@ export class UpdateAccountInviteData extends S.Class("UpdateAccountInviteData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14248,7 +14254,7 @@ export class CreateAuthProfileData extends S.Class("CreateAuthProfileData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14269,7 +14275,7 @@ export class UpdateAuthProfileData extends S.Class("UpdateAuthProfileData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14282,7 +14288,7 @@ export class CreateUserAccountRoleData extends S.Class("CreateUserAccountRoleDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14303,7 +14309,7 @@ export class UpdateUserAccountRoleData extends S.Class("UpdateUserAccountRoleDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14316,7 +14322,7 @@ export class CreateAccountProviderContactData extends S.Class("CreateAccountProv
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14337,7 +14343,7 @@ export class UpdateAccountProviderContactData extends S.Class("UpdateAccountProv
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14350,7 +14356,7 @@ export class CreateAccountProviderData extends S.Class("CreateAccountProviderDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14371,7 +14377,7 @@ export class UpdateAccountProviderData extends S.Class("UpdateAccountProviderDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14384,7 +14390,7 @@ export class CreateThirdPartyData extends S.Class("CreateThirdPartyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14396,7 +14402,7 @@ export class CreateThirdPartyIndividualData extends S.Class("CreateThirdPartyInd
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14417,7 +14423,7 @@ export class UpdateThirdPartyData extends S.Class("UpdateThirdPartyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14437,7 +14443,7 @@ export class UpdateThirdPartyIndividualData extends S.Class("UpdateThirdPartyInd
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14450,7 +14456,7 @@ export class CreateAccountData extends S.Class("CreateAccountData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14471,7 +14477,7 @@ export class UpdateAccountData extends S.Class("UpdateAccountData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14484,7 +14490,7 @@ export class CreateProjectData extends S.Class("CreateProjectData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14505,7 +14511,7 @@ export class UpdateProjectData extends S.Class("UpdateProjectData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14518,7 +14524,7 @@ export class CreateDisasterData extends S.Class("CreateDisasterData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14539,7 +14545,7 @@ export class UpdateDisasterData extends S.Class("UpdateDisasterData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14552,7 +14558,7 @@ export class CreateIncidentData extends S.Class("CreateIncidentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14573,7 +14579,7 @@ export class UpdateIncidentData extends S.Class("UpdateIncidentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14586,7 +14592,7 @@ export class CreateProjectMediaData extends S.Class("CreateProjectMediaData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14607,7 +14613,7 @@ export class UpdateProjectMediaData extends S.Class("UpdateProjectMediaData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14620,7 +14626,7 @@ export class CreateFileProcessData extends S.Class("CreateFileProcessData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14641,7 +14647,7 @@ export class UpdateFileProcessData extends S.Class("UpdateFileProcessData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14654,7 +14660,7 @@ export class CreateProjectImpactData extends S.Class("CreateProjectImpactData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14675,7 +14681,7 @@ export class UpdateProjectImpactData extends S.Class("UpdateProjectImpactData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14688,7 +14694,7 @@ export class CreateMediaData extends S.Class("CreateMediaData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14709,7 +14715,7 @@ export class UpdateMediaData extends S.Class("UpdateMediaData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14722,7 +14728,7 @@ export class CreateItemizableFinancialDocumentStatsData extends S.Class("CreateI
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14743,7 +14749,7 @@ export class UpdateItemizableFinancialDocumentStatsData extends S.Class("UpdateI
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14756,7 +14762,7 @@ export class CreateFileData extends S.Class("CreateFileData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14777,7 +14783,7 @@ export class UpdateFileData extends S.Class("UpdateFileData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14790,7 +14796,7 @@ export class CreateAssetData extends S.Class("CreateAssetData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14811,7 +14817,7 @@ export class UpdateAssetData extends S.Class("UpdateAssetData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14824,7 +14830,7 @@ export class CreatePerilData extends S.Class("CreatePerilData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14845,7 +14851,7 @@ export class UpdatePerilData extends S.Class("UpdatePerilData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14858,7 +14864,7 @@ export class CreateServiceTypeData extends S.Class("CreateServiceTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14879,7 +14885,7 @@ export class UpdateServiceTypeData extends S.Class("UpdateServiceTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14892,7 +14898,7 @@ export class CreateIncidentClassData extends S.Class("CreateIncidentClassData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14913,7 +14919,7 @@ export class UpdateIncidentClassData extends S.Class("UpdateIncidentClassData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14926,7 +14932,7 @@ export class CreateDwellingData extends S.Class("CreateDwellingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14947,7 +14953,7 @@ export class UpdateDwellingData extends S.Class("UpdateDwellingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14960,7 +14966,7 @@ export class CreateAssetAppraisalData extends S.Class("CreateAssetAppraisalData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -14981,7 +14987,7 @@ export class UpdateAssetAppraisalData extends S.Class("UpdateAssetAppraisalData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -14994,7 +15000,7 @@ export class CreateDocumentData extends S.Class("CreateDocumentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15007,7 +15013,7 @@ export class CreateIncidentReportData extends S.Class("CreateIncidentReportData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15020,7 +15026,7 @@ export class CreatePoliceReportData extends S.Class("CreatePoliceReportData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15033,7 +15039,7 @@ export class CreateParamedicReportData extends S.Class("CreateParamedicReportDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15046,7 +15052,7 @@ export class CreateContractData extends S.Class("CreateContractData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15059,7 +15065,7 @@ export class CreateRentRollData extends S.Class("CreateRentRollData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15072,7 +15078,7 @@ export class CreatePermitData extends S.Class("CreatePermitData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15085,7 +15091,7 @@ export class CreateBlueprintData extends S.Class("CreateBlueprintData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15098,7 +15104,7 @@ export class CreateDeclarationsPageData extends S.Class("CreateDeclarationsPageD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15111,7 +15117,7 @@ export class CreatePolicyJacketData extends S.Class("CreatePolicyJacketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15124,7 +15130,7 @@ export class CreateScopeOfLossData extends S.Class("CreateScopeOfLossData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15137,7 +15143,7 @@ export class CreateDeliveryPaperworkData extends S.Class("CreateDeliveryPaperwor
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15150,7 +15156,7 @@ export class CreateProductSpecData extends S.Class("CreateProductSpecData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15163,7 +15169,7 @@ export class CreateUserManualData extends S.Class("CreateUserManualData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15176,7 +15182,7 @@ export class CreateWarrantyData extends S.Class("CreateWarrantyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15189,7 +15195,7 @@ export class CreateDeedData extends S.Class("CreateDeedData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15210,7 +15216,7 @@ export class UpdateDocumentData extends S.Class("UpdateDocumentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15231,7 +15237,7 @@ export class UpdateIncidentReportData extends S.Class("UpdateIncidentReportData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15252,7 +15258,7 @@ export class UpdatePoliceReportData extends S.Class("UpdatePoliceReportData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15273,7 +15279,7 @@ export class UpdateParamedicReportData extends S.Class("UpdateParamedicReportDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15294,7 +15300,7 @@ export class UpdateContractData extends S.Class("UpdateContractData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15315,7 +15321,7 @@ export class UpdateRentRollData extends S.Class("UpdateRentRollData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15336,7 +15342,7 @@ export class UpdatePermitData extends S.Class("UpdatePermitData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15357,7 +15363,7 @@ export class UpdateBlueprintData extends S.Class("UpdateBlueprintData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15378,7 +15384,7 @@ export class UpdateDeclarationsPageData extends S.Class("UpdateDeclarationsPageD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15399,7 +15405,7 @@ export class UpdatePolicyJacketData extends S.Class("UpdatePolicyJacketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15420,7 +15426,7 @@ export class UpdateScopeOfLossData extends S.Class("UpdateScopeOfLossData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15441,7 +15447,7 @@ export class UpdateDeliveryPaperworkData extends S.Class("UpdateDeliveryPaperwor
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15462,7 +15468,7 @@ export class UpdateProductSpecData extends S.Class("UpdateProductSpecData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15483,7 +15489,7 @@ export class UpdateUserManualData extends S.Class("UpdateUserManualData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15504,7 +15510,7 @@ export class UpdateWarrantyData extends S.Class("UpdateWarrantyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15525,7 +15531,7 @@ export class UpdateDeedData extends S.Class("UpdateDeedData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15538,7 +15544,7 @@ export class CreateFinancialDocumentData extends S.Class("CreateFinancialDocumen
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15559,7 +15565,7 @@ export class UpdateFinancialDocumentData extends S.Class("UpdateFinancialDocumen
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15572,7 +15578,7 @@ export class CreateDocumentClassData extends S.Class("CreateDocumentClassData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15593,7 +15599,7 @@ export class UpdateDocumentClassData extends S.Class("UpdateDocumentClassData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15606,7 +15612,7 @@ export class CreateDocumentTypeData extends S.Class("CreateDocumentTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15627,7 +15633,7 @@ export class UpdateDocumentTypeData extends S.Class("UpdateDocumentTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15640,7 +15646,7 @@ export class CreateSpaceGroupData extends S.Class("CreateSpaceGroupData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15661,7 +15667,7 @@ export class UpdateSpaceGroupData extends S.Class("UpdateSpaceGroupData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15674,7 +15680,7 @@ export class CreateSpaceData extends S.Class("CreateSpaceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15695,7 +15701,7 @@ export class UpdateSpaceData extends S.Class("UpdateSpaceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15708,7 +15714,7 @@ export class CreateSpaceTypeData extends S.Class("CreateSpaceTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15729,7 +15735,7 @@ export class UpdateSpaceTypeData extends S.Class("UpdateSpaceTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15742,7 +15748,7 @@ export class CreateSpaceCategoryData extends S.Class("CreateSpaceCategoryData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15763,7 +15769,7 @@ export class UpdateSpaceCategoryData extends S.Class("UpdateSpaceCategoryData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15776,7 +15782,7 @@ export class CreateSpaceClassData extends S.Class("CreateSpaceClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15797,7 +15803,7 @@ export class UpdateSpaceClassData extends S.Class("UpdateSpaceClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15810,7 +15816,7 @@ export class CreateSpaceGroupTypeData extends S.Class("CreateSpaceGroupTypeData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15831,7 +15837,7 @@ export class UpdateSpaceGroupTypeData extends S.Class("UpdateSpaceGroupTypeData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15844,7 +15850,7 @@ export class CreateBucketClassData extends S.Class("CreateBucketClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15865,7 +15871,7 @@ export class UpdateBucketClassData extends S.Class("UpdateBucketClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15878,7 +15884,7 @@ export class CreateBucketTypeData extends S.Class("CreateBucketTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15899,7 +15905,7 @@ export class UpdateBucketTypeData extends S.Class("UpdateBucketTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15912,7 +15918,7 @@ export class CreateAddressData extends S.Class("CreateAddressData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15933,7 +15939,7 @@ export class UpdateAddressData extends S.Class("UpdateAddressData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15946,7 +15952,7 @@ export class CreateThirdPartyDwellingData extends S.Class("CreateThirdPartyDwell
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -15967,7 +15973,7 @@ export class UpdateThirdPartyDwellingData extends S.Class("UpdateThirdPartyDwell
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -15980,7 +15986,7 @@ export class CreateItemizableFinancialDocumentData extends S.Class("CreateItemiz
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16001,7 +16007,7 @@ export class UpdateItemizableFinancialDocumentData extends S.Class("UpdateItemiz
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16014,7 +16020,7 @@ export class CreateItemImpactPaymentData extends S.Class("CreateItemImpactPaymen
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16035,7 +16041,7 @@ export class UpdateItemImpactPaymentData extends S.Class("UpdateItemImpactPaymen
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16048,7 +16054,7 @@ export class CreateItemImpactInvoiceData extends S.Class("CreateItemImpactInvoic
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16069,7 +16075,7 @@ export class UpdateItemImpactInvoiceData extends S.Class("UpdateItemImpactInvoic
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16082,7 +16088,7 @@ export class CreateItemImpactEstimateData extends S.Class("CreateItemImpactEstim
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16103,7 +16109,7 @@ export class UpdateItemImpactEstimateData extends S.Class("UpdateItemImpactEstim
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16116,7 +16122,7 @@ export class CreateItemAppraisalData extends S.Class("CreateItemAppraisalData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16137,7 +16143,7 @@ export class UpdateItemAppraisalData extends S.Class("UpdateItemAppraisalData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16150,7 +16156,7 @@ export class CreateItemInvoiceData extends S.Class("CreateItemInvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16171,7 +16177,7 @@ export class UpdateItemInvoiceData extends S.Class("UpdateItemInvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16184,7 +16190,7 @@ export class CreateItemPaymentData extends S.Class("CreateItemPaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16205,7 +16211,7 @@ export class UpdateItemPaymentData extends S.Class("UpdateItemPaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16218,7 +16224,7 @@ export class CreateItemEstimateData extends S.Class("CreateItemEstimateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16239,7 +16245,7 @@ export class UpdateItemEstimateData extends S.Class("UpdateItemEstimateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16252,7 +16258,7 @@ export class CreateItemProductSuggestionData extends S.Class("CreateItemProductS
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16273,7 +16279,7 @@ export class UpdateItemProductSuggestionData extends S.Class("UpdateItemProductS
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16286,7 +16292,7 @@ export class CreateServiceTaskPaymentData extends S.Class("CreateServiceTaskPaym
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16307,7 +16313,7 @@ export class UpdateServiceTaskPaymentData extends S.Class("UpdateServiceTaskPaym
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16320,7 +16326,7 @@ export class CreateServiceTaskInvoiceData extends S.Class("CreateServiceTaskInvo
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16341,7 +16347,7 @@ export class UpdateServiceTaskInvoiceData extends S.Class("UpdateServiceTaskInvo
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16354,7 +16360,7 @@ export class CreateServiceTaskEstimateData extends S.Class("CreateServiceTaskEst
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16375,7 +16381,7 @@ export class UpdateServiceTaskEstimateData extends S.Class("UpdateServiceTaskEst
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16388,7 +16394,7 @@ export class CreateChangeOrderData extends S.Class("CreateChangeOrderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16409,7 +16415,7 @@ export class UpdateChangeOrderData extends S.Class("UpdateChangeOrderData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16422,7 +16428,7 @@ export class CreateEntrySourceMetadataData extends S.Class("CreateEntrySourceMet
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16443,7 +16449,7 @@ export class UpdateEntrySourceMetadataData extends S.Class("UpdateEntrySourceMet
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16456,7 +16462,7 @@ export class CreateAppraisalLineData extends S.Class("CreateAppraisalLineData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16477,7 +16483,7 @@ export class UpdateAppraisalLineData extends S.Class("UpdateAppraisalLineData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16490,7 +16496,7 @@ export class CreateInvoiceLineData extends S.Class("CreateInvoiceLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16511,7 +16517,7 @@ export class UpdateInvoiceLineData extends S.Class("UpdateInvoiceLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16524,7 +16530,7 @@ export class CreatePaymentLineData extends S.Class("CreatePaymentLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16545,7 +16551,7 @@ export class UpdatePaymentLineData extends S.Class("UpdatePaymentLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16558,7 +16564,7 @@ export class CreateEstimateLineData extends S.Class("CreateEstimateLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16579,7 +16585,7 @@ export class UpdateEstimateLineData extends S.Class("UpdateEstimateLineData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16592,7 +16598,7 @@ export class CreateEntrySourceMediaData extends S.Class("CreateEntrySourceMediaD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16613,7 +16619,7 @@ export class UpdateEntrySourceMediaData extends S.Class("UpdateEntrySourceMediaD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16626,7 +16632,7 @@ export class CreateItemChangeOrderData extends S.Class("CreateItemChangeOrderDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16647,7 +16653,7 @@ export class UpdateItemChangeOrderData extends S.Class("UpdateItemChangeOrderDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16660,7 +16666,7 @@ export class CreateItemImpactChangeOrderData extends S.Class("CreateItemImpactCh
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16681,7 +16687,7 @@ export class UpdateItemImpactChangeOrderData extends S.Class("UpdateItemImpactCh
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16694,7 +16700,7 @@ export class CreateEstimateData extends S.Class("CreateEstimateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16715,7 +16721,7 @@ export class UpdateEstimateData extends S.Class("UpdateEstimateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16728,7 +16734,7 @@ export class CreateChangeOrderLineData extends S.Class("CreateChangeOrderLineDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16749,7 +16755,7 @@ export class UpdateChangeOrderLineData extends S.Class("UpdateChangeOrderLineDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16762,7 +16768,7 @@ export class CreateServiceTaskChangeOrderData extends S.Class("CreateServiceTask
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16783,7 +16789,7 @@ export class UpdateServiceTaskChangeOrderData extends S.Class("UpdateServiceTask
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16796,7 +16802,7 @@ export class CreateEntrySourceData extends S.Class("CreateEntrySourceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16817,7 +16823,7 @@ export class UpdateEntrySourceData extends S.Class("UpdateEntrySourceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16830,7 +16836,7 @@ export class CreateServiceTaskData extends S.Class("CreateServiceTaskData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16851,7 +16857,7 @@ export class UpdateServiceTaskData extends S.Class("UpdateServiceTaskData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16864,7 +16870,7 @@ export class CreatePaymentData extends S.Class("CreatePaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16885,7 +16891,7 @@ export class UpdatePaymentData extends S.Class("UpdatePaymentData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16898,7 +16904,7 @@ export class CreateServiceData extends S.Class("CreateServiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16919,7 +16925,7 @@ export class UpdateServiceData extends S.Class("UpdateServiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16932,7 +16938,7 @@ export class CreateInvoiceData extends S.Class("CreateInvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16953,7 +16959,7 @@ export class UpdateInvoiceData extends S.Class("UpdateInvoiceData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -16966,7 +16972,7 @@ export class CreateItemImpactData extends S.Class("CreateItemImpactData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -16987,7 +16993,7 @@ export class UpdateItemImpactData extends S.Class("UpdateItemImpactData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17000,7 +17006,7 @@ export class CreateItemData extends S.Class("CreateItemData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17021,7 +17027,7 @@ export class UpdateItemData extends S.Class("UpdateItemData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17034,7 +17040,7 @@ export class CreateItemMediaSuggestionData extends S.Class("CreateItemMediaSugge
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17055,7 +17061,7 @@ export class UpdateItemMediaSuggestionData extends S.Class("UpdateItemMediaSugge
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17068,7 +17074,7 @@ export class CreateDepreciationModifierData extends S.Class("CreateDepreciationM
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17089,7 +17095,7 @@ export class UpdateDepreciationModifierData extends S.Class("UpdateDepreciationM
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17102,7 +17108,7 @@ export class CreateDepreciationOverrideData extends S.Class("CreateDepreciationO
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17123,7 +17129,7 @@ export class UpdateDepreciationOverrideData extends S.Class("UpdateDepreciationO
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17136,7 +17142,7 @@ export class CreateItemTemplateData extends S.Class("CreateItemTemplateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17157,7 +17163,7 @@ export class UpdateItemTemplateData extends S.Class("UpdateItemTemplateData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17170,7 +17176,7 @@ export class CreateBaseSubBucketMetadataData extends S.Class("CreateBaseSubBucke
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17191,7 +17197,7 @@ export class UpdateBaseSubBucketMetadataData extends S.Class("UpdateBaseSubBucke
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17204,7 +17210,7 @@ export class CreateBaseBucketMetadataData extends S.Class("CreateBaseBucketMetad
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17225,7 +17231,7 @@ export class UpdateBaseBucketMetadataData extends S.Class("UpdateBaseBucketMetad
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17238,7 +17244,7 @@ export class CreateFundingSourceData extends S.Class("CreateFundingSourceData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17259,7 +17265,7 @@ export class UpdateFundingSourceData extends S.Class("UpdateFundingSourceData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17272,7 +17278,7 @@ export class CreateEntryData extends S.Class("CreateEntryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17293,7 +17299,7 @@ export class UpdateEntryData extends S.Class("UpdateEntryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17306,7 +17312,7 @@ export class CreateBucketFundingData extends S.Class("CreateBucketFundingData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17327,7 +17333,7 @@ export class UpdateBucketFundingData extends S.Class("UpdateBucketFundingData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17340,7 +17346,7 @@ export class CreateBaseBucketData extends S.Class("CreateBaseBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17361,7 +17367,7 @@ export class UpdateBaseBucketData extends S.Class("UpdateBaseBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17374,7 +17380,7 @@ export class CreateFundingData extends S.Class("CreateFundingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17395,7 +17401,7 @@ export class UpdateFundingData extends S.Class("UpdateFundingData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17408,7 +17414,7 @@ export class CreateSubBucketDefinitionData extends S.Class("CreateSubBucketDefin
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17429,7 +17435,7 @@ export class UpdateSubBucketDefinitionData extends S.Class("UpdateSubBucketDefin
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17442,7 +17448,7 @@ export class CreateClaimTargetData extends S.Class("CreateClaimTargetData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17463,7 +17469,7 @@ export class UpdateClaimTargetData extends S.Class("UpdateClaimTargetData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17476,7 +17482,7 @@ export class CreateBucketData extends S.Class("CreateBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17497,7 +17503,7 @@ export class UpdateBucketData extends S.Class("UpdateBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17510,7 +17516,7 @@ export class CreateClaimData extends S.Class("CreateClaimData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17531,7 +17537,7 @@ export class UpdateClaimData extends S.Class("UpdateClaimData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17544,7 +17550,7 @@ export class CreateDeductibleData extends S.Class("CreateDeductibleData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17565,7 +17571,7 @@ export class UpdateDeductibleData extends S.Class("UpdateDeductibleData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17578,7 +17584,7 @@ export class CreateClaimDeductibleData extends S.Class("CreateClaimDeductibleDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17599,7 +17605,7 @@ export class UpdateClaimDeductibleData extends S.Class("UpdateClaimDeductibleDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17612,7 +17618,7 @@ export class CreatePolicyTermData extends S.Class("CreatePolicyTermData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17633,7 +17639,7 @@ export class UpdatePolicyTermData extends S.Class("UpdatePolicyTermData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17646,7 +17652,7 @@ export class CreatePolicyData extends S.Class("CreatePolicyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17667,7 +17673,7 @@ export class UpdatePolicyData extends S.Class("UpdatePolicyData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17680,7 +17686,7 @@ export class CreateSubmissionTrackTemplateData extends S.Class("CreateSubmission
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17701,7 +17707,7 @@ export class UpdateSubmissionTrackTemplateData extends S.Class("UpdateSubmission
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17714,7 +17720,7 @@ export class CreateBucketDefinitionData extends S.Class("CreateBucketDefinitionD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17735,7 +17741,7 @@ export class UpdateBucketDefinitionData extends S.Class("UpdateBucketDefinitionD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17748,7 +17754,7 @@ export class CreateCoverageGroupTemplateData extends S.Class("CreateCoverageGrou
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17769,7 +17775,7 @@ export class UpdateCoverageGroupTemplateData extends S.Class("UpdateCoverageGrou
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17782,7 +17788,7 @@ export class CreateIncidentImpactData extends S.Class("CreateIncidentImpactData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17803,7 +17809,7 @@ export class UpdateIncidentImpactData extends S.Class("UpdateIncidentImpactData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17816,7 +17822,7 @@ export class CreateCoverageData extends S.Class("CreateCoverageData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17837,7 +17843,7 @@ export class UpdateCoverageData extends S.Class("UpdateCoverageData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17850,7 +17856,7 @@ export class CreateSubCoverageData extends S.Class("CreateSubCoverageData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17871,7 +17877,7 @@ export class UpdateSubCoverageData extends S.Class("UpdateSubCoverageData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17884,7 +17890,7 @@ export class CreateEndorsementTemplateData extends S.Class("CreateEndorsementTem
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17905,7 +17911,7 @@ export class UpdateEndorsementTemplateData extends S.Class("UpdateEndorsementTem
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17918,7 +17924,7 @@ export class CreateSubBucketData extends S.Class("CreateSubBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17939,7 +17945,7 @@ export class UpdateSubBucketData extends S.Class("UpdateSubBucketData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17952,7 +17958,7 @@ export class CreateBaseSubBucketData extends S.Class("CreateBaseSubBucketData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -17973,7 +17979,7 @@ export class UpdateBaseSubBucketData extends S.Class("UpdateBaseSubBucketData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -17986,7 +17992,7 @@ export class CreateSubCoverageTemplateData extends S.Class("CreateSubCoverageTem
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18007,7 +18013,7 @@ export class UpdateSubCoverageTemplateData extends S.Class("UpdateSubCoverageTem
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18020,7 +18026,7 @@ export class CreateEndorsementData extends S.Class("CreateEndorsementData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18041,7 +18047,7 @@ export class UpdateEndorsementData extends S.Class("UpdateEndorsementData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18054,7 +18060,7 @@ export class CreateCoverageTemplateData extends S.Class("CreateCoverageTemplateD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18075,7 +18081,7 @@ export class UpdateCoverageTemplateData extends S.Class("UpdateCoverageTemplateD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18088,7 +18094,7 @@ export class CreateCoverageGroupData extends S.Class("CreateCoverageGroupData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18108,7 +18114,7 @@ export class UpdateCoverageGroupData extends S.Class("UpdateCoverageGroupData")(
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18120,7 +18126,7 @@ export class CreatePolicyTemplateData extends S.Class("CreatePolicyTemplateData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18141,7 +18147,7 @@ export class UpdatePolicyTemplateData extends S.Class("UpdatePolicyTemplateData"
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18154,7 +18160,7 @@ export class CreateDepreciationScheduleData extends S.Class("CreateDepreciationS
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18175,7 +18181,7 @@ export class UpdateDepreciationScheduleData extends S.Class("UpdateDepreciationS
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18188,7 +18194,7 @@ export class CreateSpaceTypeItemTemplateData extends S.Class("CreateSpaceTypeIte
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18209,7 +18215,7 @@ export class UpdateSpaceTypeItemTemplateData extends S.Class("UpdateSpaceTypeIte
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18222,7 +18228,7 @@ export class CreateAssetAttributeTypeData extends S.Class("CreateAssetAttributeT
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18243,7 +18249,7 @@ export class UpdateAssetAttributeTypeData extends S.Class("UpdateAssetAttributeT
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18256,7 +18262,7 @@ export class CreateAssetAttributeTypeItemTemplateData extends S.Class("CreateAss
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18277,7 +18283,7 @@ export class UpdateAssetAttributeTypeItemTemplateData extends S.Class("UpdateAss
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18290,7 +18296,7 @@ export class CreateAssetAttributeClassData extends S.Class("CreateAssetAttribute
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18311,7 +18317,7 @@ export class UpdateAssetAttributeClassData extends S.Class("UpdateAssetAttribute
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18324,7 +18330,7 @@ export class CreateIncidentTypeData extends S.Class("CreateIncidentTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18345,7 +18351,7 @@ export class UpdateIncidentTypeData extends S.Class("UpdateIncidentTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18358,7 +18364,7 @@ export class CreateItemClassData extends S.Class("CreateItemClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18379,7 +18385,7 @@ export class UpdateItemClassData extends S.Class("UpdateItemClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18392,7 +18398,7 @@ export class CreateItemTypeData extends S.Class("CreateItemTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18413,7 +18419,7 @@ export class UpdateItemTypeData extends S.Class("UpdateItemTypeData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18426,7 +18432,7 @@ export class CreateItemCategoryData extends S.Class("CreateItemCategoryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18447,7 +18453,7 @@ export class UpdateItemCategoryData extends S.Class("UpdateItemCategoryData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18460,7 +18466,7 @@ export class CreateServiceClassData extends S.Class("CreateServiceClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18481,7 +18487,7 @@ export class UpdateServiceClassData extends S.Class("UpdateServiceClassData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18494,7 +18500,7 @@ export class CreateServiceCategoryData extends S.Class("CreateServiceCategoryDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18515,7 +18521,7 @@ export class UpdateServiceCategoryData extends S.Class("UpdateServiceCategoryDat
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18528,7 +18534,7 @@ export class CreateAppraisalData extends S.Class("CreateAppraisalData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18549,7 +18555,7 @@ export class UpdateAppraisalData extends S.Class("UpdateAppraisalData")({
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
@@ -18562,7 +18568,7 @@ export class CreateThirdPartyImpactData extends S.Class("CreateThirdPartyImpactD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * The type of the referenced entity.
   */
@@ -18583,7 +18589,7 @@ export class UpdateThirdPartyImpactData extends S.Class("UpdateThirdPartyImpactD
     /**
   * Local entity id, only required in included array. Is a random string generated by client and used for mapping an entity reference to another to-be-inserted entity in the "included" array.
   */
-    "lid": S.optionalWith(S.String, { nullable: true }),
+    "lid": optionalNullableString,
     /**
   * Metadata for the entity
   */
