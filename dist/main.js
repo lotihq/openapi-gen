@@ -35293,7 +35293,8 @@ var make64 = gen2(function* () {
     };
     const resolvedSources = orderedSources.map(({ name: name2, source }) => ({
       name: name2,
-      source: applyReplacements(source)
+      source: applyReplacements(source),
+      dependencies: Array.from(dependencies.get(name2) ?? [])
     }));
     const aliasEntries = Array.from(aliasMap.entries()).filter(
       ([alias, target]) => alias !== target
@@ -35302,7 +35303,6 @@ var make64 = gen2(function* () {
     return {
       aliases: aliasEntries.map(([alias, target]) => ({ alias, target })),
       hoists: hoistResult.hoists,
-      replacements: hoistResult.replacements,
       sources: resolvedSources,
       warnings: warningBlocks.slice(0)
     };
@@ -36038,21 +36038,297 @@ var make65 = gen2(function* () {
       const schemas = yield* gen3.generate("S", {
         hoistReferencePrefix: `${primitivesModuleName}.`
       });
-      const warningBlock = schemas.warnings.length > 0 ? schemas.warnings.join("\n") : void 0;
-      const aliasSource = schemas.aliases.length > 0 ? schemas.aliases.map(({ alias, target }) => `export { ${target} as ${alias} }`).join("\n") : "";
-      const primitivesImport = schemas.hoists.length > 0 ? `
-import * as ${primitivesModuleName} from "./primitives"` : "";
-      const modelsImports = `import * as S from "effect/Schema"${primitivesImport}`;
-      const modelsBody = schemas.sources.map((_) => _.source).join("\n\n");
-      const modelsSections = [warningBlock, modelsImports, modelsBody];
-      if (aliasSource.length > 0) {
-        modelsSections.push(aliasSource);
+      const definitionList = schemas.sources.map(
+        (definition, index) => ({
+          ...definition,
+          index
+        })
+      );
+      const definitionByName = new Map(
+        definitionList.map((definition) => [definition.name, definition])
+      );
+      const depthCache = /* @__PURE__ */ new Map();
+      const computeDepth = (name2) => {
+        const cached3 = depthCache.get(name2);
+        if (cached3 !== void 0) {
+          return cached3;
+        }
+        const definition = definitionByName.get(name2);
+        if (!definition) {
+          depthCache.set(name2, 0);
+          return 0;
+        }
+        if (definition.dependencies.length === 0) {
+          depthCache.set(name2, 0);
+          return 0;
+        }
+        let depth = 0;
+        for (const dep of definition.dependencies) {
+          depth = Math.max(depth, computeDepth(dep) + 1);
+        }
+        depthCache.set(name2, depth);
+        return depth;
+      };
+      const categoryConfig = {
+        foundations: { filename: "foundations" },
+        entities: { filename: "entities" },
+        details: { filename: "details" },
+        params: { filename: "params" },
+        requests: { filename: "requests" },
+        references: { filename: "references" },
+        data: { filename: "data" }
+      };
+      const categorize = (name2) => {
+        if (name2.endsWith("Params")) {
+          return "params";
+        }
+        if (name2.endsWith("Request") || name2.endsWith("Requests")) {
+          return "requests";
+        }
+        if (name2.endsWith("Response") || name2.endsWith("Responses")) {
+          return "requests";
+        }
+        if (name2.startsWith("Referenced") || name2.startsWith("NullableReferenced")) {
+          return "references";
+        }
+        if (name2.endsWith("Data")) {
+          return "data";
+        }
+        const depth = computeDepth(name2);
+        if (depth === 0) {
+          return "foundations";
+        }
+        if (depth === 1) {
+          return "entities";
+        }
+        return "details";
+      };
+      const filesByKey = /* @__PURE__ */ new Map();
+      const definitionToFile = /* @__PURE__ */ new Map();
+      const getOrCreateFile = (key, index) => {
+        const config2 = categoryConfig[key] ?? categoryConfig.entities;
+        const resolvedKey = categoryConfig[key] ? key : "entities";
+        if (!filesByKey.has(resolvedKey)) {
+          filesByKey.set(resolvedKey, {
+            key: resolvedKey,
+            filename: config2.filename,
+            definitions: [],
+            earliestIndex: index
+          });
+        }
+        const file3 = filesByKey.get(resolvedKey);
+        file3.earliestIndex = Math.min(file3.earliestIndex, index);
+        return file3;
+      };
+      for (const definition of definitionList) {
+        const desiredKey = categorize(definition.name);
+        const file3 = getOrCreateFile(desiredKey, definition.index);
+        file3.definitions.push(definition);
+        definitionToFile.set(definition.name, file3.key);
       }
-      const modelsContent = modelsSections.filter((section) => !!section && section.length > 0).join("\n\n");
+      const rebuildFileGraph = () => {
+        const graph = /* @__PURE__ */ new Map();
+        for (const [key, file3] of filesByKey) {
+          const deps = /* @__PURE__ */ new Set();
+          for (const definition of file3.definitions) {
+            for (const dep of definition.dependencies) {
+              const targetFile = definitionToFile.get(dep);
+              if (targetFile && targetFile !== key) {
+                deps.add(targetFile);
+              }
+            }
+          }
+          graph.set(key, deps);
+        }
+        return graph;
+      };
+      const mergeFiles = (target, sources) => {
+        const targetFile = filesByKey.get(target);
+        if (!targetFile) {
+          return;
+        }
+        for (const sourceKey of sources) {
+          if (sourceKey === target) {
+            continue;
+          }
+          const sourceFile = filesByKey.get(sourceKey);
+          if (!sourceFile) {
+            continue;
+          }
+          for (const definition of sourceFile.definitions) {
+            targetFile.definitions.push(definition);
+            definitionToFile.set(definition.name, target);
+          }
+          targetFile.earliestIndex = Math.min(
+            targetFile.earliestIndex,
+            sourceFile.earliestIndex
+          );
+          filesByKey.delete(sourceKey);
+        }
+      };
+      const computeStronglyConnectedComponents2 = (graph) => {
+        let index = 0;
+        const indices = /* @__PURE__ */ new Map();
+        const lowlinks = /* @__PURE__ */ new Map();
+        const stack = [];
+        const onStack = /* @__PURE__ */ new Set();
+        const components2 = [];
+        const strongConnect = (node) => {
+          indices.set(node, index);
+          lowlinks.set(node, index);
+          index++;
+          stack.push(node);
+          onStack.add(node);
+          for (const dep of graph.get(node) ?? /* @__PURE__ */ new Set()) {
+            if (!indices.has(dep)) {
+              strongConnect(dep);
+              lowlinks.set(
+                node,
+                Math.min(
+                  lowlinks.get(node),
+                  lowlinks.get(dep)
+                )
+              );
+            } else if (onStack.has(dep)) {
+              lowlinks.set(
+                node,
+                Math.min(
+                  lowlinks.get(node),
+                  indices.get(dep)
+                )
+              );
+            }
+          }
+          if (lowlinks.get(node) === indices.get(node)) {
+            const component = [];
+            while (true) {
+              const item = stack.pop();
+              onStack.delete(item);
+              component.push(item);
+              if (item === node) {
+                break;
+              }
+            }
+            components2.push(component);
+          }
+        };
+        for (const node of graph.keys()) {
+          if (!indices.has(node)) {
+            strongConnect(node);
+          }
+        }
+        return components2;
+      };
+      let changed = true;
+      while (changed) {
+        changed = false;
+        const graph = rebuildFileGraph();
+        const components2 = computeStronglyConnectedComponents2(graph);
+        for (const component of components2) {
+          if (component.length <= 1) {
+            continue;
+          }
+          changed = true;
+          const [first3, ...rest] = component.sort();
+          mergeFiles(first3, rest);
+          break;
+        }
+      }
+      for (const file3 of filesByKey.values()) {
+        file3.definitions.sort((a, b) => a.index - b.index);
+      }
+      const orderedFiles = Array.from(filesByKey.values()).sort((a, b) => {
+        if (a.earliestIndex !== b.earliestIndex) {
+          return a.earliestIndex - b.earliestIndex;
+        }
+        return a.key.localeCompare(b.key);
+      });
+      const fileOrder = /* @__PURE__ */ new Map();
+      orderedFiles.forEach((file3, index) => {
+        fileOrder.set(file3.key, index);
+      });
+      const fileImports = /* @__PURE__ */ new Map();
+      for (const file3 of orderedFiles) {
+        const depMap = /* @__PURE__ */ new Map();
+        for (const definition of file3.definitions) {
+          for (const dep of definition.dependencies) {
+            const depFileKey = definitionToFile.get(dep);
+            if (!depFileKey || depFileKey === file3.key) {
+              continue;
+            }
+            const set7 = depMap.get(depFileKey);
+            if (set7) {
+              set7.add(dep);
+            } else {
+              depMap.set(depFileKey, /* @__PURE__ */ new Set([dep]));
+            }
+          }
+        }
+        fileImports.set(file3.key, depMap);
+      }
+      const warningBlock = schemas.warnings.length > 0 ? schemas.warnings.join("\n") : void 0;
+      const modelFiles = orderedFiles.map((file3, index) => {
+        const imports = [];
+        imports.push('import * as S from "effect/Schema"');
+        const usesPrimitives = file3.definitions.some(
+          (definition) => definition.source.includes("Primitives.")
+        );
+        if (usesPrimitives && schemas.hoists.length > 0) {
+          imports.push('import * as Primitives from "../primitives"');
+        }
+        const dependencyMap = fileImports.get(file3.key);
+        if (dependencyMap) {
+          const entries2 = Array.from(dependencyMap.entries()).sort(
+            ([a], [b]) => (fileOrder.get(a) ?? 0) - (fileOrder.get(b) ?? 0)
+          );
+          for (const [depFileKey, names] of entries2) {
+            const depFile = filesByKey.get(depFileKey);
+            if (!depFile || names.size === 0) {
+              continue;
+            }
+            const sortedNames = Array.from(names).sort();
+            imports.push(
+              `import { ${sortedNames.join(", ")} } from "./${depFile.filename}"`
+            );
+          }
+        }
+        const body = file3.definitions.map((definition) => definition.source).join("\n\n");
+        const sections = [];
+        if (warningBlock && index === 0) {
+          sections.push(warningBlock);
+        }
+        sections.push(imports.join("\n"));
+        sections.push(body);
+        const contents = sections.filter((section) => section.length > 0).join("\n\n");
+        return {
+          path: `models/${file3.filename}.ts`,
+          contents
+        };
+      });
       const primitivesContent = schemas.hoists.length > 0 ? [
         'import * as S from "effect/Schema"',
         schemas.hoists.map(({ name: name2, expression }) => `export const ${name2} = ${expression}`).join("\n")
       ].join("\n\n") : void 0;
+      const modelsIndexSections = orderedFiles.map(
+        (file3) => `export * from "./${file3.filename}"`
+      );
+      if (schemas.aliases.length > 0) {
+        for (const { alias, target } of schemas.aliases) {
+          const targetFileKey = definitionToFile.get(target);
+          if (!targetFileKey) {
+            continue;
+          }
+          const targetFile = filesByKey.get(targetFileKey);
+          if (!targetFile) {
+            continue;
+          }
+          modelsIndexSections.push(
+            `export { ${target} as ${alias} } from "./${targetFile.filename}"`
+          );
+        }
+      }
+      const modelsIndexContent = Array.from(new Set(modelsIndexSections)).join("\n");
+      const modelsFacadeContent = `export * from "./models/index"`;
       const clientImports = [
         transformer.imports,
         `import * as ${schemaModuleName} from "./models"`
@@ -36075,7 +36351,9 @@ import * as ${primitivesModuleName} from "./primitives"` : "";
       ].filter((_) => _ !== void 0);
       const indexContent = indexLines.join("\n");
       const files = [
-        { path: "models.ts", contents: modelsContent },
+        ...modelFiles,
+        { path: "models/index.ts", contents: modelsIndexContent },
+        { path: "models.ts", contents: modelsFacadeContent },
         { path: "client.ts", contents: clientContent },
         { path: "index.ts", contents: indexContent }
       ];
@@ -36158,15 +36436,25 @@ ${clientErrorSource(name2)}`;
   ${commonSource}
   const decodeSuccess =
     <A, I, R>(schema: S.Schema<A, I, R>) =>
-    (response: HttpClientResponse.HttpClientResponse) =>
-      HttpClientResponse.schemaBodyJson(schema)(response)
+    (response: HttpClientResponse.HttpClientResponse) => {
+      return HttpClientResponse.schemaBodyJson(schema)(response) as unknown as Effect.Effect<
+        A,
+        any,
+        never
+      >
+    }
   const decodeError =
     <const Tag extends string, A, I, R>(tag: Tag, schema: S.Schema<A, I, R>) =>
-    (response: HttpClientResponse.HttpClientResponse) =>
-      Effect.flatMap(
+    (response: HttpClientResponse.HttpClientResponse) => {
+      return Effect.flatMap(
         HttpClientResponse.schemaBodyJson(schema)(response),
         (cause) => Effect.fail(${name2}Error(tag, cause, response)),
-      )
+      ) as unknown as Effect.Effect<
+        A,
+        any,
+        never
+      >
+    }
   return {
     httpClient,
     ${operations.map((operation) => operationToImpl(operation, qualifier)).join(",\n  ")}
@@ -36409,19 +36697,21 @@ var commonSource = `const unexpectedStatus = (response: HttpClientResponse.HttpC
           }),
         ),
     )
-  const withResponse: <A, E>(
-    f: (response: HttpClientResponse.HttpClientResponse) => Effect.Effect<A, E>,
+  const withResponse = <A, E, R = never>(
+    f: (response: HttpClientResponse.HttpClientResponse) => Effect.Effect<A, E, R>,
   ) => (
     request: HttpClientRequest.HttpClientRequest,
-  ) => Effect.Effect<any, any> = options.transformClient
-    ? (f) => (request) =>
-        Effect.flatMap(
-          Effect.flatMap(options.transformClient!(httpClient), (client) =>
-            client.execute(request),
-          ),
-          f,
-        )
-    : (f) => (request) => Effect.flatMap(httpClient.execute(request), f)`;
+  ): Effect.Effect<A, E, R> => {
+    if (options.transformClient) {
+      return Effect.flatMap(
+        Effect.flatMap(options.transformClient!(httpClient), (client) =>
+          client.execute(request),
+        ),
+        f,
+      ) as unknown as Effect.Effect<A, E, R>
+    }
+    return Effect.flatMap(httpClient.execute(request), f) as unknown as Effect.Effect<A, E, R>
+  };`;
 var clientErrorSource = (name2) => `export interface ${name2}Error<Tag extends string, E> {
   readonly _tag: Tag
   readonly request: HttpClientRequest.HttpClientRequest

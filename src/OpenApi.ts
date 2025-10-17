@@ -313,32 +313,326 @@ export const make = Effect.gen(function* () {
         hoistReferencePrefix: `${primitivesModuleName}.`,
       })
 
+      type Definition = {
+        readonly name: string
+        readonly source: string
+        readonly dependencies: ReadonlyArray<string>
+        readonly index: number
+      }
+
+      type FileInfo = {
+        readonly key: string
+        readonly filename: string
+        definitions: Array<Definition>
+        earliestIndex: number
+      }
+
+      const definitionList: Array<Definition> = schemas.sources.map(
+        (definition, index) => ({
+          ...definition,
+          index,
+        }),
+      )
+
+      const definitionByName = new Map(
+        definitionList.map((definition) => [definition.name, definition] as const),
+      )
+
+      const depthCache = new Map<string, number>()
+      const computeDepth = (name: string): number => {
+        const cached = depthCache.get(name)
+        if (cached !== undefined) {
+          return cached
+        }
+        const definition = definitionByName.get(name)
+        if (!definition) {
+          depthCache.set(name, 0)
+          return 0
+        }
+        if (definition.dependencies.length === 0) {
+          depthCache.set(name, 0)
+          return 0
+        }
+        let depth = 0
+        for (const dep of definition.dependencies) {
+          depth = Math.max(depth, computeDepth(dep) + 1)
+        }
+        depthCache.set(name, depth)
+        return depth
+      }
+
+      const categoryConfig: Record<
+        string,
+        {
+          readonly filename: string
+        }
+      > = {
+        foundations: { filename: "foundations" },
+        entities: { filename: "entities" },
+        details: { filename: "details" },
+        params: { filename: "params" },
+        requests: { filename: "requests" },
+        references: { filename: "references" },
+        data: { filename: "data" },
+      }
+
+      const categorize = (name: string): string => {
+        if (name.endsWith("Params")) {
+          return "params"
+        }
+        if (name.endsWith("Request") || name.endsWith("Requests")) {
+          return "requests"
+        }
+        if (name.endsWith("Response") || name.endsWith("Responses")) {
+          return "requests"
+        }
+        if (name.startsWith("Referenced") || name.startsWith("NullableReferenced")) {
+          return "references"
+        }
+        if (name.endsWith("Data")) {
+          return "data"
+        }
+        const depth = computeDepth(name)
+        if (depth === 0) {
+          return "foundations"
+        }
+        if (depth === 1) {
+          return "entities"
+        }
+        return "details"
+      }
+
+      const filesByKey = new Map<string, FileInfo>()
+      const definitionToFile = new Map<string, string>()
+
+      const getOrCreateFile = (key: string, index: number): FileInfo => {
+        const config = categoryConfig[key] ?? categoryConfig.entities
+        const resolvedKey = categoryConfig[key] ? key : "entities"
+        if (!filesByKey.has(resolvedKey)) {
+          filesByKey.set(resolvedKey, {
+            key: resolvedKey,
+            filename: config.filename,
+            definitions: [],
+            earliestIndex: index,
+          })
+        }
+        const file = filesByKey.get(resolvedKey)!
+        file.earliestIndex = Math.min(file.earliestIndex, index)
+        return file
+      }
+
+      for (const definition of definitionList) {
+        const desiredKey = categorize(definition.name)
+        const file = getOrCreateFile(desiredKey, definition.index)
+        file.definitions.push(definition)
+        definitionToFile.set(definition.name, file.key)
+      }
+
+      const rebuildFileGraph = () => {
+        const graph = new Map<string, Set<string>>()
+        for (const [key, file] of filesByKey) {
+          const deps = new Set<string>()
+          for (const definition of file.definitions) {
+            for (const dep of definition.dependencies) {
+              const targetFile = definitionToFile.get(dep)
+              if (targetFile && targetFile !== key) {
+                deps.add(targetFile)
+              }
+            }
+          }
+          graph.set(key, deps)
+        }
+        return graph
+      }
+
+      const mergeFiles = (target: string, sources: ReadonlyArray<string>) => {
+        const targetFile = filesByKey.get(target)
+        if (!targetFile) {
+          return
+        }
+        for (const sourceKey of sources) {
+          if (sourceKey === target) {
+            continue
+          }
+          const sourceFile = filesByKey.get(sourceKey)
+          if (!sourceFile) {
+            continue
+          }
+          for (const definition of sourceFile.definitions) {
+            targetFile.definitions.push(definition)
+            definitionToFile.set(definition.name, target)
+          }
+          targetFile.earliestIndex = Math.min(
+            targetFile.earliestIndex,
+            sourceFile.earliestIndex,
+          )
+          filesByKey.delete(sourceKey)
+        }
+      }
+
+      const computeStronglyConnectedComponents = (
+        graph: Map<string, Set<string>>,
+      ) => {
+        let index = 0
+        const indices = new Map<string, number>()
+        const lowlinks = new Map<string, number>()
+        const stack: Array<string> = []
+        const onStack = new Set<string>()
+        const components: Array<Array<string>> = []
+
+        const strongConnect = (node: string) => {
+          indices.set(node, index)
+          lowlinks.set(node, index)
+          index++
+          stack.push(node)
+          onStack.add(node)
+
+          for (const dep of graph.get(node) ?? new Set<string>()) {
+            if (!indices.has(dep)) {
+              strongConnect(dep)
+              lowlinks.set(
+                node,
+                Math.min(
+                  lowlinks.get(node)!,
+                  lowlinks.get(dep)!,
+                ),
+              )
+            } else if (onStack.has(dep)) {
+              lowlinks.set(
+                node,
+                Math.min(
+                  lowlinks.get(node)!,
+                  indices.get(dep)!,
+                ),
+              )
+            }
+          }
+
+          if (lowlinks.get(node) === indices.get(node)) {
+            const component: Array<string> = []
+            while (true) {
+              const item = stack.pop()!
+              onStack.delete(item)
+              component.push(item)
+              if (item === node) {
+                break
+              }
+            }
+            components.push(component)
+          }
+        }
+
+        for (const node of graph.keys()) {
+          if (!indices.has(node)) {
+            strongConnect(node)
+          }
+        }
+
+        return components
+      }
+
+      let changed = true
+      while (changed) {
+        changed = false
+        const graph = rebuildFileGraph()
+        const components = computeStronglyConnectedComponents(graph)
+        for (const component of components) {
+          if (component.length <= 1) {
+            continue
+          }
+          changed = true
+          const [first, ...rest] = component.sort()
+          mergeFiles(first, rest)
+          break
+        }
+      }
+
+      for (const file of filesByKey.values()) {
+        file.definitions.sort((a, b) => a.index - b.index)
+      }
+
+      const orderedFiles = Array.from(filesByKey.values()).sort((a, b) => {
+        if (a.earliestIndex !== b.earliestIndex) {
+          return a.earliestIndex - b.earliestIndex
+        }
+        return a.key.localeCompare(b.key)
+      })
+
+      const fileOrder = new Map<string, number>()
+      orderedFiles.forEach((file, index) => {
+        fileOrder.set(file.key, index)
+      })
+
+      const fileImports = new Map<
+        string,
+        Map<string, Set<string>>
+      >()
+      for (const file of orderedFiles) {
+        const depMap = new Map<string, Set<string>>()
+        for (const definition of file.definitions) {
+          for (const dep of definition.dependencies) {
+            const depFileKey = definitionToFile.get(dep)
+            if (!depFileKey || depFileKey === file.key) {
+              continue
+            }
+          const set = depMap.get(depFileKey)
+            if (set) {
+              set.add(dep)
+            } else {
+              depMap.set(depFileKey, new Set([dep]))
+            }
+          }
+        }
+        fileImports.set(file.key, depMap)
+      }
+
       const warningBlock =
         schemas.warnings.length > 0
           ? schemas.warnings.join("\n")
           : undefined
 
-      const aliasSource =
-        schemas.aliases.length > 0
-          ? schemas.aliases
-              .map(({ alias, target }) => `export { ${target} as ${alias} }`)
-              .join("\n")
-          : ""
+      const modelFiles = orderedFiles.map((file, index) => {
+        const imports: Array<string> = []
+        imports.push('import * as S from "effect/Schema"')
 
-      const primitivesImport =
-        schemas.hoists.length > 0 ? `\nimport * as ${primitivesModuleName} from "./primitives"` : ""
+        const usesPrimitives = file.definitions.some((definition) =>
+          definition.source.includes("Primitives."),
+        )
+        if (usesPrimitives && schemas.hoists.length > 0) {
+          imports.push('import * as Primitives from "../primitives"')
+        }
 
-      const modelsImports = `import * as S from "effect/Schema"${primitivesImport}`
+        const dependencyMap = fileImports.get(file.key)
+        if (dependencyMap) {
+          const entries = Array.from(dependencyMap.entries()).sort(
+            ([a], [b]) =>
+              (fileOrder.get(a) ?? 0) - (fileOrder.get(b) ?? 0),
+          )
+          for (const [depFileKey, names] of entries) {
+            const depFile = filesByKey.get(depFileKey)
+            if (!depFile || names.size === 0) {
+              continue
+            }
+            const sortedNames = Array.from(names).sort()
+            imports.push(
+              `import { ${sortedNames.join(", ")} } from "./${depFile.filename}"`,
+            )
+          }
+        }
 
-      const modelsBody = schemas.sources.map((_) => _.source).join("\n\n")
-
-      const modelsSections = [warningBlock, modelsImports, modelsBody]
-      if (aliasSource.length > 0) {
-        modelsSections.push(aliasSource)
-      }
-      const modelsContent = modelsSections
-        .filter((section): section is string => !!section && section.length > 0)
-        .join("\n\n")
+        const body = file.definitions.map((definition) => definition.source).join("\n\n")
+        const sections: Array<string> = []
+        if (warningBlock && index === 0) {
+          sections.push(warningBlock)
+        }
+        sections.push(imports.join("\n"))
+        sections.push(body)
+        const contents = sections.filter((section) => section.length > 0).join("\n\n")
+        return {
+          path: `models/${file.filename}.ts`,
+          contents,
+        } as const
+      })
 
       const primitivesContent =
         schemas.hoists.length > 0
@@ -349,6 +643,30 @@ export const make = Effect.gen(function* () {
                 .join("\n"),
             ].join("\n\n")
           : undefined
+
+      const modelsIndexSections: Array<string> = orderedFiles.map(
+        (file) => `export * from "./${file.filename}"`,
+      )
+
+      if (schemas.aliases.length > 0) {
+        for (const { alias, target } of schemas.aliases) {
+          const targetFileKey = definitionToFile.get(target)
+          if (!targetFileKey) {
+            continue
+          }
+          const targetFile = filesByKey.get(targetFileKey)
+          if (!targetFile) {
+            continue
+          }
+          modelsIndexSections.push(
+            `export { ${target} as ${alias} } from "./${targetFile.filename}"`,
+          )
+        }
+      }
+
+      const modelsIndexContent = Array.from(new Set(modelsIndexSections)).join("\n")
+
+      const modelsFacadeContent = `export * from "./models/index"`
 
       const clientImports = [
         transformer.imports,
@@ -378,12 +696,13 @@ export const make = Effect.gen(function* () {
       ].filter((_) => _ !== undefined) as Array<string>
       const indexContent = indexLines.join("\n")
 
-      const files: Array<{ readonly path: string; readonly contents: string }> =
-        [
-          { path: "models.ts", contents: modelsContent },
-          { path: "client.ts", contents: clientContent },
-          { path: "index.ts", contents: indexContent },
-        ]
+      const files: Array<{ readonly path: string; readonly contents: string }> = [
+        ...modelFiles,
+        { path: "models/index.ts", contents: modelsIndexContent },
+        { path: "models.ts", contents: modelsFacadeContent },
+        { path: "client.ts", contents: clientContent },
+        { path: "index.ts", contents: indexContent },
+      ]
       if (primitivesContent) {
         files.push({ path: "primitives.ts", contents: primitivesContent })
       }
@@ -511,15 +830,25 @@ ${clientErrorSource(name)}`
   ${commonSource}
   const decodeSuccess =
     <A, I, R>(schema: S.Schema<A, I, R>) =>
-    (response: HttpClientResponse.HttpClientResponse) =>
-      HttpClientResponse.schemaBodyJson(schema)(response)
+    (response: HttpClientResponse.HttpClientResponse) => {
+      return HttpClientResponse.schemaBodyJson(schema)(response) as unknown as Effect.Effect<
+        A,
+        any,
+        never
+      >
+    }
   const decodeError =
     <const Tag extends string, A, I, R>(tag: Tag, schema: S.Schema<A, I, R>) =>
-    (response: HttpClientResponse.HttpClientResponse) =>
-      Effect.flatMap(
+    (response: HttpClientResponse.HttpClientResponse) => {
+      return Effect.flatMap(
         HttpClientResponse.schemaBodyJson(schema)(response),
         (cause) => Effect.fail(${name}Error(tag, cause, response)),
-      )
+      ) as unknown as Effect.Effect<
+        A,
+        any,
+        never
+      >
+    }
   return {
     httpClient,
     ${operations.map((operation) => operationToImpl(operation, qualifier)).join(",\n  ")}
@@ -801,19 +1130,21 @@ const commonSource = `const unexpectedStatus = (response: HttpClientResponse.Htt
           }),
         ),
     )
-  const withResponse: <A, E>(
-    f: (response: HttpClientResponse.HttpClientResponse) => Effect.Effect<A, E>,
+  const withResponse = <A, E, R = never>(
+    f: (response: HttpClientResponse.HttpClientResponse) => Effect.Effect<A, E, R>,
   ) => (
     request: HttpClientRequest.HttpClientRequest,
-  ) => Effect.Effect<any, any> = options.transformClient
-    ? (f) => (request) =>
-        Effect.flatMap(
-          Effect.flatMap(options.transformClient!(httpClient), (client) =>
-            client.execute(request),
-          ),
-          f,
-        )
-    : (f) => (request) => Effect.flatMap(httpClient.execute(request), f)`
+  ): Effect.Effect<A, E, R> => {
+    if (options.transformClient) {
+      return Effect.flatMap(
+        Effect.flatMap(options.transformClient!(httpClient), (client) =>
+          client.execute(request),
+        ),
+        f,
+      ) as unknown as Effect.Effect<A, E, R>
+    }
+    return Effect.flatMap(httpClient.execute(request), f) as unknown as Effect.Effect<A, E, R>
+  };`
 
 const clientErrorSource = (
   name: string,

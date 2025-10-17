@@ -723,6 +723,7 @@ const make = Effect.gen(function* () {
       const resolvedSources = orderedSources.map(({ name, source }) => ({
         name,
         source: applyReplacements(source),
+        dependencies: Array.from(dependencies.get(name) ?? []),
       }))
       const aliasEntries = Array.from(aliasMap.entries()).filter(
         ([alias, target]) => alias !== target,
@@ -731,7 +732,6 @@ const make = Effect.gen(function* () {
       return {
         aliases: aliasEntries.map(([alias, target]) => ({ alias, target })),
         hoists: hoistResult.hoists,
-        replacements: hoistResult.replacements,
         sources: resolvedSources,
         warnings: warningBlocks.slice(0),
       }
