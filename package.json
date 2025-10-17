@@ -1,6 +1,6 @@
 {
   "name": "@lotihq/openapi-gen",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate Effect http clients from OpenAPI specs",
   "packageManager": "pnpm@9.10.0",
   "publishConfig": {
@@ -14,7 +14,7 @@
     "test": "pnpm coverage",
     "clean": "rm -rf dist/*",
     "build": "tsup && pnpm copy-package-json",
-    "sample-gen": "node dist/main.js -s openapi.json > sample/generated.ts && tsc",
+    "sample-gen": "node dist/main.js -s openapi.json -o sample/generated && tsc",
     "build:ts": "tsup",
     "copy-package-json": "tsx scripts/copy-package-json.ts"
   },

@@ -571,7 +571,12 @@ const make = Effect.gen(function* () {
     }
   }
 
-  const generate = (importName: string) =>
+  const generate = (
+    importName: string,
+    options?: {
+      readonly hoistReferencePrefix?: string
+    },
+  ) =>
     Effect.sync(() => {
       transformer.resetHoists?.()
       const storeEntries = Array.from(store.entries())
@@ -692,33 +697,44 @@ const make = Effect.gen(function* () {
           `/* JsonSchemaGen warning: unsupported top-level schemas (${missingTopLevel.join(", ")}). */`,
         )
       }
-      const joinedBody = finalOrder
-        .map((name) => sourceMap.get(name)!)
-        .join("\n\n")
+      const orderedSources = finalOrder.map((name) => ({
+        name,
+        source: sourceMap.get(name)!,
+      }))
+      const joinedBody = orderedSources.map((_) => _.source).join("\n\n")
+      const hoistPrefix = options?.hoistReferencePrefix ?? ""
       const hoistResult = transformer.finalizeHoists
-        ? transformer.finalizeHoists({ source: joinedBody })
-        : { declarations: [] as ReadonlyArray<string>, source: joinedBody }
-      const hoistDeclarations = Array.from(hoistResult.declarations)
-      const body =
-        hoistDeclarations.length > 0
-          ? `${hoistDeclarations.join("\n")}\n\n${hoistResult.source}`
-          : hoistResult.source
+        ? transformer.finalizeHoists({
+            referencePrefix: hoistPrefix,
+            source: joinedBody,
+          })
+        : {
+            hoists: [] as ReadonlyArray<{ readonly name: string; readonly expression: string }>,
+            replacements: new Map<string, string>(),
+            source: joinedBody,
+          }
+      const applyReplacements = (value: string) => {
+        let result = value
+        for (const [placeholder, replacement] of hoistResult.replacements) {
+          result = result.split(placeholder).join(replacement)
+        }
+        return result
+      }
+      const resolvedSources = orderedSources.map(({ name, source }) => ({
+        name,
+        source: applyReplacements(source),
+      }))
       const aliasEntries = Array.from(aliasMap.entries()).filter(
         ([alias, target]) => alias !== target,
       )
       aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias))
-      const aliasSource = aliasEntries
-        .map(([alias, target]) => `export { ${target} as ${alias} }`)
-        .join("\n")
-      const emitBody =
-        aliasSource.length > 0
-          ? body.length > 0
-            ? `${body}\n\n${aliasSource}`
-            : aliasSource
-          : body
-      return warningBlocks.length > 0
-        ? `${warningBlocks.join("\n")}\n\n${emitBody}`
-        : emitBody
+      return {
+        aliases: aliasEntries.map(([alias, target]) => ({ alias, target })),
+        hoists: hoistResult.hoists,
+        replacements: hoistResult.replacements,
+        sources: resolvedSources,
+        warnings: warningBlocks.slice(0),
+      }
     })
 
   return { addSchema, addAlias, generate } as const
@@ -822,9 +838,14 @@ export class JsonSchemaTransformer extends Context.Tag("JsonSchemaTransformer")<
 
     finalizeHoists?(options: {
       readonly source: string
+      readonly referencePrefix: string
     }): {
       readonly source: string
-      readonly declarations: ReadonlyArray<string>
+      readonly hoists: ReadonlyArray<{
+        readonly name: string
+        readonly expression: string
+      }>
+      readonly replacements: ReadonlyMap<string, string>
     }
   }
 >() {}
@@ -941,15 +962,22 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
     }
   }
 
-  const resolveHoists = (source: string) => {
+  const resolveHoists = (source: string, referencePrefix: string) => {
     if (hoistEntries.length === 0) {
       return {
-        declarations: [] as ReadonlyArray<string>,
+        hoists: [] as ReadonlyArray<{
+          readonly name: string
+          readonly expression: string
+        }>,
+        replacements: new Map<string, string>(),
         source,
       }
     }
     const replacements = new Map<string, string>()
-    const declarations: Array<string> = []
+    const hoists: Array<{
+      readonly name: string
+      readonly expression: string
+    }> = []
     const usedNames = new Set<string>()
     for (const entry of hoistEntries) {
       if (entry.count <= 1) {
@@ -966,8 +994,13 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
         uniqueName = `${name}${++index}`
       }
       usedNames.add(uniqueName)
-      declarations.push(`const ${uniqueName} = ${entry.expression}`)
-      replacements.set(entry.placeholder, uniqueName)
+      hoists.push({
+        name: uniqueName,
+        expression: entry.expression,
+      })
+      const reference =
+        referencePrefix.length > 0 ? `${referencePrefix}${uniqueName}` : uniqueName
+      replacements.set(entry.placeholder, reference)
     }
     let resolved = source
     for (const [placeholder, replacement] of replacements) {
@@ -975,7 +1008,8 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
     }
     resetHoists()
     return {
-      declarations,
+      hoists,
+      replacements,
       source: resolved,
     }
   }
@@ -1128,8 +1162,8 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
       return `${importName}.Union(${items.map((_) => `${toComment(_.description)}${_.source}`).join(",\n")})`
     },
     resetHoists,
-    finalizeHoists({ source }) {
-      return resolveHoists(source)
+    finalizeHoists({ source, referencePrefix }) {
+      return resolveHoists(source, referencePrefix)
     },
   })
 })
@@ -1195,7 +1229,8 @@ export type ${name} = (typeof ${name})[keyof typeof ${name}];`
     resetHoists() {},
     finalizeHoists({ source }) {
       return {
-        declarations: [],
+        hoists: [],
+        replacements: new Map(),
         source,
       }
     },

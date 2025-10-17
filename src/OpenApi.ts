@@ -307,8 +307,88 @@ export const make = Effect.gen(function* () {
       )
 
       const transformer = yield* OpenApiTransformer
-      const schemas = yield* gen.generate("S")
-      return `${transformer.imports}\n\n${schemas}\n\n${transformer.toImplementation(options.name, operations)}\n\n${transformer.toTypes(options.name, operations)}`
+      const schemaModuleName = "Models"
+      const primitivesModuleName = "Primitives"
+      const schemas = yield* gen.generate("S", {
+        hoistReferencePrefix: `${primitivesModuleName}.`,
+      })
+
+      const warningBlock =
+        schemas.warnings.length > 0
+          ? schemas.warnings.join("\n")
+          : undefined
+
+      const aliasSource =
+        schemas.aliases.length > 0
+          ? schemas.aliases
+              .map(({ alias, target }) => `export { ${target} as ${alias} }`)
+              .join("\n")
+          : ""
+
+      const primitivesImport =
+        schemas.hoists.length > 0 ? `\nimport * as ${primitivesModuleName} from "./primitives"` : ""
+
+      const modelsImports = `import * as S from "effect/Schema"${primitivesImport}`
+
+      const modelsBody = schemas.sources.map((_) => _.source).join("\n\n")
+
+      const modelsSections = [warningBlock, modelsImports, modelsBody]
+      if (aliasSource.length > 0) {
+        modelsSections.push(aliasSource)
+      }
+      const modelsContent = modelsSections
+        .filter((section): section is string => !!section && section.length > 0)
+        .join("\n\n")
+
+      const primitivesContent =
+        schemas.hoists.length > 0
+          ? [
+              'import * as S from "effect/Schema"',
+              schemas.hoists
+                .map(({ name, expression }) => `export const ${name} = ${expression}`)
+                .join("\n"),
+            ].join("\n\n")
+          : undefined
+
+      const clientImports = [
+        transformer.imports,
+        `import * as ${schemaModuleName} from "./models"`,
+      ].join("\n")
+
+      const clientImplementation = transformer.toImplementation(
+        options.name,
+        operations,
+        { schemaQualifier: `${schemaModuleName}.` },
+      )
+      const clientTypes = transformer.toTypes(options.name, operations, {
+        schemaQualifier: `${schemaModuleName}.`,
+      })
+      const clientContent = [clientImports, clientImplementation, clientTypes]
+        .filter((_) => _.length > 0)
+        .join("\n\n")
+
+      const indexLines = [
+        `export * as ${schemaModuleName} from "./models"`,
+        schemas.hoists.length > 0
+          ? `export * as ${primitivesModuleName} from "./primitives"`
+          : undefined,
+        'export * as Client from "./client"',
+        'export * from "./models"',
+        'export * from "./client"',
+      ].filter((_) => _ !== undefined) as Array<string>
+      const indexContent = indexLines.join("\n")
+
+      const files: Array<{ readonly path: string; readonly contents: string }> =
+        [
+          { path: "models.ts", contents: modelsContent },
+          { path: "client.ts", contents: clientContent },
+          { path: "index.ts", contents: indexContent },
+        ]
+      if (primitivesContent) {
+        files.push({ path: "primitives.ts", contents: primitivesContent })
+      }
+
+      return files
     },
     JsonSchemaGen.with,
     (effect, _, options) =>
@@ -335,10 +415,16 @@ export class OpenApiTransformer extends Context.Tag("OpenApiTransformer")<
     readonly toTypes: (
       name: string,
       operations: ReadonlyArray<ParsedOperation>,
+      options?: {
+        readonly schemaQualifier?: string
+      },
     ) => string
     readonly toImplementation: (
       name: string,
       operations: ReadonlyArray<ParsedOperation>,
+      options?: {
+        readonly schemaQualifier?: string
+      },
     ) => string
   }
 >() {}
@@ -347,14 +433,24 @@ export const layerTransformerSchema = Layer.sync(OpenApiTransformer, () => {
   const operationsToInterface = (
     name: string,
     operations: ReadonlyArray<ParsedOperation>,
-  ) => `export interface ${name} {
+    options?: {
+      readonly schemaQualifier?: string
+    },
+  ) => {
+    const qualifier = options?.schemaQualifier ?? ""
+    return `export interface ${name} {
   readonly httpClient: HttpClient.HttpClient
-  ${operations.map((op) => operationToMethod(name, op)).join("\n  ")}
+  ${operations.map((op) => operationToMethod(name, op, qualifier)).join("\n  ")}
 }
 
 ${clientErrorSource(name)}`
+  }
 
-  const operationToMethod = (name: string, operation: ParsedOperation) => {
+  const operationToMethod = (
+    name: string,
+    operation: ParsedOperation,
+    qualifier: string,
+  ) => {
     const args: Array<string> = []
     if (operation.pathIds.length > 0) {
       args.push(...operation.pathIds.map((id) => `${id}: string`))
@@ -362,15 +458,15 @@ ${clientErrorSource(name)}`
     let options: Array<string> = []
     if (operation.params && !operation.payload) {
       args.push(
-        `options${operation.paramsOptional ? "?" : ""}: typeof ${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`,
+        `options${operation.paramsOptional ? "?" : ""}: typeof ${qualifier}${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`,
       )
     } else if (operation.params) {
       options.push(
-        `readonly params${operation.paramsOptional ? "?" : ""}: typeof ${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`,
+        `readonly params${operation.paramsOptional ? "?" : ""}: typeof ${qualifier}${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`,
       )
     }
     if (operation.payload) {
-      const type = `typeof ${operation.payload}.Encoded`
+      const type = `typeof ${qualifier}${operation.payload}.Encoded`
       if (!operation.params) {
         args.push(`options: ${type}`)
       } else {
@@ -383,14 +479,15 @@ ${clientErrorSource(name)}`
     let success = "void"
     if (operation.successSchemas.size > 0) {
       success = Array.from(operation.successSchemas.values())
-        .map((schema) => `typeof ${schema}.Type`)
+        .map((schema) => `typeof ${qualifier}${schema}.Type`)
         .join(" | ")
     }
     const errors = ["HttpClientError.HttpClientError", "ParseError"]
     if (operation.errorSchemas.size > 0) {
       errors.push(
         ...Array.from(operation.errorSchemas.values()).map(
-          (schema) => `${name}Error<"${schema}", typeof ${schema}.Type>`,
+          (schema) =>
+            `${name}Error<"${schema}", typeof ${qualifier}${schema}.Type>`,
         ),
       )
     }
@@ -400,7 +497,12 @@ ${clientErrorSource(name)}`
   const operationsToImpl = (
     name: string,
     operations: ReadonlyArray<ParsedOperation>,
-  ) => `export const make = (
+    options?: {
+      readonly schemaQualifier?: string
+    },
+  ) => {
+    const qualifier = options?.schemaQualifier ?? ""
+    return `export const make = (
   httpClient: HttpClient.HttpClient, 
   options: {
     readonly transformClient?: ((client: HttpClient.HttpClient) => Effect.Effect<HttpClient.HttpClient>) | undefined
@@ -420,11 +522,15 @@ ${clientErrorSource(name)}`
       )
   return {
     httpClient,
-    ${operations.map(operationToImpl).join(",\n  ")}
+    ${operations.map((operation) => operationToImpl(operation, qualifier)).join(",\n  ")}
   }
 }`
+  }
 
-  const operationToImpl = (operation: ParsedOperation) => {
+  const operationToImpl = (
+    operation: ParsedOperation,
+    qualifier: string,
+  ) => {
     const args: Array<string> = [...operation.pathIds]
     const hasOptions = operation.params || operation.payload
     if (hasOptions) {
@@ -464,10 +570,12 @@ ${clientErrorSource(name)}`
     operation.successSchemas.forEach((schema, status) => {
       const statusCode =
         singleSuccessCode && status.startsWith("2") ? "2xx" : status
-      decodes.push(`"${statusCode}": decodeSuccess(${schema})`)
+      decodes.push(`"${statusCode}": decodeSuccess(${qualifier}${schema})`)
     })
     operation.errorSchemas.forEach((schema, status) => {
-      decodes.push(`"${status}": decodeError("${schema}", ${schema})`)
+      decodes.push(
+        `"${status}": decodeError("${schema}", ${qualifier}${schema})`,
+      )
     })
     operation.voidSchemas.forEach((status) => {
       decodes.push(`"${status}": () => Effect.void`)

@@ -12,6 +12,7 @@ var NFS = require('fs');
 var OS = require('os');
 var Path3 = require('path');
 var readline = require('readline');
+var Fs = require('fs/promises');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
@@ -44,6 +45,7 @@ var NFS__namespace = /*#__PURE__*/_interopNamespace(NFS);
 var OS__namespace = /*#__PURE__*/_interopNamespace(OS);
 var Path3__namespace = /*#__PURE__*/_interopNamespace(Path3);
 var readline__namespace = /*#__PURE__*/_interopNamespace(readline);
+var Fs__namespace = /*#__PURE__*/_interopNamespace(Fs);
 
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -109,22 +111,22 @@ var require_ini = __commonJS({
           keys5.filter((k) => obj[k] === null || Array.isArray(obj[k]) || typeof obj[k] !== "object").map((k) => Array.isArray(obj[k]) ? `${k}[]` : k).concat([""]).reduce((a, b) => safe(a).length >= safe(b).length ? a : b)
         ).length;
       }
-      let out = "";
+      let out2 = "";
       const arraySuffix = opt.bracketedArray ? "[]" : "";
       for (const k of keys5) {
         const val = obj[k];
         if (val && Array.isArray(val)) {
           for (const item of val) {
-            out += safe(`${k}${arraySuffix}`).padEnd(padToChars, " ") + separator + safe(item) + eol;
+            out2 += safe(`${k}${arraySuffix}`).padEnd(padToChars, " ") + separator + safe(item) + eol;
           }
         } else if (val && typeof val === "object") {
           children2.push(k);
         } else {
-          out += safe(k).padEnd(padToChars, " ") + separator + safe(val) + eol;
+          out2 += safe(k).padEnd(padToChars, " ") + separator + safe(val) + eol;
         }
       }
-      if (opt.section && out.length) {
-        out = "[" + safe(opt.section) + "]" + (opt.newline ? eol + eol : eol) + out;
+      if (opt.section && out2.length) {
+        out2 = "[" + safe(opt.section) + "]" + (opt.newline ? eol + eol : eol) + out2;
       }
       for (const k of children2) {
         const nk = splitSections(k, ".").join("\\.");
@@ -133,12 +135,12 @@ var require_ini = __commonJS({
           ...opt,
           section
         });
-        if (out.length && child.length) {
-          out += eol;
+        if (out2.length && child.length) {
+          out2 += eol;
         }
-        out += child;
+        out2 += child;
       }
-      return out;
+      return out2;
     };
     function splitSections(str, separator) {
       var lastMatchIndex = 0;
@@ -161,8 +163,8 @@ var require_ini = __commonJS({
     }
     var decode2 = (str, opt = {}) => {
       opt.bracketedArray = opt.bracketedArray !== false;
-      const out = /* @__PURE__ */ Object.create(null);
-      let p2 = out;
+      const out2 = /* @__PURE__ */ Object.create(null);
+      let p2 = out2;
       let section = null;
       const re = /^\[([^\]]*)\]\s*$|^([^=]+)(=(.*))?$/i;
       const lines3 = str.split(/[\r\n]+/g);
@@ -181,7 +183,7 @@ var require_ini = __commonJS({
             p2 = /* @__PURE__ */ Object.create(null);
             continue;
           }
-          p2 = out[section] = out[section] || /* @__PURE__ */ Object.create(null);
+          p2 = out2[section] = out2[section] || /* @__PURE__ */ Object.create(null);
           continue;
         }
         const keyRaw = unsafe(match17[2]);
@@ -212,12 +214,12 @@ var require_ini = __commonJS({
         }
       }
       const remove8 = [];
-      for (const k of Object.keys(out)) {
-        if (!hasOwnProperty.call(out, k) || typeof out[k] !== "object" || Array.isArray(out[k])) {
+      for (const k of Object.keys(out2)) {
+        if (!hasOwnProperty.call(out2, k) || typeof out2[k] !== "object" || Array.isArray(out2[k])) {
           continue;
         }
         const parts2 = splitSections(k, ".");
-        p2 = out;
+        p2 = out2;
         const l = parts2.pop();
         const nl = l.replace(/\\\./g, ".");
         for (const part of parts2) {
@@ -229,16 +231,16 @@ var require_ini = __commonJS({
           }
           p2 = p2[part];
         }
-        if (p2 === out && nl === l) {
+        if (p2 === out2 && nl === l) {
           continue;
         }
-        p2[nl] = out[k];
+        p2[nl] = out2[k];
         remove8.push(k);
       }
       for (const del of remove8) {
-        delete out[del];
+        delete out2[del];
       }
-      return out;
+      return out2;
     };
     var isQuoted = (val) => {
       return val.startsWith('"') && val.endsWith('"') || val.startsWith("'") && val.endsWith("'");
@@ -8774,7 +8776,7 @@ var PCGRandom = class {
     return (xorshifted >>> rot | xorshifted << rot2) >>> 0;
   }
 };
-function mul64(out, aHi, aLo, bHi, bLo) {
+function mul64(out2, aHi, aLo, bHi, bLo) {
   let c1 = (aLo >>> 16) * (bLo & 65535) >>> 0;
   let c0 = (aLo & 65535) * (bLo >>> 16) >>> 0;
   let lo = (aLo & 65535) * (bLo & 65535) >>> 0;
@@ -8791,17 +8793,17 @@ function mul64(out, aHi, aLo, bHi, bLo) {
   }
   hi = hi + Math.imul(aLo, bHi) >>> 0;
   hi = hi + Math.imul(aHi, bLo) >>> 0;
-  out[0] = hi;
-  out[1] = lo;
+  out2[0] = hi;
+  out2[1] = lo;
 }
-function add64(out, aHi, aLo, bHi, bLo) {
+function add64(out2, aHi, aLo, bHi, bLo) {
   let hi = aHi + bHi >>> 0;
   const lo = aLo + bLo >>> 0;
   if (lo >>> 0 < aLo >>> 0) {
     hi = hi + 1 | 0;
   }
-  out[0] = hi;
-  out[1] = lo;
+  out2[0] = hi;
+  out2[1] = lo;
 }
 var YieldWrapTypeId = /* @__PURE__ */ Symbol.for("effect/Utils/YieldWrap");
 var YieldWrap = class {
@@ -9470,11 +9472,11 @@ var make4 = (...elements) => elements;
 var allocate = (n) => new Array(n);
 var makeBy = /* @__PURE__ */ dual(2, (n, f) => {
   const max6 = Math.max(1, Math.floor(n));
-  const out = new Array(max6);
+  const out2 = new Array(max6);
   for (let i = 0; i < max6; i++) {
-    out[i] = f(i);
+    out2[i] = f(i);
   }
-  return out;
+  return out2;
 });
 var fromIterable = (collection) => Array.isArray(collection) ? collection : Array.from(collection);
 var ensure = (self) => Array.isArray(self) ? self : [self];
@@ -9563,21 +9565,21 @@ var findLast = /* @__PURE__ */ dual(2, (self, f) => {
 });
 var reverse = (self) => Array.from(self).reverse();
 var sort = /* @__PURE__ */ dual(2, (self, O) => {
-  const out = Array.from(self);
-  out.sort(O);
-  return out;
+  const out2 = Array.from(self);
+  out2.sort(O);
+  return out2;
 });
 var zip = /* @__PURE__ */ dual(2, (self, that) => zipWith(self, that, make3));
 var zipWith = /* @__PURE__ */ dual(3, (self, that, f) => {
   const as9 = fromIterable(self);
   const bs = fromIterable(that);
   if (isNonEmptyReadonlyArray(as9) && isNonEmptyReadonlyArray(bs)) {
-    const out = [f(headNonEmpty(as9), headNonEmpty(bs))];
+    const out2 = [f(headNonEmpty(as9), headNonEmpty(bs))];
     const len = Math.min(as9.length, bs.length);
     for (let i = 1; i < len; i++) {
-      out[i] = f(as9[i], bs[i]);
+      out2[i] = f(as9[i], bs[i]);
     }
-    return out;
+    return out2;
   }
   return [];
 });
@@ -9627,65 +9629,65 @@ var flatMap2 = /* @__PURE__ */ dual(2, (self, f) => {
   if (isEmptyReadonlyArray(self)) {
     return [];
   }
-  const out = [];
+  const out2 = [];
   for (let i = 0; i < self.length; i++) {
     const inner = f(self[i], i);
     for (let j = 0; j < inner.length; j++) {
-      out.push(inner[j]);
+      out2.push(inner[j]);
     }
   }
-  return out;
+  return out2;
 });
 var flatten = /* @__PURE__ */ flatMap2(identity);
 var filterMap2 = /* @__PURE__ */ dual(2, (self, f) => {
   const as9 = fromIterable(self);
-  const out = [];
+  const out2 = [];
   for (let i = 0; i < as9.length; i++) {
     const o = f(as9[i], i);
     if (isSome2(o)) {
-      out.push(o.value);
+      out2.push(o.value);
     }
   }
-  return out;
+  return out2;
 });
 var getSomes = /* @__PURE__ */ filterMap2(identity);
 var filter2 = /* @__PURE__ */ dual(2, (self, predicate) => {
   const as9 = fromIterable(self);
-  const out = [];
+  const out2 = [];
   for (let i = 0; i < as9.length; i++) {
     if (predicate(as9[i], i)) {
-      out.push(as9[i]);
+      out2.push(as9[i]);
     }
   }
-  return out;
+  return out2;
 });
 var reduce = /* @__PURE__ */ dual(3, (self, b, f) => fromIterable(self).reduce((b2, a, i) => f(b2, a, i), b));
 var reduceRight = /* @__PURE__ */ dual(3, (self, b, f) => fromIterable(self).reduceRight((b2, a, i) => f(b2, a, i), b));
 var every = /* @__PURE__ */ dual(2, (self, refinement) => self.every(refinement));
 var some3 = /* @__PURE__ */ dual(2, (self, predicate) => self.some(predicate));
 var unfold = (b, f) => {
-  const out = [];
+  const out2 = [];
   let next = b;
   let o;
   while (isSome2(o = f(next))) {
     const [a, b2] = o.value;
-    out.push(a);
+    out2.push(a);
     next = b2;
   }
-  return out;
+  return out2;
 };
 var getEquivalence = array;
 var dedupeWith = /* @__PURE__ */ dual(2, (self, isEquivalent) => {
   const input = fromIterable(self);
   if (isNonEmptyReadonlyArray(input)) {
-    const out = [headNonEmpty(input)];
+    const out2 = [headNonEmpty(input)];
     const rest = tailNonEmpty(input);
     for (const r of rest) {
-      if (out.every((a) => !isEquivalent(r, a))) {
-        out.push(r);
+      if (out2.every((a) => !isEquivalent(r, a))) {
+        out2.push(r);
       }
     }
-    return out;
+    return out2;
   }
   return [];
 });
@@ -10614,32 +10616,32 @@ var make7 = (value5, previous) => ({
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/hashMap/array.js
 function arrayUpdate(mutate3, at, v, arr) {
-  let out = arr;
+  let out2 = arr;
   if (!mutate3) {
     const len = arr.length;
-    out = new Array(len);
-    for (let i = 0; i < len; ++i) out[i] = arr[i];
+    out2 = new Array(len);
+    for (let i = 0; i < len; ++i) out2[i] = arr[i];
   }
-  out[at] = v;
-  return out;
+  out2[at] = v;
+  return out2;
 }
 function arraySpliceOut(mutate3, at, arr) {
   const newLen = arr.length - 1;
   let i = 0;
   let g = 0;
-  let out = arr;
+  let out2 = arr;
   if (mutate3) {
     i = g = at;
   } else {
-    out = new Array(newLen);
-    while (i < at) out[g++] = arr[i++];
+    out2 = new Array(newLen);
+    while (i < at) out2[g++] = arr[i++];
   }
   ++i;
-  while (i <= newLen) out[g++] = arr[i++];
+  while (i <= newLen) out2[g++] = arr[i++];
   if (mutate3) {
-    out.length = newLen;
+    out2.length = newLen;
   }
-  return out;
+  return out2;
 }
 function arraySpliceIn(mutate3, at, v, arr) {
   const len = arr.length;
@@ -10650,11 +10652,11 @@ function arraySpliceIn(mutate3, at, v, arr) {
     return arr;
   }
   let i = 0, g = 0;
-  const out = new Array(len + 1);
-  while (i < at) out[g++] = arr[i++];
-  out[at] = v;
-  while (i < len) out[++g] = arr[i++];
-  return out;
+  const out2 = new Array(len + 1);
+  while (i < at) out2[g++] = arr[i++];
+  out2[at] = v;
+  while (i < len) out2[++g] = arr[i++];
+  return out2;
 }
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/hashMap/node.js
@@ -12883,7 +12885,7 @@ var prettyErrorMessage = (u) => {
 var locationRegex = /\((.*)\)/g;
 var spanToTrace = /* @__PURE__ */ globalValue("effect/Tracer/spanToTrace", () => /* @__PURE__ */ new WeakMap());
 var prettyErrorStack = (message, stack, span2) => {
-  const out = [message];
+  const out2 = [message];
   const lines3 = stack.startsWith(message) ? stack.slice(message.length).split("\n") : stack.split("\n");
   for (let i = 1; i < lines3.length; i++) {
     if (lines3[i].includes(" at new BaseEffectError") || lines3[i].includes(" at new YieldableError")) {
@@ -12896,7 +12898,7 @@ var prettyErrorStack = (message, stack, span2) => {
     if (lines3[i].includes("effect_internal_function")) {
       break;
     }
-    out.push(lines3[i].replace(/at .*effect_instruction_i.*\((.*)\)/, "at $1").replace(/EffectPrimitive\.\w+/, "<anonymous>"));
+    out2.push(lines3[i].replace(/at .*effect_instruction_i.*\((.*)\)/, "at $1").replace(/EffectPrimitive\.\w+/, "<anonymous>"));
   }
   if (span2) {
     let current = span2;
@@ -12910,22 +12912,22 @@ var prettyErrorStack = (message, stack, span2) => {
           let match17 = false;
           for (const [, location] of locationMatchAll) {
             match17 = true;
-            out.push(`    at ${current.name} (${location})`);
+            out2.push(`    at ${current.name} (${location})`);
           }
           if (!match17) {
-            out.push(`    at ${current.name} (${stack2.replace(/^at /, "")})`);
+            out2.push(`    at ${current.name} (${stack2.replace(/^at /, "")})`);
           }
         } else {
-          out.push(`    at ${current.name}`);
+          out2.push(`    at ${current.name}`);
         }
       } else {
-        out.push(`    at ${current.name}`);
+        out2.push(`    at ${current.name}`);
       }
       current = getOrUndefined(current.parent);
       i++;
     }
   }
-  return out.join("\n");
+  return out2.join("\n");
 };
 var spanSymbol = /* @__PURE__ */ Symbol.for("effect/SpanAnnotation");
 var prettyErrors = (cause2) => reduceWithContext2(cause2, void 0, {
@@ -14238,12 +14240,12 @@ var extend = (leftDef, rightDef, left3, right3) => {
 var appendConfigPath = (path2, config2) => {
   let op = config2;
   if (op._tag === "Nested") {
-    const out = path2.slice();
+    const out2 = path2.slice();
     while (op._tag === "Nested") {
-      out.push(op.name);
+      out2.push(op.name);
       op = op.config;
     }
-    return out;
+    return out2;
   }
   return path2;
 };
@@ -16112,25 +16114,25 @@ var format3 = (quoteValue, whitespace) => ({
   const formatValue = (value5) => value5.match(textOnly) ? value5 : quoteValue(value5);
   const format6 = (label, value5) => `${formatLabel(label)}=${formatValue(value5)}`;
   const append4 = (label, value5) => " " + format6(label, value5);
-  let out = format6("timestamp", date5.toISOString());
-  out += append4("level", logLevel2.label);
-  out += append4("fiber", threadName(fiberId2));
+  let out2 = format6("timestamp", date5.toISOString());
+  out2 += append4("level", logLevel2.label);
+  out2 += append4("fiber", threadName(fiberId2));
   const messages = ensure(message);
   for (let i = 0; i < messages.length; i++) {
-    out += append4("message", toStringUnknown(messages[i], whitespace));
+    out2 += append4("message", toStringUnknown(messages[i], whitespace));
   }
   if (!isEmptyType(cause2)) {
-    out += append4("cause", pretty(cause2, {
+    out2 += append4("cause", pretty(cause2, {
       renderErrorCause: true
     }));
   }
   for (const span2 of spans2) {
-    out += " " + render(date5.getTime())(span2);
+    out2 += " " + render(date5.getTime())(span2);
   }
   for (const [label, value5] of annotations2) {
-    out += append4(label, toStringUnknown(value5, whitespace));
+    out2 += append4(label, toStringUnknown(value5, whitespace));
   }
-  return out;
+  return out2;
 };
 var escapeDoubleQuotes = (s) => `"${s.replace(/\\([\s\S])|(")/g, "\\$1$2")}"`;
 var stringLogger = /* @__PURE__ */ makeLogger(/* @__PURE__ */ format3(escapeDoubleQuotes));
@@ -16147,11 +16149,11 @@ var structuredMessage = (u) => {
   }
 };
 var withColor = (text9, ...colors2) => {
-  let out = "";
+  let out2 = "";
   for (let i = 0; i < colors2.length; i++) {
-    out += `\x1B[${colors2[i]}m`;
+    out2 += `\x1B[${colors2[i]}m`;
   }
-  return out + text9 + "\x1B[0m";
+  return out2 + text9 + "\x1B[0m";
 };
 var withColorNoop = (text9, ..._colors) => text9;
 var colors = {
@@ -19338,82 +19340,82 @@ var ScheduleDriverImpl = class {
     return set4(this.ref, [none2(), this.schedule.initial]);
   }
   next(input) {
-    return pipe(map10(get10(this.ref), (tuple3) => tuple3[1]), flatMap7((state) => pipe(currentTimeMillis2, flatMap7((now) => pipe(suspend(() => this.schedule.step(now, input, state)), flatMap7(([state2, out, decision]) => {
-      const setState = set4(this.ref, [some2(out), state2]);
+    return pipe(map10(get10(this.ref), (tuple3) => tuple3[1]), flatMap7((state) => pipe(currentTimeMillis2, flatMap7((now) => pipe(suspend(() => this.schedule.step(now, input, state)), flatMap7(([state2, out2, decision]) => {
+      const setState = set4(this.ref, [some2(out2), state2]);
       if (isDone5(decision)) {
         return zipRight(setState, fail2(none2()));
       }
       const millis2 = start2(decision.intervals) - now;
       if (millis2 <= 0) {
-        return as(setState, out);
+        return as(setState, out2);
       }
-      return pipe(setState, zipRight(sleep3(millis(millis2))), as(out));
+      return pipe(setState, zipRight(sleep3(millis(millis2))), as(out2));
     }))))));
   }
 };
 var makeWithState = (initial, step3) => new ScheduleImpl(initial, step3);
-var addDelay = /* @__PURE__ */ dual(2, (self, f) => addDelayEffect(self, (out) => sync(() => f(out))));
-var addDelayEffect = /* @__PURE__ */ dual(2, (self, f) => modifyDelayEffect(self, (out, duration3) => map10(f(out), (delay2) => sum(duration3, decode(delay2)))));
-var check = /* @__PURE__ */ dual(2, (self, test) => checkEffect(self, (input, out) => sync(() => test(input, out))));
-var checkEffect = /* @__PURE__ */ dual(2, (self, test) => makeWithState(self.initial, (now, input, state) => flatMap7(self.step(now, input, state), ([state2, out, decision]) => {
+var addDelay = /* @__PURE__ */ dual(2, (self, f) => addDelayEffect(self, (out2) => sync(() => f(out2))));
+var addDelayEffect = /* @__PURE__ */ dual(2, (self, f) => modifyDelayEffect(self, (out2, duration3) => map10(f(out2), (delay2) => sum(duration3, decode(delay2)))));
+var check = /* @__PURE__ */ dual(2, (self, test) => checkEffect(self, (input, out2) => sync(() => test(input, out2))));
+var checkEffect = /* @__PURE__ */ dual(2, (self, test) => makeWithState(self.initial, (now, input, state) => flatMap7(self.step(now, input, state), ([state2, out2, decision]) => {
   if (isDone5(decision)) {
-    return succeed([state2, out, done5]);
+    return succeed([state2, out2, done5]);
   }
-  return map10(test(input, out), (cont) => cont ? [state2, out, decision] : [state2, out, done5]);
+  return map10(test(input, out2), (cont) => cont ? [state2, out2, decision] : [state2, out2, done5]);
 })));
 var driver = (self) => pipe(make27([none2(), self.initial]), map10((ref) => new ScheduleDriverImpl(self, ref)));
 var intersect5 = /* @__PURE__ */ dual(2, (self, that) => intersectWith(self, that, intersect4));
-var intersectWith = /* @__PURE__ */ dual(3, (self, that, f) => makeWithState([self.initial, that.initial], (now, input, state) => pipe(zipWith2(self.step(now, input, state[0]), that.step(now, input, state[1]), (a, b) => [a, b]), flatMap7(([[lState, out, lDecision], [rState, out2, rDecision]]) => {
+var intersectWith = /* @__PURE__ */ dual(3, (self, that, f) => makeWithState([self.initial, that.initial], (now, input, state) => pipe(zipWith2(self.step(now, input, state[0]), that.step(now, input, state[1]), (a, b) => [a, b]), flatMap7(([[lState, out2, lDecision], [rState, out22, rDecision]]) => {
   if (isContinue2(lDecision) && isContinue2(rDecision)) {
-    return intersectWithLoop(self, that, input, lState, out, lDecision.intervals, rState, out2, rDecision.intervals, f);
+    return intersectWithLoop(self, that, input, lState, out2, lDecision.intervals, rState, out22, rDecision.intervals, f);
   }
-  return succeed([[lState, rState], [out, out2], done5]);
+  return succeed([[lState, rState], [out2, out22], done5]);
 }))));
-var intersectWithLoop = (self, that, input, lState, out, lInterval, rState, out2, rInterval, f) => {
+var intersectWithLoop = (self, that, input, lState, out2, lInterval, rState, out22, rInterval, f) => {
   const combined = f(lInterval, rInterval);
   if (isNonEmpty4(combined)) {
-    return succeed([[lState, rState], [out, out2], _continue2(combined)]);
+    return succeed([[lState, rState], [out2, out22], _continue2(combined)]);
   }
   if (pipe(lInterval, lessThan5(rInterval))) {
     return flatMap7(self.step(end2(lInterval), input, lState), ([lState2, out3, decision]) => {
       if (isDone5(decision)) {
-        return succeed([[lState2, rState], [out3, out2], done5]);
+        return succeed([[lState2, rState], [out3, out22], done5]);
       }
-      return intersectWithLoop(self, that, input, lState2, out3, decision.intervals, rState, out2, rInterval, f);
+      return intersectWithLoop(self, that, input, lState2, out3, decision.intervals, rState, out22, rInterval, f);
     });
   }
-  return flatMap7(that.step(end2(rInterval), input, rState), ([rState2, out22, decision]) => {
+  return flatMap7(that.step(end2(rInterval), input, rState), ([rState2, out23, decision]) => {
     if (isDone5(decision)) {
-      return succeed([[lState, rState2], [out, out22], done5]);
+      return succeed([[lState, rState2], [out2, out23], done5]);
     }
-    return intersectWithLoop(self, that, input, lState, out, lInterval, rState2, out22, decision.intervals, f);
+    return intersectWithLoop(self, that, input, lState, out2, lInterval, rState2, out23, decision.intervals, f);
   });
 };
-var map15 = /* @__PURE__ */ dual(2, (self, f) => mapEffect(self, (out) => sync(() => f(out))));
-var mapEffect = /* @__PURE__ */ dual(2, (self, f) => makeWithState(self.initial, (now, input, state) => flatMap7(self.step(now, input, state), ([state2, out, decision]) => map10(f(out), (out2) => [state2, out2, decision]))));
-var modifyDelayEffect = /* @__PURE__ */ dual(2, (self, f) => makeWithState(self.initial, (now, input, state) => flatMap7(self.step(now, input, state), ([state2, out, decision]) => {
+var map15 = /* @__PURE__ */ dual(2, (self, f) => mapEffect(self, (out2) => sync(() => f(out2))));
+var mapEffect = /* @__PURE__ */ dual(2, (self, f) => makeWithState(self.initial, (now, input, state) => flatMap7(self.step(now, input, state), ([state2, out2, decision]) => map10(f(out2), (out22) => [state2, out22, decision]))));
+var modifyDelayEffect = /* @__PURE__ */ dual(2, (self, f) => makeWithState(self.initial, (now, input, state) => flatMap7(self.step(now, input, state), ([state2, out2, decision]) => {
   if (isDone5(decision)) {
-    return succeed([state2, out, decision]);
+    return succeed([state2, out2, decision]);
   }
   const intervals = decision.intervals;
   const delay2 = size9(make36(now, start2(intervals)));
-  return map10(f(out, delay2), (durationInput) => {
+  return map10(f(out2, delay2), (durationInput) => {
     const duration3 = decode(durationInput);
     const oldStart = start2(intervals);
     const newStart = now + toMillis(duration3);
     const delta = newStart - oldStart;
     const newEnd = Math.max(0, end2(intervals) + delta);
     const newInterval = make36(newStart, newEnd);
-    return [state2, out, continueWith2(newInterval)];
+    return [state2, out2, continueWith2(newInterval)];
   });
 })));
 var passthrough = (self) => makeWithState(self.initial, (now, input, state) => pipe(self.step(now, input, state), map10(([state2, _, decision]) => [state2, input, decision])));
-var recurs = (n) => whileOutput(forever2, (out) => out < n);
+var recurs = (n) => whileOutput(forever2, (out2) => out2 < n);
 var spaced = (duration3) => addDelay(forever2, () => duration3);
 var unfold2 = (initial, f) => makeWithState(initial, (now, _, state) => sync(() => [f(state), state, continueWith2(after2(now))]));
 var untilInputEffect = /* @__PURE__ */ dual(2, (self, f) => checkEffect(self, (input, _) => negate(f(input))));
 var whileInputEffect = /* @__PURE__ */ dual(2, (self, f) => checkEffect(self, (input, _) => f(input)));
-var whileOutput = /* @__PURE__ */ dual(2, (self, f) => check(self, (_, out) => f(out)));
+var whileOutput = /* @__PURE__ */ dual(2, (self, f) => check(self, (_, out2) => f(out2)));
 var ScheduleDefectTypeId = /* @__PURE__ */ Symbol.for("effect/Schedule/ScheduleDefect");
 var ScheduleDefect = class {
   error;
@@ -19491,7 +19493,7 @@ var retry_combined = /* @__PURE__ */ dual(2, (self, options3) => {
 var retryOrElse_Effect = /* @__PURE__ */ dual(3, (self, policy, orElse14) => flatMap7(driver(policy), (driver2) => retryOrElse_EffectLoop(self, driver2, orElse14)));
 var retryOrElse_EffectLoop = (self, driver2, orElse14) => {
   return catchAll(self, (e) => matchEffect(driver2.next(e), {
-    onFailure: () => pipe(driver2.last, orDie, flatMap7((out) => orElse14(e, out))),
+    onFailure: () => pipe(driver2.last, orDie, flatMap7((out2) => orElse14(e, out2))),
     onSuccess: () => retryOrElse_EffectLoop(self, driver2, orElse14)
   }));
 };
@@ -20580,20 +20582,20 @@ var formatPath = (path2) => isNonEmpty6(path2) ? path2.map(formatPathKey).join("
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/internal/schema/errors.js
 var getErrorMessage = (reason, details, path2, ast) => {
-  let out = reason;
+  let out2 = reason;
   if (path2 && isNonEmptyReadonlyArray(path2)) {
-    out += `
+    out2 += `
 at path: ${formatPath(path2)}`;
   }
   if (details !== void 0) {
-    out += `
+    out2 += `
 details: ${details}`;
   }
   if (ast) {
-    out += `
+    out2 += `
 schema (${ast._tag}): ${ast}`;
   }
-  return out;
+  return out2;
 };
 var getSchemaExtendErrorMessage = (x, y, path2) => getErrorMessage("Unsupported schema or overlapping types", `cannot extend ${x} with ${y}`, path2);
 var getASTUnsupportedKeySchemaErrorMessage = (ast) => getErrorMessage("Unsupported key schema", void 0, void 0, ast);
@@ -21207,7 +21209,7 @@ var literalMap = {
 var flatten6 = (candidates) => flatMap2(candidates, (ast) => isUnion(ast) ? flatten6(ast.types) : [ast]);
 var unify = (candidates) => {
   const cs = sortCandidates(candidates);
-  const out = [];
+  const out2 = [];
   const uniques = {};
   const literals = [];
   for (const ast of cs) {
@@ -21229,7 +21231,7 @@ var unify = (candidates) => {
       case "SymbolKeyword": {
         if (!uniques[ast._tag]) {
           uniques[ast._tag] = ast;
-          out.push(ast);
+          out2.push(ast);
         }
         break;
       }
@@ -21243,7 +21245,7 @@ var unify = (candidates) => {
             const _tag = literalMap[type2];
             if (!uniques[_tag] && !literals.includes(ast.literal)) {
               literals.push(ast.literal);
-              out.push(ast);
+              out2.push(ast);
             }
             break;
           }
@@ -21251,7 +21253,7 @@ var unify = (candidates) => {
           case "object": {
             if (!literals.includes(ast.literal)) {
               literals.push(ast.literal);
-              out.push(ast);
+              out2.push(ast);
             }
             break;
           }
@@ -21261,13 +21263,13 @@ var unify = (candidates) => {
       case "UniqueSymbol": {
         if (!uniques["SymbolKeyword"] && !literals.includes(ast.symbol)) {
           literals.push(ast.symbol);
-          out.push(ast);
+          out2.push(ast);
         }
         break;
       }
       case "TupleType": {
         if (!uniques["ObjectKeyword"]) {
-          out.push(ast);
+          out2.push(ast);
         }
         break;
       }
@@ -21275,18 +21277,18 @@ var unify = (candidates) => {
         if (ast.propertySignatures.length === 0 && ast.indexSignatures.length === 0) {
           if (!uniques["{}"]) {
             uniques["{}"] = ast;
-            out.push(ast);
+            out2.push(ast);
           }
         } else if (!uniques["ObjectKeyword"]) {
-          out.push(ast);
+          out2.push(ast);
         }
         break;
       }
       default:
-        out.push(ast);
+        out2.push(ast);
     }
   }
-  return out;
+  return out2;
 };
 var Union = class _Union {
   types;
@@ -21350,20 +21352,20 @@ var Suspend = class {
    */
   toJSON() {
     const ast = this.f();
-    let out = toJSONMemoMap.get(ast);
-    if (out) {
-      return out;
+    let out2 = toJSONMemoMap.get(ast);
+    if (out2) {
+      return out2;
     }
     toJSONMemoMap.set(ast, {
       _tag: this._tag
     });
-    out = {
+    out2 = {
       _tag: this._tag,
       ast: ast.toJSON(),
       annotations: toJSONAnnotations(this.annotations)
     };
-    toJSONMemoMap.set(ast, out);
-    return out;
+    toJSONMemoMap.set(ast, out2);
+    return out2;
   }
 };
 var Refinement = class {
@@ -21587,25 +21589,25 @@ var record = (key, value5) => {
   };
 };
 var pickAnnotations = (annotationIds) => (annotated) => {
-  let out = void 0;
+  let out2 = void 0;
   for (const id2 of annotationIds) {
     if (Object.prototype.hasOwnProperty.call(annotated.annotations, id2)) {
-      if (out === void 0) {
-        out = {};
+      if (out2 === void 0) {
+        out2 = {};
       }
-      out[id2] = annotated.annotations[id2];
+      out2[id2] = annotated.annotations[id2];
     }
   }
-  return out;
+  return out2;
 };
 var omitAnnotations = (annotationIds) => (annotated) => {
-  const out = {
+  const out2 = {
     ...annotated.annotations
   };
   for (const id2 of annotationIds) {
-    delete out[id2];
+    delete out2[id2];
   }
-  return out;
+  return out2;
 };
 var preserveTransformationAnnotations = /* @__PURE__ */ pickAnnotations([ExamplesAnnotationId, DefaultAnnotationId, JSONSchemaAnnotationId, ArbitraryAnnotationId, PrettyAnnotationId, EquivalenceAnnotationId]);
 var typeAST = (ast) => {
@@ -21659,16 +21661,16 @@ var createJSONIdentifierAnnotation = (annotated) => match2(getJSONIdentifier(ann
 });
 function changeMap(as9, f) {
   let changed = false;
-  const out = allocate(as9.length);
+  const out2 = allocate(as9.length);
   for (let i = 0; i < as9.length; i++) {
     const a = as9[i];
     const fa = f(a);
     if (fa !== a) {
       changed = true;
     }
-    out[i] = fa;
+    out2[i] = fa;
   }
-  return changed ? out : as9;
+  return changed ? out2 : as9;
 }
 var encodedAST_ = (ast, isBound) => {
   switch (ast._tag) {
@@ -21716,11 +21718,11 @@ var encodedAST_ = (ast, isBound) => {
 };
 var encodedAST = (ast) => encodedAST_(ast);
 var toJSONAnnotations = (annotations2) => {
-  const out = {};
+  const out2 = {};
   for (const k of Object.getOwnPropertySymbols(annotations2)) {
-    out[String(k)] = annotations2[k];
+    out2[String(k)] = annotations2[k];
   }
-  return out;
+  return out2;
 };
 var getEncodedParameter = (ast) => {
   switch (ast._tag) {
@@ -22415,13 +22417,13 @@ var go = (ast, isDecoding) => {
                 keys5.push(name2);
               }
             }
-            const out = {};
+            const out2 = {};
             for (const key of keys5) {
               if (Object.prototype.hasOwnProperty.call(output2, key)) {
-                out[key] = output2[key];
+                out2[key] = output2[key];
               }
             }
-            return right2(out);
+            return right2(out2);
           }
           return right2(output2);
         };
@@ -22569,26 +22571,26 @@ var getLiterals = (ast, isDecoding) => {
       break;
     }
     case "TypeLiteral": {
-      const out = [];
+      const out2 = [];
       for (let i = 0; i < ast.propertySignatures.length; i++) {
         const propertySignature2 = ast.propertySignatures[i];
         const type2 = isDecoding ? encodedAST(propertySignature2.type) : typeAST(propertySignature2.type);
         if (isLiteral(type2) && !propertySignature2.isOptional) {
-          out.push([propertySignature2.name, type2]);
+          out2.push([propertySignature2.name, type2]);
         }
       }
-      return out;
+      return out2;
     }
     case "TupleType": {
-      const out = [];
+      const out2 = [];
       for (let i = 0; i < ast.elements.length; i++) {
         const element = ast.elements[i];
         const type2 = isDecoding ? encodedAST(element.type) : typeAST(element.type);
         if (isLiteral(type2) && !element.isOptional) {
-          out.push([i, type2]);
+          out2.push([i, type2]);
         }
       }
-      return out;
+      return out2;
     }
     case "Refinement":
       return getLiterals(ast.from, isDecoding);
@@ -22679,7 +22681,7 @@ var getFinalTransformation = (transformation, isDecoding) => {
       return right2;
     case "TypeLiteralTransformation":
       return (input) => {
-        let out = right2(input);
+        let out2 = right2(input);
         for (const pst of transformation.propertySignatureTransformations) {
           const [from, to] = isDecoding ? [pst.from, pst.to] : [pst.to, pst.from];
           const transformation2 = isDecoding ? pst.decode : pst.encode;
@@ -22691,9 +22693,9 @@ var getFinalTransformation = (transformation, isDecoding) => {
             }
             return input2;
           };
-          out = map18(out, f);
+          out2 = map18(out2, f);
         }
-        return out;
+        return out2;
       };
   }
 };
@@ -23570,10 +23572,10 @@ var sync7 = (evaluate2) => {
   return op;
 };
 var void_5 = /* @__PURE__ */ succeedNow(void 0);
-var write = (out) => {
+var write = (out2) => {
   const op = Object.create(proto8);
   op._tag = OP_EMIT;
-  op.out = out;
+  op.out = out2;
   return op;
 };
 
@@ -24093,9 +24095,9 @@ var ChannelExecutor = class _ChannelExecutor {
       onFailure: (cause2) => sync5(() => {
         this._currentChannel = failCause8(cause2);
       }),
-      onSuccess: (out) => sync5(() => {
-        this.addFinalizer((exit4) => this.provide(bracketOut.finalizer(out, exit4)));
-        this._currentChannel = write(out);
+      onSuccess: (out2) => sync5(() => {
+        this.addFinalizer((exit4) => this.provide(bracketOut.finalizer(out2, exit4)));
+        this._currentChannel = write(out2);
       })
     }));
     return fromEffect5(effect3);
@@ -24892,8 +24894,8 @@ var splitLines = () => suspend6(() => {
   };
   const loop2 = readWithCause({
     onInput: (input) => {
-      const out = splitLinesChunk(input);
-      return isEmpty(out) ? loop2 : flatMap12(write(out), () => loop2);
+      const out2 = splitLinesChunk(input);
+      return isEmpty(out2) ? loop2 : flatMap12(write(out2), () => loop2);
     },
     onFailure: (cause2) => stringBuilder.length === 0 ? failCause8(cause2) : flatMap12(write(of2(stringBuilder)), () => failCause8(cause2)),
     onDone: (done8) => stringBuilder.length === 0 ? succeed11(done8) : flatMap12(write(of2(stringBuilder)), () => succeed11(done8))
@@ -25191,7 +25193,7 @@ var flatMap14 = /* @__PURE__ */ dual((args2) => isStream(args2[0]), (self, f, op
   if (options3?.switch) {
     return matchConcurrency(options3?.concurrency, () => flatMapParSwitchBuffer(self, 1, bufferSize, f), (n) => flatMapParSwitchBuffer(self, n, bufferSize, f));
   }
-  return matchConcurrency(options3?.concurrency, () => new StreamImpl(concatMap(toChannel2(self), (as9) => pipe(as9, map4((a) => toChannel2(f(a))), reduce2(void_5, (left3, right3) => pipe(left3, zipRight4(right3)))))), (_) => new StreamImpl(pipe(toChannel2(self), concatMap(writeChunk), mergeMap((out) => toChannel2(f(out)), options3))));
+  return matchConcurrency(options3?.concurrency, () => new StreamImpl(concatMap(toChannel2(self), (as9) => pipe(as9, map4((a) => toChannel2(f(a))), reduce2(void_5, (left3, right3) => pipe(left3, zipRight4(right3)))))), (_) => new StreamImpl(pipe(toChannel2(self), concatMap(writeChunk), mergeMap((out2) => toChannel2(f(out2)), options3))));
 });
 var matchConcurrency = (concurrency, sequential5, bounded4) => {
   switch (concurrency) {
@@ -25203,7 +25205,7 @@ var matchConcurrency = (concurrency, sequential5, bounded4) => {
       return concurrency > 1 ? bounded4(concurrency) : sequential5();
   }
 };
-var flatMapParSwitchBuffer = /* @__PURE__ */ dual(4, (self, n, bufferSize, f) => new StreamImpl(pipe(toChannel2(self), concatMap(writeChunk), mergeMap((out) => toChannel2(f(out)), {
+var flatMapParSwitchBuffer = /* @__PURE__ */ dual(4, (self, n, bufferSize, f) => new StreamImpl(pipe(toChannel2(self), concatMap(writeChunk), mergeMap((out2) => toChannel2(f(out2)), {
   concurrency: n,
   mergeStrategy: BufferSliding(),
   bufferSize
@@ -25462,11 +25464,11 @@ function map23(f) {
 var struct3 = (F) => (fields) => {
   const keys5 = Object.keys(fields);
   return F.imap(F.productAll(keys5.map((k) => fields[k])), (values3) => {
-    const out = {};
+    const out2 = {};
     for (let i = 0; i < values3.length; i++) {
-      out[keys5[i]] = values3[i];
+      out2[keys5[i]] = values3[i];
     }
-    return out;
+    return out2;
   }, (r) => keys5.map((k) => r[k]));
 };
 
@@ -25482,16 +25484,16 @@ var product = (self, that) => make50(([xa, xb], [ya, yb]) => [self.combine(xa, y
 var productAll = (collection) => {
   return make50((x, y) => {
     const len = Math.min(x.length, y.length);
-    const out = [];
+    const out2 = [];
     let collectionLength = 0;
     for (const s of collection) {
       if (collectionLength >= len) {
         break;
       }
-      out.push(s.combine(x[collectionLength], y[collectionLength]));
+      out2.push(s.combine(x[collectionLength], y[collectionLength]));
       collectionLength++;
     }
-    return out;
+    return out2;
   });
 };
 var productMany = (self, collection) => {
@@ -26966,22 +26968,22 @@ var IntSchemaId = /* @__PURE__ */ Symbol.for("effect/SchemaId/Int");
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/Struct.js
 var pick2 = /* @__PURE__ */ dual((args2) => isObject(args2[0]), (s, ...keys5) => {
-  const out = {};
+  const out2 = {};
   for (const k of keys5) {
     if (k in s) {
-      out[k] = s[k];
+      out2[k] = s[k];
     }
   }
-  return out;
+  return out2;
 });
 var omit3 = /* @__PURE__ */ dual((args2) => isObject(args2[0]), (s, ...keys5) => {
-  const out = {
+  const out2 = {
     ...s
   };
   for (const k of keys5) {
-    delete out[k];
+    delete out2[k];
   }
-  return out;
+  return out2;
 });
 
 // node_modules/.pnpm/effect@3.15.2/node_modules/effect/dist/esm/Schema.js
@@ -27037,17 +27039,17 @@ var toASTAnnotations = (annotations2) => {
   if (!annotations2) {
     return {};
   }
-  const out = {
+  const out2 = {
     ...annotations2
   };
   for (const key in builtInAnnotations) {
     if (key in annotations2) {
       const id2 = builtInAnnotations[key];
-      out[id2] = annotations2[key];
-      delete out[key];
+      out2[id2] = annotations2[key];
+      delete out2[key];
     }
   }
-  return out;
+  return out2;
 };
 var mergeSchemaAnnotations = (ast, annotations2) => annotations(ast, toASTAnnotations(annotations2));
 function asSchema(schema) {
@@ -27314,19 +27316,19 @@ var getDefaultTypeLiteralAST = (fields, records) => {
   }
   return new TypeLiteral(pss, iss);
 };
-var lazilyMergeDefaults = (fields, out) => {
+var lazilyMergeDefaults = (fields, out2) => {
   const ownKeys2 = ownKeys(fields);
   for (const key of ownKeys2) {
     const field = fields[key];
-    if (out[key] === void 0 && isPropertySignature(field)) {
+    if (out2[key] === void 0 && isPropertySignature(field)) {
       const ast = field.ast;
       const defaultValue = ast._tag === "PropertySignatureDeclaration" ? ast.defaultValue : ast.to.defaultValue;
       if (defaultValue !== void 0) {
-        out[key] = defaultValue();
+        out2[key] = defaultValue();
       }
     }
   }
-  return out;
+  return out2;
 };
 function makeTypeLiteralClass(fields, records, ast = getDefaultTypeLiteralAST(fields, records)) {
   return class TypeLiteralClass extends make53(ast) {
@@ -27506,12 +27508,12 @@ var fromFilterPredicateReturnTypeItem = (item, ast, input) => {
   }
   return none2();
 };
-var toFilterParseIssue = (out, ast, input) => {
-  if (isSingle(out)) {
-    return fromFilterPredicateReturnTypeItem(out, ast, input);
+var toFilterParseIssue = (out2, ast, input) => {
+  if (isSingle(out2)) {
+    return fromFilterPredicateReturnTypeItem(out2, ast, input);
   }
-  if (isNonEmptyReadonlyArray(out)) {
-    const issues = filterMap2(out, (issue) => fromFilterPredicateReturnTypeItem(issue, ast, input));
+  if (isNonEmptyReadonlyArray(out2)) {
+    const issues = filterMap2(out2, (issue) => fromFilterPredicateReturnTypeItem(issue, ast, input));
     if (isNonEmptyReadonlyArray(issues)) {
       return some2(issues.length === 1 ? issues[0] : new Composite2(ast, input, issues));
     }
@@ -27653,16 +27655,16 @@ var TaggedError2 = (identifier3) => (tag4, fieldsOr, annotations2) => {
   return TaggedErrorClass;
 };
 var extendFields = (a, b) => {
-  const out = {
+  const out2 = {
     ...a
   };
   for (const key of ownKeys(b)) {
     if (key in a) {
       throw new Error(getASTDuplicatePropertySignatureErrorMessage(key));
     }
-    out[key] = b[key];
+    out2[key] = b[key];
   }
-  return out;
+  return out2;
 };
 function getDisableValidationMakeOption(options3) {
   return isBoolean(options3) ? options3 : options3?.disableValidation ?? false;
@@ -27731,9 +27733,9 @@ var makeClass = ({
     // ----------------
     static [TypeId16] = variance5;
     static get ast() {
-      let out = astCache.get(this);
-      if (out) {
-        return out;
+      let out2 = astCache.get(this);
+      if (out2) {
+        return out2;
       }
       const declaration = declare([schema], {
         decode: () => (input, _, ast) => input instanceof this || fallbackInstanceOf(input) ? succeed9(input) : fail9(new Type2(ast, input)),
@@ -27747,7 +27749,7 @@ var makeClass = ({
         [SurrogateAnnotationId]: declarationSurrogate.ast,
         ...typeAnnotations
       });
-      out = transform2(encodedSide, declaration, {
+      out2 = transform2(encodedSide, declaration, {
         strict: true,
         decode: (i) => new this(i, true),
         encode: identity
@@ -27755,8 +27757,8 @@ var makeClass = ({
         [SurrogateAnnotationId]: transformationSurrogate.ast,
         ...transformationAnnotations
       }).ast;
-      astCache.set(this, out);
-      return out;
+      astCache.set(this, out2);
+      return out2;
     }
     static pipe() {
       return pipeArguments(this, arguments);
@@ -27913,8 +27915,8 @@ var causeEncodedId = 0;
 var causeEncoded = (error4, defect) => {
   const error_ = asSchema(error4);
   const defect_ = asSchema(defect);
-  const suspended3 = suspend10(() => out);
-  const out = Union2(CauseEmptyEncoded, causeFailEncoded(error_), causeDieEncoded(defect_), CauseInterruptEncoded, Struct({
+  const suspended3 = suspend10(() => out2);
+  const out2 = Union2(CauseEmptyEncoded, causeFailEncoded(error_), causeDieEncoded(defect_), CauseInterruptEncoded, Struct({
     _tag: Literal2("Sequential"),
     left: suspended3,
     right: suspended3
@@ -27926,7 +27928,7 @@ var causeEncoded = (error4, defect) => {
     title: `CauseEncoded<${format4(error4)}>`,
     [JSONIdentifierAnnotationId]: `CauseEncoded${causeEncodedId++}`
   });
-  return out;
+  return out2;
 };
 var causeArbitrary = (error4, defect) => (fc) => fc.letrec((tie) => ({
   Empty: fc.record({
@@ -28046,7 +28048,7 @@ var Cause = ({
 }) => {
   const error_ = asSchema(error4);
   const defect_ = asSchema(defect);
-  const out = transform2(causeEncoded(error_, defect_), CauseFromSelf({
+  const out2 = transform2(causeEncoded(error_, defect_), CauseFromSelf({
     error: typeSchema(error_),
     defect: typeSchema(defect_)
   }), {
@@ -28054,7 +28056,7 @@ var Cause = ({
     decode: (i) => causeDecode(i),
     encode: (a) => causeEncode(a)
   });
-  return out;
+  return out2;
 };
 var Defect = class extends (/* @__PURE__ */ transform2(Unknown, Unknown, {
   strict: true,
@@ -34716,11 +34718,11 @@ var make64 = gen2(function* () {
       const entries2 = Object.entries(value5).filter(
         ([key, v]) => v !== void 0 && !structuralOmitKeys2.has(key) && !key.startsWith("x-")
       ).map(([key, v]) => [key, canonicalize(v)]).sort(([a], [b]) => a.localeCompare(b));
-      const out = {};
+      const out2 = {};
       for (const [key, v] of entries2) {
-        out[key] = v;
+        out2[key] = v;
       }
-      return out;
+      return out2;
     }
     return value5;
   };
@@ -34932,15 +34934,15 @@ var make64 = gen2(function* () {
   };
   const flattenAllOf = (schema) => {
     if ("allOf" in schema) {
-      let out = {};
+      let out2 = {};
       for (const member of schema.allOf) {
         let s = getSchema(member);
         if ("allOf" in s) {
           s = flattenAllOf(s);
         }
-        out = mergeSchemas(out, s);
+        out2 = mergeSchemas(out2, s);
       }
-      return out;
+      return out2;
     }
     return getSchema(schema);
   };
@@ -35162,7 +35164,7 @@ var make64 = gen2(function* () {
       aliasMap.set(alias, target);
     }
   };
-  const generate = (importName) => sync5(() => {
+  const generate = (importName, options3) => sync5(() => {
     transformer.resetHoists?.();
     const storeEntries = Array.from(store.entries());
     const missingTopLevel = [];
@@ -35270,23 +35272,40 @@ var make64 = gen2(function* () {
         `/* JsonSchemaGen warning: unsupported top-level schemas (${missingTopLevel.join(", ")}). */`
       );
     }
-    const joinedBody = finalOrder.map((name2) => sourceMap.get(name2)).join("\n\n");
-    const hoistResult = transformer.finalizeHoists ? transformer.finalizeHoists({ source: joinedBody }) : { declarations: [], source: joinedBody };
-    const hoistDeclarations = Array.from(hoistResult.declarations);
-    const body = hoistDeclarations.length > 0 ? `${hoistDeclarations.join("\n")}
-
-${hoistResult.source}` : hoistResult.source;
+    const orderedSources = finalOrder.map((name2) => ({
+      name: name2,
+      source: sourceMap.get(name2)
+    }));
+    const joinedBody = orderedSources.map((_) => _.source).join("\n\n");
+    const hoistPrefix = options3?.hoistReferencePrefix ?? "";
+    const hoistResult = transformer.finalizeHoists ? transformer.finalizeHoists({
+      referencePrefix: hoistPrefix,
+      source: joinedBody
+    }) : {
+      hoists: [],
+      replacements: /* @__PURE__ */ new Map()};
+    const applyReplacements = (value5) => {
+      let result = value5;
+      for (const [placeholder, replacement] of hoistResult.replacements) {
+        result = result.split(placeholder).join(replacement);
+      }
+      return result;
+    };
+    const resolvedSources = orderedSources.map(({ name: name2, source }) => ({
+      name: name2,
+      source: applyReplacements(source)
+    }));
     const aliasEntries = Array.from(aliasMap.entries()).filter(
       ([alias, target]) => alias !== target
     );
     aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias));
-    const aliasSource = aliasEntries.map(([alias, target]) => `export { ${target} as ${alias} }`).join("\n");
-    const emitBody = aliasSource.length > 0 ? body.length > 0 ? `${body}
-
-${aliasSource}` : aliasSource : body;
-    return warningBlocks.length > 0 ? `${warningBlocks.join("\n")}
-
-${emitBody}` : emitBody;
+    return {
+      aliases: aliasEntries.map(([alias, target]) => ({ alias, target })),
+      hoists: hoistResult.hoists,
+      replacements: hoistResult.replacements,
+      sources: resolvedSources,
+      warnings: warningBlocks.slice(0)
+    };
   });
   return { addSchema, addAlias, generate };
 });
@@ -35368,15 +35387,16 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
       }
     }
   };
-  const resolveHoists = (source) => {
+  const resolveHoists = (source, referencePrefix) => {
     if (hoistEntries.length === 0) {
       return {
-        declarations: [],
+        hoists: [],
+        replacements: /* @__PURE__ */ new Map(),
         source
       };
     }
     const replacements = /* @__PURE__ */ new Map();
-    const declarations = [];
+    const hoists = [];
     const usedNames = /* @__PURE__ */ new Set();
     for (const entry of hoistEntries) {
       if (entry.count <= 1) {
@@ -35393,8 +35413,12 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
         uniqueName = `${name2}${++index}`;
       }
       usedNames.add(uniqueName);
-      declarations.push(`const ${uniqueName} = ${entry.expression}`);
-      replacements.set(entry.placeholder, uniqueName);
+      hoists.push({
+        name: uniqueName,
+        expression: entry.expression
+      });
+      const reference = referencePrefix.length > 0 ? `${referencePrefix}${uniqueName}` : uniqueName;
+      replacements.set(entry.placeholder, reference);
     }
     let resolved = source;
     for (const [placeholder, replacement] of replacements) {
@@ -35402,7 +35426,8 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
     }
     resetHoists();
     return {
-      declarations,
+      hoists,
+      replacements,
       source: resolved
     };
   };
@@ -35523,8 +35548,8 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
       return `${importName}.Union(${items.map((_) => `${toComment(_.description)}${_.source}`).join(",\n")})`;
     },
     resetHoists,
-    finalizeHoists({ source }) {
-      return resolveHoists(source);
+    finalizeHoists({ source, referencePrefix }) {
+      return resolveHoists(source, referencePrefix);
     }
   });
 });
@@ -35587,7 +35612,8 @@ export type ${name2} = (typeof ${name2})[keyof typeof ${name2}];` : `${toComment
     },
     finalizeHoists({ source }) {
       return {
-        declarations: [],
+        hoists: [],
+        replacements: /* @__PURE__ */ new Map(),
         source
       };
     }
@@ -35625,22 +35651,22 @@ function resolveAllOf(schema, context7, resolveRefs = true, aliasMap) {
     return resolved.schema;
   } else if ("allOf" in schema) {
     if (schema.allOf.length <= 1) {
-      let out2 = { ...schema };
-      delete out2.allOf;
+      let out3 = { ...schema };
+      delete out3.allOf;
       if (schema.allOf.length === 0) {
-        return out2;
+        return out3;
       }
-      Object.assign(out2, schema.allOf[0]);
-      return resolveAllOf(out2, context7, resolveRefs, aliasMap);
+      Object.assign(out3, schema.allOf[0]);
+      return resolveAllOf(out3, context7, resolveRefs, aliasMap);
     }
-    let out = {};
+    let out2 = {};
     for (const member of schema.allOf) {
-      out = mergeSchemas(
-        out,
+      out2 = mergeSchemas(
+        out2,
         resolveAllOf(member, context7, resolveRefs, aliasMap)
       );
     }
-    return out;
+    return out2;
   }
   return schema;
 }
@@ -35813,11 +35839,11 @@ var canonicalizeSchema = (value5) => {
     const entries2 = Object.entries(value5).filter(
       ([key, v]) => v !== void 0 && !structuralOmitKeys.has(key) && !key.startsWith("x-")
     ).map(([key, v]) => [key, canonicalizeSchema(v)]).sort(([a], [b]) => a.localeCompare(b));
-    const out = {};
+    const out2 = {};
     for (const [key, v] of entries2) {
-      out[key] = v;
+      out2[key] = v;
     }
-    return out;
+    return out2;
   }
   return value5;
 };
@@ -36007,14 +36033,56 @@ var make65 = gen2(function* () {
         ([path2, methods]) => handlePath(path2, methods)
       );
       const transformer = yield* OpenApiTransformer;
-      const schemas = yield* gen3.generate("S");
-      return `${transformer.imports}
-
-${schemas}
-
-${transformer.toImplementation(options3.name, operations)}
-
-${transformer.toTypes(options3.name, operations)}`;
+      const schemaModuleName = "Models";
+      const primitivesModuleName = "Primitives";
+      const schemas = yield* gen3.generate("S", {
+        hoistReferencePrefix: `${primitivesModuleName}.`
+      });
+      const warningBlock = schemas.warnings.length > 0 ? schemas.warnings.join("\n") : void 0;
+      const aliasSource = schemas.aliases.length > 0 ? schemas.aliases.map(({ alias, target }) => `export { ${target} as ${alias} }`).join("\n") : "";
+      const primitivesImport = schemas.hoists.length > 0 ? `
+import * as ${primitivesModuleName} from "./primitives"` : "";
+      const modelsImports = `import * as S from "effect/Schema"${primitivesImport}`;
+      const modelsBody = schemas.sources.map((_) => _.source).join("\n\n");
+      const modelsSections = [warningBlock, modelsImports, modelsBody];
+      if (aliasSource.length > 0) {
+        modelsSections.push(aliasSource);
+      }
+      const modelsContent = modelsSections.filter((section) => !!section && section.length > 0).join("\n\n");
+      const primitivesContent = schemas.hoists.length > 0 ? [
+        'import * as S from "effect/Schema"',
+        schemas.hoists.map(({ name: name2, expression }) => `export const ${name2} = ${expression}`).join("\n")
+      ].join("\n\n") : void 0;
+      const clientImports = [
+        transformer.imports,
+        `import * as ${schemaModuleName} from "./models"`
+      ].join("\n");
+      const clientImplementation = transformer.toImplementation(
+        options3.name,
+        operations,
+        { schemaQualifier: `${schemaModuleName}.` }
+      );
+      const clientTypes = transformer.toTypes(options3.name, operations, {
+        schemaQualifier: `${schemaModuleName}.`
+      });
+      const clientContent = [clientImports, clientImplementation, clientTypes].filter((_) => _.length > 0).join("\n\n");
+      const indexLines = [
+        `export * as ${schemaModuleName} from "./models"`,
+        schemas.hoists.length > 0 ? `export * as ${primitivesModuleName} from "./primitives"` : void 0,
+        'export * as Client from "./client"',
+        'export * from "./models"',
+        'export * from "./client"'
+      ].filter((_) => _ !== void 0);
+      const indexContent = indexLines.join("\n");
+      const files = [
+        { path: "models.ts", contents: modelsContent },
+        { path: "client.ts", contents: clientContent },
+        { path: "index.ts", contents: indexContent }
+      ];
+      if (primitivesContent) {
+        files.push({ path: "primitives.ts", contents: primitivesContent });
+      }
+      return files;
     },
     with_,
     (effect3, _, options3) => provide2(
@@ -36030,13 +36098,16 @@ var OpenApi = class _OpenApi extends Tag3("OpenApi")() {
 var OpenApiTransformer = class extends Tag2("OpenApiTransformer")() {
 };
 var layerTransformerSchema2 = sync6(OpenApiTransformer, () => {
-  const operationsToInterface = (name2, operations) => `export interface ${name2} {
+  const operationsToInterface = (name2, operations, options3) => {
+    const qualifier = options3?.schemaQualifier ?? "";
+    return `export interface ${name2} {
   readonly httpClient: HttpClient.HttpClient
-  ${operations.map((op) => operationToMethod(name2, op)).join("\n  ")}
+  ${operations.map((op) => operationToMethod(name2, op, qualifier)).join("\n  ")}
 }
 
 ${clientErrorSource(name2)}`;
-  const operationToMethod = (name2, operation) => {
+  };
+  const operationToMethod = (name2, operation, qualifier) => {
     const args2 = [];
     if (operation.pathIds.length > 0) {
       args2.push(...operation.pathIds.map((id2) => `${id2}: string`));
@@ -36044,15 +36115,15 @@ ${clientErrorSource(name2)}`;
     let options3 = [];
     if (operation.params && !operation.payload) {
       args2.push(
-        `options${operation.paramsOptional ? "?" : ""}: typeof ${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`
+        `options${operation.paramsOptional ? "?" : ""}: typeof ${qualifier}${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`
       );
     } else if (operation.params) {
       options3.push(
-        `readonly params${operation.paramsOptional ? "?" : ""}: typeof ${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`
+        `readonly params${operation.paramsOptional ? "?" : ""}: typeof ${qualifier}${operation.params}.Encoded${operation.paramsOptional ? " | undefined" : ""}`
       );
     }
     if (operation.payload) {
-      const type2 = `typeof ${operation.payload}.Encoded`;
+      const type2 = `typeof ${qualifier}${operation.payload}.Encoded`;
       if (!operation.params) {
         args2.push(`options: ${type2}`);
       } else {
@@ -36064,19 +36135,21 @@ ${clientErrorSource(name2)}`;
     }
     let success = "void";
     if (operation.successSchemas.size > 0) {
-      success = Array.from(operation.successSchemas.values()).map((schema) => `typeof ${schema}.Type`).join(" | ");
+      success = Array.from(operation.successSchemas.values()).map((schema) => `typeof ${qualifier}${schema}.Type`).join(" | ");
     }
     const errors = ["HttpClientError.HttpClientError", "ParseError"];
     if (operation.errorSchemas.size > 0) {
       errors.push(
         ...Array.from(operation.errorSchemas.values()).map(
-          (schema) => `${name2}Error<"${schema}", typeof ${schema}.Type>`
+          (schema) => `${name2}Error<"${schema}", typeof ${qualifier}${schema}.Type>`
         )
       );
     }
     return `${toComment(operation.description)}readonly "${operation.id}": (${args2.join(", ")}) => Effect.Effect<${success}, ${errors.join(" | ")}>`;
   };
-  const operationsToImpl = (name2, operations) => `export const make = (
+  const operationsToImpl = (name2, operations, options3) => {
+    const qualifier = options3?.schemaQualifier ?? "";
+    return `export const make = (
   httpClient: HttpClient.HttpClient, 
   options: {
     readonly transformClient?: ((client: HttpClient.HttpClient) => Effect.Effect<HttpClient.HttpClient>) | undefined
@@ -36096,10 +36169,11 @@ ${clientErrorSource(name2)}`;
       )
   return {
     httpClient,
-    ${operations.map(operationToImpl).join(",\n  ")}
+    ${operations.map((operation) => operationToImpl(operation, qualifier)).join(",\n  ")}
   }
 }`;
-  const operationToImpl = (operation) => {
+  };
+  const operationToImpl = (operation, qualifier) => {
     const args2 = [...operation.pathIds];
     const hasOptions = operation.params || operation.payload;
     if (hasOptions) {
@@ -36134,10 +36208,12 @@ ${clientErrorSource(name2)}`;
     const singleSuccessCode = operation.successSchemas.size === 1;
     operation.successSchemas.forEach((schema, status2) => {
       const statusCode = singleSuccessCode && status2.startsWith("2") ? "2xx" : status2;
-      decodes.push(`"${statusCode}": decodeSuccess(${schema})`);
+      decodes.push(`"${statusCode}": decodeSuccess(${qualifier}${schema})`);
     });
     operation.errorSchemas.forEach((schema, status2) => {
-      decodes.push(`"${status2}": decodeError("${schema}", ${schema})`);
+      decodes.push(
+        `"${status2}": decodeError("${schema}", ${qualifier}${schema})`
+      );
     });
     operation.voidSchemas.forEach((status2) => {
       decodes.push(`"${status2}": () => Effect.void`);
@@ -36386,10 +36462,33 @@ var typeOnly = boolean5("type-only").pipe(
   withAlias2("t"),
   withDescription3("Generate a type-only client without schemas")
 );
-var root = make63("openapigen", { spec, typeOnly, name }).pipe(
+var out = text8("out").pipe(
+  withAlias2("o"),
+  withDescription3("Directory to write generated files")
+);
+var root = make63("openapigen", { spec, typeOnly, name, out }).pipe(
   withHandler2(
-    ({ spec: spec2, typeOnly: typeOnly2, name: name2 }) => OpenApi.generate(spec2, { name: name2, typeOnly: typeOnly2 }).pipe(
-      flatMap9(log2)
+    ({ spec: spec2, typeOnly: typeOnly2, name: name2, out: out2 }) => OpenApi.generate(spec2, { name: name2, typeOnly: typeOnly2 }).pipe(
+      flatMap9(
+        (files) => flatMap9(
+          tryPromise2(() => Fs__namespace.mkdir(out2, { recursive: true })),
+          () => forEach8(files, (file3) => {
+            const targetPath = Path3__namespace.join(out2, file3.path);
+            return flatMap9(
+              tryPromise2(
+                () => Fs__namespace.mkdir(Path3__namespace.dirname(targetPath), { recursive: true })
+              ),
+              () => tryPromise2(
+                () => Fs__namespace.writeFile(
+                  targetPath,
+                  file3.contents.endsWith("\n") ? file3.contents : `${file3.contents}
+`
+                )
+              )
+            );
+          })
+        )
+      )
     )
   )
 );
