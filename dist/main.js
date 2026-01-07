@@ -35166,6 +35166,19 @@ var make64 = gen2(function* () {
   };
   const generate = (importName, options3) => sync5(() => {
     transformer.resetHoists?.();
+    const resolveAlias = (value5) => {
+      const visited = /* @__PURE__ */ new Set();
+      let current = value5;
+      while (aliasMap.has(current)) {
+        if (visited.has(current)) {
+          break;
+        }
+        visited.add(current);
+        current = aliasMap.get(current);
+      }
+      return current;
+    };
+    const escapeRegExp = (value5) => value5.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const storeEntries = Array.from(store.entries());
     const missingTopLevel = [];
     const sources = [];
@@ -35193,16 +35206,20 @@ var make64 = gen2(function* () {
         const filtered = /* @__PURE__ */ new Set();
         const missing = [];
         for (const dep of deps) {
-          if (topLevelNames.has(dep)) {
-            filtered.add(dep);
-            const list4 = dependents.get(dep);
+          const resolved = resolveAlias(dep);
+          if (resolved === name2) {
+            continue;
+          }
+          if (topLevelNames.has(resolved)) {
+            filtered.add(resolved);
+            const list4 = dependents.get(resolved);
             if (list4) {
               list4.add(name2);
             } else {
-              dependents.set(dep, /* @__PURE__ */ new Set([name2]));
+              dependents.set(resolved, /* @__PURE__ */ new Set([name2]));
             }
-          } else if (store.has(dep)) {
-            missing.push(dep);
+          } else if (store.has(resolved)) {
+            missing.push(resolved);
           }
         }
         if (missing.length > 0) {
@@ -35276,6 +35293,16 @@ var make64 = gen2(function* () {
       name: name2,
       source: sourceMap.get(name2)
     }));
+    const aliasEntries = Array.from(aliasMap.entries()).map(([alias, target]) => [alias, resolveAlias(target)]).filter(([alias, target]) => alias !== target);
+    aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias));
+    const replaceAliases = (value5) => {
+      let result = value5;
+      for (const [alias, target] of aliasEntries) {
+        const pattern2 = new RegExp(`\\b${escapeRegExp(alias)}\\b`, "g");
+        result = result.replace(pattern2, target);
+      }
+      return result;
+    };
     const joinedBody = orderedSources.map((_) => _.source).join("\n\n");
     const hoistPrefix = options3?.hoistReferencePrefix ?? "";
     const hoistResult = transformer.finalizeHoists ? transformer.finalizeHoists({
@@ -35293,13 +35320,13 @@ var make64 = gen2(function* () {
     };
     const resolvedSources = orderedSources.map(({ name: name2, source }) => ({
       name: name2,
-      source: applyReplacements(source),
-      dependencies: Array.from(dependencies.get(name2) ?? [])
+      source: replaceAliases(applyReplacements(source)),
+      dependencies: Array.from(
+        new Set(
+          Array.from(dependencies.get(name2) ?? []).map((dep) => resolveAlias(dep)).filter((dep) => dep !== name2)
+        )
+      )
     }));
-    const aliasEntries = Array.from(aliasMap.entries()).filter(
-      ([alias, target]) => alias !== target
-    );
-    aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias));
     return {
       aliases: aliasEntries.map(([alias, target]) => ({ alias, target })),
       hoists: hoistResult.hoists,
@@ -35440,7 +35467,7 @@ var layerTransformerSchema = sync6(JsonSchemaTransformer, () => {
     if (options3.isNullable && options3.default === null) {
       return `${S}.optionalWith(${S}.NullOr(${source}), { default: () => null })`;
     }
-    const defaultSource = options3.default !== void 0 && options3.default !== null ? `() => ${JSON.stringify(options3.default)} as const` : void 0;
+    const defaultSource = options3.default !== void 0 && options3.default !== null ? `() => (${JSON.stringify(options3.default)} as const)` : void 0;
     if (options3.isOptional) {
       const expression = defaultSource !== void 0 ? `${S}.optionalWith(${source}, { nullable: true, default: ${defaultSource} })` : `${S}.optionalWith(${source}, { nullable: true })`;
       return hoistOptional(expression, source, defaultSource);
@@ -35927,9 +35954,37 @@ var make65 = gen2(function* () {
           paramsOptional: true
         };
         const schemaId = identifier2(operation.operationId ?? path2);
-        const validParameters = operation.parameters?.filter(
-          (_) => _.in !== "path" && _.in !== "cookie"
-        ) ?? [];
+        const parameterKey = (parameter) => {
+          if ("$ref" in parameter) {
+            const resolved = resolveRef2(parameter.$ref);
+            if (resolved && typeof resolved === "object" && "in" in resolved && "name" in resolved) {
+              return `${resolved.in}:${resolved.name}`;
+            }
+            return `ref:${parameter.$ref}`;
+          }
+          return `${parameter.in}:${parameter.name}`;
+        };
+        const mergeParameters = (pathParameters, operationParameters) => {
+          const merged = /* @__PURE__ */ new Map();
+          for (const parameter of pathParameters) {
+            const key = parameterKey(parameter);
+            if (!merged.has(key)) {
+              merged.set(key, parameter);
+            }
+          }
+          for (const parameter of operationParameters) {
+            const key = parameterKey(parameter);
+            if (merged.has(key)) {
+              merged.delete(key);
+            }
+            merged.set(key, parameter);
+          }
+          return Array.from(merged.values());
+        };
+        const validParameters = mergeParameters(
+          methods.parameters ?? [],
+          operation.parameters ?? []
+        ).filter((_) => _.in !== "path" && _.in !== "cookie");
         if (validParameters.length > 0) {
           const schema = {
             type: "object",
@@ -36456,6 +36511,22 @@ ${clientErrorSource(name2)}`;
   };
   const operationsToImpl = (name2, operations, options3) => {
     const qualifier = options3?.schemaQualifier ?? "";
+    const hasErrorSchemas = operations.some(
+      (operation) => operation.errorSchemas.size > 0
+    );
+    const decodeErrorSource = hasErrorSchemas ? `  const decodeError =
+    <const Tag extends string, A, I, R>(tag: Tag, schema: S.Schema<A, I, R>) =>
+    (response: HttpClientResponse.HttpClientResponse) => {
+      return Effect.flatMap(
+        HttpClientResponse.schemaBodyJson(schema)(response),
+        (cause) => Effect.fail(${name2}Error(tag, cause, response)),
+      ) as unknown as Effect.Effect<
+        A,
+        any,
+        never
+      >
+    }
+` : "";
     return `export const make = (
   httpClient: HttpClient.HttpClient, 
   options: {
@@ -36472,18 +36543,7 @@ ${clientErrorSource(name2)}`;
         never
       >
     }
-  const decodeError =
-    <const Tag extends string, A, I, R>(tag: Tag, schema: S.Schema<A, I, R>) =>
-    (response: HttpClientResponse.HttpClientResponse) => {
-      return Effect.flatMap(
-        HttpClientResponse.schemaBodyJson(schema)(response),
-        (cause) => Effect.fail(${name2}Error(tag, cause, response)),
-      ) as unknown as Effect.Effect<
-        A,
-        any,
-        never
-      >
-    }
+${decodeErrorSource}
   return {
     httpClient,
     ${operations.map((operation) => operationToImpl(operation, qualifier)).join(",\n  ")}

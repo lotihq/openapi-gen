@@ -1,3 +1,11 @@
+# @lotihq/openapi-gen
+
+## 0.4.2
+
+### Patch Changes
+
+- Differentiated route params by optional headers
+
 # @tim-smart/openapi-gen
 
 ## 0.4.13

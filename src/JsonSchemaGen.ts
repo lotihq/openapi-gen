@@ -579,6 +579,20 @@ const make = Effect.gen(function* () {
   ) =>
     Effect.sync(() => {
       transformer.resetHoists?.()
+      const resolveAlias = (value: string) => {
+        const visited = new Set<string>()
+        let current = value
+        while (aliasMap.has(current)) {
+          if (visited.has(current)) {
+            break
+          }
+          visited.add(current)
+          current = aliasMap.get(current)!
+        }
+        return current
+      }
+      const escapeRegExp = (value: string) =>
+        value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
       const storeEntries = Array.from(store.entries())
       const missingTopLevel: Array<string> = []
       const sources: Array<{ readonly name: string; readonly source: string }> =
@@ -610,16 +624,20 @@ const make = Effect.gen(function* () {
           const filtered = new Set<string>()
           const missing: Array<string> = []
           for (const dep of deps) {
-            if (topLevelNames.has(dep)) {
-              filtered.add(dep)
-              const list = dependents.get(dep)
+            const resolved = resolveAlias(dep)
+            if (resolved === name) {
+              continue
+            }
+            if (topLevelNames.has(resolved)) {
+              filtered.add(resolved)
+              const list = dependents.get(resolved)
               if (list) {
                 list.add(name)
               } else {
-                dependents.set(dep, new Set([name]))
+                dependents.set(resolved, new Set([name]))
               }
-            } else if (store.has(dep)) {
-              missing.push(dep)
+            } else if (store.has(resolved)) {
+              missing.push(resolved)
             }
           }
           if (missing.length > 0) {
@@ -701,6 +719,18 @@ const make = Effect.gen(function* () {
         name,
         source: sourceMap.get(name)!,
       }))
+      const aliasEntries = Array.from(aliasMap.entries())
+        .map(([alias, target]) => [alias, resolveAlias(target)] as const)
+        .filter(([alias, target]) => alias !== target)
+      aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias))
+      const replaceAliases = (value: string) => {
+        let result = value
+        for (const [alias, target] of aliasEntries) {
+          const pattern = new RegExp(`\\b${escapeRegExp(alias)}\\b`, "g")
+          result = result.replace(pattern, target)
+        }
+        return result
+      }
       const joinedBody = orderedSources.map((_) => _.source).join("\n\n")
       const hoistPrefix = options?.hoistReferencePrefix ?? ""
       const hoistResult = transformer.finalizeHoists
@@ -722,13 +752,15 @@ const make = Effect.gen(function* () {
       }
       const resolvedSources = orderedSources.map(({ name, source }) => ({
         name,
-        source: applyReplacements(source),
-        dependencies: Array.from(dependencies.get(name) ?? []),
+        source: replaceAliases(applyReplacements(source)),
+        dependencies: Array.from(
+          new Set(
+            Array.from(dependencies.get(name) ?? [])
+              .map((dep) => resolveAlias(dep))
+              .filter((dep) => dep !== name),
+          ),
+        ),
       }))
-      const aliasEntries = Array.from(aliasMap.entries()).filter(
-        ([alias, target]) => alias !== target,
-      )
-      aliasEntries.sort(([aAlias], [bAlias]) => aAlias.localeCompare(bAlias))
       return {
         aliases: aliasEntries.map(([alias, target]) => ({ alias, target })),
         hoists: hoistResult.hoists,
@@ -1042,7 +1074,7 @@ export const layerTransformerSchema = Layer.sync(JsonSchemaTransformer, () => {
       }
       const defaultSource =
         options.default !== undefined && options.default !== null
-          ? `() => ${JSON.stringify(options.default)} as const`
+          ? `() => (${JSON.stringify(options.default)} as const)`
           : undefined
       if (options.isOptional) {
         const expression =

@@ -195,10 +195,46 @@ export const make = Effect.gen(function* () {
               paramsOptional: true,
             }
             const schemaId = identifier(operation.operationId ?? path)
+            const parameterKey = (parameter: any) => {
+              if ("$ref" in parameter) {
+                const resolved = resolveRef(parameter.$ref as string)
+                if (
+                  resolved &&
+                  typeof resolved === "object" &&
+                  "in" in resolved &&
+                  "name" in resolved
+                ) {
+                  return `${resolved.in}:${resolved.name}`
+                }
+                return `ref:${parameter.$ref}`
+              }
+              return `${parameter.in}:${parameter.name}`
+            }
+            const mergeParameters = (
+              pathParameters: ReadonlyArray<any>,
+              operationParameters: ReadonlyArray<any>,
+            ) => {
+              const merged = new Map<string, any>()
+              for (const parameter of pathParameters) {
+                const key = parameterKey(parameter)
+                if (!merged.has(key)) {
+                  merged.set(key, parameter)
+                }
+              }
+              for (const parameter of operationParameters) {
+                const key = parameterKey(parameter)
+                if (merged.has(key)) {
+                  merged.delete(key)
+                }
+                merged.set(key, parameter)
+              }
+              return Array.from(merged.values())
+            }
             const validParameters =
-              operation.parameters?.filter(
-                (_) => _.in !== "path" && _.in !== "cookie",
-              ) ?? []
+              mergeParameters(
+                methods.parameters ?? [],
+                operation.parameters ?? [],
+              ).filter((_) => _.in !== "path" && _.in !== "cookie")
             if (validParameters.length > 0) {
               const schema: JsonSchema.Object = {
                 type: "object",
@@ -851,6 +887,24 @@ ${clientErrorSource(name)}`
     },
   ) => {
     const qualifier = options?.schemaQualifier ?? ""
+    const hasErrorSchemas = operations.some(
+      (operation) => operation.errorSchemas.size > 0,
+    )
+    const decodeErrorSource = hasErrorSchemas
+      ? `  const decodeError =
+    <const Tag extends string, A, I, R>(tag: Tag, schema: S.Schema<A, I, R>) =>
+    (response: HttpClientResponse.HttpClientResponse) => {
+      return Effect.flatMap(
+        HttpClientResponse.schemaBodyJson(schema)(response),
+        (cause) => Effect.fail(${name}Error(tag, cause, response)),
+      ) as unknown as Effect.Effect<
+        A,
+        any,
+        never
+      >
+    }
+`
+      : ""
     return `export const make = (
   httpClient: HttpClient.HttpClient, 
   options: {
@@ -867,18 +921,7 @@ ${clientErrorSource(name)}`
         never
       >
     }
-  const decodeError =
-    <const Tag extends string, A, I, R>(tag: Tag, schema: S.Schema<A, I, R>) =>
-    (response: HttpClientResponse.HttpClientResponse) => {
-      return Effect.flatMap(
-        HttpClientResponse.schemaBodyJson(schema)(response),
-        (cause) => Effect.fail(${name}Error(tag, cause, response)),
-      ) as unknown as Effect.Effect<
-        A,
-        any,
-        never
-      >
-    }
+${decodeErrorSource}
   return {
     httpClient,
     ${operations.map((operation) => operationToImpl(operation, qualifier)).join(",\n  ")}
